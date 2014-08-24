@@ -6,6 +6,9 @@
   "scripts": {
     "test": "none"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://berkeleytrue@bitbucket.org/bigr3dm/frontface.git"
@@ -19,5 +22,7 @@
     "gulp": "^3.8.7",
     "gulp-ruby-sass": "^0.7.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.8.5"
+  }
 }
