@@ -20,7 +20,8 @@
   "license": "None",
   "devDependencies": {
     "gulp": "^3.8.7",
-    "gulp-ruby-sass": "^0.7.1"
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-concat": "^2.3.4"
   },
   "dependencies": {
     "express": "^4.8.5"
