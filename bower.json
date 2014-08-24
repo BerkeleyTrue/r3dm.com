@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "purecss": "~0.5.0"
+    "pure": "~0.5.0"
   }
 }
