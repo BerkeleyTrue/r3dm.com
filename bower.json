@@ -1,0 +1,21 @@
+{
+  "name": "frontface",
+  "version": "0.0.1",
+  "authors": [
+    "berkeley@robotie.com"
+  ],
+  "description": "landing page for r3dm agency",
+  "license": "copyright r3dm llc",
+  "homepage": "r3dm.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purecss": "~0.5.0"
+  }
+}
