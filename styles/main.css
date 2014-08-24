@@ -2,27 +2,31 @@ body {
   font-family: "PtSansNarrow Regular", Arial, sans-serif; }
 
 .splash {
-  height: 88%;
+  height: 50%;
   background-image: url("backgroundCoverGGBridge.jpg");
   background-size: cover;
   text-align: center; }
 
 .content {
-  height: 1200px; }
+  height: 1200px;
+  text-align: center; }
 
 h1 {
-  padding: 30px 0 0 0;
+  padding: 10px 0 0 0;
   margin: 0 0; }
   h1 strong {
     color: #C1272D; }
 
 #heading {
-  padding: 30% 0 0 0; }
+  padding: 320px 0 0 0; }
 
 .mbar {
   display: inline-block;
   width: 30px;
   height: 110px;
   background-color: #C1272D; }
+
+.padding {
+  height: 130px; }
 
 /*# sourceMappingURL=main.css.map */
