@@ -1,0 +1,25 @@
+{
+  "name": "frontface",
+  "version": "1.0.0",
+  "description": "R3Dm front page",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://berkeleytrue@bitbucket.org/bigr3dm/frontface.git"
+  },
+  "keywords": [
+    "r3dm"
+  ],
+  "author": "Berkeley Martinez <berkeley@robotie.com> (http://robotie.com/)",
+  "license": "None",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-ruby-sass": "^0.7.1"
+  },
+  "dependencies": {
+    "gulp-sass": "^0.7.3"
+  }
+}
