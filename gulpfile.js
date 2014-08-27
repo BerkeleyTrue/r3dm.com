@@ -28,17 +28,18 @@ gulp.task('buildpurecss', function() {
 
 gulp.task('sync', ['server'], function() {
   sync.init(null, {
-    proxy: "http://localhost:5000",
-    files: ["public/**/*.*"],
-    browser: "google chrome",
-    port: 7000
+    proxy: 'http://localhost:5000',
+    files: ['public/**/*.*'],
+    browser: 'google chrome',
+    port: 9000
   });
 });
 
 gulp.task('server', function(cb) {
   var called = false;
   return nodemon({
-    script: 'index.js'
+    script: 'index.js',
+    watch: 'index.js'
   }).on('start', function () {
         if (!called) {
           called = true;
@@ -50,5 +51,8 @@ gulp.task('server', function(cb) {
 
 gulp.task('default', ['sass', 'buildpurecss']);
 gulp.task('watch', ['sync'], function () {
-  //gulp.src('')
+  gulp.watch('styles/*.sass', ['sass']);
+  gulp.watch('public/stylesheet/*.css').on('change', function () {
+    reload();
+  });
 });
