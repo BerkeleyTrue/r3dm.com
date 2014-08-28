@@ -1,0 +1,39 @@
+.pt-sans {
+  font-family: "pt_sansregular", Arial, sans-serif !important; }
+
+.pt-sans-narrow {
+  font-family: "pt_sans_narrowregular", Arial, sans-serif !important; }
+
+.splash {
+  position: relative;
+  height: 300px;
+  background-image: url("/images/backgroundCoverGGBridge.jpg");
+  background-size: cover;
+  text-align: center; }
+
+.content {
+  height: 1200px;
+  text-align: center; }
+
+h1 {
+  padding: 10px 0 0 0;
+  margin: 0 0; }
+  h1 strong {
+    color: #c1272d; }
+
+#heading {
+  position: absolute;
+  bottom: -125px;
+  width: 100%; }
+
+.mbar {
+  display: inline-block;
+  width: 30px;
+  height: 110px;
+  background-color: #c1272d; }
+
+.padding {
+  height: 130px; }
+
+.test {
+  height: 120px; }
