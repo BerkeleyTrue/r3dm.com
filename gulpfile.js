@@ -18,8 +18,7 @@ gulp.task('buildpurecss', function() {
   gulp.src([
     './bower_components/pure/pure.css',
     './bower_components/pure/base.css',
-    './bower_components/pure/grids-responsive.css',
-    './bower_components/pure/grids.css'
+    './bower_components/pure/grids-responsive.css'
   ])
     .pipe(concat('pure-bundle.css'))
     .pipe(gulp.dest('./public/stylesheets/'))

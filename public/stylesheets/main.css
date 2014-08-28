@@ -4,6 +4,11 @@
 .pt-sans-narrow {
   font-family: "pt_sans_narrowregular", Arial, sans-serif !important; }
 
+html, button, input, select, textarea,
+.pure-g [class*="pure-u"] {
+  /* Set your content font stack here: */
+  font-family: "pt_sans_narrowregular", Arial, sans-serif; }
+
 .splash {
   position: relative;
   height: 300px;
