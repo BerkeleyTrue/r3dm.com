@@ -8,7 +8,7 @@ var gulp        = require('gulp'),
 ;
 
 gulp.task('sass', function() {
-  gulp.src('styles/*.sass')
+  gulp.src('./styles/*.sass')
     .pipe(sass())
     .pipe(gulp.dest('./public/stylesheets'))
   ;
