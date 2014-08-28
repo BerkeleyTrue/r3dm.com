@@ -19,7 +19,7 @@ h1 {
   padding: 10px 0 0 0;
   margin: 0 0; }
   h1 strong {
-    color: #c1272d; }
+    color: #C1272D; }
 
 #heading {
   position: absolute;
@@ -30,10 +30,12 @@ h1 {
   display: inline-block;
   width: 30px;
   height: 110px;
-  background-color: #c1272d; }
+  background-color: #C1272D; }
 
 .padding {
   height: 130px; }
 
 .test {
   height: 120px; }
+
+/*# sourceMappingURL=main.css.map */
