@@ -22,6 +22,9 @@ html, button, input, select, textarea,
     font-size: 2em; }
   .content p {
     margin: 1em 10px; }
+  @media all and (min-width: 800px) {
+    .content p {
+      margin: 1em 40px; } }
 
 h1 {
   padding: 10px 0 0 0;
