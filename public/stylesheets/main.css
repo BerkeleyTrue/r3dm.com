@@ -17,7 +17,7 @@ html, button, input, select, textarea,
   background-repeat: no-repeat;
   text-align: center; }
 
-@media all and (min-height: 700px) {
+@media not handheld {
   .splash {
     background-attachment: fixed;
     height: 500px; } }
