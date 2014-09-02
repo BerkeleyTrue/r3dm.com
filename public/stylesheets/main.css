@@ -23,7 +23,7 @@ html, button, input, select, textarea,
     height: 500px; } }
 #heading {
   position: absolute;
-  bottom: -125px;
+  bottom: -80px;
   width: 100%; }
 
 .content {
@@ -36,10 +36,10 @@ html, button, input, select, textarea,
     .content p {
       margin: 1em 40px; } }
 
-h1 {
+h1.pt-sans {
   padding: 10px 0 0 0;
   margin: 0 0; }
-  h1 strong {
+  h1.pt-sans strong {
     color: #C1272D; }
 
 .mbar {
@@ -49,7 +49,7 @@ h1 {
   background-color: #C1272D; }
 
 .logopadding {
-  height: 130px; }
+  height: 110px; }
 
 .test {
   height: 120px; }
@@ -74,6 +74,6 @@ a {
 .work {
   font-size: 1.2em;
   max-width: 500px;
-  margin: 30px auto 0px auto; }
+  margin: 40px auto 0px auto; }
 
 /*# sourceMappingURL=main.css.map */
