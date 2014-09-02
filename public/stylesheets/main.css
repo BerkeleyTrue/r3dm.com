@@ -56,7 +56,9 @@ h1 {
 
 .about {
   text-align: center;
-  padding: 20px 60px 60px 60px; }
+  padding: 10px 10px 60px 10px; }
+  .about strong {
+    font-size: x-large; }
 
 footer {
   text-align: center;
@@ -68,5 +70,10 @@ footer {
 a {
   color: #C1272D;
   visited-color: #C1272D; }
+
+.work {
+  font-size: 1.2em;
+  max-width: 500px;
+  margin: 30px auto 0px auto; }
 
 /*# sourceMappingURL=main.css.map */
