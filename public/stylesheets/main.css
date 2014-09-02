@@ -13,8 +13,18 @@ html, button, input, select, textarea,
   position: relative;
   height: 300px;
   background-image: url("/images/backgroundCoverGGBridge.jpg");
-  background-size: cover;
+  background-attachment: fixed;
+  background-size: 150%;
+  background-repeat: no-repeat;
   text-align: center; }
+
+@media all and (min-height: 700px) {
+  .splash {
+    height: 500px; } }
+#heading {
+  position: absolute;
+  bottom: -125px;
+  width: 100%; }
 
 .content {
   text-align: center; }
@@ -31,11 +41,6 @@ h1 {
   margin: 0 0; }
   h1 strong {
     color: #C1272D; }
-
-#heading {
-  position: absolute;
-  bottom: -125px;
-  width: 100%; }
 
 .mbar {
   display: inline-block;
