@@ -62,11 +62,14 @@ html, button, input, select, textarea,
     font-size: x-large; }
 
 footer {
-  text-align: center;
-  font-style: italic;
-  font-size: 1.5em;
-  padding: 30px;
   background: #D1D2D4; }
+  footer div#calltoaction {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.5em;
+    padding: 30px; }
+  footer div#copyright {
+    text-align: right; }
 
 a {
   color: #C1272D;
