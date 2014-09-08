@@ -11,7 +11,6 @@ var express     = require('express'),
 ;
 
 app.set('port', (process.env.PORT || 5000));
-//app.use(favicon(__dirname + '/public/favicon.ico')); //Need to create favicon
 //app.set('view engine', 'html');
 app.use(cookieParse());
 app.use(body.urlencoded());
