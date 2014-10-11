@@ -1,4 +1,5 @@
-'use strict';
+//moved to server.js
+/*'use strict';
 var express     = require('express'),
     app         = express(),
     serve       = require('serve-static'),
@@ -23,4 +24,4 @@ app.get('/', function(req, res) {
 
 app.listen(app.get('port'), function() {
   console.log('node app is up and running at localhost:' + app.get('port'));
-});
+});*/
