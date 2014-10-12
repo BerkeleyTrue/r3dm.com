@@ -35,7 +35,8 @@ var gulp = require('gulp'),
 
 var paths = {
   main: './client.js',
-  stylus: './stylus/main.styl',
+  stylusMain: './stylus/main.styl',
+  stylusAll: './stylus/**/*.styl',
   sass: './sass/*.sass',
   css: './public/css/',
   server: './server.js',
@@ -57,7 +58,7 @@ if (production) {
 }
 
 gulp.task('stylus', function() {
-  return gulp.src(paths.stylus)
+  return gulp.src(paths.stylusMain)
     .pipe(plumber())
     .pipe(stylus({
       use: nib(),
@@ -109,13 +110,14 @@ gulp.task('server', function(cb) {
         debug('Files that changes: ', files);
       }
       setTimeout(function() {
+        debug('Restarting browsers');
         reload();
-      }, 2000);
+      }, 3000);
     });
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.stylus, ['stylus']);
+  gulp.watch(paths.stylusAll, ['stylus']);
 });
 
 gulp.task('setWatch', function() {
