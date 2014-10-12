@@ -56,6 +56,7 @@
     "react-bootstrap": "^0.12.0",
     "react-inlinesvg": "^0.2.3",
     "react-router": "^0.9.3",
+    "react-scroll-components": "0.0.4",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3"
   }
