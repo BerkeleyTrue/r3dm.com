@@ -1,4 +1,5 @@
 'use strict';
+process.env.DEBUG = process.env.DEBUG || 'r3dm:gulp';
 var gulp = require('gulp'),
 
     // ## Style
@@ -20,44 +21,47 @@ var gulp = require('gulp'),
     util = require('gulp-util'),
     noopPipe = util.noop,
     //logPipe = util.log,
-    yargs = require('yargs'),
+    yargs = require('yargs').argv,
+    debug = require('debug')('r3dm:gulp'),
 
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
     sync = require('browser-sync'),
+    reload = sync.reload,
 
     // ## production?
     production = yargs.p;
 
+
 var paths = {
   main: './client.js',
-  stylus: './stylus/*.styl',
+  stylus: './stylus/main.styl',
   sass: './sass/*.sass',
   css: './public/css/',
-  pure: [
-    './bower_components/pure/pure.css',
-    './bower_components/pure/base.css',
-    './bower_components/pure/grids-responsive.css'
-  ],
   server: './server.js',
-  watchJs: [
-    './**/*.js',
-    '!./node_modules',
-    '!./public/',
-    '!./bower_components/',
-    '!./stylus/'
+  serverIgnore: [
+    'gulpfile.js',
+    'public/',
+    'stylus/',
+    'bower_components/',
+    'node_modules/'
   ],
   publicJs: './public/js'
 };
 
 var watching = false;
 
+if (production) {
+  // ## Set with `-p`
+  console.log('\n', 'Production mode set', '\n');
+}
+
 gulp.task('stylus', function() {
   return gulp.src(paths.stylus)
     .pipe(plumber())
     .pipe(stylus({
       use: nib(),
-      'include Css': true
+      'include css': true
     }))
     .pipe(concat('main.css'))
     .pipe(production ? mincss() : noopPipe())
@@ -73,7 +77,8 @@ gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
     proxy: 'http://localhost:9000',
     files: ['public/**/*.*'],
     port: 9002,
-    open: false
+    open: false,
+    reloadDelay: 2000
   });
 });
 
@@ -81,13 +86,8 @@ gulp.task('server', function(cb) {
   var called = false;
   nodemon({
     script: paths.server,
-    watch: '.js .jade',
-    ignore: [
-      './public',
-      './stylus',
-      './bower_components',
-      './node_modules'
-    ],
+    ext: '.js .jade',
+    ignore: paths.serverIgnore,
     env: {
       'NODE_ENV': 'development',
       'DEBUG': 'r3dm:*'
@@ -100,15 +100,33 @@ gulp.task('server', function(cb) {
           cb();
         }, 2000);
       }
+    })
+    .on('restart', function(files) {
+      if (files) {
+        debug('Files that changes: ', files);
+      }
+      setTimeout(function() {
+        reload();
+      }, 2000);
     });
 });
 
 gulp.task('watch', function() {
-  watching = true;
   gulp.watch(paths.stylus, ['stylus']);
 });
 
-gulp.task('default', ['bundle', 'stylus', 'server', 'sync', 'watch']);
+gulp.task('setWatch', function() {
+  watching = true;
+});
+
+gulp.task('default', [
+  'setWatch',
+  'bundle',
+  'stylus',
+  'server',
+  'sync',
+  'watch'
+]);
 
 function browserifyCommon(cb) {
   cb = cb || noop;
@@ -132,8 +150,8 @@ function browserifyCommon(cb) {
   b.transform(reactify);
   b.transform(envify);
 
-  if (watching) {
-    console.log('Watching');
+  if (!production) {
+    debug('Watching');
     b = watchify(b);
     b.on('update', function() {
       bundleItUp(b);
@@ -141,9 +159,12 @@ function browserifyCommon(cb) {
   }
 
   if (production) {
-    b.transform(uglifyify);
-  } else {
-    b.require('react');
+    debug('Uglifying bundle');
+    b.transform({
+      global: true
+    },
+      uglifyify);
+
   }
 
   b.add(paths.main);
@@ -152,7 +173,7 @@ function browserifyCommon(cb) {
 }
 
 function bundleItUp(b) {
-  console.log('Bundling');
+  debug('Bundling');
   return b.bundle()
     .pipe(plumber())
     .pipe(bundleName('bundle.js'))
