@@ -75,7 +75,10 @@ gulp.task('bundle', function(cb) {
 gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
   sync.init(null, {
     proxy: 'http://localhost:9000',
-    files: ['public/**/*.*'],
+    files: [
+      'public/**/*.*',
+      '!public/js/bundle.js'
+    ],
     port: 9002,
     open: false,
     reloadDelay: 2000
