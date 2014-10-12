@@ -3,22 +3,31 @@ var gulp = require('gulp'),
 
     // ## Style
     concat = require('gulp-concat'),
-    sass = require('gulp-ruby-sass'),
+    stylus = require('gulp-stylus'),
+    nib = require('nib'),
+    mincss = require('gulp-minify-css'),
 
     // ## Bundle
     browserify = require('browserify'),
     watchify = require('watchify'),
     envify = require('envify'),
     reactify = require('reactify'),
+    uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
 
     // ## utils
     plumber = require('gulp-plumber'),
+    util = require('gulp-util'),
+    noopPipe = util.noop,
+    //logPipe = util.log,
+    yargs = require('yargs'),
 
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
     sync = require('browser-sync'),
-    reload = sync.reload;
+
+    // ## production?
+    production = yargs.p;
 
 var paths = {
   main: './client.js',
@@ -33,32 +42,33 @@ var paths = {
   server: './server.js',
   watchJs: [
     './**/*.js',
-    '!node_modules',
-    '!components'
+    '!./node_modules',
+    '!./public/',
+    '!./bower_components/',
+    '!./stylus/'
   ],
   publicJs: './public/js'
 };
 
 var watching = false;
 
-gulp.task('sass', function() {
-  gulp.src(paths.sass)
-    .pipe(sass())
-    .pipe(gulp.dest(paths.css));
-});
-
-gulp.task('buildpurecss', function() {
-  gulp.src(paths.pure)
-    .pipe(concat('pure-bundle.css'))
+gulp.task('stylus', function() {
+  return gulp.src(paths.stylus)
+    .pipe(plumber())
+    .pipe(stylus({
+      use: nib(),
+      'include Css': true
+    }))
+    .pipe(concat('main.css'))
+    .pipe(production ? mincss() : noopPipe())
     .pipe(gulp.dest(paths.css));
 });
 
 gulp.task('bundle', function(cb) {
-  browserifyCommon();
-  cb();
+  browserifyCommon(cb);
 });
 
-gulp.task('sync', ['server'], function() {
+gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
   sync.init(null, {
     proxy: 'http://localhost:9000',
     files: ['public/**/*.*'],
@@ -71,7 +81,13 @@ gulp.task('server', function(cb) {
   var called = false;
   nodemon({
     script: paths.server,
-    watch: paths.watchJs,
+    watch: '.js .jade',
+    ignore: [
+      './public',
+      './stylus',
+      './bower_components',
+      './node_modules'
+    ],
     env: {
       'NODE_ENV': 'development',
       'DEBUG': 'r3dm:*'
@@ -80,21 +96,19 @@ gulp.task('server', function(cb) {
     .on('start', function() {
       if (!called) {
         called = true;
-        cb();
+        setTimeout(function() {
+          cb();
+        }, 2000);
       }
     });
 });
 
-gulp.task('watch', ['sync'], function(cb) {
+gulp.task('watch', function() {
   watching = true;
-  browserifyCommon(cb);
-  gulp.watch(paths.sass, ['sass']);
-  gulp.watch(paths.css + '**/*.css').on('change', function() {
-    reload();
-  });
+  gulp.watch(paths.stylus, ['stylus']);
 });
 
-gulp.task('default', ['watch', 'server', 'sync']);
+gulp.task('default', ['bundle', 'stylus', 'server', 'sync', 'watch']);
 
 function browserifyCommon(cb) {
   cb = cb || noop;
@@ -116,6 +130,7 @@ function browserifyCommon(cb) {
 
   var b = browserify(config);
   b.transform(reactify);
+  b.transform(envify);
 
   if (watching) {
     console.log('Watching');
@@ -123,9 +138,12 @@ function browserifyCommon(cb) {
     b.on('update', function() {
       bundleItUp(b);
     });
+  }
+
+  if (production) {
+    b.transform(uglifyify);
   } else {
-    b.transform(envify);
-    //b.transform(uglifyify);
+    b.require('react');
   }
 
   b.add(paths.main);

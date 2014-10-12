@@ -9,11 +9,19 @@ var App = React.createClass({
         props = this.props;
     return (
       <div>
-        <Isvg
-          src="images/logos/logo.svg" >
-          <img src="images/logo.png" />
-        </Isvg>
-        R3DM
+        <div className="logo_container">
+          <Isvg
+            className="logo-mark"
+            src="images/logos/logo-mark.svg"
+            wrap="div">
+            <img src="images/logo-mark.png" />
+          </Isvg>
+          <Isvg
+            className="logo-type"
+            src="images/logos/logo-type.svg">
+            <img src="images/logo-type.png" />
+          </Isvg>
+        </div>
       </div>
       
     );
