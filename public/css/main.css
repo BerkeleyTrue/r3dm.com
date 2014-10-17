@@ -2524,6 +2524,9 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         width: 100%;
     }
 }
+.logo {
+  width: 300px;
+}
 .logo svg {
   height: 30vh;
   width: 30vw;
@@ -2532,7 +2535,26 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   height: 20px;
   width: 40px;
 }
+.logo-container {
+  text-align: center;
+  height: 100%;
+}
+.logo-container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.v-center {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
 body {
   height: 100vh;
   width: 100vw;
+}
+#app {
+  height: 100%;
+  width: 100%;
 }
