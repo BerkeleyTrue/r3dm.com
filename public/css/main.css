@@ -2524,20 +2524,19 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         width: 100%;
     }
 }
-.logo {
-  width: 300px;
-}
 .logo svg {
   height: 30vh;
+  padding-top: 8vh;
   width: 30vw;
 }
-.logo-type svg {
-  height: 20px;
-  width: 40px;
+.logo-container {
+  z-index: 10;
 }
 .logo-container {
+  position: absolute;
   text-align: center;
   height: 100%;
+  width: 100%;
 }
 .logo-container:before {
   content: '';
@@ -2554,7 +2553,18 @@ body {
   height: 100vh;
   width: 100vw;
 }
-#app {
+#app,
+.main-app {
   height: 100%;
   width: 100%;
+}
+.first-con {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+.first-con_top {
+  height: 50%;
+  width: 100vw;
+  background: #000;
 }

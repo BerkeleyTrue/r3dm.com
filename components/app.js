@@ -7,8 +7,16 @@ var App = React.createClass({
   render: function() {
 
     return (
-      <div className="logo-container">
-        <Logo></Logo>
+      <div className="main-app">
+        <div className="logo-container">
+          <Logo></Logo>
+        </div>
+        <div className="first-con">
+          <div className="first-con_top"></div>
+          <div className="first-con_bot"></div>
+        </div>
+        <div className="sec-con">
+        </div>
       </div>
     );
   }
