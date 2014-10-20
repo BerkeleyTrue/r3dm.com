@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 'use strict';
 var React = require('react/addons'),
+    Banner = require('./banner'),
     Logo = require('./logo');
 
 var App = React.createClass({
@@ -12,8 +13,9 @@ var App = React.createClass({
           <Logo></Logo>
         </div>
         <div className="first-con">
-          <div className="first-con_top"></div>
-          <div className="first-con_bot"></div>
+          <Banner></Banner>
+          <div className="first-con_bot">
+          </div>
         </div>
         <div className="sec-con">
         </div>

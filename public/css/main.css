@@ -2549,6 +2549,40 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   width: 100%;
   vertical-align: middle;
 }
+.first-con {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+.first-con_top {
+  position: relative;
+  overflow: hidden;
+  height: 50%;
+  width: 100vw;
+  background: #000;
+}
+.first-con_top img {
+  position: absolute;
+}
+@media only screen and (min-width: 1000px) {
+  .first-con_top img {
+    bottom: -50vh;
+    left: -10vw;
+    width: 110vw;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 1000px) {
+  .first-con_top img {
+    bottom: -34vh;
+    left: -73vw;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .first-con_top img {
+    bottom: -37vh;
+    left: -73vw;
+  }
+}
 body {
   height: 100vh;
   width: 100vw;
@@ -2557,14 +2591,4 @@ body {
 .main-app {
   height: 100%;
   width: 100%;
-}
-.first-con {
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-}
-.first-con_top {
-  height: 50%;
-  width: 100vw;
-  background: #000;
 }
