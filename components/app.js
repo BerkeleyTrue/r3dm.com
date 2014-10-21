@@ -18,7 +18,13 @@ var App = React.createClass({
             <h2>Stuff</h2>
           </div>
         </div>
-        <div className="sec-con">
+        <div className="services con">
+        </div>
+        <div className="work con">
+        </div>
+        <div className="team con">
+        </div>
+        <div className="connect con">
         </div>
       </div>
     );
