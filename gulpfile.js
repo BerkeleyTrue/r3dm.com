@@ -129,7 +129,7 @@ gulp.task('setWatch', function() {
 });
 
 gulp.task('image', function() {
-  gulp.src('images/*')
+  gulp.src('images/**/*')
     .pipe(imagemin({
       progressive: true,
       optimizationLevel: 2
