@@ -24,6 +24,10 @@ var gulp = require('gulp'),
     yargs = require('yargs').argv,
     debug = require('debug')('r3dm:gulp'),
 
+    // ## min
+    imagemin = require('gulp-imagemin'),
+    pngcrush = require('imagemin-pngcrush'),
+
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
     sync = require('browser-sync'),
@@ -122,6 +126,16 @@ gulp.task('watch', function() {
 
 gulp.task('setWatch', function() {
   watching = true;
+});
+
+gulp.task('image', function() {
+  gulp.src('images/*')
+    .pipe(imagemin({
+      progressive: true,
+      optimizationLevel: 2
+      //use: [pngcrush()]
+    }))
+    .pipe(gulp.dest('public/images'));
 });
 
 gulp.task('default', [
