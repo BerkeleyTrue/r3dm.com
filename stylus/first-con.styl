@@ -1,3 +1,8 @@
+sm = 30em   //480px
+m = 45em    //720px
+l = 60em    //960px
+xl = 75em   //1200px
+
 .first-con
   width 100vw
   height 100vh
@@ -6,18 +11,26 @@
 .first-con_top
   img
     position absolute
-    @media only screen and (min-width: 1000px)
+    @media only screen and (min-width: l)
       bottom -50vh
       left -10vw
       width 110vw
-    @media only screen and (min-width: 500px) and (max-width: 1000px)
+    @media only screen and (min-width: m) and (max-width: l)
       bottom -34vh;
       left -73vw;
-    @media only screen and (max-width: 500px)
-      bottom -37vh;
-      left -73vw;
+    @media only screen and (max-width: m)
+      bottom -2vh;
+      left -0vw;
+    @media only screen and (max-width: s)
+      bottom -2vh;
+      left -0vw;
   position relative
   overflow hidden
   height 50%
   width 100vw
   background black
+
+.first-con_bot
+  h2
+    padding-top 25vh
+  text-align center

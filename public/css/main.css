@@ -2564,24 +2564,36 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .first-con_top img {
   position: absolute;
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 60em) {
   .first-con_top img {
     bottom: -50vh;
     left: -10vw;
     width: 110vw;
   }
 }
-@media only screen and (min-width: 500px) and (max-width: 1000px) {
+@media only screen and (min-width: 45em) and (max-width: 60em) {
   .first-con_top img {
     bottom: -34vh;
     left: -73vw;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 45em) {
   .first-con_top img {
-    bottom: -37vh;
-    left: -73vw;
+    bottom: -2vh;
+    left: 0vw;
   }
+}
+@media only screen and (max-width: s) {
+  .first-con_top img {
+    bottom: -2vh;
+    left: 0vw;
+  }
+}
+.first-con_bot {
+  text-align: center;
+}
+.first-con_bot h2 {
+  padding-top: 25vh;
 }
 body {
   height: 100vh;

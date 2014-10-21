@@ -15,6 +15,7 @@ var App = React.createClass({
         <div className="first-con">
           <Banner></Banner>
           <div className="first-con_bot">
+            <h2>Stuff</h2>
           </div>
         </div>
         <div className="sec-con">

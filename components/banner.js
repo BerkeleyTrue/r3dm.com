@@ -11,9 +11,18 @@ var Banner = React.createClass({
       'images/banner-s.jpg 500w'
     ].join(', ');
 
+    var sizes = [
+      '(max-width: ) 100vw',
+      '(max-width: ) 100vw',
+      '(max-width: ) 100vw',
+      '(max-width: ) 100vw',
+    ].join(', ');
+
     return (
       <div className="first-con_top">
-        <img srcSet= { banners } />
+        <img
+          srcSet = { banners }
+          sizes = " "/>
       </div>
     );
   }
