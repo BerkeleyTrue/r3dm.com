@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
     nib = require('nib'),
+    fontFace = require('stylus-font-face'),
     mincss = require('gulp-minify-css'),
 
     // ## Bundle
@@ -65,7 +66,10 @@ gulp.task('stylus', function() {
   return gulp.src(paths.stylusMain)
     .pipe(plumber())
     .pipe(stylus({
-      use: nib(),
+      use: [
+        nib(),
+        fontFace()
+      ],
       'include css': true
     }))
     .pipe(concat('main.css'))

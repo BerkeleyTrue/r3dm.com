@@ -1,11 +1,26 @@
+@import 'font-face'
 @import 'pure/pure.css'
+@import 'pure/grids.css'
 @import 'pure/grids-responsive.css'
-@import 'logo'
-@import 'first-con'
-@import 'services'
-@import 'work'
-@import 'team'
-@import 'connect'
+
+font-face-inline('pt-sans-regular', 'PTS55F-webfont', 'fonts/ptsans_regular')
+font-face-inline('pt-sans-narrow', 'PTN57F-webfont', 'fonts/ptsansnarrow')
+
+html
+p
+button
+input
+select
+textarea
+  font-family 'pt-sans-narrow'
+
+h1
+h2
+h3
+h4
+h5
+h6
+  font-family 'pt-sans-regular'
 
 body
   height 100vh
@@ -18,3 +33,10 @@ body
 
 .con
   height 100vh
+
+@import 'logo'
+@import 'first-con'
+@import 'services'
+@import 'work'
+@import 'team'
+@import 'connect'
