@@ -2,6 +2,10 @@
 'use strict';
 var React = require('react/addons'),
     Banner = require('./banner'),
+    Services = require('./services'),
+    Work = require('./work'),
+    Team = require('./team'),
+    Connect = require('./connect'),
     Logo = require('./logo');
 
 var App = React.createClass({
@@ -18,14 +22,10 @@ var App = React.createClass({
             <h2>Stuff</h2>
           </div>
         </div>
-        <div className="services con">
-        </div>
-        <div className="work con">
-        </div>
-        <div className="team con">
-        </div>
-        <div className="connect con">
-        </div>
+        <Services></Services>
+        <Work></Work>
+        <Team></Team>
+        <Connect></Connect>
       </div>
     );
   }
