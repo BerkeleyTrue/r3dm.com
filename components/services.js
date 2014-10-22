@@ -10,6 +10,7 @@ var Services = React.createClass({
     var block = [
       'pure-u-1',
       'pure-u-md-1-3',
+      'services_block',
       'services_block-padding'
     ].join(' ');
 
@@ -25,10 +26,10 @@ var Services = React.createClass({
 
     return (
       <div className="services">
-        <div className = "services_subject-center">
-          <h2>Services</h2>
+        <div className = "services_subject-center services_heading">
+          <h2>SERVICES</h2>
         </div>
-        <div className = "pure-g">
+        <div className = "pure-g services_content">
           { Blocks }
         </div>
       </div>

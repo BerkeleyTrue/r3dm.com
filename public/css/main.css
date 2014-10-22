@@ -2930,11 +2930,21 @@ body {
 }
 .services {
   background-color: #c1272d;
+  color: #fff;
   text-align: center;
+}
+.services svg {
+  fill: #fff;
+}
+.services_content {
+  padding-bottom: 2em;
 }
 .services_block-padding p {
   padding-left: 2em;
   padding-right: 2em;
+}
+.services_heading h2 {
+  padding-top: 2em;
 }
 .work {
   background-color: #d1d2d4;
