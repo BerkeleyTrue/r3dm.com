@@ -33,6 +33,7 @@ var Work = React.createClass({
       return (
         <Block
           className = { block }
+          key = { datum.url }
           data = { datum }></Block>
       );
     });
