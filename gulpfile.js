@@ -16,6 +16,7 @@ var gulp = require('gulp'),
     reactify = require('reactify'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
+    brfs = require('brfs'),
 
     // ## utils
     plumber = require('gulp-plumber'),
@@ -172,6 +173,7 @@ function browserifyCommon(cb) {
   var b = browserify(config);
   b.transform(reactify);
   b.transform(envify);
+  b.transform(brfs);
 
   if (!production) {
     debug('Watching');
@@ -183,11 +185,7 @@ function browserifyCommon(cb) {
 
   if (production) {
     debug('Uglifying bundle');
-    b.transform({
-      global: true
-    },
-      uglifyify);
-
+    b.transform({ global: true }, uglifyify);
   }
 
   b.add(paths.main);
