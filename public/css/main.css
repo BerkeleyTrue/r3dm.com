@@ -2948,6 +2948,7 @@ body {
 }
 .work {
   background-color: #d1d2d4;
+  color: #fff;
   background-image: url("../images/subtle_carbon.png");
 }
 @media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.5/1), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
@@ -2955,6 +2956,26 @@ body {
     background-image: url("../images/subtle_carbon@2x.png");
     background-size: auto auto;
   }
+}
+.work_heading {
+  text-align: center;
+  overflow: auto;
+}
+.work_content,
+.work_block {
+  height: 75%;
+}
+.work_block-img-1 img {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 2.5em;
+  width: 50%;
+}
+.work_block-img-2 img {
+  width: 40%;
+}
+.work_block-img-3 img {
+  width: 30%;
 }
 .team {
   background-color: #c1272d;
