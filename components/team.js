@@ -10,19 +10,27 @@ var Team = React.createClass({
   },
 
   render: function() {
-    console.log('Render');
+    var blockClass = [
+      'pure-u-1',
+      'pure-u-md-1-3',
+      'team_block',
+      'team_block-padding'
+    ].join(' ');
+
     var Blocks = this.props.data.map(function(datum) {
       return (
         <Block
           key = { datum.title }
           data = { datum }
-          className = { datum.className }></Block>
+          className = { blockClass }></Block>
       );
     });
 
     return (
-      <div className="team">
-        <h2>THE T3AM</h2>
+      <div className='team'>
+        <div className = 'team_heading'>
+          <h2>THE T<span className = 'threes'>3</span>AM</h2>
+        </div>
         <div>
           { Blocks }
         </div>

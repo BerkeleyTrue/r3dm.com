@@ -13,6 +13,9 @@ var Work = React.createClass({
     };
   },
 
+  componentWillMount: function() {
+  },
+
   render: function() {
 
     var block = [
@@ -41,7 +44,7 @@ var Work = React.createClass({
     return (
       <div className="work">
         <div className = "work_heading">
-          <h2>R3CENT WORK</h2>
+          <h2>R<span className = 'threes'>3</span>CENT WORK</h2>
         </div>
         <div className = "pure-g work_content" >
           { Blocks }

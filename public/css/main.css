@@ -2946,6 +2946,9 @@ body {
 .services_heading h2 {
   padding-top: 2em;
 }
+.services_heading h2 span.threes {
+  color: #000;
+}
 .work {
   background-color: #d1d2d4;
   color: #fff;
@@ -2960,6 +2963,9 @@ body {
 .work_heading {
   text-align: center;
   overflow: auto;
+}
+.work_heading span.threes {
+  color: #c1272d;
 }
 .work_content,
 .work_block {
@@ -2980,6 +2986,21 @@ body {
 .team {
   background-color: #c1272d;
 }
+.team_heading {
+  text-align: center;
+  overflow: auto;
+}
+.team_heading span.threes {
+  color: #fff;
+}
+.team_block {
+  text-align: center;
+  color: #fff;
+}
+.team_block-padding p {
+  padding-left: 2em;
+  padding-right: 2em;
+}
 .connect {
   background-color: #808080;
   background-image: url("../images/subtle_carbon.png");
@@ -2989,4 +3010,12 @@ body {
     background-image: url("../images/subtle_carbon@2x.png");
     background-size: auto auto;
   }
+}
+.connect_heading {
+  color: #fff;
+  text-align: center;
+  overflow: auto;
+}
+.connect_heading span.threes {
+  color: #c1272d;
 }
