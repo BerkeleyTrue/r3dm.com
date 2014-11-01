@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 'use strict';
 var React = require('react'),
-    Isvg = require('react-inlinesvg');
+    Isvg = require('react-inlinesvg'),
+    LogoSvg = require('./logo_svg');
 
 var Logo = React.createClass({
-
   render: function() {
 
     var cx = React.addons.classSet;
@@ -19,6 +19,7 @@ var Logo = React.createClass({
           <Isvg
             className = 'logo'
             wrapper = { React.DOM.div }
+            preloader = { LogoSvg }
             src = 'images/logos/logo.svg'>
             <img src='images/logo-mark.png' />
           </Isvg>
