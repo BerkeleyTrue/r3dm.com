@@ -5,7 +5,6 @@ var gulp = require('gulp'),
     // ## Style
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
-    nib = require('nib'),
     swiss = require('kouto-swiss'),
     mincss = require('gulp-minify-css'),
 
@@ -68,7 +67,6 @@ gulp.task('stylus', function() {
     .pipe(plumber())
     .pipe(stylus({
       use: [
-        nib(),
         swiss()
       ],
       'include css': true
