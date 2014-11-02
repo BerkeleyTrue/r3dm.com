@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
     nib = require('nib'),
-    fontFace = require('stylus-font-face'),
+    swiss = require('kouto-swiss'),
     mincss = require('gulp-minify-css'),
 
     // ## Bundle
@@ -28,7 +28,7 @@ var gulp = require('gulp'),
 
     // ## min
     imagemin = require('gulp-imagemin'),
-    pngcrush = require('imagemin-pngcrush'),
+    //pngcrush = require('imagemin-pngcrush'),
 
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
@@ -69,7 +69,7 @@ gulp.task('stylus', function() {
     .pipe(stylus({
       use: [
         nib(),
-        fontFace()
+        swiss()
       ],
       'include css': true
     }))
