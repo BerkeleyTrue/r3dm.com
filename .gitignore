@@ -5,3 +5,4 @@ node_modules
 **/*.swap
 config/runtime.*
 npm-debug.log
+*.env
