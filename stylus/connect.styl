@@ -1,15 +1,58 @@
 @require 'util'
+buttonHeight = 2.1rem
 
 .connect
+  gs('fluid')
   background-color gray
-  retina-image '../images/subtle_carbon.png'
+  retina-image('../images/subtle_carbon.png')
+  button
 
 .connect_heading
+  row()
   color white
   text-align center
   overflow auto
   span.threes
     color $r3d
-.connect
+
+.connect_email
+  form
+    row()
+    :first-child
+      col(4)
+      margin-bottom 1em
+      margin-right 0
+      offset(3)
+      input
+        height buttonHeight
+        width 100%
+    :last-child
+      col(2)
+      border-bottom-right-radius 3px
+      border-top-right-radius 3px
+      margin-bottom 1em
+      margin-left 0
+      span
+        border-left none
+        display block
+        font-size 1rem
+        height buttonHeight
+        line-height buttonHeight
+        position relative
+        padding-top 0
+        padding-bottom 0
+        text-align center
+        width 100%
+    div
   button
+    color white
     background-color $r3d
+    border-radius 0 4px 4px 0
+    padding-left 0
+  span
+    background-color $r3d
+    border-left none
+
+input[type = 'email'].connect_input
+  margin-right 0
+  border-radius 4px 0 0 4px
