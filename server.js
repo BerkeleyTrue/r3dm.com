@@ -31,8 +31,6 @@ var express = require('express'),
 state.extend(app);
 
 // ## express
-app.set('port', (process.env.PORT || 9000));
-app.set('view engine', 'jade');
 
 // ## keystone setup
 app = keystoneInit(keystone);
