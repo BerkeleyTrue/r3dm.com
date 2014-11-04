@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').load();
 require('node-jsx').install();
 var express = require('express'),
     app = express(),
@@ -6,6 +7,7 @@ var express = require('express'),
     // ## Keystone
     mongoose = require('mongoose'),
     keystone = require('keystone').connect(mongoose, app),
+    keystoneInit = require('./keystone'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
@@ -25,43 +27,51 @@ var express = require('express'),
     helmet = require('helmet');
     //coookieSess = require('cookie-session')
 
-// ## State becomes a variable available to all
-// rendered views
+// ## State becomes a variable available to all rendered views
 state.extend(app);
+
+// ## express
 app.set('port', (process.env.PORT || 9000));
 app.set('view engine', 'jade');
-app.use(helmet());
-app.use(morgan('dev'));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(cookieParse());
-app.use(body.urlencoded());
-app.use(body.json());
-app.use(compress());
 
-app.get('/', function(req, res, next) {
-  var html = React.renderComponentToString(App());
-  res.render('layout', { html: html }, function(err, markup) {
-    if (err) { return next(err); }
-    debug('Sending Markup');
-    res.send(markup);
+// ## keystone setup
+app = keystoneInit(keystone);
+app.pre('routes', helmet());
+app.pre('routes', morgan('dev'));
+app.pre('routes', favicon(__dirname + '/public/images/favicon.ico'));
+app.pre('routes', cookieParse());
+app.pre('routes', body.urlencoded({ extended: true }));
+app.pre('routes', body.json());
+app.pre('routes', compress());
+
+app.set('routes', function(app) {
+  app.get('/', function(req, res, next) {
+    var html = React.renderComponentToString(App());
+    res.render('layout', { html: html }, function(err, markup) {
+      if (err) { return next(err); }
+      debug('Sending Markup');
+      res.send(markup);
+    });
   });
 });
 
 
-app.use(serve('./public'));
+app.pre('routes', serve('./public'));
 
-app.use(function(req, res) {
+app.set('404', function(req, res) {
   res.status(404);
   res.render(404);
 });
 
-app.use(function(err, req, res, next) {
+app.set('500', function(err, req, res, next) { //jshint ignore:line
   debug('Err: ', err);
   res
     .status(500)
     .send('Something went wrong');
 });
 
-app.listen(app.get('port'), function() {
+keystone.start();
+
+/*app.listen(app.get('port'), function() {
   console.log('node app is up and running at localhost:' + app.get('port'));
-});
+});*/
