@@ -98,7 +98,7 @@ gulp.task('server', function(cb) {
   var called = false;
   nodemon({
     script: paths.server,
-    ext: '.js .jade',
+    ext: '.js',
     ignore: paths.serverIgnore,
     env: {
       'NODE_ENV': 'development',
