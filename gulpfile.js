@@ -56,6 +56,7 @@ var paths = {
 };
 
 var watching = false;
+var reloadDelay = 17000;
 
 if (production) {
   // ## Set with `-p`
@@ -89,7 +90,7 @@ gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
     ],
     port: 9002,
     open: false,
-    reloadDelay: 2000
+    reloadDelay: reloadDelay
   });
 });
 
@@ -109,7 +110,7 @@ gulp.task('server', function(cb) {
         called = true;
         setTimeout(function() {
           cb();
-        }, 2000);
+        }, reloadDelay);
       }
     })
     .on('restart', function(files) {
@@ -119,7 +120,7 @@ gulp.task('server', function(cb) {
       setTimeout(function() {
         debug('Restarting browsers');
         reload();
-      }, 3000);
+      }, reloadDelay);
     });
 });
 
