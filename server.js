@@ -18,7 +18,6 @@ var express = require('express'),
     state = require('express-state'),
 
     // ## Express/Serve
-    morgan = require('morgan'),
     serve = require('serve-static'),
     favicon = require('serve-favicon'),
     body = require('body-parser'),
@@ -30,17 +29,15 @@ var express = require('express'),
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 
-// ## express
-
 // ## keystone setup
 app = keystoneInit(keystone);
 app.pre('routes', helmet());
-app.pre('routes', morgan('dev'));
 app.pre('routes', favicon(__dirname + '/public/images/favicon.ico'));
 app.pre('routes', cookieParse());
 app.pre('routes', body.urlencoded({ extended: true }));
 app.pre('routes', body.json());
 app.pre('routes', compress());
+app.pre('routes', serve('./public'));
 
 app.set('routes', function(app) {
   app.get('/', function(req, res, next) {
@@ -52,9 +49,6 @@ app.set('routes', function(app) {
     });
   });
 });
-
-
-app.pre('routes', serve('./public'));
 
 app.set('404', function(req, res) {
   res.status(404);
@@ -69,7 +63,3 @@ app.set('500', function(err, req, res, next) { //jshint ignore:line
 });
 
 keystone.start();
-
-/*app.listen(app.get('port'), function() {
-  console.log('node app is up and running at localhost:' + app.get('port'));
-});*/
