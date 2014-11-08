@@ -4,7 +4,6 @@ var React = require('react/addons'),
     Banner = require('./banner'),
     Services = require('./services'),
     Work = require('./work'),
-    Team = require('./team'),
     Connect = require('./connect'),
     Logo = require('./logo');
 
@@ -24,7 +23,6 @@ var App = React.createClass({
         </div>
         <Services></Services>
         <Work></Work>
-        <Team></Team>
         <Connect></Connect>
       </div>
     );
