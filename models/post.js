@@ -2,48 +2,69 @@
 var keystone = require('keystone'),
     Types = keystone.Field.Types;
 
-var User = new keystone.List('User');
+/**
+ * Post Model
+ * ==========
+ */
+var Post = new keystone.List('Post', {
+  map: {
+    name: 'title'
+  },
+  autokey: {
+    path: 'slug',
+    from: 'title',
+    unique: true
+  }
+});
 
-User.add({
-  name: {
-    type: Types.Name,
-    required: true,
-    index: true
-  },
-  email: {
-    type: Types.Email,
-    initial: true,
-    required: true,
-    index: true
-  },
-  password: {
-    type: Types.Password,
-    initial: true,
+Post.add({
+  title: {
+    type: String,
     required: true
-  }
-}, 'Permissions', {
-  isAdmin: {
-    type: Boolean,
-    label: 'Can access Keystone',
+  },
+  state: {
+    type: Types.Select,
+    options: 'draft, published, archived',
+    default: 'draft',
     index: true
+  },
+  author: {
+    type: Types.Relationship,
+    ref: 'User',
+    index: true
+  },
+  publishedDate: {
+    type: Types.Date,
+    index: true,
+    dependsOn: {
+      state: 'published'
+    }
+  },
+  image: {
+    type: Types.CloudinaryImage
+  },
+  content: {
+    brief: {
+      type: Types.Html,
+      wysiwyg: true,
+      height: 150
+    },
+    extended: {
+      type: Types.Html,
+      wysiwyg: true,
+      height: 400
+    }
+  },
+  categories: {
+    type: Types.Relationship,
+    ref: 'PostCategory',
+    many: true
   }
 });
 
-// Provide access to Keystone
-User.schema.virtual('canAccessKeystone').get(function() {
-  return this.isAdmin;
+Post.schema.virtual('content.full').get(function() {
+  return this.content.extended || this.content.brief;
 });
 
-/**
- * Relationships
- */
-User.relationship({
-  ref: 'Post',
-  path: 'author'
-});
-
-/**
- * Registration
- */
-User.defaultColumns = 'name, email, isAdmin';
-User.register();
+Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+Post.register();
