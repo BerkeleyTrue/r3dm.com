@@ -10,6 +10,8 @@ module.exports = function(keystone) {
   });
 
   keystone['import']('models');
+  keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
+
 
   return keystone;
 };
