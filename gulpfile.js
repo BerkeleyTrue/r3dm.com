@@ -56,7 +56,7 @@ var paths = {
 };
 
 var watching = false;
-var reloadDelay = 17000;
+var reloadDelay = 19000;
 
 if (production) {
   // ## Set with `-p`
