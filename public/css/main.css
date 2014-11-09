@@ -1900,7 +1900,7 @@ body {
   padding-top: 25vh;
 }
 .services {
-  background-color: #c1272d;
+  background-color: #125074;
   color: #fff;
   text-align: center;
 }
@@ -1923,14 +1923,6 @@ body {
 .work {
   background-color: #d1d2d4;
   color: #fff;
-  background-image: url("../images/subtle_carbon.png");
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .work {
-    background-image: url("../images/subtle_carbon@2x.png");
-    -caniuse-prefixes(("background-img-opts"))-background-size: 18px 15px;
-    background-size: 18px 15px;
-  }
 }
 .work_heading {
   text-align: center;
