@@ -1939,10 +1939,10 @@ body {
   display: block;
   margin: 0 auto;
   padding-bottom: 2.5em;
-  width: 50%;
+  width: 25vw;
 }
 .work_block-img-2 img {
-  width: 40%;
+  width: 30%;
 }
 .work_block-img-3 img {
   width: 30%;
