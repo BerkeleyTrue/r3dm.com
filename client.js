@@ -14,6 +14,6 @@ if (process.env.development) {
 var mountNode = document.getElementById('app');
 
 debug('Rendering component');
-React.renderComponent(App(), mountNode, function() {
+React.render(App(), mountNode, function() {
   debug('React rendered!');
 });

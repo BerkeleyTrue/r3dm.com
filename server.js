@@ -42,7 +42,7 @@ app.pre('routes', serve('./public'));
 
 app.set('routes', function(app) {
   app.get('/', function(req, res, next) {
-    var html = React.renderComponentToString(App());
+    var html = React.renderToString(App());
     res.render('layout', { html: html }, function(err, markup) {
       if (err) { return next(err); }
       debug('Sending Markup');
