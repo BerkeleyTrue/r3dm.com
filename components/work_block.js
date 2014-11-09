@@ -7,9 +7,7 @@ var Block = React.createClass({
     return (
       <div className = { this.props.className }>
         <div>
-          <a href = { this.props.data.url }>
-            <img src = { this.props.data.image } />
-          </a>
+          <img src = { this.props.data.image } />
         </div>
       </div>
     );
