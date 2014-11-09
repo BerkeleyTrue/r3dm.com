@@ -84,12 +84,13 @@ gulp.task('bundle', function(cb) {
 gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
   sync.init(null, {
     proxy: 'http://localhost:9000',
+    logLeval: 'debug',
     files: [
       'public/**/*.*',
       '!public/js/bundle.js'
     ],
     port: 9002,
-    open: false,
+    open: true,
     reloadDelay: reloadDelay
   });
 });
