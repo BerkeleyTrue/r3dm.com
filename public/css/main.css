@@ -1936,6 +1936,8 @@ body {
   height: 75%;
 }
 .work_block-img-1 img {
+  border-top-left-radius: 30px 30px;
+  border-bottom-right-radius: 24px 77px;
   display: block;
   margin: 0 auto;
   padding-bottom: 2.5em;
