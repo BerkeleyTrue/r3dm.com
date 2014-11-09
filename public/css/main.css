@@ -1866,31 +1866,13 @@ body {
   background: #000;
 }
 .first-con_top img {
+  left: -10vw;
   position: absolute;
+  width: 120vw;
 }
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 801px) {
   .first-con_top img {
-    bottom: -50vh;
-    left: -10vw;
-    width: 110vw;
-  }
-}
-@media only screen and (min-width: 45em) and (max-width: 60em) {
-  .first-con_top img {
-    bottom: -34vh;
-    left: -73vw;
-  }
-}
-@media only screen and (max-width: 45em) {
-  .first-con_top img {
-    bottom: -2vh;
-    left: 0vw;
-  }
-}
-@media only screen and (max-width: s) {
-  .first-con_top img {
-    bottom: -2vh;
-    left: 0vw;
+    top: -44vh;
   }
 }
 .first-con_bot {
