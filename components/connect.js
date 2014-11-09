@@ -7,7 +7,7 @@ var Connect = React.createClass({
     return (
       <div className = 'connect'>
         <div className = 'connect_heading'>
-          <h2>CONN<span className = 'threes'>3</span>CT</h2>
+          <h2>CONNECT</h2>
         </div>
 
         <div className = 'connect_email'>

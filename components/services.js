@@ -27,7 +27,7 @@ var Services = React.createClass({
     return (
       <div className="services">
         <div className = "services_subject-center services_heading">
-          <h2>S<span className = 'threes'>3</span>RVICES</h2>
+          <h2>SERVICES</h2>
         </div>
         <div className = "pure-g services_content">
           { Blocks }
