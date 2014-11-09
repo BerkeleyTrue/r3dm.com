@@ -40,15 +40,14 @@ var gulp = require('gulp'),
 
 var paths = {
   main: './client.js',
-  stylusMain: './stylus/main.styl',
-  stylusAll: './stylus/**/*.styl',
-  sass: './sass/*.sass',
+  stylusMain: './components/app.styl',
+  stylusAll: './components/**/*.styl',
   css: './public/css/',
   server: './server.js',
   serverIgnore: [
     'gulpfile.js',
     'public/',
-    'stylus/',
+    'components/**/*.styl',
     'bower_components/',
     'node_modules/'
   ],
