@@ -1,7 +1,7 @@
 /* globals window, document */
 'use strict';
-var App = require('./components/app'),
-    React = require('react/addons'),
+var React = require('react/addons'),
+    App = React.createFactory(require('./components/app')),
     deb = require('debug'),
     debug = deb('r3dm:client');
 
