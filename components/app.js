@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 'use strict';
 var React = require('react/addons'),
-    Banner = require('./banner'),
-    Services = require('./services'),
-    Work = require('./work'),
-    Connect = require('./connect'),
-    Logo = require('./logo');
+    Banner = require('./banner/banner'),
+    Services = require('./services/services'),
+    Work = require('./work/work'),
+    Connect = require('./connect/connect'),
+    Logo = require('./logo/logo');
 
 var App = React.createClass({
   render: function() {
