@@ -10,11 +10,19 @@ xl = 75em   //1200px
 
 .first-con_top
   img
-    left -10vw
-    position absolute
-    width 120vw
-    +media-query(only screen, min-width 801px)
-      top -44vh
+    //bottom 50%
+    +media-query(only screen, min-width 601px)
+      height auto
+      min-height 100%
+      top -25vh
+      position relative
+      width 100%
+    +media-query(only screen, max-width 600px)
+      height 100%
+      left -25vw
+      min-width 100%
+      position relative
+      width auto
   position relative
   overflow hidden
   height 50%
