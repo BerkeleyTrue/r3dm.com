@@ -55,7 +55,7 @@ var paths = {
 };
 
 var watching = false;
-var reloadDelay = 19000;
+var reloadDelay = 3500;
 
 if (production) {
   // ## Set with `-p`
@@ -137,7 +137,6 @@ gulp.task('image', function() {
     .pipe(imagemin({
       progressive: true,
       optimizationLevel: 2
-      //use: [pngcrush()]
     }))
     .pipe(gulp.dest('public/images'));
 });

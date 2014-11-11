@@ -5,11 +5,6 @@ require('newrelic');
 var express = require('express'),
     app = express(),
 
-    // ## Keystone
-    mongoose = require('mongoose'),
-    keystone = require('keystone').connect(mongoose, app),
-    keystoneInit = require('./keystone'),
-
     // ## Util
     debug = require('debug')('r3dm:server'),
 
@@ -19,6 +14,7 @@ var express = require('express'),
     state = require('express-state'),
 
     // ## Express/Serve
+    morgan = require('morgan'),
     serve = require('serve-static'),
     favicon = require('serve-favicon'),
     body = require('body-parser'),
@@ -30,37 +26,38 @@ var express = require('express'),
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 
-// ## keystone setup
-app = keystoneInit(keystone);
-app.pre('routes', helmet());
-app.pre('routes', favicon(__dirname + '/public/images/favicon.ico'));
-app.pre('routes', cookieParse());
-app.pre('routes', body.urlencoded({ extended: true }));
-app.pre('routes', body.json());
-app.pre('routes', compress());
-app.pre('routes', serve('./public'));
+app.set('port', process.env.PORT || 9000);
+app.set('view engine', 'jade');
+app.use(helmet());
+app.use(morgan('dev'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(cookieParse());
+app.use(body.urlencoded({ extended: true }));
+app.use(body.json());
+app.use(compress());
+app.use(serve('./public'));
 
-app.set('routes', function(app) {
-  app.get('/', function(req, res, next) {
-    var html = React.renderToString(App());
-    res.render('layout', { html: html }, function(err, markup) {
-      if (err) { return next(err); }
-      debug('Sending Markup');
-      res.send(markup);
-    });
+app.get('/', function(req, res, next) {
+  var html = React.renderToString(App());
+  res.render('layout', { html: html }, function(err, markup) {
+    if (err) { return next(err); }
+    debug('Sending Markup');
+    res.send(markup);
   });
 });
 
-app.set('404', function(req, res) {
+app.use(function(req, res) {
   res.status(404);
   res.render(404);
 });
 
-app.set('500', function(err, req, res, next) { //jshint ignore:line
+app.use(function(err, req, res, next) { //jshint ignore:line
   debug('Err: ', err);
   res
     .status(500)
     .send('Something went wrong');
 });
 
-keystone.start();
+app.listen(app.get('port'), function() {
+  console.log('R3DM is go at ' + app.get('host') + ':' + app.get('port'));
+});
