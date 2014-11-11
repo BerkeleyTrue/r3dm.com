@@ -65,7 +65,7 @@
     "react-inlinesvg": "^0.2.3",
     "react-loadermixin": "^1.0.4",
     "react-router": "^0.10.2",
-    "react-scroll-components": "0.0.4",
+    "react-scroll-components": "^0.1.0",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3"
   }
