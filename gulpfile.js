@@ -11,11 +11,11 @@ var gulp = require('gulp'),
     // ## Bundle
     browserify = require('browserify'),
     watchify = require('watchify'),
-    envify = require('envify'),
+    envify = require('envify/custom')({ NODE_ENV: 'development' }),
     reactify = require('reactify'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
-    brfs = require('brfs'),
+    //brfs = require('brfs'),
 
     // ## utils
     plumber = require('gulp-plumber'),
@@ -171,7 +171,7 @@ function browserifyCommon(cb) {
   var b = browserify(config);
   b.transform(reactify);
   b.transform(envify);
-  b.transform(brfs);
+  //b.transform(brfs);
 
   if (!production) {
     debug('Watching');
