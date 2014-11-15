@@ -54,8 +54,10 @@
     "errorhandler": "^1.1.1",
     "express": "^4.8.5",
     "express-state": "^1.2.0",
+    "fetchr": "^0.4.0",
     "helmet": "^0.5.0",
     "jade": "^1.7.0",
+    "mandrill-api": "^1.0.41",
     "morgan": "^1.5.0",
     "newrelic": "^1.13.2",
     "node-jsx": "^0.12.0",
@@ -64,6 +66,7 @@
     "react-loadermixin": "^1.0.4",
     "react-router": "^0.10.2",
     "react-scroll-components": "^0.1.0",
+    "rx": "^2.3.14",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3"
   }

@@ -3,7 +3,7 @@
 var React = require('react/addons'),
     Banner = require('./banner/banner'),
     Services = require('./services/services'),
-    Work = require('./work/work'),
+    //Work = require('./work/work'),
     Connect = require('./connect/connect'),
     Logo = require('./logo/logo');
 
@@ -18,11 +18,10 @@ var App = React.createClass({
         <div className="first-con">
           <Banner></Banner>
           <div className="first-con_bot">
-            <h2>CYB3R WIZARDS</h2>
+            <h2>Hello, We Are Cyber Wizards.</h2>
           </div>
         </div>
         <Services></Services>
-        <Work></Work>
         <Connect></Connect>
       </div>
     );

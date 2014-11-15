@@ -13,6 +13,10 @@ var express = require('express'),
     App = require('./components/app'),
     state = require('express-state'),
 
+    // ## Flux
+    Fetcher = require('fetchr'),
+    mandrillServ = require('./services/mandrill'),
+
     // ## Express/Serve
     morgan = require('morgan'),
     serve = require('serve-static'),
@@ -35,6 +39,11 @@ app.use(cookieParse());
 app.use(body.urlencoded({ extended: true }));
 app.use(body.json());
 app.use(compress());
+
+// ## Fetcher middleware
+Fetcher.registerFetcher(mandrillServ);
+app.use('/api', Fetcher.middleware());
+
 app.use(serve('./public'));
 
 app.get('/', function(req, res, next) {
