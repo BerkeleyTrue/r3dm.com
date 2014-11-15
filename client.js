@@ -1,15 +1,9 @@
-/* globals window, document */
+/* globals  document */
 'use strict';
 var React = require('react/addons'),
     App = React.createFactory(require('./components/app')),
     deb = require('debug'),
     debug = deb('r3dm:client');
-
-window.React = React;
-
-if (process.env.development) {
-  deb.enable('*');
-}
 
 var mountNode = document.getElementById('app');
 
