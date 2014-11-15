@@ -1,5 +1,5 @@
 'use strict';
-process.env.DEBUG = process.env.DEBUG || 'r3dm:gulp';
+process.env.DEBUG = process.env.DEBUG || 'r3dm';
 var gulp = require('gulp'),
 
     // ## Style
