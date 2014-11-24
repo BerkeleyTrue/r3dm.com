@@ -1796,12 +1796,12 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 @font-face {
   font-family: 'pt-sans-regular';
   src: url("fonts/ptsans_regular/PTS55F-webfont.eot");
-  src: url("fonts/ptsans_regular/PTS55F-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/ptsans_regular/PTS55F-webfont.woff") format("woff"), url("fonts/ptsans_regular/PTS55F-webfont.ttf") format("truetype"), url("fonts/ptsans_regular/PTS55F-webfont.svg#pt-sans-regular") format("svg");
+  src: url("fonts/ptsans_regular/PTS55F-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/ptsans_regular/PTS55F-webfont.woff2") format("woff2"), url("fonts/ptsans_regular/PTS55F-webfont.woff") format("woff"), url("fonts/ptsans_regular/PTS55F-webfont.ttf") format("truetype"), url("fonts/ptsans_regular/PTS55F-webfont.svg#pt-sans-regular") format("svg");
 }
 @font-face {
   font-family: 'pt-sans-narrow';
   src: url("fonts/ptsansnarrow/PTN57F-webfont.eot");
-  src: url("fonts/ptsansnarrow/PTN57F-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/ptsansnarrow/PTN57F-webfont.woff") format("woff"), url("fonts/ptsansnarrow/PTN57F-webfont.ttf") format("truetype"), url("fonts/ptsansnarrow/PTN57F-webfont.svg#pt-sans-narrow") format("svg");
+  src: url("fonts/ptsansnarrow/PTN57F-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/ptsansnarrow/PTN57F-webfont.woff2") format("woff2"), url("fonts/ptsansnarrow/PTN57F-webfont.woff") format("woff"), url("fonts/ptsansnarrow/PTN57F-webfont.ttf") format("truetype"), url("fonts/ptsansnarrow/PTN57F-webfont.svg#pt-sans-narrow") format("svg");
 }
 html,
 p,
@@ -2020,6 +2020,9 @@ button
   padding-bottom: 0;
   text-align: center;
   width: 100%;
+}
+.connect_form .connect_email div:last-child span:hover {
+  background-color: #9a1f24;
 }
 .connect_form button {
   color: #fff;

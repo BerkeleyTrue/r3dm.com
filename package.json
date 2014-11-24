@@ -57,6 +57,7 @@
     "fetchr": "^0.4.0",
     "helmet": "^0.5.0",
     "jade": "^1.7.0",
+    "kouto-swiss": "^0.11.5",
     "mandrill-api": "^1.0.41",
     "morgan": "^1.5.0",
     "newrelic": "^1.13.2",
