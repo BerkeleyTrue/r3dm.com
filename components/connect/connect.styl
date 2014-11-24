@@ -4,7 +4,6 @@ buttonHeight = 2.1rem
 .connect
   gs('fluid')
   background-color lightBlue
-  //retina-image('../images/subtle_carbon.png')
   button
 
 .connect_heading
@@ -15,10 +14,19 @@ buttonHeight = 2.1rem
   span.threes
     color $r3d
 
-.connect_email
-  form
+.connect_form
+  .connect_name
     row()
-    :first-child
+    &:first-child
+      col(6)
+      margin-bottom 1em
+      offset(3)
+      input
+        height buttonHeight
+        width 100%
+  .connect_email
+    row()
+    div:first-child
       col(4)
       margin-bottom 1em
       margin-right 0
@@ -26,7 +34,7 @@ buttonHeight = 2.1rem
       input
         height buttonHeight
         width 100%
-    :last-child
+    div:last-child
       col(2)
       border-bottom-right-radius 3px
       border-top-right-radius 3px
@@ -34,6 +42,7 @@ buttonHeight = 2.1rem
       margin-left 0
       span
         border-left none
+        cursor pointer
         display block
         font-size 1rem
         height buttonHeight
@@ -43,7 +52,6 @@ buttonHeight = 2.1rem
         padding-bottom 0
         text-align center
         width 100%
-    div
   button
     color white
     background-color $r3d

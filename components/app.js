@@ -18,7 +18,12 @@ var App = React.createClass({
         <div className="first-con">
           <Banner></Banner>
           <div className="first-con_bot">
-            <h2>Hello, We Are Cyber Wizards.</h2>
+            <h2>
+              We are the R3DM
+              <br />
+              and we believe that the web should be fast,
+              responsive, and beautiful.
+            </h2>
           </div>
         </div>
         <Services></Services>

@@ -1960,13 +1960,30 @@ button
 .connect_heading span.threes {
   color: #c1272d;
 }
-.connect_email form {
+.connect_form .connect_name {
   display: block;
   width: 100.83333333333331%;
   margin: 0 -0.4166666666667%;
-div
 }
-.connect_email form :first-child {
+.connect_form .connect_name:first-child {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  width: 49.1666666666667%;
+  margin: 0 0.4166666666667%;
+  margin-bottom: 1em;
+  margin-left: 25.4166666666667%;
+}
+.connect_form .connect_name:first-child input {
+  height: 2.1rem;
+  width: 100%;
+}
+.connect_form .connect_email {
+  display: block;
+  width: 100.83333333333331%;
+  margin: 0 -0.4166666666667%;
+}
+.connect_form .connect_email div:first-child {
   display: inline-block;
   float: left;
   overflow: hidden;
@@ -1976,11 +1993,11 @@ div
   margin-right: 0;
   margin-left: 25.4166666666667%;
 }
-.connect_email form :first-child input {
+.connect_form .connect_email div:first-child input {
   height: 2.1rem;
   width: 100%;
 }
-.connect_email form :last-child {
+.connect_form .connect_email div:last-child {
   display: inline-block;
   float: left;
   overflow: hidden;
@@ -1991,8 +2008,9 @@ div
   margin-bottom: 1em;
   margin-left: 0;
 }
-.connect_email form :last-child span {
+.connect_form .connect_email div:last-child span {
   border-left: none;
+  cursor: pointer;
   display: block;
   font-size: 1rem;
   height: 2.1rem;
@@ -2003,13 +2021,13 @@ div
   text-align: center;
   width: 100%;
 }
-.connect_email button {
+.connect_form button {
   color: #fff;
   background-color: #c1272d;
   border-radius: 0 4px 4px 0;
   padding-left: 0;
 }
-.connect_email span {
+.connect_form span {
   background-color: #c1272d;
   border-left: none;
 }
