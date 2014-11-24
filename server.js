@@ -10,7 +10,7 @@ var express = require('express'),
 
     // ## React
     React = require('react'),
-    App = require('./components/app'),
+    App = React.createFactory(require('./components/app')),
     state = require('express-state'),
 
     // ## Flux
