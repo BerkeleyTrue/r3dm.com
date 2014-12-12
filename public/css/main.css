@@ -1861,30 +1861,16 @@ body {
   height: 100vh;
   z-index: -1;
 }
-.first-con_top {
-  position: relative;
-  overflow: hidden;
+.banner {
+  background: #fff;
   height: 50%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
   width: 100vw;
-  background: #000;
 }
-@media only screen and (min-width: 601px) {
-  .first-con_top img {
-    height: auto;
-    min-height: 100%;
-    top: -25vh;
-    position: relative;
-    width: 100%;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .first-con_top img {
-    height: 100%;
-    left: -25vw;
-    min-width: 100%;
-    position: relative;
-    width: auto;
-  }
+.banner h1 {
+  padding-top: 10vh;
 }
 .first-con_bot {
   text-align: center;

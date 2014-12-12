@@ -6,10 +6,11 @@ var Banner = React.createClass({
 
   render: function() {
     return (
-      <div className = 'first-con_top'>
-        <img src = 'images/banner.jpg'/>
+      <div className = 'banner'>
+        <h1>We Are The R3DM.</h1>
       </div>
     );
   }
 });
+
 module.exports = Banner;

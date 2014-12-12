@@ -1,1 +1,1 @@
-require('./logo');
+module.exports = require('./logo');

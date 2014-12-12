@@ -1,1 +1,1 @@
-require('./connect');
+module.exports = require('./connect');

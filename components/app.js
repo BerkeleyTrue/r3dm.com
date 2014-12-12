@@ -1,11 +1,9 @@
 /** @jsx React.DOM */
 'use strict';
 var React = require('react/addons'),
-    Banner = require('./banner/banner'),
-    Services = require('./services/services'),
-    //Work = require('./work/work'),
-    Connect = require('./connect/connect'),
-    Logo = require('./logo/logo');
+    Banner = require('./banner'),
+    Logo = require('./logo'),
+    Connect = require('./connect');
 
 var App = React.createClass({
   render: function() {
@@ -19,14 +17,11 @@ var App = React.createClass({
           <Banner></Banner>
           <div className="first-con_bot">
             <h2>
-              We are the R3DM
-              <br />
-              and we believe that the web should be fast,
-              responsive, and beautiful.
+              We build fast, data-rich, offline capable websites that bring
+              the future to your users.
             </h2>
           </div>
         </div>
-        <Services></Services>
         <Connect></Connect>
       </div>
     );

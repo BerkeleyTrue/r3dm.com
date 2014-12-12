@@ -8,26 +8,15 @@ xl = 75em   //1200px
   height 100vh
   z-index -1
 
-.first-con_top
-  img
-    //bottom 50%
-    +media-query(only screen, min-width 601px)
-      height auto
-      min-height 100%
-      top -25vh
-      position relative
-      width 100%
-    +media-query(only screen, max-width 600px)
-      height 100%
-      left -25vw
-      min-width 100%
-      position relative
-      width auto
-  position relative
-  overflow hidden
+.banner
+  background white
   height 50%
+  overflow hidden
+  position relative
+  text-align center
   width 100vw
-  background black
+  h1
+    padding-top 10vh
 
 .first-con_bot
   h2
