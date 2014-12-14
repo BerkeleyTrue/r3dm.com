@@ -56,9 +56,19 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/emails/:name', function(req, res) {
-  var locals = {};
+  var locals = {},
+      name = req.params.name,
+      nameArr;
 
-  locals.name = req.body.name;
+  nameArr = name
+    .split(' ')
+    .map(function(_name) {
+      _name = _name.replace(/[^A-Za-z_'-]/gi, '');
+      _name = capitalize(_name);
+      return _name;
+    });
+
+  locals.name = nameArr[0];
   res.render('email/greet', locals);
 });
 
@@ -78,3 +88,7 @@ app.listen(app.get('port'), function() {
   debug('The R3DM is go at: ' + app.get('port'));
   debug(new Date());
 });
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
