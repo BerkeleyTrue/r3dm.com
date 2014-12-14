@@ -27,17 +27,15 @@ module.exports = {
         return _name;
       });
 
-    locals.person = {
-      firstname: person[0],
-      lastname: person.pop()
-    };
-
-    locals.name = locals.person.firstname + ' ' + locals.person.lastname;
+    locals.firstname = person[0];
+    locals.lastname = person.pop();
+    locals.name = locals.firstname + ' ' + locals.lastname;
     locals.email = params.email;
 
     template = greet.render(locals);
     message = {
       html: template,
+      subject: 'Connect with The R3DM',
       to: [{
         email: locals.email,
         name: locals.name,
