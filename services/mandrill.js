@@ -1,8 +1,10 @@
 'use strict';
 var mandrill = require('mandrill-api'),
+    resolver = require('../utils/viewResolver'),
     debug = require('debug')('r3dm:mandrill'),
     manClient = new mandrill.Mandrill(process.env.MANDRILL_KEY);
 
+var greet = resolver('greet');
 module.exports = {
   name: 'mandrillService',
   create: function() {
@@ -13,8 +15,10 @@ module.exports = {
         name = params.name,
         email = params.email;
 
+    var locals = {};
+    var template = greet.render(locals);
     var message = {
-      html: '<h1>Hello World</h1>',
+      html: template,
       to: [{
         email: email,
         name: name,
