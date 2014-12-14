@@ -50,9 +50,16 @@ app.get('/', function(req, res, next) {
   var html = React.renderToString(App());
   res.render('layout', { html: html }, function(err, markup) {
     if (err) { return next(err); }
-    debug('Sending Markup');
+    debug('Sending Main Site');
     res.send(markup);
   });
+});
+
+app.get('/emails/:name', function(req, res) {
+  var locals = {};
+
+  locals.name = req.body.name;
+  res.render('email/greet', locals);
 });
 
 app.use(function(req, res) {
@@ -68,5 +75,6 @@ app.use(function(err, req, res, next) { //jshint ignore:line
 });
 
 app.listen(app.get('port'), function() {
-  console.log('R3DM is go at ' + app.get('host') + ':' + app.get('port'));
+  debug('The R3DM is go at: ' + app.get('port'));
+  debug(new Date());
 });
