@@ -7,6 +7,7 @@ var express = require('express'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
+    utils = require('./utils/utils'),
 
     // ## React
     React = require('react'),
@@ -64,7 +65,7 @@ app.get('/emails/:name', function(req, res) {
     .split(' ')
     .map(function(_name) {
       _name = _name.replace(/[^A-Za-z_'-]/gi, '');
-      _name = capitalize(_name);
+      _name = utils.capitalize(_name);
       return _name;
     });
 
@@ -88,7 +89,3 @@ app.listen(app.get('port'), function() {
   debug('The R3DM is go at: ' + app.get('port'));
   debug(new Date());
 });
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
