@@ -12,16 +12,19 @@ module.exports = {
     var args = [].slice.call(arguments),
         cb = args.pop(),
         params = args[2],
-        name = params.name,
-        email = params.email;
+        locals = {},
+        template,
+        message;
 
-    var locals = {};
-    var template = greet.render(locals);
-    var message = {
+    locals.name = params.name;
+    locals.email = params.email;
+
+    template = greet.render(locals);
+    message = {
       html: template,
       to: [{
-        email: email,
-        name: name,
+        email: locals.email,
+        name: locals.name,
         type: 'to'
       }],
       'auto_text': true,
