@@ -11,7 +11,8 @@ var express = require('express'),
 
     // ## React
     React = require('react'),
-    App = React.createFactory(require('./components/app')),
+    Router = require('react-router'),
+    routes = require('./components/app'),
     state = require('express-state'),
 
     // ## Flux
@@ -48,11 +49,14 @@ app.use('/api', Fetcher.middleware());
 app.use(serve('./public'));
 
 app.get('/', function(req, res, next) {
-  var html = React.renderToString(App());
-  res.render('layout', { html: html }, function(err, markup) {
-    if (err) { return next(err); }
-    debug('Sending Main Site');
-    res.send(markup);
+  Router.run(routes, '/', function(Handler) {
+    Handler = React.createFactory(Handler);
+    var html = React.renderToString(Handler());
+    res.render('layout', { html: html }, function(err, markup) {
+      if (err) { return next(err); }
+      debug('Sending Main Site');
+      res.send(markup);
+    });
   });
 });
 

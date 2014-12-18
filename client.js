@@ -1,13 +1,18 @@
 /* globals  document */
 'use strict';
 var React = require('react/addons'),
-    App = React.createFactory(require('./components/app')),
-    deb = require('debug'),
-    debug = deb('r3dm:client');
+    Router = require('react-router'),
+    routes = require('./components/app'),
+    debug = require('debug')('r3dm:client');
 
 var mountNode = document.getElementById('app');
 
-debug('Rendering component');
-React.render(App(), mountNode, function() {
-  debug('React rendered!');
+debug('Matching Route');
+
+Router.run(routes, Router.HashHistory, function(Handler) {
+  Handler = React.createFactory(Handler);
+  debug('Route found, rendering..');
+  React.render(Handler(), mountNode, function() {
+    debug('React rendered!');
+  });
 });
