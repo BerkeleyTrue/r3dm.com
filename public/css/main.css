@@ -2024,3 +2024,6 @@ input[type = 'email'].connect_input {
   margin-right: 0;
   border-radius: 4px 0 0 4px;
 }
+#footer {
+  text-align: center;
+}

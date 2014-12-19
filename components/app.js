@@ -5,7 +5,8 @@ var React = require('react/addons'),
     // # Components
     Banner = require('./banner'),
     Logo = require('./logo'),
-    Connect = require('./connect');
+    Connect = require('./connect'),
+    Footer = require('./footer');
 
 var App = React.createClass({
   render: function() {
@@ -25,6 +26,7 @@ var App = React.createClass({
           </div>
         </div>
         <Connect></Connect>
+        <Footer />
       </div>
     );
   }
