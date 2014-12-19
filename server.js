@@ -12,7 +12,7 @@ var express = require('express'),
     // ## React
     React = require('react'),
     Router = require('react-router'),
-    routes = require('./components/app'),
+    routes = require('./components/routes'),
     state = require('express-state'),
 
     // ## Flux

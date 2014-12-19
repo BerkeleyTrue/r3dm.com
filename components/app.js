@@ -2,18 +2,12 @@
 'use strict';
 var React = require('react/addons'),
 
-    // # Router
-    Router = require('react-router'),
-    RouteHandler = Router.RouteHandler,
-    Route = Router.Route,
-
     // # Components
     Banner = require('./banner'),
-    Connected = require('./connectSuccess'),
     Logo = require('./logo'),
     Connect = require('./connect');
 
-var Index = React.createClass({
+var App = React.createClass({
   render: function() {
 
     return (
@@ -36,30 +30,4 @@ var Index = React.createClass({
   }
 });
 
-var App = React.createClass({
-  render: function() {
-    return (
-      <RouteHandler />
-    );
-  }
-});
-
 module.exports = App;
-
-var routes = (
-  <Route
-    name = 'app'
-    path = '/'
-    handler = { App }>
-    <Route
-      name = 'index'
-      path = '/'
-      handler = { Index } />
-    <Route
-      name = 'connected'
-      path = '/connected'
-      handler = { Connected } />
-  </Route>
-);
-
-module.exports = routes;

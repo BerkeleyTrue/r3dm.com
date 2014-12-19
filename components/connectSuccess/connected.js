@@ -6,7 +6,7 @@ var ClassName = React.createClass({
     return (
       <div>
         <h1>Thanks!</h1>
-        <p>You should see an email for us soon.</p>
+        <p>You should see an email from us soon.</p>
       </div>
     );
   }
