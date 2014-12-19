@@ -48,10 +48,6 @@ app.use('/api', Fetcher.middleware());
 
 app.use(serve('./public'));
 
-app.get('/404', function(req, res) {
-  res.render('404');
-});
-
 app.get('/500', function(req, res) {
   res.render('500');
 });

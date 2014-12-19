@@ -3,14 +3,16 @@ var App = require('./app.js'),
     React = require('react'),
     Route = require('react-router').Route,
     Connected = require('./connectSuccess'),
-    routes = [];
+    fourOhFour = require('./errors/404'),
+    routes;
 
-routes.push((
-  <Route name = 'app' path = '/' handler = { App } />
-));
 
-routes.push((
+routes = [(
   <Route name = 'connected' path = '/connected' handler = { Connected } />
-));
+), (
+  <Route name = 'app' path = '/' handler = { App } />
+), (
+  <Route name = '404' path = '/404' handler = { fourOhFour } />
+)];
 
 module.exports = routes;
