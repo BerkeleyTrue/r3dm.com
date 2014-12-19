@@ -48,16 +48,12 @@ app.use('/api', Fetcher.middleware());
 
 app.use(serve('./public'));
 
-app.get('/', function(req, res, next) {
-  Router.run(routes, '/', function(Handler) {
-    Handler = React.createFactory(Handler);
-    var html = React.renderToString(Handler());
-    res.render('layout', { html: html }, function(err, markup) {
-      if (err) { return next(err); }
-      debug('Sending Main Site');
-      res.send(markup);
-    });
-  });
+app.get('/404', function(req, res) {
+  res.render('404');
+});
+
+app.get('/500', function(req, res) {
+  res.render('500');
 });
 
 app.get('/emails/:name', function(req, res) {
@@ -75,6 +71,19 @@ app.get('/emails/:name', function(req, res) {
 
   locals.name = nameArr[0];
   res.render('email/greet', locals);
+});
+
+app.get('/*', function(req, res, next) {
+  Router.run(routes, req.path, function(Handler, state) {
+    debug('Route found, %s rendering..', state.path);
+    Handler = React.createFactory(Handler);
+    var html = React.renderToString(Handler());
+    res.render('layout', { html: html }, function(err, markup) {
+      if (err) { return next(err); }
+      debug('Sending %s', state.path);
+      res.send(markup);
+    });
+  });
 });
 
 app.use(function(req, res) {
