@@ -4,6 +4,7 @@
   "description": "R3Dm front page",
   "main": "gulpfile.js",
   "scripts": {
+    "lint": "jsxhint components/**/*.js",
     "test": "none"
   },
   "engines": {
@@ -33,6 +34,7 @@
     "gulp-util": "^3.0.1",
     "gulp-watch": "^0.6.9",
     "imagemin-pngcrush": "^3.1.0",
+    "jsxhint": "^0.9.0",
     "kouto-swiss": "^0.11.5",
     "react-tools": "^0.12.0",
     "reactify": "^0.17.1",
