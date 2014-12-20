@@ -1,6 +1,5 @@
 'use strict';
 require('dotenv').load();
-require('node-jsx').install();
 require('newrelic');
 var express = require('express'),
     app = express(),

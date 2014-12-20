@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     watchify = require('watchify'),
     envify = require('envify/custom')({ NODE_ENV: 'development' }),
-    reactify = require('reactify'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
     //brfs = require('brfs'),
@@ -34,12 +33,16 @@ var gulp = require('gulp'),
     sync = require('browser-sync'),
     reload = sync.reload,
 
+    // ## React
+    react = require('gulp-react'),
+
     // ## production?
     production = yargs.p;
 
 
 var paths = {
   main: './client.js',
+  jsx: './components/**/**.jsx',
   stylusMain: './components/app.styl',
   stylusAll: './components/**/*.styl',
   css: './public/css/',
@@ -76,7 +79,13 @@ gulp.task('stylus', function() {
     .pipe(gulp.dest(paths.css));
 });
 
-gulp.task('bundle', function(cb) {
+gulp.task('jsx', function() {
+  return gulp.src('./components/**/*.jsx')
+    .pipe(react())
+    .pipe(gulp.dest('./components'));
+});
+
+gulp.task('bundle', ['jsx'], function(cb) {
   browserifyCommon(cb);
 });
 
@@ -126,6 +135,7 @@ gulp.task('server', function(cb) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.stylusAll, ['stylus']);
+  gulp.watch(paths.jsx, ['jsx']);
 });
 
 gulp.task('setWatch', function() {
@@ -143,6 +153,7 @@ gulp.task('image', function() {
 
 gulp.task('default', [
   'setWatch',
+  'jsx',
   'bundle',
   'stylus',
   'server',
@@ -159,8 +170,7 @@ function browserifyCommon(cb) {
       basedir: __dirname,
       debug: true,
       cache: {},
-      packageCache: {},
-      fullPaths: true
+      packageCache: {}
     };
   } else {
     config = {
@@ -169,7 +179,6 @@ function browserifyCommon(cb) {
   }
 
   var b = browserify(config);
-  b.transform(reactify);
   b.transform(envify);
   //b.transform(brfs);
 
