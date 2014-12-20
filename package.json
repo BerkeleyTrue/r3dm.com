@@ -4,7 +4,7 @@
   "description": "R3Dm front page",
   "main": "gulpfile.js",
   "scripts": {
-    "lint": "jsxhint components/**/*.js",
+    "lint": "./node_modules/.bin/jsxhint components/**/*.js",
     "test": "none"
   },
   "engines": {
