@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-'use strict';
 var React = require('react'),
     data = require('./team_data').data,
     Block = require('./team_block');

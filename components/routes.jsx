@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var App = require('./app.js'),
     React = require('react'),
 

@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-'use strict';
 var React = require('react'),
     copy = require('./services_copy.json').copy,
     Block = require('./services_block');

@@ -1,1 +1,1 @@
-require('./work');
+module.exports = require('./work');

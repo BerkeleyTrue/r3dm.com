@@ -1,1 +1,1 @@
-require('./services');
+module.exports = require('./services');

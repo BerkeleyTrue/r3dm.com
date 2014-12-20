@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-'use strict';
 var React = require('react'),
     //debug = require('debug')('r3dm:connect:element'),
     mandrillAction = require('./connect.action.js');

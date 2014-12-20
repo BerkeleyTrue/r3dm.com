@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-'use strict';
 var React = require('react');
 
 var FourOhFour = React.createClass({

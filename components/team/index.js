@@ -1,1 +1,1 @@
-require('./team');
+module.exports = require('./team');
