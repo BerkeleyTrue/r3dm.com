@@ -1,10 +1,12 @@
 var Rx = require('rx'),
-    History = require('react-router').HistoryLocation;
+    History = require('react-router').HistoryLocation,
+    mandrillAction = require('./connect/connect.action');
 
 var redirectAction = new Rx.Subject();
 
 module.exports = {
   redirectAction: redirectAction,
+  mandrillAction: mandrillAction,
   History: History
 };
 

@@ -1,6 +1,6 @@
 var React = require('react'),
-    //debug = require('debug')('r3dm:connect:element'),
-    mandrillAction = require('./connect.action.js');
+    debug = require('debug')('r3dm:connect'),
+    mandrillAction = require('../dispatcher').mandrillAction;
 
 var Connect = React.createClass({displayName: 'Connect',
   getInitialState: function() {
@@ -28,6 +28,7 @@ var Connect = React.createClass({displayName: 'Connect',
       return;
     }
 
+    debug('Mandrill Action');
     mandrillAction.onNext({
       email: this.state.email,
       name: this.state.name
