@@ -17,5 +17,8 @@
     "trailing": true,
     "smarttabs": true,
     "white": true,
-    "globals": { "_": true }
+    "globals": {
+        "_": true,
+        "document": true
+    }
 }

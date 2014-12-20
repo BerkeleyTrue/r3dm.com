@@ -1,4 +1,3 @@
-/* globals  document */
 'use strict';
 var React = require('react/addons'),
     Router = require('react-router'),
