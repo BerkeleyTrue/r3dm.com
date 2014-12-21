@@ -40,7 +40,7 @@ var Connect = React.createClass({displayName: 'Connect',
         name = this.state.name;
 
     return (
-      React.createElement("div", {className: "connect"}, 
+      React.createElement("div", {id: "connect", className: "connect"}, 
         React.createElement("div", {className: "connect_heading"}, 
           React.createElement("h2", null, "Work With Us.")
         ), 

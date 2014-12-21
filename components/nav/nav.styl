@@ -1,0 +1,36 @@
+nav.nav
+  background-color darkBlue
+  display inline-block
+  width 100vw
+  ul
+    list-style none
+    position absolute
+    visible hidden
+    z-index 2
+  >ul
+    display inline-block
+    left 0
+    top 0
+    padding 0
+    position relative
+    margin 0
+    &:focus
+      outline 0
+  li
+    display inline-block
+    position relative
+    vertical-align middle
+    zoom 1
+    a
+      color white
+      display block
+      padding 20px 20px
+      text-decoration none
+      white-space nowrap
+    &:hover
+      background $gray
+    li
+      display block
+
+.nav-pullRight
+  float right
