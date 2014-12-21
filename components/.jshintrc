@@ -18,7 +18,7 @@
     "smarttabs": true,
     "white": true,
     "globals": {
-        "angular": true,
-        "_": true
+        "document": true,
+        "window": true
     }
 }
