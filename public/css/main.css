@@ -1822,9 +1822,9 @@ h6 {
 body {
   height: 100vh;
   width: 100vw;
-  -webkit-box-sizing: boder-box;
-  -moz-box-sizing: boder-box;
-  box-sizing: boder-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #app,
 .main-app {
@@ -1837,7 +1837,9 @@ body {
 nav.nav {
   background-color: #125074;
   display: inline-block;
+  position: fixed;
   width: 100vw;
+  z-index: 20;
 }
 nav.nav ul {
   list-style: none;
