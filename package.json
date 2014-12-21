@@ -33,7 +33,7 @@
     "gulp-ruby-sass": "^0.7.1",
     "gulp-stylus": "^1.3.4",
     "gulp-util": "^3.0.1",
-    "gulp-watch": "^0.6.9",
+    "gulp-watch": "^3.0.0",
     "imagemin-pngcrush": "^3.1.0",
     "jsxhint": "^0.9.0",
     "kouto-swiss": "^0.11.5",

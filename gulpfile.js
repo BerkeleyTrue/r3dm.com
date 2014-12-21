@@ -1,5 +1,5 @@
 'use strict';
-process.env.DEBUG = process.env.DEBUG || 'r3dm';
+process.env.DEBUG = process.env.DEBUG || 'r3dm:*';
 var gulp = require('gulp'),
 
     // ## Style
@@ -21,6 +21,7 @@ var gulp = require('gulp'),
     util = require('gulp-util'),
     noopPipe = util.noop,
     //logPipe = util.log,
+    watch = require('gulp-watch'),
     yargs = require('yargs').argv,
     debug = require('debug')('r3dm:gulp'),
 
@@ -85,7 +86,14 @@ gulp.task('jsx', function() {
     .pipe(gulp.dest('./components'));
 });
 
-gulp.task('bundle', ['jsx'], function(cb) {
+gulp.task('jsx-watch', function() {
+  return gulp.src(paths.jsx)
+    .pipe(watch(paths.jsx))
+    .pipe(react())
+    .pipe(gulp.dest('./components'));
+});
+
+gulp.task('bundle', function(cb) {
   browserifyCommon(cb);
 });
 
@@ -135,7 +143,6 @@ gulp.task('server', function(cb) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.stylusAll, ['stylus']);
-  gulp.watch(paths.jsx, ['jsx']);
 });
 
 gulp.task('setWatch', function() {
@@ -153,7 +160,7 @@ gulp.task('image', function() {
 
 gulp.task('default', [
   'setWatch',
-  'jsx',
+  'jsx-watch',
   'bundle',
   'stylus',
   'server',
