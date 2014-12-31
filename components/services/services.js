@@ -2,7 +2,7 @@ var React = require('react'),
     copy = require('./services_copy.json').copy,
     Block = require('./services_block');
 
-var Services = React.createClass({displayName: 'Services',
+var Services = React.createClass({displayName: "Services",
 
   render: function() {
     var block = [

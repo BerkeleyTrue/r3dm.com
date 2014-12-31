@@ -1,6 +1,6 @@
 var React = require('react');
 
-var ClassName = React.createClass({displayName: 'ClassName',
+var ClassName = React.createClass({displayName: "ClassName",
   render: function() {
     return (
       React.createElement("div", null, 

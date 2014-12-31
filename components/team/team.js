@@ -2,7 +2,7 @@ var React = require('react'),
     data = require('./team_data').data,
     Block = require('./team_block');
 
-var Team = React.createClass({displayName: 'Team',
+var Team = React.createClass({displayName: "Team",
   getDefaultProps: function() {
     return { data: data };
   },

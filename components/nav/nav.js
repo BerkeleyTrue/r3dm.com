@@ -1,7 +1,7 @@
 var React = require('react'),
     debug = require('debug')('r3dm:nav');
 
-var Nav = React.createClass({displayName: 'Nav',
+var Nav = React.createClass({displayName: "Nav",
   getInitialState: function() {
     var links = {
       home: '/'

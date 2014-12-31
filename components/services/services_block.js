@@ -1,7 +1,7 @@
 var React = require('react'),
     Isvg = require('react-inlinesvg');
 
-var Block = React.createClass({displayName: 'Block',
+var Block = React.createClass({displayName: "Block",
   render: function() {
     var icon = {
       png: 'images/icon-' + this.props.title.toLowerCase() + '.png',

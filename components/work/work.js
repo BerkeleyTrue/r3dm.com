@@ -1,7 +1,7 @@
 var React = require('react'),
     Block = require('./work_block');
 
-var Work = React.createClass({displayName: 'Work',
+var Work = React.createClass({displayName: "Work",
   getDefaultProps: function() {
     return {
       workData: [{

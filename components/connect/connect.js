@@ -2,7 +2,7 @@ var React = require('react'),
     debug = require('debug')('r3dm:connect'),
     mandrillAction = require('../dispatcher').mandrillAction;
 
-var Connect = React.createClass({displayName: 'Connect',
+var Connect = React.createClass({displayName: "Connect",
   getInitialState: function() {
     return {
       email: '',
