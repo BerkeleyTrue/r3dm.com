@@ -2,7 +2,7 @@ var React = require('react');
 /*
  * Footer
  */
-var Footer = React.createClass({displayName: 'Footer',
+var Footer = React.createClass({displayName: "Footer",
   render: function() {
     return  (
         React.createElement("div", {id: "footer"}, 

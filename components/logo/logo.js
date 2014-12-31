@@ -2,7 +2,7 @@ var React = require('react'),
     Isvg = require('react-inlinesvg'),
     LogoSvg = React.createFactory(require('./logo_svg'));
 
-var Logo = React.createClass({displayName: 'Logo',
+var Logo = React.createClass({displayName: "Logo",
   render: function() {
 
     var cx = React.addons.classSet;

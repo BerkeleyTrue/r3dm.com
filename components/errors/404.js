@@ -1,6 +1,6 @@
 var React = require('react');
 
-var FourOhFour = React.createClass({displayName: 'FourOhFour',
+var FourOhFour = React.createClass({displayName: "FourOhFour",
   render: function() {
     return (
       React.createElement("div", {className: "middle-box text-center animated fadeInDown"}, 

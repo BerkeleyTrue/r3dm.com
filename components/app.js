@@ -10,7 +10,7 @@ var React = require('react/addons'),
     Connect = require('./connect'),
     Footer = require('./footer');
 
-var App = React.createClass({displayName: 'App',
+var App = React.createClass({displayName: "App",
   mixins: [scrollMix],
   render: function() {
 
