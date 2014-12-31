@@ -18,6 +18,9 @@ var express = require('express'),
     Fetcher = require('fetchr'),
     mandrillServ = require('./services/mandrill'),
 
+    // ## database
+    mongoose = require('mongoose'),
+
     // ## Express/Serve
     morgan = require('morgan'),
     serve = require('serve-static'),
@@ -27,6 +30,9 @@ var express = require('express'),
     cookieParse = require('cookie-parser'),
     helmet = require('helmet');
     //coookieSess = require('cookie-session')
+
+// connect to database
+mongoose.connect(process.env.MONGO_URL);
 
 // ## State becomes a variable available to all rendered views
 state.extend(app);
@@ -67,6 +73,9 @@ app.get('/emails/:name', function(req, res) {
   locals.name = nameArr[0];
   res.render('email/greet', locals);
 });
+
+app.get('/blog', api.blog);
+app.get('/blog/:title.:format?', api.post);
 
 app.get('/*', function(req, res, next) {
   Router.run(routes, req.path, function(Handler, state) {

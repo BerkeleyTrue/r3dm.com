@@ -69,6 +69,7 @@
     "react-scroll-components": "^0.1.0",
     "rx": "^2.3.14",
     "serve-favicon": "^2.1.1",
-    "serve-static": "^1.5.3"
+    "serve-static": "^1.5.3",
+    "mongoose": "^3.8.21"
   }
 }
