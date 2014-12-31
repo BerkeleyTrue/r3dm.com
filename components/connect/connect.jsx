@@ -1,4 +1,5 @@
 var React = require('react'),
+    globular = require('../globular'),
     debug = require('debug')('r3dm:connect'),
     mandrillAction = require('../dispatcher').mandrillAction;
 
@@ -35,8 +36,8 @@ var Connect = React.createClass({
     });
 
     // submit event to Google Analytics to measure conversion goals
-    ga('send', 'event', 'button', 'click', 'Connect');
-    console.log('ga is', ga);
+    globular.ga('send', 'event', 'button', 'click', 'Connect');
+    console.log('ga is', globular.ga);
   },
 
   render: function() {
