@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "lint": "./node_modules/.bin/jsxhint components/**/*.js",
-    "test": "none"
+    "test": "none",
+    "prepublish": "browserify client.js -o public/js/bundle.js"
   },
   "engines": {
     "node": "0.10.x"
