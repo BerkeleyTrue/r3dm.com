@@ -7,3 +7,6 @@ config/runtime.*
 npm-debug.log
 *.env
 *.log
+
+# ignore bundle, make sure to compile it in production
+public/js/bundle.js
