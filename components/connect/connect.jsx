@@ -33,6 +33,10 @@ var Connect = React.createClass({
       email: this.state.email,
       name: this.state.name
     });
+
+    // submit event to Google Analytics to measure conversion goals
+    ga('send', 'event', 'button', 'click', 'Connect');
+    console.log('ga is', ga);
   },
 
   render: function() {
