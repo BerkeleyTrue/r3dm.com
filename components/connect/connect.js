@@ -1,7 +1,8 @@
 var React = require('react'),
     globular = require('../globular'),
     debug = require('debug')('r3dm:connect'),
-    mandrillAction = require('../dispatcher').mandrillAction;
+    connect = require('./connect.action'),
+    routerhistory = require('../common/history.action');
 
 var Connect = React.createClass({displayName: "Connect",
   getInitialState: function() {
@@ -9,6 +10,18 @@ var Connect = React.createClass({displayName: "Connect",
       email: '',
       name: ''
     };
+  },
+
+  componentDidMount: function() {
+    connect.complete.subscribeOnNext(function(data) {
+      debug('Email Success: ', data);
+      debug('Redirecting...');
+      routerhistory.action('connected');
+    });
+
+    connect.complete.subscribeOnError(function(err) {
+      return debug('Error sending email', err);
+    });
   },
 
   onEmailChange: function(e) {
@@ -29,11 +42,12 @@ var Connect = React.createClass({displayName: "Connect",
       return;
     }
 
-    debug('Mandrill Action');
-    mandrillAction.onNext({
+    debug('Connect Action');
+    connect.action({
       email: this.state.email,
       name: this.state.name
     });
+
 
     // submit event to Google Analytics to measure conversion goals
     globular.ga('send', 'event', 'button', 'click', 'Connect');
