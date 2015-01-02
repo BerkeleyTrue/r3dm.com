@@ -1,21 +1,27 @@
 'use strict';
 var Rx = require('rx'),
+    rxAction = require('rx-flux').Action,
     Fetcher = require('fetchr'),
-    dispatcher = require('../dispatcher'),
     debug = require('debug')('r3dm:connect:createConnect');
 
 var fetcher = new Fetcher({
   xhrPath: '/api'
 });
 
-var mandrillAction = new Rx.Subject();
+var action = rxAction.create();
+var complete = new Rx.Subject();
 
-mandrillAction.subscribeOnNext(function(payload) {
+action.subscribe(function(payload) {
+  debug('Creating email for: ', payload);
   fetcher.create('mandrillService', payload, {}, {}, function(err, data) {
-    if (err) { return debug('Error sending email', err); }
-    debug('Email Success: ', data);
-    dispatcher.redirectAction.onNext('connected');
+    if (err) {
+      return complete.onError(err);
+    }
+    complete.onNext(data);
   });
 });
 
-module.exports = mandrillAction;
+module.exports = {
+  action: action,
+  complete: complete
+};
