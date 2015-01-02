@@ -12,3 +12,7 @@ Will open a chrome tab at localhost:9000 where changes will be synced
 * minify html/css/js
 * compress images
 
+
+## Blogging
+cd into the `blog` directory. Run `wintersmith preview` while editing posts.
+Once the post is ready run `wintersmith build` add changes to version control.
