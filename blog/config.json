@@ -3,7 +3,8 @@
     "url": "http://localhost:8080",
     "name": "The Wintersmith's blog",
     "owner": "Someone",
-    "description": "Ramblings of an immor(t)al demigod"
+    "description": "Ramblings of an immor(t)al demigod",
+    "baseUrl": "/blog/"
   },
   "plugins": [
     "./plugins/paginator.coffee"
@@ -22,5 +23,6 @@
   },
   "paginator": {
     "perPage": 3
-  }
+  },
+  "baseUrl": "/blog/"
 }
