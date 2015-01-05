@@ -46,7 +46,6 @@ Fetcher.registerFetcher(mandrillServ);
 app.use('/api', Fetcher.middleware());
 
 app.use(serve('./public'));
-app.use('/blog', serve('./blog/build'));
 
 app.get('/500', function(req, res) {
   res.render('500');
