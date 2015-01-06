@@ -132,7 +132,7 @@ gulp.task('server', function(cb) {
     })
     .on('restart', function(files) {
       if (files) {
-        debug('Files that changes: ', files);
+        debug('Files that changed: ', files);
       }
       setTimeout(function() {
         debug('Restarting browsers');
