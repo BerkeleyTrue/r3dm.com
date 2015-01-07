@@ -67,13 +67,14 @@ keystone.init({
   //'auth': true,
   'user model': 'User',
   'auto update': true,
-  'mongo': 'mongodb://localhost:27017/r3dm',
+  'mongo': process.env.MONGO_URI,
   'session': true
 });
 
 keystone.import('models');
 keystone.static(app);
 keystone.routes(app);
+keystone.mongoose.connect(keystone.get('mongo'));
 
 app.use(serve('./public'));
 
