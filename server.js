@@ -62,11 +62,8 @@ keystone.connect({
 
 keystone.init({
   'cookie secret': '12345',
-  'view engine': 'jade',
-  'views': 'views',
   //'auth': true,
   'user model': 'User',
-  'auto update': true,
   'mongo': process.env.MONGO_URI,
   'session': true
 });
