@@ -55,11 +55,8 @@ app.use(session({
 Fetcher.registerFetcher(mandrillServ);
 app.use('/api', Fetcher.middleware());
 
-keystone.connect({
-  express: app,
-  mongoose: mongoose
-});
-
+keystone.app = app;
+keystone.mongoose = mongoose;
 keystone.init({
   'cookie secret': '12345',
   'auth': true,
