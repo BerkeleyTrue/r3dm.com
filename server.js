@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(cookieParser('keyboard cat'));
+app.use(cookieParser('12345'));
 app.use(body.urlencoded({ extended: true }));
 app.use(body.json());
 app.use(compress());
@@ -55,11 +55,8 @@ app.use(session({
 Fetcher.registerFetcher(mandrillServ);
 app.use('/api', Fetcher.middleware());
 
-keystone.connect({
-  express: app,
-  mongoose: mongoose
-});
-
+keystone.app = app;
+keystone.mongoose = mongoose;
 keystone.init({
   'cookie secret': '12345',
   'auth': true,
