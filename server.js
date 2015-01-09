@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(cookieParse());
+app.use(cookieParse('12345'));
 app.use(body.urlencoded({ extended: true }));
 app.use(body.json());
 app.use(compress());
@@ -62,7 +62,7 @@ keystone.connect({
 
 keystone.init({
   'cookie secret': '12345',
-  //'auth': true,
+  'auth': true,
   'user model': 'User',
   'mongo': process.env.MONGO_URI,
   'session': true
