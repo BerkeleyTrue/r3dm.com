@@ -7,7 +7,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
 
     // ## Util
-    debug = require('debug')('*'),
+    debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
 
     // ## React
