@@ -7,7 +7,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
 
     // ## Util
-    debug = require('debug')('r3dm:server'),
+    debug = require('debug')('*'),
     utils = require('./utils/utils'),
 
     // ## React
@@ -26,7 +26,7 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     body = require('body-parser'),
     compress = require('compression'),
-    cookieParse = require('cookie-parser'),
+    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     flash = require('connect-flash'),
     helmet = require('helmet');
@@ -40,7 +40,7 @@ app.set('view engine', 'jade');
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(cookieParse());
+app.use(cookieParser('keyboard cat'));
 app.use(body.urlencoded({ extended: true }));
 app.use(body.json());
 app.use(compress());
@@ -62,7 +62,7 @@ keystone.connect({
 
 keystone.init({
   'cookie secret': '12345',
-  //'auth': true,
+  'auth': true,
   'user model': 'User',
   'mongo': process.env.MONGO_URI,
   'session': true
