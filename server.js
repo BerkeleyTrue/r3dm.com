@@ -25,6 +25,7 @@ var express = require('express'),
     serve = require('serve-static'),
     favicon = require('serve-favicon'),
     body = require('body-parser'),
+    multer = require('multer'),
     compress = require('compression'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
@@ -41,8 +42,9 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(cookieParser('12345'));
-app.use(body.urlencoded({ extended: true }));
+app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
+app.use(multer());
 app.use(compress());
 app.use(flash());
 app.use(session({
