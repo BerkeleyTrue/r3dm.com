@@ -8,7 +8,8 @@ var App = require('./app.js'),
 
     // # Components
     Connected = require('./connectSuccess'),
-    fourOhFour = require('./errors/404'),
+    FourOhFour = require('./errors/404'),
+    Blog = require('./blog/blog'),
     routes;
 
 
@@ -17,9 +18,11 @@ routes = [(
 ), (
   React.createElement(Route, {name: "app", path: "/", handler: App })
 ), (
-  React.createElement(Route, {name: "404", path: "/404", handler: fourOhFour })
+  React.createElement(Route, {name: "404", path: "/404", handler: FourOhFour })
 ), (
-  React.createElement(NotFound, {handler: fourOhFour })
+  React.createElement(NotFound, {handler: FourOhFour })
+), (
+  React.createElement(Route, {name: "blog", path: "/blog", handler: Blog })
 )];
 
 module.exports = routes;

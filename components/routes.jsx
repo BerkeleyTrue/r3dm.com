@@ -8,7 +8,8 @@ var App = require('./app.js'),
 
     // # Components
     Connected = require('./connectSuccess'),
-    fourOhFour = require('./errors/404'),
+    FourOhFour = require('./errors/404'),
+    Blog = require('./blog/blog'),
     routes;
 
 
@@ -17,9 +18,11 @@ routes = [(
 ), (
   <Route name = 'app' path = '/' handler = { App } />
 ), (
-  <Route name = '404' path = '/404' handler = { fourOhFour } />
+  <Route name = '404' path = '/404' handler = { FourOhFour } />
 ), (
-  <NotFound handler = { fourOhFour } />
+  <NotFound handler = { FourOhFour } />
+), (
+  <Route name = 'blog' path = '/blog' handler = { Blog } />
 )];
 
 module.exports = routes;
