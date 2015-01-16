@@ -1,31 +1,30 @@
 var React = require('react'),
-    globular = require('../globular'),
-    debug = require('debug')('r3dm:blog'),
-    blogAction = require('./blog.action'),
-    routerHistory = require('../common/history.action');
+    debug = require('debug')('r3dm:blog');
 
 var Blog = React.createClass({displayName: "Blog",
   getInitialState: function() {
     return {
-      posts: [
-        {title: 'first',
-         body: 'laksdjflaskdfjalsdfkjasldfkjasldfj'},
-       {title: 'second',
-         body: 'laskdjflaskdjfalsdfkjlasdfkjlasdkf'}
-      ]
+      loading: '',
+      loaded: '',
+      failure: false
     };
   },
 
   render: function() {
-    var val = this.state.posts.map(function(e) {
+    var posts = this.props.posts;
+    if (!Array.isArray(posts)) {
+      posts = [posts];
+    }
+    debug('posts', posts);
+    var val = posts.map(function(post) {
       return (
-        React.createElement("div", {className: "post"}, 
-          React.createElement("h3", null, e.title), 
-          React.createElement("p", null, e.body)
+        React.createElement("div", {className: "post", key:  post.title}, 
+          React.createElement("h3", null,  post.title), 
+          React.createElement("span", {dangerouslySetInnerHTML: { __html: post.content.extended}})
         )
       );
     });
-    return React.createElement("div", null, val)
+    return React.createElement("div", null, val );
   }
 });
 

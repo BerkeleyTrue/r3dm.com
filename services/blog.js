@@ -1,13 +1,23 @@
-'use strict';
-var blog = require('mandrill-api'),
-    resolver = require('../utils/viewResolver'),
-    debug = require('debug')('r3dm:blog'),
-    utils = require('../utils/utils');
+var keystone = require('keystone'),
+    debug = require('debug')('r3dm:blog');
 
-var greet = resolver('greet');
 module.exports = {
   name: 'blogService',
-  create: function() {
-    //TODO
+  read: function(req, resource, params, config, cb) {
+    var Post = keystone.list('Post');
+    debug('reading posts');
+
+    Post
+      .model
+      .find()
+      .sort('-publishedDate')
+      .limit(5)
+      .exec()
+      .then(function(posts) {
+        cb(null, posts);
+      }, function(err) {
+        debug('err', err);
+        cb(err);
+      });
   }
 };

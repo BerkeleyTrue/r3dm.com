@@ -12,7 +12,6 @@ var App = require('./app.js'),
     Blog = require('./blog/blog'),
     routes;
 
-
 routes = [(
   <Route name = 'connected' path = '/connected' handler = { Connected } />
 ), (
@@ -20,9 +19,9 @@ routes = [(
 ), (
   <Route name = '404' path = '/404' handler = { FourOhFour } />
 ), (
-  <NotFound handler = { FourOhFour } />
-), (
   <Route name = 'blog' path = '/blog' handler = { Blog } />
+), (
+  <NotFound handler = { FourOhFour } />
 )];
 
 module.exports = routes;

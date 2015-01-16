@@ -12,7 +12,6 @@ var App = require('./app.js'),
     Blog = require('./blog/blog'),
     routes;
 
-
 routes = [(
   React.createElement(Route, {name: "connected", path: "/connected", handler: Connected })
 ), (
@@ -20,9 +19,9 @@ routes = [(
 ), (
   React.createElement(Route, {name: "404", path: "/404", handler: FourOhFour })
 ), (
-  React.createElement(NotFound, {handler: FourOhFour })
-), (
   React.createElement(Route, {name: "blog", path: "/blog", handler: Blog })
+), (
+  React.createElement(NotFound, {handler: FourOhFour })
 )];
 
 module.exports = routes;

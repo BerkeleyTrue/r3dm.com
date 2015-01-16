@@ -19,6 +19,8 @@ var express = require('express'),
     // ## Flux
     Fetcher = require('fetchr'),
     mandrillServ = require('./services/mandrill'),
+    blogServ = require('./services/blog'),
+    fetchData = require('./fetchData'),
 
     // ## Express/Serve
     morgan = require('morgan'),
@@ -31,7 +33,6 @@ var express = require('express'),
     session = require('express-session'),
     flash = require('connect-flash'),
     helmet = require('helmet');
-
 
 // ## State becomes a variable available to all rendered views
 state.extend(app);
@@ -55,6 +56,7 @@ app.use(session({
 
 // ## Fetcher middleware
 Fetcher.registerFetcher(mandrillServ);
+Fetcher.registerFetcher(blogServ);
 app.use('/api', Fetcher.middleware());
 
 keystone.app = app;
@@ -99,12 +101,17 @@ app.get('/*', function(req, res, next) {
   Router.run(routes, req.path, function(Handler, state) {
     debug('Route found, %s rendering..', state.path);
     Handler = React.createFactory(Handler);
-    var html = React.renderToString(Handler());
-    res.render('layout', { html: html }, function(err, markup) {
-      if (err) { return next(err); }
-      debug('Sending %s', state.path);
-      res.send(markup);
-    });
+
+    //Do we need async data?
+    fetchData(state)
+      .then(function(props) {
+        var html = React.renderToString(Handler(props));
+        res.render('layout', { html: html }, function(err, markup) {
+          if (err) { return next(err); }
+          debug('Sending %s', state.path);
+          res.send(markup);
+        });
+      });
   });
 });
 
