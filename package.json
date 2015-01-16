@@ -75,6 +75,7 @@
     "morgan": "^1.5.0",
     "multer": "^0.1.7",
     "newrelic": "^1.13.2",
+    "q": "^1.1.2",
     "react": "^0.12.1",
     "react-inlinesvg": "^0.2.3",
     "react-loadermixin": "^1.0.4",
