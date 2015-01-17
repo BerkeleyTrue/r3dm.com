@@ -36,6 +36,7 @@ var express = require('express'),
 
 // ## State becomes a variable available to all rendered views
 state.extend(app);
+app.set('state namespace', 'R3DM');
 
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'jade');
@@ -99,15 +100,19 @@ app.get('/emails/:name', function(req, res) {
 
 app.get('/*', function(req, res, next) {
   Router.run(routes, req.path, function(Handler, state) {
-    debug('Route found, %s rendering..', state.path);
     Handler = React.createFactory(Handler);
+    debug('Route found, %s rendering..', state.path);
 
     //Do we need async data?
     fetchData(state)
-      .then(function(props) {
-        var html = React.renderToString(Handler(props));
+      .then(function(context) {
+        debug('got context', context);
+        res.expose(context, 'context');
+        var html = React.renderToString(Handler({ context: context }));
+        debug('react comp rendering');
         res.render('layout', { html: html }, function(err, markup) {
           if (err) { return next(err); }
+          debug('react comp rendering');
           debug('Sending %s', state.path);
           res.send(markup);
         });

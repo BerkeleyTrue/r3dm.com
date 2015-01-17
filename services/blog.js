@@ -1,5 +1,5 @@
 var keystone = require('keystone'),
-    debug = require('debug')('r3dm:blog');
+    debug = require('debug')('r3dm:services:blog');
 
 module.exports = {
   name: 'blogService',

@@ -1,17 +1,31 @@
 var React = require('react'),
-    debug = require('debug')('r3dm:blog');
+    StateStreamMixin = require('rx-react').StateStreamMixin,
+    blogStores = require('./blog.stores.js'),
+    debug = require('debug')('r3dm:blog:component');
 
 var Blog = React.createClass({displayName: "Blog",
-  getInitialState: function() {
-    return {
-      loading: '',
-      loaded: '',
-      failure: false
-    };
+  mixins: [StateStreamMixin],
+
+  getStateStream: function() {
+    blogStores.subscribe(function(state) {
+      debug('state', state);
+    });
+    return blogStores;
+  },
+
+  componentWillMount: function() {
+    debug('will mount');
+    if (this.props.context) {
+      debug('found context', this.props.context);
+      this.setState(this.props.context);
+    }
   },
 
   render: function() {
-    var posts = this.props.posts;
+    blogStores.subscribe(function(state) {
+      debug('state', state);
+    });
+    var posts = this.state.posts;
     if (!Array.isArray(posts)) {
       posts = [posts];
     }

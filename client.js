@@ -14,8 +14,9 @@ Router.run(routes, routerHistory, function(Handler, state) {
   debug('Route found, %s rendering..', state.path);
   Handler = React.createFactory(Handler);
   fetchData(state)
-    .then(function(props) {
-      React.render(Handler(props), mountNode, function() {
+    .then(function(context) {
+      debug('Got context', context);
+      React.render(Handler({ context: context }), mountNode, function() {
         debug('React rendered!');
       });
     });

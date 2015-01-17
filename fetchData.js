@@ -1,6 +1,6 @@
 var Q = require('q'),
     Fetcher = require('fetchr'),
-    debug = require('debug')('fetchData');
+    debug = require('debug')('r3dm:fetchData');
 
 module.exports = function(state) {
   var defer = Q.defer();

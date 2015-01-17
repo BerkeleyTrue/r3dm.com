@@ -1,5 +1,5 @@
-var Rx = require('rx'),
-    rxAction = require('rx-flux').Action,
+var rxAction = require('rx-flux').Action,
+    BlogStore = require('./blog.stores'),
     Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:blog:action');
 
@@ -8,20 +8,26 @@ var fetcher = new Fetcher({
 });
 
 var action = rxAction.create();
-var complete = new Rx.Subject();
 
 action.subscribe(function(payload) {
   debug('blog action: ', payload);
   // serviceName, payload, resource, cb
-  fetcher.read('blogService', payload, {}, function(err, data) {
+  fetcher.read('blogService', payload, {}, function(err, posts) {
     if (err) {
-      return debug('blog err', err);
+      debug('blog err', err);
+      return BlogStore.onNext({
+        loading: false,
+        error: true,
+        posts: []
+      });
     }
-    debug('complete', data);
+    debug('complete', posts);
+    BlogStore.onNext({
+      loading: false,
+      error: false,
+      posts: posts
+    });
   });
 });
 
-module.exports = {
-  action: action,
-  complete: complete
-};
+module.exports = { action: action };
