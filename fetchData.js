@@ -4,19 +4,23 @@ var Q = require('q'),
 
 module.exports = function(state) {
   var defer = Q.defer();
-  if (state.path === '/blog') {
+  debug('state', state);
+  if (state.path.indexOf('/blog') !== -1) {
+    var title = state.params.title;
     debug('fetching blog data');
     var fetcher = new Fetcher({
       xhr: '/api'
     });
-    fetcher.read('blogService', {}, {}, function(err, posts) {
+    fetcher.read('blogService', {
+      title: title || ''
+    }, {}, function(err, posts) {
       if (err) { return defer.reject(err); }
 
       //Send props object
       defer.resolve({ posts: posts });
     });
   } else {
-    // Return no props
+    debug('return empty context');
     defer.resolve(null);
   }
   return defer.promise;

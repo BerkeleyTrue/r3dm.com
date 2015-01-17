@@ -16,10 +16,10 @@ routes = [(
   <Route name = 'connected' path = '/connected' handler = { Connected } />
 ), (
   <Route name = 'app' path = '/' handler = { App } />
+  ), (
+  <Route name='blog' path='/blog/?:title?' handler = { Blog }/>
 ), (
   <Route name = '404' path = '/404' handler = { FourOhFour } />
-), (
-  <Route name = 'blog' path = '/blog' handler = { Blog } />
 ), (
   <NotFound handler = { FourOhFour } />
 )];

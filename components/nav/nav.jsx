@@ -1,4 +1,5 @@
 var React = require('react'),
+    Link = require('react-router').Link,
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({
@@ -34,6 +35,11 @@ var Nav = React.createClass({
               onClick = { this.handleHashLink }>
               Connect
             </a>
+          </li>
+          <li>
+            <Link to='blog'>
+              Blog
+            </Link>
           </li>
         </ul>
       </nav>

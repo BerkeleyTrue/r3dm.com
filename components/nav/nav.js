@@ -1,4 +1,5 @@
 var React = require('react'),
+    Link = require('react-router').Link,
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({displayName: "Nav",
@@ -33,6 +34,11 @@ var Nav = React.createClass({displayName: "Nav",
               name: "connect", 
               onClick:  this.handleHashLink}, 
               "Connect"
+            )
+          ), 
+          React.createElement("li", null, 
+            React.createElement(Link, {to: "blog"}, 
+              "Blog"
             )
           )
         )

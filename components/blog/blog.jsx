@@ -1,4 +1,5 @@
 var React = require('react'),
+    Link = require('react-router').Link,
     StateStreamMixin = require('rx-react').StateStreamMixin,
     blogStores = require('./blog.stores.js'),
     debug = require('debug')('r3dm:blog:component');
@@ -7,24 +8,18 @@ var Blog = React.createClass({
   mixins: [StateStreamMixin],
 
   getStateStream: function() {
-    blogStores.subscribe(function(state) {
-      debug('state', state);
-    });
     return blogStores;
   },
 
   componentWillMount: function() {
-    debug('will mount');
+    debug('comp will mount');
     if (this.props.context) {
-      debug('found context', this.props.context);
+      debug('found context');
       this.setState(this.props.context);
     }
   },
 
   render: function() {
-    blogStores.subscribe(function(state) {
-      debug('state', state);
-    });
     var posts = this.state.posts;
     if (!Array.isArray(posts)) {
       posts = [posts];
@@ -32,12 +27,15 @@ var Blog = React.createClass({
     debug('posts', posts);
     var val = posts.map(function(post) {
       return (
-        <div className='post' key = { post.title }>
-          <h3>{ post.title }</h3>
-          <span dangerouslySetInnerHTML = {{ __html: post.content.extended }} />
-        </div>
+        <Link to='blog' params={{ title: post.title }} key={ post.title}>
+          <div className='post'>
+            <h3>{ post.title }</h3>
+            <span dangerouslySetInnerHTML={{ __html: post.content.brief }} />
+          </div>
+        </Link>
       );
     });
+    debug('will render');
     return <div>{ val }</div>;
   }
 });

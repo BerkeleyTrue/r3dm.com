@@ -99,20 +99,19 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  Router.run(routes, req.path, function(Handler, state) {
+  Router.run(routes, decodeURI(req.path), function(Handler, state) {
     Handler = React.createFactory(Handler);
     debug('Route found, %s rendering..', state.path);
 
     //Do we need async data?
     fetchData(state)
       .then(function(context) {
-        debug('got context', context);
         res.expose(context, 'context');
+        debug('rendering react to string');
         var html = React.renderToString(Handler({ context: context }));
-        debug('react comp rendering');
+        debug('rendering jade');
         res.render('layout', { html: html }, function(err, markup) {
           if (err) { return next(err); }
-          debug('react comp rendering');
           debug('Sending %s', state.path);
           res.send(markup);
         });
