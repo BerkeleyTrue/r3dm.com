@@ -89,7 +89,9 @@ gulp.task('jsx', function() {
 gulp.task('jsx-watch', function() {
   return gulp.src(paths.jsx)
     .pipe(watch(paths.jsx))
-    .pipe(react())
+    .pipe(react({
+      harmony: true
+    }))
     .pipe(gulp.dest('./components'));
 });
 
