@@ -32,6 +32,4 @@ action.subscribe(function(payload) {
   });
 });
 
-module.exports = {
-  action: action
-};
+module.exports = action;

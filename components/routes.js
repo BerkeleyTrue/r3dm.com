@@ -24,4 +24,9 @@ routes = [(
   React.createElement(NotFound, {handler: FourOhFour })
 )];
 
-module.exports = routes;
+module.exports = function(Location) {
+  return Router.create({
+    routes: routes,
+    location: Location
+  });
+};

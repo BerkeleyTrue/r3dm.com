@@ -9,18 +9,19 @@ var express = require('express'),
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
+    _ = require('lodash'),
 
     // ## React
     React = require('react'),
-    Router = require('react-router'),
-    routes = require('./components/routes'),
+    getRouter = require('./components/routes'),
     state = require('express-state'),
 
     // ## Flux
     Fetcher = require('fetchr'),
     mandrillServ = require('./services/mandrill'),
     blogServ = require('./services/blog'),
-    fetchData = require('./fetchData'),
+    ContextStore = require('./components/common/Context.store'),
+    RouterStateAction = require('./components/common/RouterState.action'),
 
     // ## Express/Serve
     morgan = require('morgan'),
@@ -99,23 +100,36 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  Router.run(routes, decodeURI(req.path), function(Handler, state) {
-    Handler = React.createFactory(Handler);
-    debug('Route found, %s rendering..', state.path);
+  debug('req', req.path);
+  debug('decode req', decodeURI(req.path));
+  getRouter(decodeURI(req.path))
+    .run(function(Handler, state) {
+      Handler = React.createFactory(Handler);
+      debug('Route found, %s ', state.path);
 
-    //Do we need async data?
-    fetchData(state)
-      .then(function(context) {
-        res.expose(context, 'context');
-        debug('rendering react to string');
-        var html = React.renderToString(Handler({ context: context }));
-        debug('rendering jade');
-        res.render('layout', { html: html }, function(err, markup) {
-          if (err) { return next(err); }
-          debug('Sending %s', state.path);
-          res.send(markup);
-        });
-      });
+      var ctx = {
+        req: req,
+        res: res,
+        next: next,
+        Handler: Handler,
+        state: state
+      };
+      debug('Sending route action');
+      RouterStateAction(ctx);
+    });
+});
+
+ContextStore.subscribe(function(ctx) {
+  if (!ctx.Handler) { return debug('no handler'); }
+  debug('rendering react to string', ctx.state);
+  var html = React.renderToString(ctx.Handler());
+  debug('rendering jade');
+
+  ctx.res.render('layout', { html: html }, function(err, markup) {
+    if (err) { return ctx.next(err); }
+
+    debug('Sending %s', ctx.state.path);
+    return ctx.res.send(markup);
   });
 });
 

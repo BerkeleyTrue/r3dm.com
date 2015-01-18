@@ -9,7 +9,7 @@ module.exports = {
 
     debug('params', params);
     debug('params.title', params.title);
-    if (params.title) {
+    if (params.title && params.title !== 'undefined') {
       where = { title: params.title };
       limit = 1;
     } else {

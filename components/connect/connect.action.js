@@ -1,4 +1,3 @@
-'use strict';
 var Rx = require('rx'),
     rxAction = require('rx-flux').Action,
     Fetcher = require('fetchr'),

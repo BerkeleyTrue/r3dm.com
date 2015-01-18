@@ -70,6 +70,7 @@
     "helmet": "^0.5.0",
     "jade": "^1.7.0",
     "keystone": "git://github.com/r3dm/keystone.git#r3dm",
+    "lodash": "^2.4.1",
     "mandrill-api": "^1.0.41",
     "mongoose": "^3.8.21",
     "morgan": "^1.5.0",
