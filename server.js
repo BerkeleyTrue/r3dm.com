@@ -9,7 +9,6 @@ var express = require('express'),
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
-    _ = require('lodash'),
 
     // ## React
     React = require('react'),
@@ -121,7 +120,7 @@ app.get('/*', function(req, res, next) {
 
 ContextStore.subscribe(function(ctx) {
   if (!ctx.Handler) { return debug('no handler'); }
-  debug('rendering react to string', ctx.state);
+  debug('rendering react to string', ctx.state.path);
   var html = React.renderToString(ctx.Handler());
   debug('rendering jade');
 

@@ -11,7 +11,6 @@ var action = rxAction.create();
 
 action.subscribe(function(payload) {
   debug('blog action: ', payload);
-  // serviceName, payload, resource, cb
   fetcher.read('blogService', payload, {}, function(err, posts) {
     if (err) {
       debug('blog err', err);
@@ -21,7 +20,8 @@ action.subscribe(function(payload) {
         posts: []
       });
     }
-    debug('complete', posts);
+    debug('complete');
+    debug('number of posts', posts && posts.length);
     BlogStore.operation.onNext({
       value: {
         loading: false,

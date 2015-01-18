@@ -8,17 +8,17 @@ var RouterState = Action.create();
 
 RouterState.subscribe(function(ctx) {
   var state = ctx.state;
-  debug('Router state', state);
+  debug('router state', state.path);
   if (state.path.indexOf('/blog') !== -1) {
     var title = state.params.title;
-    debug('Calling blog action');
+    debug('calling blog action');
     BlogAction({ title: title });
     BlogStore.subscribe(function() {
       debug('context operation');
-      ContextStore.operation.onNext({ value: ctx});
+      ContextStore.operation.onNext({ value: ctx });
     });
   } else {
-    debug('context operation', ctx);
+    debug('context operation');
     ContextStore.operation.onNext({ value: ctx });
   }
 });
