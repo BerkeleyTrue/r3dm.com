@@ -1,5 +1,5 @@
 var rxAction = require('rx-flux').Action,
-    BlogStore = require('./blog.stores'),
+    BlogStore = require('./blog.store'),
     Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:blog:action');
 
@@ -22,12 +22,16 @@ action.subscribe(function(payload) {
       });
     }
     debug('complete', posts);
-    BlogStore.onNext({
-      loading: false,
-      error: false,
-      posts: posts
+    BlogStore.operation.onNext({
+      value: {
+        loading: false,
+        error: false,
+        posts: posts
+      }
     });
   });
 });
 
-module.exports = { action: action };
+module.exports = {
+  action: action
+};

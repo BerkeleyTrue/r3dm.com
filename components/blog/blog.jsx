@@ -1,14 +1,14 @@
 var React = require('react'),
     Link = require('react-router').Link,
     StateStreamMixin = require('rx-react').StateStreamMixin,
-    blogStores = require('./blog.stores.js'),
+    BlogStore = require('./blog.store.js'),
     debug = require('debug')('r3dm:blog:component');
 
 var Blog = React.createClass({
   mixins: [StateStreamMixin],
 
   getStateStream: function() {
-    return blogStores;
+    return BlogStore;
   },
 
   componentWillMount: function() {
