@@ -118,7 +118,11 @@ app.get('/*', function(req, res, next) {
     });
 });
 
-ContextStore.subscribe(function(ctx) {
+// Use a hot observable stream for requests
+var hotObservable = ContextStore.publish();
+
+// Run on next sequence
+hotObservable.subscribe(function(ctx) {
   if (!ctx.Handler) { return debug('no handler'); }
   debug('rendering react to string', ctx.state.path);
   var html = React.renderToString(ctx.Handler());
@@ -131,6 +135,9 @@ ContextStore.subscribe(function(ctx) {
     return ctx.res.send(markup);
   });
 });
+
+// Start listening listening to observable sequence;
+hotObservable.connect();
 
 app.use(function(req, res) {
   res.status(404);

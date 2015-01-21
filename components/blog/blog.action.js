@@ -10,14 +10,16 @@ var fetcher = new Fetcher({
 var action = rxAction.create();
 
 action.subscribe(function(payload) {
-  debug('blog action: ', payload);
+  debug('blog action payload: ', payload);
   fetcher.read('blogService', payload, {}, function(err, posts) {
     if (err) {
       debug('blog err', err);
-      return BlogStore.onNext({
-        loading: false,
-        error: true,
-        posts: []
+      return BlogStore.operation.onNext({
+        value: {
+          loading: false,
+          error: true,
+          posts: []
+        }
       });
     }
     debug('complete');

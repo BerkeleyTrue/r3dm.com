@@ -12,7 +12,6 @@ var ContextStore = Store.create({
   }
 });
 
-ContextStore.publish();
 ContextStore.operation = operation;
 
 module.exports = ContextStore;
