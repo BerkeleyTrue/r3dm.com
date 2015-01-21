@@ -12,7 +12,7 @@ var express = require('express'),
 
     // ## React
     React = require('react'),
-    getRouter = require('./components/routes'),
+    Router = require('./components/Router'),
     state = require('express-state'),
 
     // ## Flux
@@ -101,7 +101,7 @@ app.get('/emails/:name', function(req, res) {
 app.get('/*', function(req, res, next) {
   debug('req', req.path);
   debug('decode req', decodeURI(req.path));
-  getRouter(decodeURI(req.path))
+  Router(decodeURI(req.path))
     .run(function(Handler, state) {
       Handler = React.createFactory(Handler);
       debug('Route found, %s ', state.path);

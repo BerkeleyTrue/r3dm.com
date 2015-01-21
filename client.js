@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react/addons'),
-    getRouter = require('./components/routes'),
+    Router = require('./components/Router'),
 
     HistoryLocation = require('react-router').HistoryLocation,
 
@@ -19,7 +19,7 @@ ContextStore.subscribe(function(ctx) {
   });
 });
 
-getRouter(HistoryLocation)
+Router(HistoryLocation)
   .run(function(Handler, state) {
     debug('Route found, %s rendering..', state.path);
     Handler = React.createFactory(Handler);
@@ -29,4 +29,3 @@ getRouter(HistoryLocation)
     };
     RouterStateAction(ctx);
   });
-

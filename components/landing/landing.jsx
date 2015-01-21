@@ -4,11 +4,11 @@ var React = require('react/addons'),
     scrollMix = require('react-scroll-components').ScrollListenerMixin,
 
     // # Components
-    Nav = require('./nav'),
-    Banner = require('./banner'),
-    Logo = require('./logo'),
-    Connect = require('./connect'),
-    Footer = require('./footer');
+    Nav = require('../nav'),
+    Banner = require('../banner'),
+    Logo = require('../logo'),
+    Connect = require('../connect'),
+    Footer = require('../footer');
 
 var App = React.createClass({
   mixins: [scrollMix],
