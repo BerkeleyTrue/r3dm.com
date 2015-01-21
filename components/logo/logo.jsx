@@ -1,6 +1,6 @@
 var React = require('react'),
     Isvg = require('react-inlinesvg'),
-    LogoSvg = React.createFactory(require('./logo_svg'));
+    LogoSvg = React.createFactory(require('./Logo_svg'));
 
 var Logo = React.createClass({
   render: function() {

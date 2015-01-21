@@ -1,1 +1,1 @@
-module.exports = require('./blog');
+module.exports = require('./Blog');

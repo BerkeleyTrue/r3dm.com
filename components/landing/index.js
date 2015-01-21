@@ -1,1 +1,1 @@
-module.exports = require('./landing');
+module.exports = require('./Landing');

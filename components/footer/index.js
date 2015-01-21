@@ -1,1 +1,1 @@
-module.exports = require('./footer.js');
+module.exports = require('./Footer.js');

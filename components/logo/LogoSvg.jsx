@@ -2,6 +2,7 @@ var React = require('react');
 
 var LogoSvg = React.createClass({
   render: function() {
+    //jscs: disable
     return (
       <svg width="561.604" height="706.878" viewBox="0 0 561.604 706.878">
         <g>

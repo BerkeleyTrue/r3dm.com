@@ -1,1 +1,1 @@
-module.exports = require('./banner');
+module.exports = require('./Banner');
