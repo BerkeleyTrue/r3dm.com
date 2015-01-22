@@ -2026,3 +2026,12 @@ input[type = 'email'].connect_input {
 #footer {
   text-align: center;
 }
+a.post-title,
+a:hover.post-title,
+a:focus.post-title,
+a:active.post-title {
+  text-decoration: none;
+}
+a.post-title {
+  color: #000;
+}
