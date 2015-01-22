@@ -48,7 +48,6 @@ var Connect = React.createClass({
       name: this.state.name
     });
 
-
     // submit event to Google Analytics to measure conversion goals
     globular.ga('send', 'event', 'button', 'click', 'Connect');
     console.log('ga is', globular.ga);
