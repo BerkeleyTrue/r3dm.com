@@ -2,7 +2,7 @@ var React = require('react'),
     Link = require('react-router').Link,
     StateStreamMixin = require('rx-react').StateStreamMixin,
     BlogStore = require('./blog.store.js'),
-    debug = require('debug')('r3dm:blog:component');
+    debug = require('debug')('r3dm:components:blog');
 
 var Blog = React.createClass({
   mixins: [StateStreamMixin],

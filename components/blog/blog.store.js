@@ -1,6 +1,6 @@
 var Rx = require('rx'),
     Store = require('rx-flux').Store,
-    debug = require('debug')('r3dm:blog:store'),
+    debug = require('debug')('r3dm:components:blog:store'),
     operation = new Rx.Subject();
 
 var BlogStore = Store.create({

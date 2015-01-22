@@ -40,7 +40,6 @@ var gulp = require('gulp'),
     // ## production?
     production = yargs.p;
 
-
 var paths = {
   main: './client.js',
   jsx: './components/**/**.jsx',
