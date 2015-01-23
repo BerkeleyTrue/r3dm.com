@@ -1,6 +1,6 @@
 var React = require('react'),
     CSSTransitionGroup = React.addons.CSSTransitionGroup,
-    $__0=    require('rx-react'),StateStreamMixin=$__0.StateStreamMixin,
+    { StateStreamMixin } = require('rx-react'),
 
     globular = require('../globular'),
     debug = require('debug')('r3dm:components:connect'),
@@ -41,13 +41,13 @@ var Connect = React.createClass({displayName: "Connect",
   },
 
   render: function() {
-    var $__0=
-      
-      
-      
-      
-      
-      this.state,email=$__0.email,name=$__0.name,sending=$__0.sending,sent=$__0.sent,error=$__0.error;
+    var {
+      email,
+      name,
+      sending,
+      sent,
+      error
+    } = this.state;
     var view = [];
     if (!sending && !error && !sent) {
       view.push(
