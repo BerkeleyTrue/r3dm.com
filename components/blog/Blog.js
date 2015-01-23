@@ -27,22 +27,38 @@ var Blog = React.createClass({displayName: "Blog",
       posts = [posts];
     }
 
+    /* Iterates over the posts returned from Mongodb.
+     * If there is only one render the single-blog-post-view.
+     * Else, render a list of blog briefs that link to the whole versions.
+    */
     var val = posts.map(function (post) {
-      var html = posts.length === 1 ? post.content.extended :
-                                      post.content.brief;
+      var html, readMore;
+
+      if (posts.length === 1) {
+        html = post.content.extended;
+      } else {
+        html = post.content.brief;
+        readMore = (React.createElement("div", {className: "read-full-story-container"}, 
+            React.createElement(Link, {to: "blog", params: { title: post.title}, 
+                  className: "read-full-story"}, 
+              "READ THE FULL POST"
+            )
+          ));
+      }
+
       if (post.publishedDate) {
         post.publishedDate = new Date(post.publishedDate)
         .toLocaleString('en-US',
-                        {month: 'long',
-                         day: 'numeric',
-                         year: 'numeric' });
+                        {month: 'long', day: 'numeric', year: 'numeric' });
       } else {
         post.publishedDate = 'not published';
       }
+
       if (!post.author) {
         post.author = {};
         post.author.name = 'no author';
       }
+
       return (
         React.createElement("div", {className: "post"}, 
           React.createElement(Link, {to: "blog", params: { title: post.title}, 
@@ -53,17 +69,13 @@ var Blog = React.createClass({displayName: "Blog",
              post.publishedDate, " | By: ",  post.author.name
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
-          React.createElement("div", {className: "read-full-story-container"}, 
-            React.createElement(Link, {to: "blog", params: { title: post.title}, 
-                  className: "read-full-story"}, 
-              "READ THE FULL STORY"
-            )
-          )
+          readMore 
         )
       );
     });
 
     debug('will render');
+
     return (
       React.createElement("div", {className: "pure-g"}, 
         React.createElement("div", {className: "pure-u-1-6"}), 
