@@ -2044,7 +2044,20 @@ a.post-title {
   font-size: 0.8em;
   color: #9b9b9b;
 }
-.read-full-story {
+div.post {
+  text-align: justify;
+}
+div.read-full-story-container {
   text-align: center;
+  border-bottom: 1px solid #dad7d6;
+  border-top: 1px solid #dad7d6;
+}
+a.read-full-story {
   color: #9b9b9b;
+  line-height: 50px;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+a:hover.read-full-story {
+  color: #f00;
 }

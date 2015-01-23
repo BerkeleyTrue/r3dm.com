@@ -1,6 +1,7 @@
 @require 'util'
 
 r3dm-grey = #9B9B9B
+border-grey = #DAD7D6
 
 a.post-title,
 a:hover.post-title,
@@ -20,6 +21,17 @@ a.post-title
   font-size 0.8em
   color r3dm-grey
 
-.read-full-story
+div.post
+  text-align justify
+
+div.read-full-story-container
   text-align center
+  border-bottom 1px solid border-grey
+  border-top 1px solid border-grey
+
+a.read-full-story
   color r3dm-grey
+  line-height 50px
+  transition all 0.5s ease-in-out 0s
+a:hover.read-full-story
+  color red

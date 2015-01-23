@@ -53,7 +53,7 @@ var Blog = React.createClass({displayName: "Blog",
              post.publishedDate, " | By: ",  post.author.name
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
-          React.createElement("span", null, 
+          React.createElement("div", {className: "read-full-story-container"}, 
             React.createElement(Link, {to: "blog", params: { title: post.title}, 
                   className: "read-full-story"}, 
               "READ THE FULL STORY"

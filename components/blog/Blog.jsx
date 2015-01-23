@@ -53,12 +53,12 @@ var Blog = React.createClass({
             { post.publishedDate } | By: { post.author.name }
           </div>
           <span dangerouslySetInnerHTML={{ __html: html }} />
-          <span>
+          <div className='read-full-story-container'>
             <Link to='blog' params={{ title: post.title }}
                   className='read-full-story'>
               READ THE FULL STORY
             </Link>
-          </span>
+          </div>
         </div>
       );
     });
