@@ -26,16 +26,32 @@ var Blog = React.createClass({displayName: "Blog",
     if (!Array.isArray(posts)) {
       posts = [posts];
     }
-    debug('posts', posts);
 
     var val = posts.map(function (post) {
       var html = posts.length === 1 ? post.content.extended :
                                       post.content.brief;
-      debug('map:html', html);
+      // if (post.publishedDate) {
+      //   post.publishedDate = Date(post.publishedDate);
+      // } else {
+      //   post.publishedDate = new Date();
+      // }
+      // typeof post.publishedDate ~> string
+      post.publishedDate = new Date(post.publishedDate);
+      if (!post.author) {
+        post.author = {};
+        post.author.name = 'none';
+      }
       return (
         React.createElement("div", {className: "post"}, 
           React.createElement(Link, {to: "blog", params: { title: post.title}, key:  post.title, className: "post-title"}, 
             React.createElement("h1", null,  post.title)
+          ), 
+          React.createElement("div", {className: "date-and-author"}, 
+             post.publishedDate.toLocaleString('en-US', {month:'long',
+                                                day: 'numeric',
+                                                year: 'numeric' }), 
+                                                " | ", 
+                                                 post.author.name
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}})
         )

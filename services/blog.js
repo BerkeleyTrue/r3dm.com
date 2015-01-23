@@ -5,6 +5,7 @@ module.exports = {
   name: 'blogService',
   read: function(req, resource, params, config, cb) {
     var Post = keystone.list('Post'),
+        User = keystone.list('User'),
         where, limit, skip;
 
     debug('params', params);
@@ -21,15 +22,31 @@ module.exports = {
     Post
       .model
       .find(where)
+      .populate('author')
       .sort('-publishedDate')
       .skip(skip)
       .limit(limit)
       .exec()
+      // .exec(function (err, docs) {
+      //   if (err) { return err; }
+      //   docs.forEach(function(e) {
+      //     if (e.author) {
+      //       User.model.findOne({ _id: e.author}, function(err, doc){
+      //         e.author = doc.name;
+      //         console.log(doc);
+      //                         });
+      //     } else {
+      //       e.author = 'none';
+      //     }
+      //     console.log('mongoose author', e.author);
+      //   });
+      // })
       .then(function(posts) {
-        cb(null, posts);
-      }, function(err) {
-        debug('err', err);
-        cb(err);
-      });
+          cb(null, posts);
+        }, function(err) {
+          debug('err', err);
+          cb(err);
+        }
+      );
   }
 };
