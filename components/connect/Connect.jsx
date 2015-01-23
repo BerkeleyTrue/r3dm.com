@@ -1,38 +1,24 @@
 var React = require('react'),
+    { StateStreamMixin } = require('rx-react'),
+
     globular = require('../globular'),
-    debug = require('debug')('r3dm:connect'),
-    connect = require('./connect.action'),
-    routerhistory = require('../common/history.action');
+    debug = require('debug')('r3dm:components:connect'),
+
+    ConnectActions = require('./Actions'),
+    ConnectStore = require('./Store');
 
 var Connect = React.createClass({
-  getInitialState: function() {
-    return {
-      email: '',
-      name: ''
-    };
+  mixins: [StateStreamMixin],
+
+  _onEmailChange: ConnectActions.onEmailChange,
+  _onNameChange: ConnectActions.onNameChange,
+
+  getStateStream: function() {
+    debug('setting up state stream');
+    return ConnectStore;
   },
 
-  componentDidMount: function() {
-    connect.complete.subscribeOnNext(function(data) {
-      debug('Email Success: ', data);
-      debug('Redirecting...');
-      routerhistory.action('connected');
-    });
-
-    connect.complete.subscribeOnError(function(err) {
-      return debug('Error sending email', err);
-    });
-  },
-
-  onEmailChange: function(e) {
-    this.setState({ email: e.target.value });
-  },
-
-  onNameChange: function(e) {
-    this.setState({ name: e.target.value });
-  },
-
-  handleConnect: function(e) {
+  _handleConnect: function(e) {
     var email = this.state.email,
         name = this.state.name;
 
@@ -42,20 +28,21 @@ var Connect = React.createClass({
       return;
     }
 
-    debug('Connect Action');
-    connect.action({
-      email: this.state.email,
-      name: this.state.name
+    debug('send connect action');
+    ConnectActions.send({
+      email: email,
+      name: name
     });
 
     // submit event to Google Analytics to measure conversion goals
     globular.ga('send', 'event', 'button', 'click', 'Connect');
-    console.log('ga is', globular.ga);
   },
 
   render: function() {
-    var email = this.state.email,
-        name = this.state.name;
+    var {
+      email,
+      name
+    } = this.state.email;
 
     return (
       <div id = 'connect' className = 'connect'>
@@ -75,7 +62,7 @@ var Connect = React.createClass({
                     name = 'name'
                     className = 'connect_input'
                     value = { name }
-                    onChange = { this.onNameChange }
+                    onChange = { this._onNameChange }
                     placeholder = 'your name' />
               </div>
               <div className = 'connect_email'>
@@ -85,12 +72,12 @@ var Connect = React.createClass({
                     name = 'email'
                     className = 'connect_input'
                     value = { email }
-                    onChange = { this.onEmailChange }
+                    onChange = { this._onEmailChange }
                     placeholder = 'email'/>
                 </div>
                 <div
                   className = 'button'
-                  onClick = { this.handleConnect }>
+                  onClick = { this._handleConnect }>
                   <span>
                     Connect
                   </span>
