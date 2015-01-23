@@ -30,30 +30,35 @@ var Blog = React.createClass({
     var val = posts.map(function (post) {
       var html = posts.length === 1 ? post.content.extended :
                                       post.content.brief;
-      // if (post.publishedDate) {
-      //   post.publishedDate = Date(post.publishedDate);
-      // } else {
-      //   post.publishedDate = new Date();
-      // }
-      // typeof post.publishedDate ~> string
-      post.publishedDate = new Date(post.publishedDate);
+      if (post.publishedDate) {
+        post.publishedDate = new Date(post.publishedDate)
+        .toLocaleString('en-US',
+                        {month: 'long',
+                         day: 'numeric',
+                         year: 'numeric' });
+      } else {
+        post.publishedDate = 'not published';
+      }
       if (!post.author) {
         post.author = {};
-        post.author.name = 'none';
+        post.author.name = 'no author';
       }
       return (
         <div className='post'>
-          <Link to='blog' params={{ title: post.title }} key={ post.title } className='post-title'>
+          <Link to='blog' params={{ title: post.title }}
+                key={ post.title } className='post-title'>
             <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
-            { post.publishedDate.toLocaleString('en-US', {month:'long',
-                                                day: 'numeric',
-                                                year: 'numeric' }) }
-                                                &nbsp;|&nbsp;
-                                                { post.author.name }
+            { post.publishedDate } | By: { post.author.name }
           </div>
           <span dangerouslySetInnerHTML={{ __html: html }} />
+          <span>
+            <Link to='blog' params={{ title: post.title }}
+                  className='read-full-story'>
+              READ THE FULL STORY
+            </Link>
+          </span>
         </div>
       );
     });

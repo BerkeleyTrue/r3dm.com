@@ -2032,6 +2032,19 @@ a:focus.post-title,
 a:active.post-title {
   text-decoration: none;
 }
+a.read-full-story,
+a:focus.read-full-story,
+a:active.read-full-story {
+  text-decoration: none;
+}
 a.post-title {
   color: #000;
+}
+.date-and-author {
+  font-size: 0.8em;
+  color: #9b9b9b;
+}
+.read-full-story {
+  text-align: center;
+  color: #9b9b9b;
 }
