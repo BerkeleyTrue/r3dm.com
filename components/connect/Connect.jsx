@@ -1,4 +1,5 @@
 var React = require('react'),
+    CSSTransitionGroup = React.addons.CSSTransitionGroup,
     { StateStreamMixin } = require('rx-react'),
 
     globular = require('../globular'),
@@ -8,6 +9,7 @@ var React = require('react'),
     ConnectStore = require('./Store');
 
 var Connect = React.createClass({
+
   mixins: [StateStreamMixin],
 
   _onEmailChange: ConnectActions.onEmailChange,
@@ -41,52 +43,74 @@ var Connect = React.createClass({
   render: function() {
     var {
       email,
-      name
-    } = this.state.email;
-
-    return (
-      <div id = 'connect' className = 'connect'>
-        <div className = 'connect_heading'>
-          <h2>Work With Us.</h2>
-        </div>
-
-        <div className = 'connect_form'>
-          <div>
-            <form
-              action = ''
-              className = 'pure-form'
-              onSubmit = { this.handleConnect }>
-              <div className = 'connect_name'>
-                  <input
-                    type = 'text'
-                    name = 'name'
-                    className = 'connect_input'
-                    value = { name }
-                    onChange = { this._onNameChange }
-                    placeholder = 'your name' />
-              </div>
-              <div className = 'connect_email'>
-                <div>
-                  <input
-                    type = 'email'
-                    name = 'email'
-                    className = 'connect_input'
-                    value = { email }
-                    onChange = { this._onEmailChange }
-                    placeholder = 'email'/>
+      name,
+      sending,
+      sent,
+      error
+    } = this.state;
+    var view = [];
+    if (!sending && !error && !sent) {
+      view.push(
+        <div id = 'connect' className = 'connect' key='init'>
+          <div className = 'connect_heading'>
+            <h2>Work With Us.</h2>
+          </div>
+          <div className = 'connect_form'>
+            <div>
+              <form
+                action = ''
+                className = 'pure-form'
+                onSubmit = { this.handleConnect }>
+                <div className = 'connect_name'>
+                    <input
+                      type = 'text'
+                      name = 'name'
+                      className = 'connect_input'
+                      value = { name }
+                      onChange = { this._onNameChange }
+                      placeholder = 'your name' />
                 </div>
-                <div
-                  className = 'button'
-                  onClick = { this._handleConnect }>
-                  <span>
-                    Connect
-                  </span>
+                <div className = 'connect_email'>
+                  <div>
+                    <input
+                      type = 'email'
+                      name = 'email'
+                      className = 'connect_input'
+                      value = { email }
+                      onChange = { this._onEmailChange }
+                      placeholder = 'email'/>
+                  </div>
+                  <div
+                    className = 'button'
+                    onClick = { this._handleConnect }>
+                    <span>
+                      Connect
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      );
+    } else if (sending) {
+      view.push(
+        <div key='sending'></div>
+      );
+    } else if (sent) {
+      view.push(
+        <span key='sent'>Email sent</span>
+      );
+    } else {
+      view.push(
+        <span key='error'>Error</span>
+      );
+    }
+
+    return (
+      <CSSTransitionGroup transitionName='connect'>
+        { view }
+      </CSSTransitionGroup>
     );
   }
 });
