@@ -8,7 +8,6 @@ var React = require('react'),
     // # Components
     Blog = require('./blog'),
     Landing = require('./landing'),
-    Connected = require('./connectSuccess'),
     FourOhFour = require('./errors/404');
 
 // Routes here is an array as each component is it's own app
@@ -18,7 +17,6 @@ var React = require('react'),
 
 var routes = [
   (React.createElement(Route, {name: "landing", path: "/", handler: Landing })),
-  (React.createElement(Route, {name: "connected", path: "/connected", handler: Connected })),
   (React.createElement(Route, {name: "blog", path: "/blog/?:title?", handler: Blog })),
   (React.createElement(Route, {name: "404", path: "/404", handler: FourOhFour })),
   (React.createElement(NotFound, {handler: FourOhFour }))
