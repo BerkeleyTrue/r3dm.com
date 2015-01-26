@@ -1,7 +1,7 @@
 var Rx = require('rx'),
     React = require('react'),
 
-  { StateStreamMixin } = require('rx-react'),
+  $__0=    require('rx-react'),StateStreamMixin=$__0.StateStreamMixin,
 
     globular = require('../globular'),
     debug = require('debug')('r3dm:components:connect'),
@@ -9,10 +9,10 @@ var Rx = require('rx'),
     ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
 
-var {
-    CSSTransitionGroup,
-    PureRenderMixin
-  } = React.addons;
+var $__1=
+    
+    
+    React.addons,CSSTransitionGroup=$__1.CSSTransitionGroup,PureRenderMixin=$__1.PureRenderMixin;
 
 var Sent = React.createClass({displayName: "Sent",
 
@@ -79,14 +79,14 @@ var Connect = React.createClass({displayName: "Connect",
   },
 
   render: function() {
-    var {
-      email,
-      name,
-      sending,
-      sent,
-      error,
-      height
-    } = this.state;
+    var $__0=
+      
+      
+      
+      
+      
+      
+      this.state,email=$__0.email,name=$__0.name,sending=$__0.sending,sent=$__0.sent,error=$__0.error,height=$__0.height;
 
     var style = {
       height: height + 'px'
