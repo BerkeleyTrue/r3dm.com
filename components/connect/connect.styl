@@ -4,16 +4,31 @@ buttonHeight = 2.1rem
 .connect
   gs('fluid')
   background-color lightBlue
+  color white
 
 .connect_heading
   row()
   color white
-  text-align center
   overflow auto
+  text-align center
   span.threes
     color $r3d
 
+.connect_container
+  position relative
+  pointer-events none
+  >div
+    bottom 0
+    height 100%
+    position absolute
+    top 0
+    width 100%
+    >div
+      pointer-events all
+
 .connect_form
+  input
+    color black
   .connect_name
     row()
     &:first-child
@@ -66,9 +81,96 @@ input[type = 'email'].connect_input
   margin-right 0
   border-radius 4px 0 0 4px
 
-.connect-enter
+.connect_init-enter
   opacity 0.01
-  transition opacity .5s ease-in
+  transition opacity 0.5s ease-in
 
-  &.connect-enter-active
-    opacity: 1;
+  &.connect_init-enter-active
+    opacity 1
+
+.connect_init-leave
+  opacity 1
+  transition opacity 2s ease-in
+
+  &.connect_init-leave-active
+    opacity 0.01
+
+.connect_sent-enter
+  animation moveLeft 0.5s
+  &.connect_sent-enter-active
+    transform translateX(0)
+
+.connect_sent-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
+
+.connect_sending-enter
+  animation moveLeft 0.5s
+  &.connect_sent-enter-active
+    transform translateX(0)
+
+.connect_sending-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
+
+.connect_sending
+  text-align center
+  &:before
+    content ''
+    display inline-block
+    height 100%
+    vertical-align middle
+
+.connect_sending-path
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+
+.connect_sending-spinner
+  animation rotator 1.4s linear infinite
+  display inline-block
+  margin auto
+  vertical-align middle
+
+@keyframes moveLeft
+  0%
+    transform translateX(100%)
+  100%
+    transform translateX(0)
+
+@keyframes moveRight
+  0%
+    transform translateX(0)
+  100%
+    transform translateX(100%)
+
+@keyframes rotator
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(270deg)
+
+@keyframes colors
+  0%
+    stroke #4285F4
+  25%
+    stroke #DE3E35
+  50%
+    stroke #F7C223
+  75%
+    stroke #1B9A59
+  100%
+    stroke #4285F4
+
+@keyframes dash
+  0%
+    stroke-dashoffset 187
+  50%
+    stroke-dashoffset 46.75
+    transform rotate(135deg)
+  100%
+    stroke-dashoffset 187
+    transform rotate(450deg)
