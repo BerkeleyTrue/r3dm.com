@@ -34,16 +34,20 @@ var Blog = React.createClass({displayName: "Blog",
     var val = posts.map(function (post) {
       var html, readMore;
 
-      if (posts.length === 1) {
-        html = post.content.extended;
+      if (post.content) {
+        if (posts.length === 1) {
+          html = post.content.extended;
+        } else {
+          html = post.content.brief;
+          readMore = (React.createElement("div", {className: "read-full-story-container"}, 
+              React.createElement(Link, {to: "blog", params: { title: post.title}, 
+                    className: "read-full-story"}, 
+                "READ THE FULL POST"
+              )
+            ));
+        }
       } else {
-        html = post.content.brief;
-        readMore = (React.createElement("div", {className: "read-full-story-container"}, 
-            React.createElement(Link, {to: "blog", params: { title: post.title}, 
-                  className: "read-full-story"}, 
-              "READ THE FULL POST"
-            )
-          ));
+        html = '<p>This post has no content</p>';
       }
 
       if (post.publishedDate) {
