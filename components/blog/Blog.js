@@ -56,6 +56,7 @@ var Blog = React.createClass({displayName: "Blog",
                         {month: 'long', day: 'numeric', year: 'numeric' });
       } else {
         post.publishedDate = 'not published';
+        return null;
       }
 
       if (!post.author) {
