@@ -38,6 +38,7 @@ module.exports = {
     if (params.title && params.title !== 'undefined') {
       where = { title: params.title };
       limit = 1;
+      performQuery(where, limit, skip, cb);
     } else if (req.session && req.session.userId) {
       limit = 5;
       User.model.findOne({ _id: req.session.userId }, function (err, user) {
