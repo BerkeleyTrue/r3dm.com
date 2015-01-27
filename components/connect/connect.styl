@@ -106,9 +106,10 @@ input[type = 'email'].connect_input
     transform translateX(100%)
 
 .connect_sending-enter
-  animation moveLeft 0.5s
-  &.connect_sent-enter-active
-    transform translateX(0)
+  opacity 0.01
+  transition opacity 0.5s ease-in-out
+  &.connect_sending-enter-active
+    opacity 1
 
 .connect_sending-leave
   animation moveRight 0.5s

@@ -2084,13 +2084,16 @@ input[type = 'email'].connect_input {
   transform: translateX(100%);
 }
 .connect_sending-enter {
-  -webkit-animation: moveLeft 0.5s;
-  animation: moveLeft 0.5s;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+  filter: alpha(opacity=1);
+  opacity: 0.01;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
-.connect_sending-enter.connect_sent-enter-active {
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
+.connect_sending-enter.connect_sending-enter-active {
+  -ms-filter: none;
+  filter: none;
+  opacity: 1;
 }
 .connect_sending-leave {
   -webkit-animation: moveRight 0.5s;
