@@ -113,6 +113,7 @@ app.get('/*', function(req, res, next) {
         Handler: Handler,
         state: state
       };
+
       debug('Sending route action');
       RouterStateAction(ctx);
     });

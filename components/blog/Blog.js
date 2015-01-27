@@ -27,6 +27,7 @@ var Blog = React.createClass({displayName: "Blog",
       posts = [posts];
     }
 
+    debug('number of posts from mongodb:', posts.length);
     /* Iterates over the posts returned from Mongodb.
      * If there is only one render the single-blog-post-view.
      * Else, render a list of blog briefs that link to the whole versions.
@@ -56,7 +57,6 @@ var Blog = React.createClass({displayName: "Blog",
                         {month: 'long', day: 'numeric', year: 'numeric' });
       } else {
         post.publishedDate = 'not published';
-        return null;
       }
 
       if (!post.author) {
