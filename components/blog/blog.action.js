@@ -35,7 +35,7 @@ action.subscribe(function(payload) {
       value: {
         loading: false,
         error: false,
-        posts: posts
+        posts: posts.length === 0 ? false : posts
       }
     });
   });

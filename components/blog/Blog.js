@@ -1,6 +1,7 @@
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
+    FourOhFour = require('../errors/404'),
     StateStreamMixin = require('rx-react').StateStreamMixin,
     BlogStore = require('./blog.store.js'),
     debug = require('debug')('r3dm:components:blog');
@@ -23,11 +24,12 @@ var Blog = React.createClass({displayName: "Blog",
 
   render: function () {
     var posts = this.state.posts;
-    if (!Array.isArray(posts)) {
-      posts = [posts];
-    }
 
     debug('number of posts from mongodb:', posts.length);
+    if (posts === false) {
+      return React.createElement(FourOhFour, null);
+    }
+
     /* Iterates over the posts returned from Mongodb.
      * If there is only one render the single-blog-post-view.
      * Else, render a list of blog briefs that link to the whole versions.
