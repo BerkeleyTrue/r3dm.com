@@ -43,10 +43,13 @@ module.exports = {
       limit = 5;
       User.model.findOne({ _id: req.session.userId }, function (err, user) {
         if (err) throw err;
+
         if (!user) {
-          console.log('no user by that id found! are you spoofing?');
+          debug('no user by that id found! are you spoofing?');
+        } else {
+          debug('mongodb found user by id!');
         }
-        console.log('mongodb found user by id!');
+
         performQuery(where, limit, skip, cb);
       });
     } else {
