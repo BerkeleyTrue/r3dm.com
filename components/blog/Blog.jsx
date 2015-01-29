@@ -73,7 +73,7 @@ var Blog = React.createClass({
             <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
-            { post.publishedDate } | By: { post.author.name }
+            { post.publishedDate } | By: { post.author.name.full }
           </div>
           <span dangerouslySetInnerHTML={{ __html: html }} />
           { readMore }

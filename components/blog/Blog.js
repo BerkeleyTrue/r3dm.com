@@ -73,7 +73,7 @@ var Blog = React.createClass({displayName: "Blog",
             React.createElement("h1", null,  post.title)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
-             post.publishedDate, " | By: ",  post.author.name
+             post.publishedDate, " | By: ",  post.author.name.full
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
           readMore 
