@@ -64,7 +64,10 @@ var Blog = React.createClass({
       if (!post.author) {
         post.author = {};
         post.author.name = 'no author';
+      } else {
+        post.author.name = post.author.name.first + ' ' + post.author.name.last;
       }
+      debug('post.author.name is:', post.author.name);
 
       return (
         <div className='post'>
@@ -73,7 +76,7 @@ var Blog = React.createClass({
             <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
-            { post.publishedDate } | By: { post.author.name.full }
+            { post.publishedDate } | By: { post.author.name }
           </div>
           <span dangerouslySetInnerHTML={{ __html: html }} />
           { readMore }

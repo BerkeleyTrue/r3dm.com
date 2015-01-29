@@ -64,7 +64,10 @@ var Blog = React.createClass({displayName: "Blog",
       if (!post.author) {
         post.author = {};
         post.author.name = 'no author';
+      } else {
+        post.author.name = post.author.name.first + ' ' + post.author.name.last;
       }
+      debug('post.author.name is:', post.author.name);
 
       return (
         React.createElement("div", {className: "post"}, 
@@ -73,7 +76,7 @@ var Blog = React.createClass({displayName: "Blog",
             React.createElement("h1", null,  post.title)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
-             post.publishedDate, " | By: ",  post.author.name.full
+             post.publishedDate, " | By: ",  post.author.name
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
           readMore 
