@@ -1,15 +1,19 @@
-'use strict';
-var mandrill = require('mandrill-api'),
-    resolver = require('../utils/viewResolver'),
+var Q = require('q'),
+    mandrill = require('mandrill-api'),
+    keystone = require('keystone'),
     debug = require('debug')('r3dm:mandrill'),
-    utils = require('../utils/utils'),
-    manClient = new mandrill.Mandrill(process.env.MANDRILL_KEY);
 
+    resolver = require('../utils/viewResolver'),
+    utils = require('../utils/utils');
+
+var manClient = new mandrill.Mandrill(process.env.MANDRILL_KEY);
 var greet = resolver('greet');
+
 module.exports = {
   name: 'mandrillService',
   create: function() {
     debug('Creating email message');
+    var Lead = keystone.list('Lead');
     var args = [].slice.call(arguments),
         cb = args.pop(),
         params = args[2],
@@ -48,16 +52,42 @@ module.exports = {
       'track_clicks': true
     };
 
+    var lead = new Lead.model({
+      email: locals.email,
+      name: {
+        first: locals.firstname,
+        last: locals.lastname
+      }
+    });
+
+    var leadSave = Q.defer();
+    var emailDefer = Q.defer();
+
+    lead.save(leadSave.makeNodeResolver());
+
     manClient.messages.send({ message: message }, function(result) {
       debug('Email Success: ', result);
       if (result[0].status === 'sent') {
-        cb(null, 'email successfull sent');
+        emailDefer.resolve();
       } else {
-        cb(new Error('R3DM encountered an error trying to contact you.'));
+        emailDefer.reject(
+          new Error('R3DM encountered an error trying to contact you.')
+        );
       }
     }, function(err) {
-      debug('Mandrill Err', err);
-      cb(new Error('R3DM encountered an error trying to contact you.'));
+      emailDefer.reject(err);
     });
+
+    Q.all([
+      leadSave.promise,
+      emailDefer.promise
+    ])
+      .then(function() {
+        cb(null, 'email successfull sent');
+      })
+      .catch(function(err) {
+        debug('Err email service', err);
+        cb(null, err);
+      });
   }
 };
