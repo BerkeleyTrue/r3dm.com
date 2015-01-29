@@ -1934,8 +1934,10 @@ nav.nav li li {
   overflow: hidden;
   background-color: #0e5f8e;
   color: #fff;
+  position: absolute;
 }
-.connect_heading {
+.connect_heading,
+.connect_error {
   display: block;
   width: 100.83333333333331%;
   margin: 0 -0.4166666666667%;
@@ -1943,7 +1945,8 @@ nav.nav li li {
   overflow: auto;
   text-align: center;
 }
-.connect_heading span.threes {
+.connect_heading span.threes,
+.connect_error span.threes {
   color: #c1272d;
 }
 .connect_container {
@@ -2041,6 +2044,15 @@ input[type = 'email'].connect_input {
   margin-right: 0;
   border-radius: 4px 0 0 4px;
 }
+.connect_sending {
+  text-align: center;
+}
+.connect_sending:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
 .connect_init-enter {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
   filter: alpha(opacity=1);
@@ -2083,18 +2095,6 @@ input[type = 'email'].connect_input {
   -ms-transform: translateX(100%);
   transform: translateX(100%);
 }
-.connect_sending-enter {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
-  filter: alpha(opacity=1);
-  opacity: 0.01;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-}
-.connect_sending-enter.connect_sending-enter-active {
-  -ms-filter: none;
-  filter: none;
-  opacity: 1;
-}
 .connect_sending-leave {
   -webkit-animation: moveRight 0.5s;
   animation: moveRight 0.5s;
@@ -2104,14 +2104,23 @@ input[type = 'email'].connect_input {
   -ms-transform: translateX(100%);
   transform: translateX(100%);
 }
-.connect_sending {
-  text-align: center;
+.connect_error-enter {
+  -webkit-animation: moveLeft 0.5s;
+  animation: moveLeft 0.5s;
 }
-.connect_sending:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
+.connect_error-enter.connect_sent-enter-active {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+.connect_error-leave {
+  -webkit-animation: moveRight 0.5s;
+  animation: moveRight 0.5s;
+}
+.connect_error-leave.connect_sent-leave-active {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
 }
 .connect_sending-path {
   stroke-dasharray: 187;
