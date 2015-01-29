@@ -67,7 +67,12 @@ keystone.init({
   'auth': true,
   'user model': 'User',
   'mongo': process.env.MONGO_URI,
-  'session': true
+  'session': true,
+
+  'brand': 'The R3DM',
+  'emails': 'views/email',
+  'mandrill api key': process.env.MANDRILL_KEY,
+  'mandrill username': process.env.MANDRILL_USERNAME
 });
 
 keystone.import('models');
