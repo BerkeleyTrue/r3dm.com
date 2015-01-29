@@ -124,6 +124,7 @@ gulp.task('server', function(cb) {
     }
   })
     .on('start', function() {
+      debug('Starting browsers');
       if (!called) {
         called = true;
         setTimeout(function() {
