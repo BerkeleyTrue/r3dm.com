@@ -5,6 +5,7 @@ buttonHeight = 2.1rem
   gs('fluid')
   background-color lightBlue
   color white
+  position absolute
 
 .connect_heading
   row()
@@ -13,6 +14,9 @@ buttonHeight = 2.1rem
   text-align center
   span.threes
     color $r3d
+
+.connect_error
+  @extends .connect_heading
 
 .connect_container
   position relative
@@ -81,6 +85,14 @@ input[type = 'email'].connect_input
   margin-right 0
   border-radius 4px 0 0 4px
 
+.connect_sending
+  text-align center
+  &:before
+    content ''
+    display inline-block
+    height 100%
+    vertical-align middle
+
 .connect_init-enter
   opacity 0.01
   transition opacity 0.5s ease-in
@@ -105,24 +117,20 @@ input[type = 'email'].connect_input
   &.connect_sent-leave-active
     transform translateX(100%)
 
-.connect_sending-enter
-  opacity 0.01
-  transition opacity 0.5s ease-in-out
-  &.connect_sending-enter-active
-    opacity 1
-
 .connect_sending-leave
   animation moveRight 0.5s
   &.connect_sent-leave-active
     transform translateX(100%)
 
-.connect_sending
-  text-align center
-  &:before
-    content ''
-    display inline-block
-    height 100%
-    vertical-align middle
+.connect_error-enter
+  animation moveLeft 0.5s
+  &.connect_sent-enter-active
+    transform translateX(0)
+
+.connect_error-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
 
 .connect_sending-path
   stroke-dasharray: 187;

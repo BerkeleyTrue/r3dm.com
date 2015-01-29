@@ -18,7 +18,12 @@ var actions = {
 actions.send.subscribe(function(payload) {
   debug('Creating email for: ', payload);
   actions.sending(true);
-
+  if (process.env.NODE_ENV === 'development') {
+    debug('debug mode');
+    return setTimeout(function() {
+      actions.sent(true);
+    }, 500);
+  }
   fetcher.create('mandrillService', payload, {}, {}, function(err, data) {
     if (err) { return actions.error(err); }
 

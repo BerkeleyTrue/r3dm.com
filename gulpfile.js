@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     // ## Bundle
     browserify = require('browserify'),
     watchify = require('watchify'),
-    envify = require('envify/custom')({ NODE_ENV: 'development' }),
+    envify = require('envify/custom'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
     //brfs = require('brfs'),
@@ -188,7 +188,9 @@ function browserifyCommon(cb) {
   }
 
   var b = browserify(config);
-  b.transform(envify);
+  b.transform(envify({
+    NODE_ENV: 'development'
+  }));
   //b.transform(brfs);
 
   if (!production) {

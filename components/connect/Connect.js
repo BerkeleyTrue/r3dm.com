@@ -1,9 +1,11 @@
 var Rx = require('rx'),
+
     React = require('react'),
     CSSTransitionGroup = React.addons.CSSTransitionGroup,
     PureRenderMixin = React.addons.PureRenderMixin,
 
     StateStreamMixin = require('rx-react').StateStreamMixin,
+    tweenState = require('react-tween-state'),
 
     globular = require('../globular'),
     debug = require('debug')('r3dm:components:connect'),
@@ -21,8 +23,10 @@ var Sent = React.createClass({displayName: "Sent",
         style:  this.props.style, 
         className:  this.props.className, 
         key: "sent"}, 
-        React.createElement("h1", null, "Thanks!"), 
-        React.createElement("p", null, "You should see an email from us soon.")
+        React.createElement("div", {className: "connect_heading"}, 
+          React.createElement("h1", null, "Thanks!"), 
+          React.createElement("p", null, "You should see an email from us soon.")
+        )
       )
     );
   }
@@ -30,34 +34,57 @@ var Sent = React.createClass({displayName: "Sent",
 
 var Connect = React.createClass({displayName: "Connect",
 
-  mixins: [StateStreamMixin],
+  mixins: [
+    tweenState.Mixin,
+    StateStreamMixin
+  ],
 
   getStateStream: function() {
     debug('setting up state stream');
     return Rx.Observable.combineLatest(
       ConnectStore,
-      this._compHeightAction,
-      function(state, height) {
-        state.height = height;
+      this._initSize,
+      this._clickPosition,
+      function(state, initSize, clickPosition) {
+        state.initSize = initSize;
+        state.clickPosition = clickPosition;
         return state;
       }
     );
   },
+  componentWillMount: function() {
+    this.setState({ scale: 0 });
+  },
 
   componentDidMount: function() {
     var connectForm = this.refs.form.getDOMNode();
+    var rect = connectForm.getBoundingClientRect();
 
-    this._compHeightAction.onNext(connectForm.clientHeight);
+    this._initSize.onNext({
+      height: connectForm.clientHeight,
+      width: connectForm.clientWidth,
+      left: rect.left,
+      top: rect.top
+    });
   },
 
   _onEmailChange: ConnectActions.onEmailChange,
   _onNameChange: ConnectActions.onNameChange,
-  _compHeightAction: new Rx.BehaviorSubject(false),
+  _initSize: new Rx.BehaviorSubject(false),
+  _clickPosition: new Rx.BehaviorSubject({
+    left: 0,
+    top: 0
+  }),
 
   // TODO: turn this to a single action
   _handleConnect: function(e) {
-    var email = this.state.email,
-        name = this.state.name;
+    var state = this.state,
+        email = state.email,
+        name = state.name,
+        rectX = state.initSize.left,
+        rectY = state.initSize.top,
+        clientX = e.clientX,
+        clientY = e.pageY;
 
     e.preventDefault();
 
@@ -65,10 +92,24 @@ var Connect = React.createClass({displayName: "Connect",
       return;
     }
 
-    debug('send connect action');
-    ConnectActions.send({
-      email: email,
-      name: name
+    this._clickPosition.onNext({
+      left: clientX - rectX,
+      top: clientY - rectY
+    });
+
+    this.tweenState('scale', {
+      easing: tweenState.easingTypes.easeInOutQuad,
+      stackBehavior: tweenState.stackBehavior.DESTRUCTIVE,
+      duration: 500,
+      beginValue: 0,
+      endValue: this.state.scale === 0 ? 1 : 0,
+      onEnd: function() {
+        debug('send connect action');
+        ConnectActions.send({
+          email: email,
+          name: name
+        });
+      }
     });
 
     // submit event to Google Analytics to measure conversion goals
@@ -82,10 +123,25 @@ var Connect = React.createClass({displayName: "Connect",
         sending = state.sending,
         sent = state.sent,
         error = state.error,
-        height = state.height;
+        height = state.initSize.height,
+        scale = this.getTweeningValue('scale'),
+        width = state.initSize.width;
 
     var style = {
       height: height + 'px'
+    };
+
+    var expandStyle = {
+      background: '#0E5F8E',
+      borderRadius: '50%',
+      height: width ? width * 2 : 0,
+      left: state.clickPosition.left,
+      marginLeft: -width,
+      marginTop: -width,
+      position: 'absolute',
+      top: state.clickPosition.top,
+      transform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
+      width: width ? width * 2 : 0
     };
 
     var sendingView = (
@@ -119,10 +175,13 @@ var Connect = React.createClass({displayName: "Connect",
         style: style })
     );
     var errorView = (
-      React.createElement("span", {
+      React.createElement("div", {
         style: style, 
-        className: "connect connect-error", 
-        key: "error"}, "Error")
+        className: "connect connect_error", 
+        key: "error"}, 
+        React.createElement("h1", null, "Opps"), 
+        React.createElement("p", null, "Something went wrong...")
+      )
     );
     var formView = (
       React.createElement("div", {
@@ -165,7 +224,8 @@ var Connect = React.createClass({displayName: "Connect",
               )
             )
           )
-        )
+        ), 
+        React.createElement("div", {style: expandStyle })
       )
     );
 
@@ -187,12 +247,13 @@ var Connect = React.createClass({displayName: "Connect",
         ), 
         React.createElement(CSSTransitionGroup, {
           component: "div", 
+          transitionEnter: false, 
           transitionName: "connect_sending"}, 
            sending ? sendingView : null
         ), 
         React.createElement(CSSTransitionGroup, {
           component: "div", 
-          transitionName: "connect_sending"}, 
+          transitionName: "connect_error"}, 
            error ? errorView : null
         )
       )
