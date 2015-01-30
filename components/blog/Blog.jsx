@@ -13,11 +13,11 @@ var Blog = React.createClass({
     Router.State
   ],
 
-  getStateStream: function() {
+  getStateStream: function () {
     return BlogStore;
   },
 
-  componentWillMount: function() {
+  componentWillMount: function () {
     debug('comp will mount');
     if (this.props.context) {
       debug('found context');
@@ -25,7 +25,7 @@ var Blog = React.createClass({
     }
   },
 
-  render: function() {
+  render: function () {
     var posts = this.state.posts;
 
     debug('number of posts from mongodb:', posts.length);
@@ -38,7 +38,7 @@ var Blog = React.createClass({
      * If there is only one render the single-blog-post-view.
      * Else, render a list of blog briefs that link to the whole versions.
     */
-    var val = posts.map(function(post) {
+    var val = posts.map(function (post) {
       var html, readMore, authorStr;
       debug('post is', post);
 

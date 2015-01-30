@@ -3,7 +3,7 @@ var React = require('react'),
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     var links = {
       home: '/'
     };
@@ -14,10 +14,10 @@ var Nav = React.createClass({
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
   },
 
-  handleHashLink: function(e) {
+  handleHashLink: function (e) {
     debug('Handle link', e.target.id);
     var hash = e.target.name;
     e.preventDefault();
@@ -25,7 +25,8 @@ var Nav = React.createClass({
     window.location.hash = hash;
   },
 
-  render: function() {
+  render: function () {
+    debug('nav state:', this.state);
     return (
       <nav className = 'nav'>
         <ul className = 'nav-pullRight'>
