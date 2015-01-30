@@ -10,7 +10,7 @@ var manClient = new mandrill.Mandrill(process.env.MANDRILL_KEY);
 var greet = resolver('greet');
 
 module.exports = {
-  name: 'mandrillService',
+  name: 'connect',
   create: function() {
     debug('Creating email message');
     var Lead = keystone.list('Lead');

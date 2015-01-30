@@ -17,8 +17,8 @@ var express = require('express'),
 
     // ## Flux
     Fetcher = require('fetchr'),
-    mandrillServ = require('./services/mandrill'),
-    blogServ = require('./services/blog'),
+    connectService = require('./services/connect'),
+    blogService = require('./services/blog'),
     ContextStore = require('./components/common/Context.store'),
     RouterStateAction = require('./components/common/RouterState.action'),
 
@@ -56,8 +56,8 @@ app.use(session({
 }));
 
 // ## Fetcher middleware
-Fetcher.registerFetcher(mandrillServ);
-Fetcher.registerFetcher(blogServ);
+Fetcher.registerFetcher(connectService);
+Fetcher.registerFetcher(blogService);
 app.use('/api', Fetcher.middleware());
 
 keystone.app = app;

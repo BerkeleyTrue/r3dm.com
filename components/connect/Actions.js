@@ -25,7 +25,7 @@ actions.send.subscribe(function(payload) {
       actions.sent(true);
     }, 500);
   }
-  fetcher.create('mandrillService', payload, {}, {}, function(err, data) {
+  fetcher.create('connect', payload, {}, {}, function(err, data) {
     if (err) { return actions.error(err); }
 
     debug('mandrillService returned without error', data);
