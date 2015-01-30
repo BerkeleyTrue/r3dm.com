@@ -8,14 +8,16 @@ var React = require('react'),
     debug = require('debug')('r3dm:components:blog');
 
 var Blog = React.createClass({
-  mixins: [StateStreamMixin,
-           Router.State],
+  mixins: [
+    StateStreamMixin,
+    Router.State
+  ],
 
-  getStateStream: function () {
+  getStateStream: function() {
     return BlogStore;
   },
 
-  componentWillMount: function () {
+  componentWillMount: function() {
     debug('comp will mount');
     if (this.props.context) {
       debug('found context');
@@ -23,10 +25,11 @@ var Blog = React.createClass({
     }
   },
 
-  render: function () {
+  render: function() {
     var posts = this.state.posts;
 
     debug('number of posts from mongodb:', posts.length);
+
     if (posts === false) {
       return <FourOhFour />;
     }
@@ -35,7 +38,7 @@ var Blog = React.createClass({
      * If there is only one render the single-blog-post-view.
      * Else, render a list of blog briefs that link to the whole versions.
     */
-    var val = posts.map(function (post) {
+    var val = posts.map(function(post) {
       var html, readMore, authorStr;
       debug('post is', post);
 
@@ -44,12 +47,16 @@ var Blog = React.createClass({
           html = post.content.extended;
         } else {
           html = post.content.brief;
-          readMore = (<div className='read-full-story-container'>
-              <Link to='blog' params={{ title: post.title }}
-                    className='read-full-story'>
+          readMore = (
+            <div className='read-full-story-container'>
+              <Link
+                to='blog'
+                params={{ title: post.title }}
+                className='read-full-story'>
                 READ THE FULL POST
               </Link>
-            </div>);
+            </div>
+          );
         }
       } else {
         html = '<p>This post has no content</p>';
@@ -57,8 +64,11 @@ var Blog = React.createClass({
 
       if (post.publishedDate) {
         post.publishedDate = new Date(post.publishedDate)
-        .toLocaleString('en-US',
-                        {month: 'long', day: 'numeric', year: 'numeric' });
+          .toLocaleString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          });
       } else {
         post.publishedDate = 'not published';
       }
@@ -72,8 +82,10 @@ var Blog = React.createClass({
 
       return (
         <div className='post'>
-          <Link to='blog' params={{ title: post.title }}
-                key={ post.title } className='post-title'>
+          <Link
+            to='blog'
+            params={{ title: post.title }}
+            key={ post.title } className='post-title'>
             <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
