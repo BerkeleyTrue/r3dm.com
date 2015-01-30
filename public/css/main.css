@@ -1928,6 +1928,9 @@ nav.nav li li {
 .first-con_bot h2 {
   padding-top: 25vh;
 }
+div.error-layout {
+  padding-top: 50px;
+}
 .connect {
   width: 100%;
   margin: 0 auto;
