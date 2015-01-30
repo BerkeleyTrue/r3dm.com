@@ -1,6 +1,7 @@
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
+    Nav = require('../nav'),
     FourOhFour = require('../errors/404'),
     StateStreamMixin = require('rx-react').StateStreamMixin,
     BlogStore = require('./blog.store.js'),
@@ -36,6 +37,7 @@ var Blog = React.createClass({displayName: "Blog",
     */
     var val = posts.map(function (post) {
       var html, readMore;
+      debug('post is', post);
 
       if (post.content) {
         if (posts.length === 1) {
@@ -87,10 +89,13 @@ var Blog = React.createClass({displayName: "Blog",
     debug('will render');
 
     return (
-      React.createElement("div", {className: "pure-g"}, 
-        React.createElement("div", {className: "pure-u-1-6"}), 
-        React.createElement("div", {className: "posts-wrapper pure-u-2-3"}, val ), 
-        React.createElement("div", {className: "pure-u-1-6"})
+      React.createElement("div", {className: "blog-app"}, 
+        React.createElement(Nav, null), 
+        React.createElement("div", {className: "pure-g blog-layout"}, 
+          React.createElement("div", {className: "pure-u-1-6"}), 
+          React.createElement("div", {className: "posts-wrapper pure-u-2-3"}, val ), 
+          React.createElement("div", {className: "pure-u-1-6"})
+        )
       )
     );
   }

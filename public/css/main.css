@@ -2456,3 +2456,6 @@ a.read-full-story {
 a:hover.read-full-story {
   color: #f00;
 }
+.blog-layout {
+  padding-top: 50px;
+}
