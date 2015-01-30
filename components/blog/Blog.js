@@ -36,7 +36,7 @@ var Blog = React.createClass({displayName: "Blog",
      * Else, render a list of blog briefs that link to the whole versions.
     */
     var val = posts.map(function (post) {
-      var html, readMore;
+      var html, readMore, authorStr;
       debug('post is', post);
 
       if (post.content) {
@@ -63,11 +63,10 @@ var Blog = React.createClass({displayName: "Blog",
         post.publishedDate = 'not published';
       }
 
-      if (!post.author) {
-        post.author = {};
-        post.author.name = 'no author';
+      if (post.author) {
+        authorStr = post.author.name.first + ' ' + post.author.name.last;
       } else {
-        post.author.name = post.author.name.first + ' ' + post.author.name.last;
+        authorStr = 'no author';
       }
       debug('post.author.name is:', post.author.name);
 
@@ -78,7 +77,7 @@ var Blog = React.createClass({displayName: "Blog",
             React.createElement("h1", null,  post.title)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
-             post.publishedDate, " | By: ",  post.author.name
+             post.publishedDate, " | By: ", authorStr 
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
           readMore 
