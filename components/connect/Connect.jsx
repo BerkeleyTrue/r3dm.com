@@ -17,7 +17,7 @@ var Sent = React.createClass({
 
   mixins: [PureRenderMixin],
 
-  render: function() {
+  render: function () {
     return (
       <div
         style={ this.props.style }
@@ -39,7 +39,7 @@ var Connect = React.createClass({
     StateStreamMixin
   ],
 
-  getStateStream: function() {
+  getStateStream: function () {
     debug('setting up state stream');
     return Rx.Observable.combineLatest(
       ConnectStore,
@@ -52,11 +52,11 @@ var Connect = React.createClass({
       }
     );
   },
-  componentWillMount: function() {
+  componentWillMount: function () {
     this.setState({ scale: 0 });
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     var connectForm = this.refs.form.getDOMNode();
     var rect = connectForm.getBoundingClientRect();
 
@@ -77,7 +77,7 @@ var Connect = React.createClass({
   }),
 
   // TODO: turn this to a single action
-  _handleConnect: function(e) {
+  _handleConnect: function (e) {
     var state = this.state,
         email = state.email,
         name = state.name,
@@ -116,7 +116,7 @@ var Connect = React.createClass({
     globular.ga('send', 'event', 'button', 'click', 'Connect');
   },
 
-  render: function() {
+  render: function () {
     var state = this.state,
         email = state.email,
         name = state.name,
