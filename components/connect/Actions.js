@@ -12,7 +12,8 @@ var actions = {
   sent: Action.create(),
   error: Action.create(),
   onEmailChange: Action.create(),
-  onNameChange: Action.create()
+  onNameChange: Action.create(),
+  setUtc: Action.create()
 };
 
 actions.send.subscribe(function(payload) {

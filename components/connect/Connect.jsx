@@ -13,6 +13,7 @@ var Rx = require('rx'),
     ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
 
+//TODO: needs refactoring
 var Sent = React.createClass({
 
   mixins: [PureRenderMixin],
@@ -57,8 +58,11 @@ var Connect = React.createClass({
   },
 
   componentDidMount: function() {
-    var connectForm = this.refs.form.getDOMNode();
-    var rect = connectForm.getBoundingClientRect();
+    var connectForm = this.refs.form.getDOMNode(),
+        rect = connectForm.getBoundingClientRect();
+
+    // get users timezone
+    ConnectActions.setUtc(new Date().getTimezoneOffset());
 
     this._initSize.onNext({
       height: connectForm.clientHeight,
@@ -76,11 +80,11 @@ var Connect = React.createClass({
     top: 0
   }),
 
-  // TODO: turn this to a single action
   _handleConnect: function(e) {
     var state = this.state,
         email = state.email,
         name = state.name,
+        utc = state.utc,
         rectX = state.initSize.left,
         rectY = state.initSize.top,
         clientX = e.clientX,
@@ -107,7 +111,8 @@ var Connect = React.createClass({
         debug('send connect action');
         ConnectActions.send({
           email: email,
-          name: name
+          name: name,
+          utc: utc
         });
       }
     });

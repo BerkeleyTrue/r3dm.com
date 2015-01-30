@@ -16,6 +16,7 @@ var ConnectStore = Store.create({
     return {
       email: '',
       name: '',
+      utc: '',
       sending: false,
       sent: false,
       error: false
@@ -68,6 +69,12 @@ var ConnectStore = Store.create({
         .map(mapEventValue)
         .map(function(name) {
           return { name: name };
+        })
+        .map(createTransform),
+
+      ConnectActions.setUtc
+        .map(function(utc) {
+          return { utc: utc };
         })
         .map(createTransform)
     );
