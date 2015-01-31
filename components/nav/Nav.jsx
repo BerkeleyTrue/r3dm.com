@@ -4,12 +4,14 @@ var React = require('react'),
 
 var Nav = React.createClass({
   getInitialState: function () {
-    var links = {
-      home: '/'
-    };
+    var links = [
+      { name: 'home', path: '/' },
+      { name: 'connect', path: '#connect' },
+      { name: 'blog', path: '/blog'}
+    ];
 
     return {
-      selected: 'home',
+      active: 'home',
       links: links
     };
   },
@@ -26,22 +28,34 @@ var Nav = React.createClass({
   },
 
   render: function () {
+    var links = this.state.links;
     debug('nav state:', this.state);
+    debug('links:', links);
+
+    var val = links.map(function (link) {
+      debug('link:', link);
+
+      if (link.path.indexOf('#') !== -1) {
+        return (
+          <li>
+            <a href={ link.path } target='_self'>
+                { link.name }
+            </a>
+          </li>
+        );
+      } else {
+        return (
+          <li>
+            <Link to={ link.path }>{ link.name }</Link>
+          </li>
+        );
+      }
+    });
+
     return (
       <nav className = 'nav'>
         <ul className = 'nav-pullRight'>
-          <li>
-            <a
-              name = 'connect'
-              onClick = { this.handleHashLink }>
-              Connect
-            </a>
-          </li>
-          <li>
-            <Link to='blog'>
-              Blog
-            </Link>
-          </li>
+          { val }
         </ul>
       </nav>
     );

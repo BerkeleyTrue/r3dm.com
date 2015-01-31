@@ -81,7 +81,9 @@ gulp.task('stylus', function() {
 
 gulp.task('jsx', function() {
   return gulp.src('./components/**/*.jsx')
-    .pipe(react())
+    .pipe(react({
+      harmony: true
+    }))
     .pipe(gulp.dest('./components'));
 });
 
