@@ -3,11 +3,11 @@ var React = require('react'),
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({displayName: "Nav",
-  getInitialState: function () {
+  getInitialState: function() {
     var links = [
       { name: 'home', path: '/' },
       { name: 'connect', path: '#connect' },
-      { name: 'blog', path: '/blog'}
+      { name: 'blog', path: '/blog' }
     ];
 
     return {
@@ -16,10 +16,10 @@ var Nav = React.createClass({displayName: "Nav",
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount: function() {
   },
 
-  handleHashLink: function (e) {
+  handleHashLink: function(e) {
     debug('Handle link', e.target.id);
     var hash = e.target.name;
     e.preventDefault();
@@ -27,12 +27,12 @@ var Nav = React.createClass({displayName: "Nav",
     window.location.hash = hash;
   },
 
-  render: function () {
+  render: function() {
     var links = this.state.links;
     debug('nav state:', this.state);
     debug('links:', links);
 
-    var val = links.map(function (link) {
+    var val = links.map(function(link) {
       debug('link:', link);
 
       if (link.path.indexOf('#') !== -1) {
