@@ -29,11 +29,7 @@ var Nav = React.createClass({displayName: "Nav",
 
   render: function() {
     var links = this.state.links;
-    debug('nav state:', this.state);
-    debug('links:', links);
-
     var val = links.map(function(link) {
-      debug('link:', link);
 
       if (link.path.indexOf('#') !== -1) {
         return (
