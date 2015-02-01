@@ -33,7 +33,7 @@ var Nav = React.createClass({
 
       if (link.path.indexOf('#') !== -1) {
         return (
-          <li>
+          <li key={ link.path }>
             <a href={ link.path } target='_self'>
                 { link.name }
             </a>
@@ -41,7 +41,7 @@ var Nav = React.createClass({
         );
       } else {
         return (
-          <li>
+          <li key={ link.path }>
             <Link to={ link.path }>{ link.name }</Link>
           </li>
         );

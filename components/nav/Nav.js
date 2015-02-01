@@ -33,7 +33,7 @@ var Nav = React.createClass({displayName: "Nav",
 
       if (link.path.indexOf('#') !== -1) {
         return (
-          React.createElement("li", null, 
+          React.createElement("li", {key:  link.path}, 
             React.createElement("a", {href:  link.path, target: "_self"}, 
                  link.name
             )
@@ -41,7 +41,7 @@ var Nav = React.createClass({displayName: "Nav",
         );
       } else {
         return (
-          React.createElement("li", null, 
+          React.createElement("li", {key:  link.path}, 
             React.createElement(Link, {to:  link.path},  link.name)
           )
         );
