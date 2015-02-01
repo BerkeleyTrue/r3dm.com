@@ -1,14 +1,9 @@
 var Q = require('q'),
     agenda = require('../utils/agenda'),
-    mandrill = require('mandrill-api'),
     keystone = require('keystone'),
     debug = require('debug')('r3dm:mandrill'),
 
-    resolver = require('../utils/viewResolver'),
     utils = require('../utils/utils');
-
-var manClient = new mandrill.Mandrill(process.env.MANDRILL_KEY);
-var greet = resolver('greet');
 
 module.exports = {
   name: 'connect',
@@ -45,6 +40,8 @@ module.exports = {
           var jobName = 'send email to ' + lead.email;
           agenda.define(jobName, jobDefinition);
           agenda.schedule('tomorrow at 12 am', jobName, { email: lead.email });
+          // for debugging
+          // agenda.now(jobName, { email: lead.email });
           return cb(null, 'lead created, email scheduled');
         }
         return cb(null, 'lead exists, nothing done');
@@ -68,12 +65,10 @@ module.exports = {
         .then(function(lead) {
           debug('lead', lead);
           debug('Creating email message');
-          var template = greet.render(lead);
-          var message = createMessage(lead, template);
+          var options = createEmailOptions(lead);
 
           var defer = Q.defer();
-          // what kind of nonsense is this, Mandrill?
-          manClient.messages.send(message, defer.resolve, defer.reject);
+          new keystone.Email('greet').send(options, defer.makeNodeResolver());
           return defer.promise;
         })
         .then(function(result) {
@@ -116,21 +111,18 @@ function createNameObject(name) {
   };
 }
 
-function createMessage(lead, template) {
+function createEmailOptions(lead) {
   return {
-    message: {
-      html: template,
-      subject: 'Connect with The R3DM',
-      to: [{
-        email: lead.email,
-        name: lead.full,
-        type: 'to'
-      }],
-      'auto_text': true,
-      'from_email': 'berkeley@r3dm.com',
-      'from_name': 'Berkeley Martinez',
-      'track_opens': true,
-      'track_clicks': true
-    }
+    to: [{
+      email: lead.email,
+      name: lead.full,
+      type: 'to'
+    }],
+    from: {
+      email: 'berkeley@r3dm.com',
+      name: 'Berkeley Martinez'
+    },
+    subject: 'Connect with The R3DM',
+    name: lead.name
   };
 }
