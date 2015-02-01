@@ -1,4 +1,5 @@
 var Q = require('q'),
+    agenda = require('../utils/agenda'),
     mandrill = require('mandrill-api'),
     keystone = require('keystone'),
     debug = require('debug')('r3dm:mandrill'),
@@ -12,37 +13,117 @@ var greet = resolver('greet');
 module.exports = {
   name: 'connect',
   create: function() {
-    debug('Creating email message');
+    // Check if email exist in db
+    // If it does, do nothing
+    // else create a new lead and schedule
+    // an email to be sent.
     var Lead = keystone.list('Lead');
     var args = [].slice.call(arguments),
         cb = args.pop(),
-        params = args[2],
-        locals = {},
-        template,
-        message,
-        person;
+        params = args[2];
 
-    person = params
-      .name
-      .split(' ')
-      .map(function(_name) {
-        _name = _name.replace(/[^A-Za-z_'-]/gi, '');
-        _name = utils.capitalize(_name);
-        return _name;
+    params.name = createNameObject(params.name);
+    var mongoosePromise = Lead.model.findOne({ email: params.email }).exec();
+
+    var lead;
+    return Q.when(mongoosePromise)
+      .then(function(_lead) {
+        debug('lead is ', _lead);
+        if (!_lead) { // no lead found, create new lead
+          lead = new Lead.model({
+            email: params.email,
+            name: params.name,
+            utcOffset: params.utc
+          });
+          return Q.ninvoke(lead, 'save');
+        }
+        return; // lead already exist, do nothing.
+      })
+      .then(function(_lead) {
+        if (_lead) { // a new lead was created, now schedule email
+          debug('lead from save is ', lead);
+          var jobName = 'send email to ' + lead.email;
+          agenda.define(jobName, jobDefinition);
+          agenda.schedule('tomorrow at 12 am', jobName, { email: lead.email });
+          return cb(null, 'lead created, email scheduled');
+        }
+        return cb(null, 'lead exists, nothing done');
       });
 
-    locals.firstname = person[0];
-    locals.lastname = person.pop();
-    locals.name = locals.firstname + ' ' + locals.lastname;
-    locals.email = params.email;
+    // Find lead in db, then send email via mandrill to lead.
+    // Mark lead as initial contact sent.
+    function jobDefinition(job, done) {
+      var email = job.attrs.data.email,
+          name = job.attrs.name,
+          lead;
+      debug('running %s for email %s', name, email);
+      Q.when(Lead.model.findOne({ email: email }).exec())
+        .then(function(_lead) {
+          if (!_lead) {
+            return Q.reject('could not find lead for ' + email + ' in db');
+          }
+          lead = _lead;
+          return lead;
+        })
+        .then(function(lead) {
+          debug('lead', lead);
+          debug('Creating email message');
+          var template = greet.render(lead);
+          var message = createMessage(lead, template);
 
-    template = greet.render(locals);
-    message = {
+          var defer = Q.defer();
+          // what kind of nonsense is this, Mandrill?
+          manClient.messages.send(message, defer.resolve, defer.reject);
+          return defer.promise;
+        })
+        .then(function(result) {
+          debug('Email Success: ', result);
+          if (result[0].status !== 'sent') {
+            var msg = [
+              'R3DM encountered an error trying to contact',
+              lead.name.full,
+              'return with status',
+              result[0].status
+            ].join(' ');
+            return Q.reject(msg);
+          }
+          lead.initialEmailSent = true;
+          return Q.ninvoke(lead, 'save');
+        })
+        .then(function() {
+          done();
+        })
+        .catch(function(err) {
+          debug('job error: ', err);
+          done(err);
+        });
+    }
+  }
+};
+
+function createNameObject(name) {
+  name = name
+    .split(' ')
+    .map(function(_name) {
+      _name = _name.replace(/[^A-Za-z_'-]/gi, '');
+      _name = utils.capitalize(_name);
+      return _name;
+    });
+
+  return {
+    first: name[0],
+    last: name.pop()
+  };
+}
+
+function createMessage(lead, template) {
+  return {
+    message: {
       html: template,
       subject: 'Connect with The R3DM',
       to: [{
-        email: locals.email,
-        name: locals.name,
+        email: lead.email,
+        name: lead.full,
         type: 'to'
       }],
       'auto_text': true,
@@ -50,44 +131,6 @@ module.exports = {
       'from_name': 'Berkeley Martinez',
       'track_opens': true,
       'track_clicks': true
-    };
-
-    var lead = new Lead.model({
-      email: locals.email,
-      name: {
-        first: locals.firstname,
-        last: locals.lastname
-      }
-    });
-
-    var leadSave = Q.defer();
-    var emailDefer = Q.defer();
-
-    lead.save(leadSave.makeNodeResolver());
-
-    manClient.messages.send({ message: message }, function(result) {
-      debug('Email Success: ', result);
-      if (result[0].status === 'sent') {
-        emailDefer.resolve();
-      } else {
-        emailDefer.reject(
-          new Error('R3DM encountered an error trying to contact you.')
-        );
-      }
-    }, function(err) {
-      emailDefer.reject(err);
-    });
-
-    Q.all([
-      leadSave.promise,
-      emailDefer.promise
-    ])
-      .then(function() {
-        cb(null, 'email successfull sent');
-      })
-      .catch(function(err) {
-        debug('Err email service', err);
-        cb(null, err);
-      });
-  }
-};
+    }
+  };
+}

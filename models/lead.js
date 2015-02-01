@@ -21,12 +21,21 @@ Lead.add({
     type: Types.Boolean,
     default: false
   },
+  initialEmailSent: {
+    type: Types.Boolean,
+    default: false
+  },
   qualifed: {
-    type: Types.Boolean
+    type: Types.Select,
+    options: 'init, qualified, unqualifed',
+    default: 'init'
   },
   createdAt: {
-    type: Date,
+    type: Types.Date,
     default: Date.now
+  },
+  utcOffset: {
+    type: Types.Number
   }
 });
 
