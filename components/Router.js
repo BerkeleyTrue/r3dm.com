@@ -1,4 +1,7 @@
-var Router = require('react-router'),
+var React = require('react'),
+
+    // react router
+    Router = require('react-router'),
     Route = Router.Route,
     NotFound = Router.NotFoundRoute,
 
