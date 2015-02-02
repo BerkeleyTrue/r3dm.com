@@ -24,7 +24,8 @@ module.exports = {
     return Q.when(mongoosePromise)
       .then(function(_lead) {
         debug('lead is ', _lead);
-        if (!_lead) { // no lead found, create new lead
+        // no lead found, create new lead
+        if (!_lead) {
           lead = new Lead.model({
             email: params.email,
             name: params.name,
@@ -32,10 +33,12 @@ module.exports = {
           });
           return Q.ninvoke(lead, 'save');
         }
-        return; // lead already exist, do nothing.
+        // lead already exist, do nothing.
+        return null;
       })
       .then(function(_lead) {
-        if (_lead) { // a new lead was created, now schedule email
+        // a new lead was created, now schedule email
+        if (_lead) {
           debug('lead from save is ', lead);
           var jobName = 'send email to ' + lead.email;
           agenda.define(jobName, jobDefinition);

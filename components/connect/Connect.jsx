@@ -13,7 +13,7 @@ var Rx = require('rx'),
     ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
 
-//TODO: needs refactoring
+// TODO: needs refactoring
 var Sent = React.createClass({
 
   mixins: [PureRenderMixin],

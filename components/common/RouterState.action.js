@@ -34,7 +34,7 @@ RouterState.subscribe(function(ctx) {
     // This prevents response object from leaking after it has been
     // completed in the server.
     // TODO: unsubscribe on error
-    var source  = Rx.Observable.if(
+    var source = Rx.Observable.if(
       function() { return !!ctx.res; },
       BlogStore.first(function(payload) {
         debug('state of loading is %s..', payload.loading);

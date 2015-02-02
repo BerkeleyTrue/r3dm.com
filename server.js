@@ -9,6 +9,7 @@ var express = require('express'),
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
+    path = require('path'),
 
     // ## React
     React = require('react'),
@@ -42,7 +43,7 @@ app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'jade');
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 app.use(cookieParser('12345'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
@@ -150,7 +151,9 @@ app.use(function(req, res) {
   res.render(404);
 });
 
+/* eslint-disable */
 app.use(function(err, req, res, next) { //jshint ignore:line
+/* eslint-enable */
   debug('Err: ', err);
   res
     .status(500)

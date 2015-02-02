@@ -1,11 +1,15 @@
-var fs = require('fs');
-var harry = fs.readFileSync(__dirname + '/team_harry.md', {
+var fs = require('fs'),
+    path = require('path');
+
+var harry = fs.readFileSync(path.join(__dirname, '/team_harry.md'), {
   encoding: 'utf-8'
 });
-var berkeley = fs.readFileSync(__dirname + '/team_berkeley.md', {
+
+var berkeley = fs.readFileSync(path.join(__dirname, '/team_berkeley.md'), {
   encoding: 'utf-8'
 });
-var lenore = fs.readFileSync(__dirname + '/team_lenore.md', {
+
+var lenore = fs.readFileSync(path.join(__dirname, '/team_lenore.md'), {
   encoding: 'utf-8'
 });
 

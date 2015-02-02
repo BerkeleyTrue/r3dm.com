@@ -42,7 +42,7 @@ module.exports = {
     } else if (req.session && req.session.userId) {
       limit = 5;
       User.model.findOne({ _id: req.session.userId }, function (err, user) {
-        if (err) throw err;
+        if (err) { return cb(err); }
 
         if (!user) {
           debug('no user by that id found! are you spoofing?');
