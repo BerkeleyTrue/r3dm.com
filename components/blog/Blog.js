@@ -4,7 +4,7 @@ var React = require('react'),
     Nav = require('../nav'),
     FourOhFour = require('../errors/404'),
     StateStreamMixin = require('rx-react').StateStreamMixin,
-    BlogStore = require('./blog.store.js'),
+    BlogStore = require('./Store.js'),
     debug = require('debug')('r3dm:components:blog');
 
 var Blog = React.createClass({displayName: "Blog",

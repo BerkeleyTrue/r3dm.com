@@ -1,7 +1,7 @@
 var Rx = require('rx'),
     Action = require('rx-flux').Action,
-    BlogAction = require('../blog/blog.action'),
-    BlogStore = require('../blog/blog.store'),
+    BlogAction = require('../blog/Actions'),
+    BlogStore = require('../blog/Store'),
     ContextStore = require('./Context.store'),
     debug = require('debug')('r3dm:componentscommon:RouterState');
 

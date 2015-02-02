@@ -1,5 +1,5 @@
 var rxAction = require('rx-flux').Action,
-    BlogStore = require('./blog.store'),
+    BlogStore = require('./Store'),
     Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:components:blog:action');
 
