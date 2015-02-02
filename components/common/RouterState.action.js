@@ -10,10 +10,15 @@ var RouterState = Action.create();
 // occurs, unsubscribe by calling dispose on each disposable in array.
 var disposable = [];
 
+RouterState.catch(function(err) {
+  debug('error occured in RouterState', err);
+});
+
 // RouterAction only happens when a route changes
 // This activates and stores that need to change
 // their information before a route transition happens.
 RouterState.subscribe(function(ctx) {
+
   // TODO: Test to see if this is scalable.
   // i.e. If there are a ton of request, do subscriptions get prematurely
   // disposed?
@@ -42,15 +47,17 @@ RouterState.subscribe(function(ctx) {
       }),
       BlogStore
     );
-    var subscription = source.subscribe(function() {
-      debug('context operation for blog');
+    var subscription = source
+      .catch(function(err) {
+        debug('an error occured durrung context action', err);
+      })
+      .subscribe(function() {
+        debug('context operation for blog');
 
-      // At this point the blog has been updated
-      // Call ContextStore operation to initiate render sequence
-      ContextStore.operation.onNext({ value: ctx });
-    }, function(err) {
-      debug(err);
-    });
+        // At this point the blog has been updated
+        // Call ContextStore operation to initiate render sequence
+        ContextStore.operation.onNext({ value: ctx });
+      });
     disposable.push(subscription);
   } else {
     debug('context operation for frontFace');
