@@ -20,8 +20,8 @@ var express = require('express'),
     Fetcher = require('fetchr'),
     connectService = require('./services/connect'),
     blogService = require('./services/blog'),
-    ContextStore = require('./components/common/Context.store'),
-    RouterStateAction = require('./components/common/RouterState.action'),
+    ContextStore = require('./components/context/Store'),
+    ContextActions = require('./components/context/Actions'),
 
     // ## Express/Serve
     morgan = require('morgan'),
@@ -123,7 +123,7 @@ app.get('/*', function(req, res, next) {
       };
 
       debug('Sending route action');
-      RouterStateAction(ctx);
+      ContextActions.setContext(ctx);
     });
 });
 

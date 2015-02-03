@@ -4,8 +4,8 @@ var React = require('react/addons'),
 
     HistoryLocation = require('react-router').HistoryLocation,
 
-    ContextStore = require('./components/common/Context.store'),
-    RouterStateAction = require('./components/common/RouterState.action'),
+    ContextStore = require('./components/context/Store'),
+    ContextActions = require('./components/context/Actions'),
     debug = require('debug')('r3dm:client');
 
 var mountNode = document.getElementById('app');
@@ -32,5 +32,5 @@ Router(HistoryLocation)
       Handler: Handler,
       state: state
     };
-    RouterStateAction(ctx);
+    ContextActions.setContext(ctx);
   });
