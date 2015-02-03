@@ -108,13 +108,12 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  debug('req', req.path);
-  debug('decode req', decodeURI(req.path));
+  debug('path req', decodeURI(req.path));
   Router(decodeURI(req.path))
     .run(function(Handler, state) {
       Handler = React.createFactory(Handler);
-      debug('Route found, %s ', state.path);
 
+      debug('Route found, %s ', state.path);
       var ctx = {
         req: req,
         res: res,
@@ -128,26 +127,25 @@ app.get('/*', function(req, res, next) {
     });
 });
 
-// Use a hot observable stream for requests
-var hotObservable = ContextStore.publish();
-
 // Run on next sequence
-hotObservable.subscribe(function(ctx) {
-  if (!ctx.Handler) { return debug('no handler'); }
-  debug('rendering react to string', ctx.state.path);
-  var html = React.renderToString(ctx.Handler());
-  debug('rendering jade');
+ContextStore
+  .filter(function(ctx) {
+    return !!ctx.Handler;
+  })
+  .subscribe(function(ctx) {
 
-  ctx.res.render('layout', { html: html }, function(err, markup) {
-    if (err) { return ctx.next(err); }
+    debug('rendering %s to string', ctx.state.path);
+    var html = React.renderToString(ctx.Handler());
 
-    debug('Sending %s', ctx.state.path);
-    return ctx.res.send(markup);
+    debug('rendering jade');
+    ctx.res.render('layout', { html: html }, function(err, markup) {
+      if (err) { return ctx.next(err); }
+      debug('jade template rendered');
+
+      debug('Sending %s to user', ctx.state.path);
+      return ctx.res.send(markup);
+    });
   });
-});
-
-// Start listening listening to observable sequence;
-hotObservable.connect();
 
 app.use(function(req, res) {
   res.status(404);

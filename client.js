@@ -12,15 +12,20 @@ var mountNode = document.getElementById('app');
 
 debug('Matching Route');
 
-ContextStore.subscribe(function(ctx) {
-  if (!ctx.Handler) { return debug('no handler'); }
-  React.render(ctx.Handler(), mountNode, function() {
-    debug('React rendered!');
+ContextStore
+  .filter(function(ctx) {
+    return !!ctx.Handler;
+  })
+  .subscribe(function(ctx) {
+    debug('rendering %s...', ctx.state.path);
+    React.render(ctx.Handler(), mountNode, function() {
+      debug('React rendered!');
+    });
   });
-});
 
 Router(HistoryLocation)
   .run(function(Handler, state) {
+
     debug('Route found, %s rendering..', state.path);
     Handler = React.createFactory(Handler);
     var ctx = {
