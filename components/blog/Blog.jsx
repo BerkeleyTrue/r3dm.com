@@ -17,18 +17,10 @@ var Blog = React.createClass({
     return BlogStore;
   },
 
-  componentWillMount: function() {
-    debug('comp will mount');
-    if (this.props.context) {
-      debug('found context');
-      this.setState(this.props.context);
-    }
-  },
-
   render: function() {
     var posts = this.state.posts;
 
-    debug('number of posts from mongodb:', posts.length);
+    debug('number of posts: ', posts.length);
 
     if (posts === false) {
       return <FourOhFour />;
@@ -81,11 +73,13 @@ var Blog = React.createClass({
       debug('post.author.name is:', post.author.name);
 
       return (
-        <div className='post'>
+        <div
+          className='post'
+          key={ post.title }>
           <Link
             to='blog'
             params={{ title: post.title }}
-            key={ post.title } className='post-title'>
+            className='post-title'>
             <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
@@ -96,8 +90,6 @@ var Blog = React.createClass({
         </div>
       );
     });
-
-    debug('will render');
 
     return (
       <div className="blog-app">

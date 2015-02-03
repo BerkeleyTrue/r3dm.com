@@ -17,18 +17,10 @@ var Blog = React.createClass({displayName: "Blog",
     return BlogStore;
   },
 
-  componentWillMount: function() {
-    debug('comp will mount');
-    if (this.props.context) {
-      debug('found context');
-      this.setState(this.props.context);
-    }
-  },
-
   render: function() {
     var posts = this.state.posts;
 
-    debug('number of posts from mongodb:', posts.length);
+    debug('number of posts: ', posts.length);
 
     if (posts === false) {
       return React.createElement(FourOhFour, null);
@@ -81,11 +73,13 @@ var Blog = React.createClass({displayName: "Blog",
       debug('post.author.name is:', post.author.name);
 
       return (
-        React.createElement("div", {className: "post"}, 
+        React.createElement("div", {
+          className: "post", 
+          key:  post.title}, 
           React.createElement(Link, {
             to: "blog", 
             params: { title: post.title}, 
-            key:  post.title, className: "post-title"}, 
+            className: "post-title"}, 
             React.createElement("h1", null,  post.title)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
@@ -96,8 +90,6 @@ var Blog = React.createClass({displayName: "Blog",
         )
       );
     });
-
-    debug('will render');
 
     return (
       React.createElement("div", {className: "blog-app"}, 
