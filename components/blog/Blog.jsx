@@ -43,7 +43,7 @@ var Blog = React.createClass({
             <div className='read-full-story-container'>
               <Link
                 to='blog'
-                params={{ title: post.title }}
+                params={{ slug: post.slug }}
                 className='read-full-story'>
                 READ THE FULL POST
               </Link>
@@ -67,20 +67,20 @@ var Blog = React.createClass({
 
       if (post.author) {
         authorStr = post.author.name.first + ' ' + post.author.name.last;
+        debug('post.author.name is:', post.author.name);
       } else {
         authorStr = 'no author';
       }
-      debug('post.author.name is:', post.author.name);
 
       return (
         <div
           className='post'
-          key={ post.title }>
+          key={ post.slug }>
           <Link
             to='blog'
-            params={{ title: post.title }}
-            className='post-title'>
-            <h1>{ post.title }</h1>
+            params={{ slug: post.slug }}
+            className='post-slug'>
+            <h1>{ post.slug }</h1>
           </Link>
           <div className='date-and-author'>
             { post.publishedDate } | By: { authorStr }

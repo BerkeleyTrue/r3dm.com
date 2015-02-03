@@ -43,7 +43,7 @@ var Blog = React.createClass({displayName: "Blog",
             React.createElement("div", {className: "read-full-story-container"}, 
               React.createElement(Link, {
                 to: "blog", 
-                params: { title: post.title}, 
+                params: { slug: post.slug}, 
                 className: "read-full-story"}, 
                 "READ THE FULL POST"
               )
@@ -67,20 +67,20 @@ var Blog = React.createClass({displayName: "Blog",
 
       if (post.author) {
         authorStr = post.author.name.first + ' ' + post.author.name.last;
+        debug('post.author.name is:', post.author.name);
       } else {
         authorStr = 'no author';
       }
-      debug('post.author.name is:', post.author.name);
 
       return (
         React.createElement("div", {
           className: "post", 
-          key:  post.title}, 
+          key:  post.slug}, 
           React.createElement(Link, {
             to: "blog", 
-            params: { title: post.title}, 
-            className: "post-title"}, 
-            React.createElement("h1", null,  post.title)
+            params: { slug: post.slug}, 
+            className: "post-slug"}, 
+            React.createElement("h1", null,  post.slug)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
              post.publishedDate, " | By: ", authorStr 

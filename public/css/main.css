@@ -2424,10 +2424,10 @@ input[type = 'email'].connect_input {
 #footer {
   text-align: center;
 }
-a.post-title,
-a:hover.post-title,
-a:focus.post-title,
-a:active.post-title {
+a.post-slug,
+a:hover.post-slug,
+a:focus.post-slug,
+a:active.post-slug {
   text-decoration: none;
 }
 a.read-full-story,
@@ -2435,7 +2435,7 @@ a:focus.read-full-story,
 a:active.read-full-story {
   text-decoration: none;
 }
-a.post-title {
+a.post-slug {
   color: #000;
 }
 .date-and-author {
