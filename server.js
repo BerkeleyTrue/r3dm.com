@@ -32,9 +32,11 @@ var express = require('express'),
     compress = require('compression'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
     flash = require('connect-flash'),
     helmet = require('helmet');
 
+mongoose.connect(process.env.MONGO_URI);
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 app.set('state namespace', 'R3DM');
@@ -53,7 +55,8 @@ app.use(flash());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 // ## Fetcher middleware
@@ -79,7 +82,7 @@ keystone.init({
 keystone.import('models');
 keystone.static(app);
 keystone.routes(app);
-keystone.mongoose.connect(keystone.get('mongo'));
+keystone.mongoose = mongoose;
 
 app.use(serve('./public'));
 
