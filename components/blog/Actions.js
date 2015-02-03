@@ -7,13 +7,13 @@ var fetcher = new Fetcher({
 });
 
 var actions = {
-  setTitle: Action.create(),
+  setSlug: Action.create(),
   setPosts: Action.create(),
   loading: Action.create(),
   onError: Action.create()
 };
 
-actions.setTitle.subscribe(function(payload) {
+actions.setSlug.subscribe(function(payload) {
   debug('blog action payload: ', payload);
   actions.loading(true);
   fetcher.read('blogService', payload, {}, function(err, posts) {

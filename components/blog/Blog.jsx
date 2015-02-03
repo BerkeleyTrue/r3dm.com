@@ -80,7 +80,7 @@ var Blog = React.createClass({
             to='blog'
             params={{ slug: post.slug }}
             className='post-slug'>
-            <h1>{ post.slug }</h1>
+            <h1>{ post.title }</h1>
           </Link>
           <div className='date-and-author'>
             { post.publishedDate } | By: { authorStr }

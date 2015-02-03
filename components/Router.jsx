@@ -17,7 +17,7 @@ var React = require('react'),
 
 var routes = [
   (<Route name = 'landing' path = '/' handler = { Landing } />),
-  (<Route name='blog' path='/blog/?:title?' handler = { Blog }/>),
+  (<Route name='blog' path='/blog/?:slug?' handler = { Blog }/>),
   (<Route name = '404' path = '/404' handler = { FourOhFour } />),
   (<NotFound handler = { FourOhFour } />)
 ];

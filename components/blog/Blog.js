@@ -80,7 +80,7 @@ var Blog = React.createClass({displayName: "Blog",
             to: "blog", 
             params: { slug: post.slug}, 
             className: "post-slug"}, 
-            React.createElement("h1", null,  post.slug)
+            React.createElement("h1", null,  post.title)
           ), 
           React.createElement("div", {className: "date-and-author"}, 
              post.publishedDate, " | By: ", authorStr 

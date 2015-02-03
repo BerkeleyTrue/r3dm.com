@@ -20,7 +20,7 @@ actions
     return ctx.state.path.indexOf('/blog') !== -1;
   })
   .subscribe(function(ctx) {
-    BlogActions.setTitle({ title: ctx.state.params.title });
+    BlogActions.setSlug({ slug: ctx.state.params.slug });
     debug('rendering blog');
 
     BlogStore
