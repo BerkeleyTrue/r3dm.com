@@ -19,6 +19,7 @@ var Blog = React.createClass({displayName: "Blog",
   render: function() {
     var posts = this.state.posts;
 
+    debug('posts:', posts);
     debug('number of posts: ', posts.length);
 
     if (posts === false) {
@@ -31,7 +32,6 @@ var Blog = React.createClass({displayName: "Blog",
     */
     var val = posts.map(function(post) {
       var html, readMore, authorStr;
-      debug('post is', post);
 
       if (post.content) {
         if (posts.length === 1) {
@@ -66,7 +66,6 @@ var Blog = React.createClass({displayName: "Blog",
 
       if (post.author) {
         authorStr = post.author.name.first + ' ' + post.author.name.last;
-        debug('post.author.name is:', post.author.name);
       } else {
         authorStr = 'no author';
       }
