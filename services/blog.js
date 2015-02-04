@@ -54,7 +54,7 @@ module.exports = {
  * performs a mongoDB query on the Post model
  * accepts a whereClause, limit size, and skip size
  */
-var performPostsQuery = function(whereClause, limit, skip, cb) {
+function performPostsQuery(whereClause, limit, skip, cb) {
   var Post = keystone.list('Post');
 
   debug('where', whereClause);
@@ -74,4 +74,4 @@ var performPostsQuery = function(whereClause, limit, skip, cb) {
         cb(err);
       }
     );
-};
+}
