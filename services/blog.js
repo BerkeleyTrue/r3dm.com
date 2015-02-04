@@ -8,7 +8,7 @@ module.exports = {
    * if the admin is logged in he sees published and unpublished posts
    * else the user only sees published posts
    * also
-   * if a slug is provided in the url, a single post is rendered
+   * if a slug is provided in the url, a single post is returned
    * else, a list of 5 blog posts are returned
    */
   read: function(req, resource, params, config, cb) {
@@ -53,16 +53,17 @@ module.exports = {
 
 /*
  * performs a mongoDB query on the Post model
- * accepts a whereClause, limit size, and skip size
+ * accepts a `where`, limit size, and skip size
  */
-function performPostsQuery(whereClause, limit, skip, cb) {
+function performPostsQuery(where, limit, skip, cb) {
   var Post = keystone.list('Post');
-
-  debug('where', whereClause);
+  debug('where', where);
   debug('reading posts');
   Post
     .model
-    .find(whereClause)
+    .find(where)
+    // filter posts with no content
+    .where('content').ne(null)
     .populate('author')
     .sort('-publishedDate')
     .skip(skip)
