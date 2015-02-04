@@ -4,19 +4,16 @@ var React = require('react/addons'),
     scrollMix = require('react-scroll-components').ScrollListenerMixin,
 
     // # Components
-    Nav = require('../nav'),
     Banner = require('../banner'),
     Logo = require('../logo'),
-    Connect = require('../connect'),
-    Footer = require('../footer');
+    Connect = require('../connect');
 
-var App = React.createClass({
+var Home = React.createClass({
   mixins: [scrollMix],
   render: function() {
 
     return (
       <div className="main-app">
-        <Nav></Nav>
         <div className="logo-container">
           <Logo></Logo>
         </div>
@@ -29,11 +26,10 @@ var App = React.createClass({
             </h2>
           </div>
         </div>
-        <Connect></Connect>
-        <Footer />
+        <Connect />
       </div>
     );
   }
 });
 
-module.exports = App;
+module.exports = Home;

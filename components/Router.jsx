@@ -4,23 +4,44 @@ var React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     NotFound = Router.NotFoundRoute,
+    DefaultRoute = Router.DefaultRoute,
+    RouteHandler = Router.RouteHandler,
 
     // # Components
     Blog = require('./blog'),
-    Landing = require('./landing'),
-    FourOhFour = require('./errors/404');
+    Home = require('./home'),
+    FourOhFour = require('./errors/404'),
+    Nav = require('./nav'),
+    Footer = require('./footer');
 
-// Routes here is an array as each component is it's own app
-// This should be changed so we have a top level app where the nav
-// bar is hosted, and the sub-apps, like blog and landing, should render
-// into.
+var App = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <Nav />
+        <RouteHandler />
+        <Footer />
+      </div>
+    );
+  }
+});
 
-var routes = [
-  (<Route name = 'landing' path = '/' handler = { Landing } />),
-  (<Route name='blog' path='/blog/?:slug?' handler = { Blog }/>),
-  (<Route name = '404' path = '/404' handler = { FourOhFour } />),
-  (<NotFound handler = { FourOhFour } />)
-];
+var routes = (
+  <Route
+    name='app'
+    path='/'
+    handler={ App }>
+
+    <DefaultRoute
+      name='home'
+      handler={ Home } />
+    <Route
+      name='blog'
+      path='/blog/?:slug?'
+      handler={ Blog } />
+    <NotFound handler={ FourOhFour } />
+  </Route>
+);
 
 module.exports = function(Location) {
   return Router.create({

@@ -1,7 +1,6 @@
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
-    Nav = require('../nav'),
     FourOhFour = require('../errors/404'),
     StateStreamMixin = require('rx-react').StateStreamMixin,
     BlogStore = require('./Store.js'),
@@ -93,7 +92,6 @@ var Blog = React.createClass({displayName: "Blog",
 
     return (
       React.createElement("div", {className: "blog-app"}, 
-        React.createElement(Nav, null), 
         React.createElement("div", {className: "pure-g blog-layout"}, 
           React.createElement("div", {className: "pure-u-1-6"}), 
           React.createElement("div", {className: "posts-wrapper pure-u-2-3"}, val ), 
