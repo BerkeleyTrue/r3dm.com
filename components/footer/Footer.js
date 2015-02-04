@@ -6,7 +6,7 @@ var Footer = React.createClass({displayName: "Footer",
   render: function() {
     return  (
         React.createElement("div", {id: "footer"}, 
-            "Copyright © 2014 R3DM LLC"
+            "Copyright © 2015 R3DM LLC"
         )
     );
   }

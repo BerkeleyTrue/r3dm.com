@@ -2422,6 +2422,7 @@ input[type = 'email'].connect_input {
   }
 }
 #footer {
+  padding: 1em 0;
   text-align: center;
 }
 a.post-slug,
@@ -2460,5 +2461,5 @@ a:hover.read-full-story {
   color: #f00;
 }
 .blog-layout {
-  padding-top: 50px;
+  padding-top: 65px;
 }
