@@ -1,49 +1,53 @@
 var _ = require('lodash'),
     Rx = require('rx'),
     Store = require('rx-flux').Store,
-    debug = require('debug')('r3dm:components:blog:store'),
+    debug = require('debug')('r3dm:components:nav:store'),
 
-    BlogActions = require('./Actions');
+    NavActions = require('./Actions');
 
-var BlogStore = Store.create({
+var NavStore = Store.create({
 
   getInitialValue: function() {
     debug('setting initial value');
     return {
       loading: false,
       error: false,
-      posts: []
+      links: [
+        { name: 'Home', path: '/' },
+        { name: 'Connect', path: '#connect' },
+        { name: 'Blog', path: '/blog' }
+      ]
     };
   },
 
   getOperations: function() {
     return Rx.Observable.merge(
-      BlogActions.setPosts
-        .map(function(posts) {
+      NavActions.setLinks
+        .map(function(links) {
           return {
             loading: false,
             error: false,
-            posts: posts && posts.length === 0 ? false : posts
+            links: links
           };
         })
         .map(createTransform),
 
-      BlogActions.loading
+      NavActions.loading
         .map(function(loading) {
           return {
             loading: loading,
             error: false,
-            posts: []
+            links: []
           };
         })
         .map(createTransform),
 
-      BlogActions.onError
+      NavActions.onError
         .map(function(err) {
           return {
             loading: false,
             error: err,
-            posts: []
+            links: []
           };
         })
         .map(createTransform)
@@ -59,4 +63,4 @@ var BlogStore = Store.create({
   }
 });
 
-module.exports = BlogStore;
+module.exports = NavStore;

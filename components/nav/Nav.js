@@ -10,15 +10,12 @@ var Nav = React.createClass({displayName: "Nav",
   ],
 
   getInitialState: function() {
-    var links = [
-      { name: 'Home', path: '/' },
-      { name: 'Connect', path: '#connect' },
-      { name: 'Blog', path: '/blog' }
-    ];
-
     return {
-      active: 'home',
-      links: links
+      links: [
+        { name: 'Home', path: '/' },
+        { name: 'Connect', path: '#connect' },
+        { name: 'Blog', path: '/blog' }
+      ]
     };
   },
 
