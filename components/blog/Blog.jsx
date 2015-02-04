@@ -38,11 +38,10 @@ var Blog = React.createClass({
       } else {
         html = post.content.brief;
         readMore = (
-          <div className='read-full-story-container'>
+          <div className='post_readmore'>
             <Link
               to='blog'
-              params={{ slug: post.slug }}
-              className='read-full-story'>
+              params={{ slug: post.slug }}>
               READ THE FULL POST
             </Link>
           </div>
@@ -74,10 +73,10 @@ var Blog = React.createClass({
             <Link
               to='blog'
               params={{ slug: post.slug }}
-              className='post-slug'>
+              className='post_title'>
               <h1>{ post.title }</h1>
             </Link>
-            <div className='date-and-author'>
+            <div className='post_subheading'>
               { publishedDate } | By: { authorStr }
             </div>
           </header>
@@ -90,13 +89,11 @@ var Blog = React.createClass({
     });
 
     return (
-      <main className="blog-app">
-        <div className='pure-g blog-layout'>
-          <div className='pure-u-1-6'></div>
-          <article className='posts-wrapper pure-u-2-3'>
+      <main className="blog">
+        <div className='blog_layout'>
+          <article className='posts_wrapper'>
             { val }
           </article>
-          <div className='pure-u-1-6'></div>
         </div>
       </main>
     );

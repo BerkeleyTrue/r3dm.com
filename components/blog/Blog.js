@@ -38,11 +38,10 @@ var Blog = React.createClass({displayName: "Blog",
       } else {
         html = post.content.brief;
         readMore = (
-          React.createElement("div", {className: "read-full-story-container"}, 
+          React.createElement("div", {className: "post_readmore"}, 
             React.createElement(Link, {
               to: "blog", 
-              params: { slug: post.slug}, 
-              className: "read-full-story"}, 
+              params: { slug: post.slug}}, 
               "READ THE FULL POST"
             )
           )
@@ -74,10 +73,10 @@ var Blog = React.createClass({displayName: "Blog",
             React.createElement(Link, {
               to: "blog", 
               params: { slug: post.slug}, 
-              className: "post-slug"}, 
+              className: "post_title"}, 
               React.createElement("h1", null,  post.title)
             ), 
-            React.createElement("div", {className: "date-and-author"}, 
+            React.createElement("div", {className: "post_subheading"}, 
               publishedDate, " | By: ", authorStr 
             )
           ), 
@@ -90,13 +89,11 @@ var Blog = React.createClass({displayName: "Blog",
     });
 
     return (
-      React.createElement("main", {className: "blog-app"}, 
-        React.createElement("div", {className: "pure-g blog-layout"}, 
-          React.createElement("div", {className: "pure-u-1-6"}), 
-          React.createElement("article", {className: "posts-wrapper pure-u-2-3"}, 
+      React.createElement("main", {className: "blog"}, 
+        React.createElement("div", {className: "blog_layout"}, 
+          React.createElement("article", {className: "posts_wrapper"}, 
             val 
-          ), 
-          React.createElement("div", {className: "pure-u-1-6"})
+          )
         )
       )
     );

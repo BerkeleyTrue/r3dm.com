@@ -3,38 +3,43 @@
 r3dm-grey = #9B9B9B
 border-grey = #DAD7D6
 
-a.post-slug,
-a:hover.post-slug,
-a:focus.post-slug,
-a:active.post-slug
-  text-decoration none
+.blog
+  gs('fluid')
 
-a.read-full-story,
-a:focus.read-full-story,
-a:active.read-full-story
-  text-decoration none
+.blog_layout
+  row()
+  padding-top 65px
 
-a.post-slug
+.posts_wrapper
+  col(6)
+  offset(3)
+
+.post
+  text-align justify
+
+a.post_title
   color black
+  text-decoration none
+  &:hover
+  &:focus
+  &:active
+    text-decoration none
 
-.date-and-author
+.post_subheading
   font-size 0.8em
   color r3dm-grey
 
-div.post
-  text-align justify
-
-div.read-full-story-container
+.post_readmore
   text-align center
   border-bottom 1px solid border-grey
   border-top 1px solid border-grey
-
-a.read-full-story
-  color r3dm-grey
-  line-height 50px
-  transition all 0.5s ease-in-out 0s
-a:hover.read-full-story
-  color red
-
-.blog-layout
-  padding-top 65px
+  a
+    color r3dm-grey
+    line-height 50px
+    transition all 0.5s ease-in-out 0s
+    text-decoration none
+    &:focus
+    &:active
+      text-decoration none
+    &:hover
+      color red
