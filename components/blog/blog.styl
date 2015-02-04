@@ -11,8 +11,18 @@ border-grey = #DAD7D6
   padding-top 65px
 
 .posts_wrapper
-  col(6)
-  offset(3)
+  col(10)
+  offset(1)
+
++media-query( all, min-width 768px )
+  .posts_wrapper
+    col(8)
+    offset(2)
+
++media-query( all, min-width 992px )
+  .posts_wrapper
+    col(6)
+    offset(3)
 
 .post
   text-align justify

@@ -1291,9 +1291,29 @@ input[type = 'email'].connect_input {
   display: inline-block;
   float: left;
   overflow: hidden;
-  width: 49.1666666666667%;
+  width: 82.5%;
   margin: 0 0.4166666666667%;
-  margin-left: 25.4166666666667%;
+  margin-left: 8.75%;
+}
+@media all and (min-width: 768px) {
+  .posts_wrapper {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 65.8333333333333%;
+    margin: 0 0.4166666666667%;
+    margin-left: 17.0833333333333%;
+  }
+}
+@media all and (min-width: 992px) {
+  .posts_wrapper {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 49.1666666666667%;
+    margin: 0 0.4166666666667%;
+    margin-left: 25.4166666666667%;
+  }
 }
 .post {
   text-align: justify;
