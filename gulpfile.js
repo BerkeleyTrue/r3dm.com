@@ -80,6 +80,7 @@ gulp.task('stylus', function() {
 
 gulp.task('jsx', function() {
   return gulp.src('./components/**/*.jsx')
+    .pipe(plumber())
     .pipe(react({
       harmony: true
     }))
