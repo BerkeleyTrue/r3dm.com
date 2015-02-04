@@ -67,29 +67,35 @@ var Blog = React.createClass({displayName: "Blog",
       }
 
       return (
-        React.createElement("div", {
+        React.createElement("section", {
           className: "post", 
           key:  post.slug}, 
-          React.createElement(Link, {
-            to: "blog", 
-            params: { slug: post.slug}, 
-            className: "post-slug"}, 
-            React.createElement("h1", null,  post.title)
-          ), 
-          React.createElement("div", {className: "date-and-author"}, 
-            publishedDate, " | By: ", authorStr 
+          React.createElement("header", null, 
+            React.createElement(Link, {
+              to: "blog", 
+              params: { slug: post.slug}, 
+              className: "post-slug"}, 
+              React.createElement("h1", null,  post.title)
+            ), 
+            React.createElement("div", {className: "date-and-author"}, 
+              publishedDate, " | By: ", authorStr 
+            )
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
-          readMore 
+          React.createElement("footer", null, 
+            readMore 
+          )
         )
       );
     });
 
     return (
-      React.createElement("div", {className: "blog-app"}, 
+      React.createElement("main", {className: "blog-app"}, 
         React.createElement("div", {className: "pure-g blog-layout"}, 
           React.createElement("div", {className: "pure-u-1-6"}), 
-          React.createElement("div", {className: "posts-wrapper pure-u-2-3"}, val ), 
+          React.createElement("article", {className: "posts-wrapper pure-u-2-3"}, 
+            val 
+          ), 
           React.createElement("div", {className: "pure-u-1-6"})
         )
       )

@@ -15,22 +15,24 @@ var Home = React.createClass({
   render: function() {
 
     return (
-      <div className="main-app">
+      <main className="main-app">
         <div className="logo-container">
           <Logo />
         </div>
-        <div className="first-con">
+        <section className="first-con">
           <Banner />
           <div className="first-con_bot">
-            <h2>
-              We build fast, data-rich, offline capable websites that bring
-              the future to your users.
-            </h2>
+            <header>
+              <p>
+                We build fast, data-rich, offline capable websites that bring
+                the future to your users.
+              </p>
+            </header>
           </div>
-        </div>
+        </section>
         <Work />
         <Connect />
-      </div>
+      </main>
     );
   }
 });

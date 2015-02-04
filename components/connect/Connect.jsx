@@ -20,15 +20,15 @@ var Sent = React.createClass({
 
   render: function() {
     return (
-      <div
+      <article
         style={ this.props.style }
         className={ this.props.className }
         key='sent'>
-        <div className='connect_heading'>
+        <header className='connect_heading'>
           <h1>Thanks!</h1>
           <p>You should see an email from us soon.</p>
-        </div>
-      </div>
+        </header>
+      </article>
     );
   }
 });
@@ -150,7 +150,7 @@ var Connect = React.createClass({
     };
 
     var sendingView = (
-      <div
+      <article
         ref='sending'
         style={ style }
         className='connect connect_sending'
@@ -171,7 +171,7 @@ var Connect = React.createClass({
             r="30">
           </circle>
         </svg>
-      </div>
+      </article>
     );
     var sentView = (
       <Sent
@@ -180,49 +180,49 @@ var Connect = React.createClass({
         style={ style }/>
     );
     var errorView = (
-      <div
+      <article
         style={ style }
         className='connect connect_error'
         key='error'>
         <h1>Opps</h1>
         <p>Something went wrong...</p>
-      </div>
+      </article>
     );
     var formView = (
-      <div
+      <article
         className='connect'
         key='init'
         ref='form'>
-        <div className='connect_heading'>
+        <header className='connect_heading'>
           <h2>Work With Us.</h2>
-        </div>
-        <div className = 'connect_form'>
+        </header>
+        <div className='connect_form'>
           <form
-            action = ''
-            className = 'pure-form'
-            onSubmit = { this.handleConnect }>
-            <div className = 'connect_name'>
+            action=''
+            className='pure-form'
+            onSubmit={ this.handleConnect }>
+            <div className='connect_name'>
                 <input
-                  type = 'text'
-                  name = 'name'
-                  className = 'connect_input'
-                  value = { name }
-                  onChange = { this._onNameChange }
-                  placeholder = 'your name' />
+                  type='text'
+                  name='name'
+                  className='connect_input'
+                  value={ name }
+                  onChange={ this._onNameChange }
+                  placeholder='your name' />
             </div>
-            <div className = 'connect_email'>
+            <div className='connect_email'>
               <div>
                 <input
-                  type = 'email'
-                  name = 'email'
-                  className = 'connect_input'
-                  value = { email }
-                  onChange = { this._onEmailChange }
-                  placeholder = 'email'/>
+                  type='email'
+                  name='email'
+                  className='connect_input'
+                  value={ email }
+                  onChange={ this._onEmailChange }
+                  placeholder='email'/>
               </div>
               <div
-                className = 'button'
-                onClick = { this._handleConnect }>
+                className='button'
+                onClick={ this._handleConnect }>
                 <span>
                   Connect
                 </span>
@@ -231,37 +231,42 @@ var Connect = React.createClass({
           </form>
         </div>
         <div style={ expandStyle }></div>
-      </div>
+      </article>
     );
 
     return (
-      <div
+      <section
         id='connect'
         style={ style }
         className='connect_container'>
+
         <CSSTransitionGroup
           component='div'
           transitionEnter={ false }
           transitionName='connect_init'>
           { !sent && !sending && !error ? formView : null }
         </CSSTransitionGroup>
+
         <CSSTransitionGroup
           component='div'
           transitionName='connect_sent'>
           { sent ? sentView : null }
         </CSSTransitionGroup>
+
         <CSSTransitionGroup
           component='div'
           transitionEnter={ false }
           transitionName='connect_sending'>
           { sending ? sendingView : null }
         </CSSTransitionGroup>
+
         <CSSTransitionGroup
           component='div'
           transitionName='connect_error'>
           { error ? errorView : null }
         </CSSTransitionGroup>
-      </div>
+
+      </section>
     );
   }
 });

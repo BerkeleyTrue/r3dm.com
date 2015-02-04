@@ -1929,7 +1929,8 @@ nav.nav li li {
 .first-con_bot {
   text-align: center;
 }
-.first-con_bot h2 {
+.first-con_bot p {
+  font-size: 1.3em;
   padding-top: 25vh;
 }
 .work {
@@ -2008,7 +2009,7 @@ div.error-layout {
   top: 0;
   width: 100%;
 }
-.connect_container >div >div {
+.connect_container >div >.connect {
   pointer-events: all;
 }
 .connect_form input {

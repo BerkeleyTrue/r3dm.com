@@ -67,32 +67,38 @@ var Blog = React.createClass({
       }
 
       return (
-        <div
+        <section
           className='post'
-          key={ post.slug }>
-          <Link
-            to='blog'
-            params={{ slug: post.slug }}
-            className='post-slug'>
-            <h1>{ post.title }</h1>
-          </Link>
-          <div className='date-and-author'>
-            { publishedDate } | By: { authorStr }
-          </div>
+          key={ post.slug } >
+          <header>
+            <Link
+              to='blog'
+              params={{ slug: post.slug }}
+              className='post-slug'>
+              <h1>{ post.title }</h1>
+            </Link>
+            <div className='date-and-author'>
+              { publishedDate } | By: { authorStr }
+            </div>
+          </header>
           <span dangerouslySetInnerHTML={{ __html: html }} />
-          { readMore }
-        </div>
+          <footer>
+            { readMore }
+          </footer>
+        </section>
       );
     });
 
     return (
-      <div className="blog-app">
+      <main className="blog-app">
         <div className='pure-g blog-layout'>
           <div className='pure-u-1-6'></div>
-          <div className='posts-wrapper pure-u-2-3'>{ val }</div>
+          <article className='posts-wrapper pure-u-2-3'>
+            { val }
+          </article>
           <div className='pure-u-1-6'></div>
         </div>
-      </div>
+      </main>
     );
   }
 });

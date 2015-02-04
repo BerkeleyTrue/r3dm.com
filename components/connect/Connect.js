@@ -20,11 +20,11 @@ var Sent = React.createClass({displayName: "Sent",
 
   render: function() {
     return (
-      React.createElement("div", {
+      React.createElement("article", {
         style:  this.props.style, 
         className:  this.props.className, 
         key: "sent"}, 
-        React.createElement("div", {className: "connect_heading"}, 
+        React.createElement("header", {className: "connect_heading"}, 
           React.createElement("h1", null, "Thanks!"), 
           React.createElement("p", null, "You should see an email from us soon.")
         )
@@ -150,7 +150,7 @@ var Connect = React.createClass({displayName: "Connect",
     };
 
     var sendingView = (
-      React.createElement("div", {
+      React.createElement("article", {
         ref: "sending", 
         style: style, 
         className: "connect connect_sending", 
@@ -180,7 +180,7 @@ var Connect = React.createClass({displayName: "Connect",
         style: style })
     );
     var errorView = (
-      React.createElement("div", {
+      React.createElement("article", {
         style: style, 
         className: "connect connect_error", 
         key: "error"}, 
@@ -189,11 +189,11 @@ var Connect = React.createClass({displayName: "Connect",
       )
     );
     var formView = (
-      React.createElement("div", {
+      React.createElement("article", {
         className: "connect", 
         key: "init", 
         ref: "form"}, 
-        React.createElement("div", {className: "connect_heading"}, 
+        React.createElement("header", {className: "connect_heading"}, 
           React.createElement("h2", null, "Work With Us.")
         ), 
         React.createElement("div", {className: "connect_form"}, 
@@ -235,32 +235,37 @@ var Connect = React.createClass({displayName: "Connect",
     );
 
     return (
-      React.createElement("div", {
+      React.createElement("section", {
         id: "connect", 
         style: style, 
         className: "connect_container"}, 
+
         React.createElement(CSSTransitionGroup, {
           component: "div", 
           transitionEnter: false, 
           transitionName: "connect_init"}, 
            !sent && !sending && !error ? formView : null
         ), 
+
         React.createElement(CSSTransitionGroup, {
           component: "div", 
           transitionName: "connect_sent"}, 
            sent ? sentView : null
         ), 
+
         React.createElement(CSSTransitionGroup, {
           component: "div", 
           transitionEnter: false, 
           transitionName: "connect_sending"}, 
            sending ? sendingView : null
         ), 
+
         React.createElement(CSSTransitionGroup, {
           component: "div", 
           transitionName: "connect_error"}, 
            error ? errorView : null
         )
+
       )
     );
   }

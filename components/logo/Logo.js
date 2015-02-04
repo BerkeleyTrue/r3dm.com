@@ -4,16 +4,9 @@ var React = require('react'),
 
 var Logo = React.createClass({displayName: "Logo",
   render: function() {
-
-    var cx = React.addons.classSet;
-
-    var logoContainer = cx({
-      '': true
-    });
-
     return (
       React.createElement("div", {className: "v-center"}, 
-        React.createElement("div", {className: logoContainer }, 
+        React.createElement("div", null, 
           React.createElement(Isvg, {
             className: "logo", 
             wrapper:  React.DOM.div, 

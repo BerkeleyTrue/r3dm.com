@@ -4,9 +4,11 @@ var Banner = React.createClass({
 
   render: function() {
     return (
-      <div className = 'banner'>
-        <h1>We Are The R3DM.</h1>
-      </div>
+      <section className = 'banner'>
+        <header>
+          <h1>We Are The R3DM.</h1>
+        </header>
+      </section>
     );
   }
 });
