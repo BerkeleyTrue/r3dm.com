@@ -1,10 +1,10 @@
 var Action = require('rx-flux').Action,
-    Fetcher = require('fetchr'),
+    // Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:components:nav:action');
 
-var fetcher = new Fetcher({
-  xhrPath: '/api'
-});
+// var fetcher = new Fetcher({
+//   xhrPath: '/api'
+// });
 
 var actions = {
   setLinks: Action.create(),

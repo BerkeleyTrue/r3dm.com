@@ -1,13 +1,19 @@
 var React = require('react'),
-    Link = require('react-router').Link,
+    Router = require('react-router'),
+    Link = Router.Link,
+    State = Router.State,
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({displayName: "Nav",
+  mixins: [
+    State
+  ],
+
   getInitialState: function() {
     var links = [
-      { name: 'home', path: '/' },
-      { name: 'connect', path: '#connect' },
-      { name: 'blog', path: '/blog' }
+      { name: 'Home', path: '/' },
+      { name: 'Connect', path: '#connect' },
+      { name: 'Blog', path: '/blog' }
     ];
 
     return {
@@ -29,11 +35,19 @@ var Nav = React.createClass({displayName: "Nav",
 
   render: function() {
     var links = this.state.links;
+    var pathname = this.getPathname();
+    // debug('path is:', this.getPath());
+    // debug('pathname is:', this.getPathname());
+    // debug('params is:', this.getParams());
+    // debug('query is:', this.getQuery());
+    // debug('routes is:', this.getRoutes());
+
     var val = links.map(function(link) {
+      var classNameActive = link.path === pathname ? 'active' : '';
 
       if (link.path.indexOf('#') !== -1) {
         return (
-          React.createElement("li", {key:  link.path}, 
+          React.createElement("li", {key:  link.path, className: classNameActive}, 
             React.createElement("a", {href:  link.path, target: "_self"}, 
                  link.name
             )
@@ -41,7 +55,7 @@ var Nav = React.createClass({displayName: "Nav",
         );
       } else {
         return (
-          React.createElement("li", {key:  link.path}, 
+          React.createElement("li", {key:  link.path, className: classNameActive}, 
             React.createElement(Link, {to:  link.path},  link.name)
           )
         );

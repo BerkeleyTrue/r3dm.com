@@ -1871,6 +1871,10 @@ nav.nav li a {
   text-decoration: none;
   white-space: nowrap;
 }
+nav.nav li a.active {
+  background: #d1d2d4;
+  color: #125074;
+}
 nav.nav li:hover {
   background: #d1d2d4;
 }
