@@ -40,11 +40,11 @@ module.exports = {
         }
       });
     } else if (slugP) {
-      where = { slug: params.slug, publishedDate: { $exists: true }};
+      where = { slug: params.slug, state: 'published' };
       limit = 1;
       performPostsQuery(where, limit, skip, cb);
     } else {
-      where = { publishedDate: { $exists: true }};
+      where = { state: 'published' };
       limit = 5;
       performPostsQuery(where, limit, skip, cb);
     }
