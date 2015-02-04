@@ -1,0 +1,22 @@
+components/banner/Banner.js
+components/blog/Blog.js
+components/connect/Connect.js
+components/errors/404.js
+components/errors/505.js
+components/footer/Footer.js
+components/home/Home.js
+components/logo/Logo.js
+components/logo/LogoSvg.js
+components/nav/Nav.js
+components/services/Services.js
+components/services/ServicesBlock.js
+components/team/Team.js
+components/team/TeamBlock.js
+components/work/Work.js
+components/work/WorkBlock.js
+
+components/Router.js
+
+public/**/*.js
+
+# node_modules is ignored by default

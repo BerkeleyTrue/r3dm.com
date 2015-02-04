@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "lint": "jsxhint components/**/*.js",
+    "lint": "eslint .",
     "test": "none",
     "prepublish": "browserify client.js -o public/js/bundle.js"
   },
@@ -17,6 +17,7 @@
     "url": "https://berkeleytrue@bitbucket.org/bigr3dm/frontface.git"
   },
   "keywords": [
+    "rx",
     "r3dm",
     "react",
     "flux",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "browser-sync": "^1.7.2",
     "envify": "^3.2.0",
+    "eslint": "^0.13.0",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.1",
     "gulp-imagemin": "^1.1.0",
@@ -43,7 +45,6 @@
     "gulp-util": "^3.0.1",
     "gulp-watch": "^3.0.0",
     "imagemin-pngcrush": "^3.1.0",
-    "jsxhint": "^0.9.0",
     "kouto-swiss": "^0.11.5",
     "react-tools": "^0.12.0",
     "reactify": "^0.17.1",
