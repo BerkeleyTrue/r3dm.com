@@ -1,7 +1,6 @@
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
-    Nav = require('../nav'),
     FourOhFour = require('../errors/404'),
     StateStreamMixin = require('rx-react').StateStreamMixin,
     BlogStore = require('./Store.js'),
@@ -93,7 +92,6 @@ var Blog = React.createClass({
 
     return (
       <div className="blog-app">
-        <Nav></Nav>
         <div className='pure-g blog-layout'>
           <div className='pure-u-1-6'></div>
           <div className='posts-wrapper pure-u-2-3'>{ val }</div>
