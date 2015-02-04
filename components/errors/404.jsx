@@ -8,19 +8,17 @@ var FourOhFour = React.createClass({
 
   render: function() {
     return (
-      <section className='error-container'>
-        <div className='pure-g error-layout'>
-          <div className='pure-u-1-3'></div>
-          <div className='pure-u-1-3'>
+      <section className='notFound'>
+        <div className='notFound_layout'>
+          <div className='notFound_main'>
             <header>
               <h1>404</h1>
-              <p className='font-bold'>Page Not Found</p>
+              <p>Page Not Found</p>
             </header>
-            <div className='error-desc'>
+            <div className='notFound_desc'>
               Sorry, this is not the page you are looking for.
             </div>
           </div>
-          <div className='pure-u-1-3'></div>
         </div>
       </section>
     );

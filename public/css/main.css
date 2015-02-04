@@ -1974,8 +1974,24 @@ nav.nav li li {
   width: 49.1666666666667%;
   margin: 0 0.4166666666667%;
 }
-div.error-layout {
-  padding-top: 50px;
+.notFound {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.notFound_layout {
+  display: block;
+  width: 100.83333333333331%;
+  margin: 0 -0.4166666666667%;
+}
+.notFound_main {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  width: 32.5%;
+  margin: 0 0.4166666666667%;
+  margin-left: 33.75%;
+  padding-top: 20vh;
 }
 .connect {
   width: 100%;
