@@ -1932,6 +1932,47 @@ nav.nav li li {
 .first-con_bot h2 {
   padding-top: 25vh;
 }
+.work {
+  background-color: #d1d2d4;
+  color: #fff;
+}
+.work_heading {
+  text-align: center;
+  overflow: auto;
+}
+.work_content {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 75%;
+}
+.work_content article {
+  display: block;
+  width: 100.83333333333331%;
+  margin: 0 -0.4166666666667%;
+}
+.work_content article .work_copy {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  width: 49.1666666666667%;
+  margin: 0 0.4166666666667%;
+  text-align: left;
+}
+.work_content article .work_copy header {
+  text-align: center;
+}
+.work_content article .work_copy >p {
+  padding: 40px;
+  padding-top: 5px;
+}
+.work_content article .work_img {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  width: 49.1666666666667%;
+  margin: 0 0.4166666666667%;
+}
 div.error-layout {
   padding-top: 50px;
 }

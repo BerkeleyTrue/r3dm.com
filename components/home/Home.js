@@ -1,15 +1,17 @@
 var React = require('react/addons'),
 
     // # mixins
-    scrollMix = require('react-scroll-components').ScrollListenerMixin,
+    // scrollMix = require('react-scroll-components').ScrollListenerMixin,
+    PureRender = React.addons.PureRenderMixin,
 
     // # Components
     Banner = require('../banner'),
     Logo = require('../logo'),
+    Work = require('../work'),
     Connect = require('../connect');
 
 var Home = React.createClass({displayName: "Home",
-  mixins: [scrollMix],
+  mixins: [PureRender],
   render: function() {
 
     return (
@@ -26,6 +28,7 @@ var Home = React.createClass({displayName: "Home",
             )
           )
         ), 
+        React.createElement(Work, null), 
         React.createElement(Connect, null)
       )
     );

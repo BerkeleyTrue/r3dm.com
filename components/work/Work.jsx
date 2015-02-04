@@ -1,53 +1,39 @@
-var React = require('react'),
-    Block = require('./work_block');
+var React = require('react/addons'),
+    PureRender = React.addons.PureRenderMixin;
 
 var Work = React.createClass({
-  getDefaultProps: function() {
-    return {
-      workData: [{
-        image: 'images/work_shpe.png',
-        url: 'http://sfbayareashpe.org'
-      }]
-    };
-  },
-
-  componentWillMount: function() {
-  },
+  mixins: [PureRender],
 
   render: function() {
 
-    var block = [
-      'pure-u-1',
-      'work_block'
-    ].join(' ');
-
-    var size = this.props.workData.length;
-    var wb = ' work_block-img-';
-
-    if (size <= 3 ) {
-      block += wb + size;
-    } else {
-      block += wb + '3';
-    }
-
-    var Blocks = this.props.workData.map(function(datum) {
-      return (
-        <Block
-          className = { block }
-          key = { datum.url }
-          data = { datum }></Block>
-      );
-    });
-
     return (
-      <div className="work">
-        <div className = "work_heading">
-          <h2>RECENT WORK</h2>
+      <section className="work">
+        <header className = "work_heading">
+          <h2>Our Work</h2>
+        </header>
+        <div className = "work_content" >
+          <article>
+            <div className='work_copy'>
+              <header>
+                <h3>Society of Professional Hispanic Engineers</h3>
+                <p>San Francisco Bay Area</p>
+              </header>
+              <p>
+                Open your heart's eyes. Empty your mind;
+                be formless, shapeless like water. Anxiety
+                and panic will pass. Live life one inhalation
+                and one exhalation at a time. Watch each breath
+                appear and disappear, just breathing.
+                Bring love into your heart, into your
+                breath and into your being.
+              </p>
+            </div>
+            <div className='work_img'>
+              Image
+            </div>
+          </article>
         </div>
-        <div className = "pure-g work_content" >
-          { Blocks }
-        </div>
-      </div>
+      </section>
     );
   }
 });

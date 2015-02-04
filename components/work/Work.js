@@ -1,51 +1,37 @@
-var React = require('react'),
-    Block = require('./work_block');
+var React = require('react/addons'),
+    PureRender = React.addons.PureRenderMixin;
 
 var Work = React.createClass({displayName: "Work",
-  getDefaultProps: function() {
-    return {
-      workData: [{
-        image: 'images/work_shpe.png',
-        url: 'http://sfbayareashpe.org'
-      }]
-    };
-  },
-
-  componentWillMount: function() {
-  },
+  mixins: [PureRender],
 
   render: function() {
 
-    var block = [
-      'pure-u-1',
-      'work_block'
-    ].join(' ');
-
-    var size = this.props.workData.length;
-    var wb = ' work_block-img-';
-
-    if (size <= 3 ) {
-      block += wb + size;
-    } else {
-      block += wb + '3';
-    }
-
-    var Blocks = this.props.workData.map(function(datum) {
-      return (
-        React.createElement(Block, {
-          className: block, 
-          key:  datum.url, 
-          data: datum })
-      );
-    });
-
     return (
-      React.createElement("div", {className: "work"}, 
-        React.createElement("div", {className: "work_heading"}, 
-          React.createElement("h2", null, "RECENT WORK")
+      React.createElement("section", {className: "work"}, 
+        React.createElement("header", {className: "work_heading"}, 
+          React.createElement("h2", null, "Our Work")
         ), 
-        React.createElement("div", {className: "pure-g work_content"}, 
-          Blocks 
+        React.createElement("div", {className: "work_content"}, 
+          React.createElement("article", null, 
+            React.createElement("div", {className: "work_copy"}, 
+              React.createElement("header", null, 
+                React.createElement("h3", null, "Society of Professional Hispanic Engineers"), 
+                React.createElement("p", null, "San Francisco Bay Area")
+              ), 
+              React.createElement("p", null, 
+                "Open your heart's eyes. Empty your mind;" + ' ' +
+                "be formless, shapeless like water. Anxiety" + ' ' +
+                "and panic will pass. Live life one inhalation" + ' ' +
+                "and one exhalation at a time. Watch each breath" + ' ' +
+                "appear and disappear, just breathing." + ' ' +
+                "Bring love into your heart, into your" + ' ' +
+                "breath and into your being."
+              )
+            ), 
+            React.createElement("div", {className: "work_img"}, 
+              "Image"
+            )
+          )
         )
       )
     );
