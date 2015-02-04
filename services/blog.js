@@ -36,6 +36,7 @@ module.exports = {
           }
         } else {
           debug('no user by that id found! are you spoofing?');
+          cb(new Error('recieved an invalid UserId.'));
         }
       });
     } else if (slugP) {
