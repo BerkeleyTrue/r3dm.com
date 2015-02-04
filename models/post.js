@@ -25,7 +25,8 @@ Post.add({
     type: Types.Select,
     options: 'draft, published, archived',
     default: 'draft',
-    index: true
+    index: true,
+    required: true
   },
   author: {
     type: Types.Relationship,
@@ -64,4 +65,22 @@ Post.schema.virtual('content.full').get(function() {
 
 Post.defaultSort = '-publishedDate';
 Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
+
+Post.schema.pre('save', function(next) {
+  var myPost = this,
+      err;
+  console.log('myPost', myPost);
+  if (myPost.state === 'published') {
+    if (!myPost.publishedDate) {
+      err = new Error('Cannot publish a post without a publishedDate.');
+      next(err);
+    }
+    if (!myPost.author) {
+      err = new Error('Cannot publish a post without an author.');
+      next(err);
+    }
+  }
+  next();
+});
+
 Post.register();
