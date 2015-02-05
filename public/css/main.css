@@ -740,6 +740,8 @@ nav.nav li li {
   display: block;
   width: 100.83333333333331%;
   margin: 0 -0.4166666666667%;
+  display: inline-block;
+  padding-bottom: 3em;
 }
 .work_content article .work_copy {
   display: inline-block;
@@ -762,6 +764,22 @@ nav.nav li li {
   overflow: hidden;
   width: 49.1666666666667%;
   margin: 0 0.4166666666667%;
+}
+.work_content article .work_img div.pending {
+  text-align: center;
+  height: 20em;
+}
+.work_content article .work_img div.pending:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.work_content article .work_img img {
+  display: block;
+  margin: 0 auto;
+  height: 20em;
+  max-width: 100%;
 }
 .notFound {
   width: 100%;

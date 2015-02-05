@@ -7,7 +7,7 @@
 
 .work_heading
   text-align center
-  overflow auto
+  overflow auto // bug fix
 
 .work_content
   gs('fluid')
@@ -15,6 +15,8 @@
 
   article
     row()
+    display inline-block
+    padding-bottom 3em
 
     .work_copy
       col(6)
@@ -26,3 +28,16 @@
         padding-top 5px
     .work_img
       col(6)
+      div.pending
+        text-align center
+        height 20em
+        &:before //vertical center
+          content ''
+          display inline-block
+          height 100%
+          vertical-align middle
+      img
+        display block
+        margin 0 auto
+        height 20em
+        max-width 100%
