@@ -22,7 +22,8 @@ var NavStore = Store.create({
     return Rx.Observable.merge(
       NavActions.setLinks
         .map(function(path) {
-          if (path === '/') {
+          debug('Store:setLinks:path', path);
+          if (path.indexOf('/blog') !== -1) {
             return {
               links: [
                 { name: 'Home', path: '/' },
@@ -30,7 +31,7 @@ var NavStore = Store.create({
                 { name: 'Blog', path: '/blog' }
               ]
             };
-          } else if (path === '/blog') {
+          } else {
             return {
               links: [
                 { name: 'Home', path: '/' },

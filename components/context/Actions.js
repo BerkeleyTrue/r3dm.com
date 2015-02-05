@@ -21,8 +21,9 @@ actions
     return ctx.state.path.indexOf('/blog') !== -1;
   })
   .subscribe(function(ctx) {
+    debug('context;actions;ctx', ctx);
     BlogActions.setSlug({ slug: ctx.state.params.slug });
-    NavActions.setLinks({ path: ctx.path });
+    NavActions.setLinks({ path: ctx.state.path });
     debug('rendering blog');
 
     BlogStore
@@ -42,6 +43,7 @@ actions
   })
   .subscribe(function(ctx) {
     debug('rendering front');
+    NavActions.setLinks({ path: ctx.state.path });
     actions.renderToUser(ctx);
   });
 
