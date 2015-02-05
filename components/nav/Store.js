@@ -10,8 +10,6 @@ var NavStore = Store.create({
   getInitialValue: function() {
     debug('setting initial value');
     return {
-      loading: false,
-      error: false,
       links: [
         { name: 'Home', path: '/' },
         { name: 'Connect', path: '#connect' },
@@ -23,32 +21,23 @@ var NavStore = Store.create({
   getOperations: function() {
     return Rx.Observable.merge(
       NavActions.setLinks
-        .map(function(links) {
-          return {
-            loading: false,
-            error: false,
-            links: links
-          };
-        })
-        .map(createTransform),
-
-      NavActions.loading
-        .map(function(loading) {
-          return {
-            loading: loading,
-            error: false,
-            links: []
-          };
-        })
-        .map(createTransform),
-
-      NavActions.onError
-        .map(function(err) {
-          return {
-            loading: false,
-            error: err,
-            links: []
-          };
+        .map(function(path) {
+          if (path === '/') {
+            return {
+              links: [
+                { name: 'Home', path: '/' },
+                { name: 'Connect', path: '#connect' },
+                { name: 'Blog', path: '/blog' }
+              ]
+            };
+          } else if (path === '/blog') {
+            return {
+              links: [
+                { name: 'Home', path: '/' },
+                { name: 'Blog', path: '/blog' }
+              ]
+            };
+          }
         })
         .map(createTransform)
     );

@@ -1,6 +1,7 @@
 var Action = require('rx-flux').Action,
     BlogStore = require('../blog/Store'),
     BlogActions = require('../blog/Actions'),
+    NavActions = require('../nav/Actions'),
     debug = require('debug')('r3dm:context');
 
 var actions = {
@@ -21,6 +22,7 @@ actions
   })
   .subscribe(function(ctx) {
     BlogActions.setSlug({ slug: ctx.state.params.slug });
+    NavActions.setLinks({ path: ctx.path });
     debug('rendering blog');
 
     BlogStore

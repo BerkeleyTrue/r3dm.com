@@ -1,22 +1,19 @@
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
-    State = Router.State,
+    StateStreamMixin = Router.StateStreamMixin,
+    NavStore = require('./Store.js'),
+    RouterState = Router.State,
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({
   mixins: [
-    State
+    StateStreamMixin,
+    RouterState
   ],
 
-  getInitialState: function() {
-    return {
-      links: [
-        { name: 'Home', path: '/' },
-        { name: 'Connect', path: '#connect' },
-        { name: 'Blog', path: '/blog' }
-      ]
-    };
+  getStateStream: function() {
+    return NavStore;
   },
 
   componentDidMount: function() {
@@ -31,13 +28,9 @@ var Nav = React.createClass({
   },
 
   render: function() {
+    debug('navbar state', this.state);
     var links = this.state.links;
     var pathname = this.getPathname();
-    // debug('path is:', this.getPath());
-    // debug('pathname is:', this.getPathname());
-    // debug('params is:', this.getParams());
-    // debug('query is:', this.getQuery());
-    // debug('routes is:', this.getRoutes());
 
     var val = links.map(function(link) {
       var classNameActive = link.path === pathname ? 'active' : '';

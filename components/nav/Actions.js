@@ -2,9 +2,7 @@ var Action = require('rx-flux').Action,
     debug = require('debug')('r3dm:components:nav:action');
 
 var actions = {
-  setLinks: Action.create(),
-  loading: Action.create(),
-  onError: Action.create()
+  setLinks: Action.create()
 };
 
 actions.setLinks.subscribe(function(payload) {
