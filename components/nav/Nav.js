@@ -1,22 +1,18 @@
 var React = require('react'),
+
     Router = require('react-router'),
     Link = Router.Link,
-    StateStreamMixin = Router.StateStreamMixin,
+
+    StateStreamMixin = require('rx-react').StateStreamMixin,
+
     NavStore = require('./Store.js'),
-    RouterState = Router.State,
     debug = require('debug')('r3dm:nav');
 
 var Nav = React.createClass({displayName: "Nav",
-  mixins: [
-    StateStreamMixin,
-    RouterState
-  ],
+  mixins: [StateStreamMixin],
 
   getStateStream: function() {
     return NavStore;
-  },
-
-  componentDidMount: function() {
   },
 
   handleHashLink: function(e) {
@@ -30,14 +26,12 @@ var Nav = React.createClass({displayName: "Nav",
   render: function() {
     debug('navbar state', this.state);
     var links = this.state.links;
-    var pathname = this.getPathname();
 
     var val = links.map(function(link) {
-      var classNameActive = link.path === pathname ? 'active' : '';
 
       if (link.path.indexOf('#') !== -1) {
         return (
-          React.createElement("li", {key:  link.path, className: classNameActive}, 
+          React.createElement("li", {key:  link.path}, 
             React.createElement("a", {href:  link.path, target: "_self"}, 
                  link.name
             )
@@ -45,7 +39,7 @@ var Nav = React.createClass({displayName: "Nav",
         );
       } else {
         return (
-          React.createElement("li", {key:  link.path, className: classNameActive}, 
+          React.createElement("li", {key:  link.path}, 
             React.createElement(Link, {to:  link.path},  link.name)
           )
         );

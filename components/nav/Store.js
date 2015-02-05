@@ -22,7 +22,7 @@ var NavStore = Store.create({
     return Rx.Observable.merge(
       NavActions.setLinks
         .map(function(path) {
-          debug('Store:setLinks:path', path);
+          debug('path', path);
           if (path.indexOf('/blog') !== -1) {
             return {
               links: [
