@@ -25,11 +25,6 @@ module.exports = {
     }
 
     debug('params', params);
-    if (req) {
-      debug('req.session', req.session);
-    } else {
-      debug('req', req);
-    }
     debug('params.slug', params.slug);
 
     if (userId) {

@@ -121,7 +121,8 @@ app.get('/*', function(req, res, next) {
         res: res,
         next: next,
         Handler: Handler,
-        state: state
+        state: state,
+        userId: req.session ? req.session.userId : null
       };
 
       debug('Sending route action');

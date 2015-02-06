@@ -23,16 +23,13 @@ actions
     return ctx.state.path.indexOf('/blog') !== -1;
   })
   .subscribe(function(ctx) {
-    debug('context;actions;ctx', ctx);
-    if (ctx.req && ctx.req.session) {
-      BlogActions.setSlug({
-        slug: ctx.state.params.slug,
-        userId: ctx.req.session.userId
-      });
-    } else {
-      BlogActions.setSlug({ slug: ctx.state.params.slug });
-    }
-    NavActions.setLinks(ctx.state.path);
+
+    BlogActions.setSlug({
+      slug: ctx.state.params.slug,
+      userId: ctx.userId
+    });
+
+    // NavActions.setLinks(ctx.state.path);
     debug('rendering blog');
 
     waitFor(
