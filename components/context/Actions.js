@@ -24,7 +24,14 @@ actions
   })
   .subscribe(function(ctx) {
     debug('context;actions;ctx', ctx);
-    BlogActions.setSlug({ slug: ctx.state.params.slug });
+    if (ctx.req && ctx.req.session) {
+      BlogActions.setSlug({
+        slug: ctx.state.params.slug,
+        userId: ctx.req.session.userId
+      });
+    } else {
+      BlogActions.setSlug({ slug: ctx.state.params.slug });
+    }
     NavActions.setLinks(ctx.state.path);
     debug('rendering blog');
 

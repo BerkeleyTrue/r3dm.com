@@ -12,16 +12,28 @@ module.exports = {
    * else, a list of 5 blog posts are returned
    */
   read: function(req, resource, params, config, cb) {
-    var where, limit, skip,
+    var where, limit, skip, userId,
         User = keystone.list('User');
     var slugP = params.slug && params.slug !== 'undefined';
 
-    debug('params', params);
-    debug('params.slug', params.slug);
-    debug('req.session', req.session);
-
     if (req.session && req.session.userId) {
-      User.model.findById(req.session.userId, function (err, user) {
+      userId = req.session.userId;
+    } else if (params && params.userId) {
+      userId = params.userId;
+    } else {
+      userId = false;
+    }
+
+    debug('params', params);
+    if (req) {
+      debug('req.session', req.session);
+    } else {
+      debug('req', req);
+    }
+    debug('params.slug', params.slug);
+
+    if (userId) {
+      User.model.findById(userId, function (err, user) {
         if (err) { return err; }
 
         if (user) {
