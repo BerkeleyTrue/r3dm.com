@@ -23,6 +23,7 @@ actions.setSlug.subscribe(function(payload) {
     }
     debug('complete');
     debug('number of posts', posts && posts.length);
+    debug('calling set posts');
     actions.setPosts(posts);
   });
 });

@@ -11,11 +11,7 @@ var actions = {
   renderToUser: Action.create()
 };
 
-actions
-  .setContext
-  .catch(function(err) {
-    debug('setContext experienced an error: ', err);
-  });
+initStores(BlogStore, NavStore);
 
 actions
   .setContext
@@ -23,26 +19,42 @@ actions
     return ctx.state.path.indexOf('/blog') !== -1;
   })
   .subscribe(function(ctx) {
+    debug('set ctx');
 
+    waitFor(BlogStore.first(firstFilter), NavStore)
+      .subscribe(function() {
+        debug('render blog to user', '\n');
+        actions.renderToUser(ctx);
+      });
+
+    debug('set slug', '\n');
     BlogActions.setSlug({
       slug: ctx.state.params.slug,
       userId: ctx.userId
     });
-
-    // NavActions.setLinks(ctx.state.path);
-    debug('rendering blog');
-
-    waitFor(
-      BlogStore
-      .first(firstFilter),
-      NavStore.first()
-    )
-      .subscribe(function() {
-        actions.renderToUser(ctx);
-      });
+    debug('set links', '\n');
+    NavActions.setLinks(ctx.state.path);
 
     function firstFilter(state) {
-      return ctx.req ? !state.loading : true;
+      var pass;
+      if (ctx.req) {
+        // we are on the server
+        // if loading don't pass
+        // if not loading
+        //  if error pass
+        //  if posts is array and larger then zero pass
+        //  if posts if false value then pass
+        pass = !state.loading &&
+          (state.error ||
+          (Array.isArray(state.posts) &&
+           state.posts.length > 0) ||
+           !state.posts);
+      } else {
+        // we are on the client,
+        // no filtering necessary
+        pass = true;
+      }
+      return pass;
     }
   });
 
@@ -52,19 +64,47 @@ actions
     return ctx.state.path.indexOf('/blog') === -1;
   })
   .subscribe(function(ctx) {
-    debug('rendering front');
-    waitFor(NavStore.first())
+     waitFor(NavStore)
       .subscribe(function() {
+        debug('rendering front');
         actions.renderToUser(ctx);
       });
+
+    debug('set links');
+    NavActions.setLinks(ctx.state.path);
   });
 
 module.exports = actions;
 
+// init stores on start
+function initStores(stores) {
+  stores = [].slice.call(arguments);
+  stores.map(function(store) {
+    store.first().subscribe(function() { });
+  });
+}
 
-function waitFor() {
-  var observables = [].slice.call(arguments);
-  return Rx.Observable
-    .combineLatest(observables, function() { return true; })
-    .first();
+// take an array of observables
+// convert them to hot observables
+// then wait for each one to publish a value
+// returns an observable
+function waitFor(observables) {
+  observables = [].slice.call(arguments);
+  debug('setting waitFor');
+  return Rx.Observable.combineLatest(
+    observables.map(function(obs) {
+      debug('connecting obs');
+      var published = obs.publish();
+      published.connect();
+      debug('connected');
+      return published;
+    }),
+    function(values) {
+      values = [].slice.call(arguments);
+      debug('waitFor complete ', values);
+      return;
+    }
+  )
+  // only listen for one value
+  .first();
 }

@@ -24,7 +24,6 @@ var Nav = React.createClass({
   },
 
   render: function() {
-    debug('navbar state', this.state);
     var links = this.state.links;
 
     var val = links.map(function(link) {

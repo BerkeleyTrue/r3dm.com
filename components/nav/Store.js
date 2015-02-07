@@ -19,29 +19,25 @@ var NavStore = Store.create({
   },
 
   getOperations: function() {
-    return Rx.Observable.merge(
-      NavActions.setLinks
-        .map(function(path) {
-          debug('path', path);
-          if (path.indexOf('/blog') !== -1) {
-            return {
-              links: [
-                { name: 'Home', path: '/' },
-                { name: 'Connect', path: '#connect' },
-                { name: 'Blog', path: '/blog' }
-              ]
-            };
-          } else {
-            return {
-              links: [
-                { name: 'Home', path: '/' },
-                { name: 'Blog', path: '/blog' }
-              ]
-            };
-          }
-        })
-        .map(createTransform)
-    );
+    return NavActions.setLinks
+      .map(function(path) {
+        debug('path', path);
+        if (path.indexOf('/blog') !== -1) {
+          return {
+            links: [
+              { name: 'Connect', path: '#connect' },
+              { name: 'Blog', path: '/blog' }
+            ]
+          };
+        } else {
+          return {
+            links: [
+              { name: 'Home', path: '/' }
+            ]
+          };
+        }
+      })
+      .map(createTransform);
 
     function createTransform(newState) {
       return {

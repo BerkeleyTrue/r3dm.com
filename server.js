@@ -125,7 +125,7 @@ app.get('/*', function(req, res, next) {
         userId: req.session ? req.session.userId : null
       };
 
-      debug('Sending route action');
+      debug('context action');
       ContextActions.setContext(ctx);
     });
 });
