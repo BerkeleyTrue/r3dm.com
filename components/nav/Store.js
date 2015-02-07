@@ -1,5 +1,4 @@
 var _ = require('lodash'),
-    Rx = require('rx'),
     Store = require('rx-flux').Store,
     debug = require('debug')('r3dm:components:nav:store'),
 
