@@ -26,13 +26,13 @@ var NavStore = Store.create({
           return {
             links: [
               { name: 'Connect', path: '#connect' },
-              { name: 'Blog', path: '/blog' }
+              { name: 'Home', path: '/' }
             ]
           };
         } else {
           return {
             links: [
-              { name: 'Home', path: '/' }
+              { name: 'Blog', path: '/blog' }
             ]
           };
         }
