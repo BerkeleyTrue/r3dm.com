@@ -1,15 +1,15 @@
 var Rx = require('rx'),
-    Action = require('rx-flux').Action,
+    createActions = require('../util/createActions'),
     BlogStore = require('../blog/Store'),
     BlogActions = require('../blog/Actions'),
     NavActions = require('../nav/Actions'),
     NavStore = require('../nav/Store'),
     debug = require('debug')('r3dm:context');
 
-var actions = {
-  setContext: Action.create(),
-  renderToUser: Action.create()
-};
+var actions = createActions([
+  'setContext',
+  'renderToUser'
+]);
 
 initStores(BlogStore, NavStore);
 

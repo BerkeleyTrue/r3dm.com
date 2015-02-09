@@ -1,7 +1,5 @@
-var Action = require('rx-flux').Action;
+var createActions = require('../util/createActions');
 
-var actions = {
-  setLinks: Action.create()
-};
+var actions = createActions(['setLinks']);
 
 module.exports = actions;

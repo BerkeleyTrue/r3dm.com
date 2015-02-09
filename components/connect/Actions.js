@@ -1,4 +1,4 @@
-var Action = require('rx-flux').Action,
+var createActions = require('../util/createActions'),
     Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:connect:createConnect');
 
@@ -6,15 +6,15 @@ var fetcher = new Fetcher({
   xhrPath: '/api'
 });
 
-var actions = {
-  send: Action.create(),
-  sending: Action.create(),
-  sent: Action.create(),
-  error: Action.create(),
-  onEmailChange: Action.create(),
-  onNameChange: Action.create(),
-  setUtc: Action.create()
-};
+var actions = createActions([
+  'send',
+  'sending',
+  'sent',
+  'error',
+  'onEmailChange',
+  'onNameChange',
+  'setUtc'
+]);
 
 actions.send.subscribe(function(payload) {
   debug('Creating email for: ', payload);

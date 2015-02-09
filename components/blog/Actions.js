@@ -1,4 +1,4 @@
-var Action = require('rx-flux').Action,
+var createActions = require('../util/createActions'),
     Fetcher = require('fetchr'),
     debug = require('debug')('r3dm:components:blog:action');
 
@@ -6,12 +6,12 @@ var fetcher = new Fetcher({
   xhrPath: '/api'
 });
 
-var actions = {
-  setSlug: Action.create(),
-  setPosts: Action.create(),
-  loading: Action.create(),
-  onError: Action.create()
-};
+var actions = createActions([
+  'setSlug',
+  'setPosts',
+  'loading',
+  'onError'
+]);
 
 actions.setSlug.subscribe(function(payload) {
   debug('blog action payload: ', payload);
@@ -21,9 +21,7 @@ actions.setSlug.subscribe(function(payload) {
       debug('blog err', err);
       return actions.onError(true);
     }
-    debug('complete');
-    debug('number of posts', posts && posts.length);
-    debug('calling set posts');
+    debug('calling set posts with %s posts', posts.length);
     actions.setPosts(posts);
   });
 });
