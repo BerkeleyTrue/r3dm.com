@@ -15,9 +15,7 @@ var Blog = React.createClass({displayName: "Blog",
   render: function() {
     var posts = this.state.posts;
 
-    debug('posts:', posts);
     debug('number of posts: ', posts.length);
-
     if (posts === false) {
       return React.createElement(FourOhFour, null);
     }

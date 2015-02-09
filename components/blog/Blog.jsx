@@ -15,9 +15,7 @@ var Blog = React.createClass({
   render: function() {
     var posts = this.state.posts;
 
-    debug('posts:', posts);
     debug('number of posts: ', posts.length);
-
     if (posts === false) {
       return <FourOhFour />;
     }
