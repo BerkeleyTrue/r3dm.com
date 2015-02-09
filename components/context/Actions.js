@@ -93,18 +93,15 @@ function waitFor(observables) {
   debug('setting waitFor');
   return Rx.Observable.combineLatest(
     observables.map(function(obs) {
-      debug('connecting obs');
       var published = obs.publish();
       published.connect();
-      debug('connected');
       return published;
     }),
-    function(values) {
-      values = [].slice.call(arguments);
-      debug('waitFor complete ', values);
-      return;
+    function() {
+      debug('waitFor complete');
+      return true;
     }
   )
   // only listen for one value
-  .first();
+    .firstOrDefault();
 }
