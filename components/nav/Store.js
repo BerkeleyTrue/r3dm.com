@@ -10,7 +10,6 @@ var NavStore = Store.create({
     debug('setting initial value');
     return {
       links: [
-        { name: 'Home', path: '/' },
         { name: 'Connect', path: '#connect' },
         { name: 'Blog', path: '/blog' }
       ]
@@ -24,13 +23,13 @@ var NavStore = Store.create({
         if (path.indexOf('/blog') !== -1) {
           return {
             links: [
-              { name: 'Connect', path: '#connect' },
               { name: 'Home', path: '/' }
             ]
           };
         } else {
           return {
             links: [
+              { name: 'Connect', path: '#connect' },
               { name: 'Blog', path: '/blog' }
             ]
           };
