@@ -89,7 +89,7 @@
     "react-tween-state": "0.0.4",
     "rx": "^2.3.14",
     "rx-flux": "git://github.com/r3dm/rx-flux.git",
-    "rx-react": "git://github.com/r3dm/rx-react.git#fix/subscribe-on-mount",
+    "rx-react": "^0.1.0",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3"
   }

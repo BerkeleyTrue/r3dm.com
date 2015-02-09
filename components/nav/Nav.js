@@ -3,7 +3,7 @@ var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
 
-    StateStreamMixin = require('rx-react').StateStreamMixin,
+    StateStreamMixin = require('../util/StateStreamMixin'),
 
     NavStore = require('./Store.js'),
     debug = require('debug')('r3dm:nav');

@@ -4,7 +4,7 @@ var Rx = require('rx'),
     CSSTransitionGroup = React.addons.CSSTransitionGroup,
     PureRenderMixin = React.addons.PureRenderMixin,
 
-    StateStreamMixin = require('rx-react').StateStreamMixin,
+    StateStreamMixin = require('../util/stateStreamMixin'),
     tweenState = require('react-tween-state'),
 
     globular = require('../globular'),
