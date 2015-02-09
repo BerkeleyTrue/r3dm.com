@@ -1,7 +1,7 @@
 var React = require('react'),
     Link = require('react-router').Link,
     FourOhFour = require('../errors/404'),
-    StateStreamMixin = require('../util/StateStreamMixin'),
+    StateStreamMixin = require('../util/stateStreamMixin'),
     BlogStore = require('./Store.js'),
     debug = require('debug')('r3dm:components:blog');
 
