@@ -24,8 +24,8 @@ module.exports = {
       userId = false;
     }
 
-    debug('params', params);
-    debug('params.slug', params.slug);
+    debug('slug', params.slug);
+    debug('userId', userId);
 
     if (userId) {
       User.model.findById(userId, function (err, user) {
