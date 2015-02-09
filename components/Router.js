@@ -18,9 +18,9 @@ var App = React.createClass({displayName: "App",
   render: function() {
     return (
       React.createElement("div", null, 
-        React.createElement(Nav, null), 
         React.createElement(RouteHandler, null), 
-        React.createElement(Footer, null)
+        React.createElement(Footer, null), 
+        React.createElement(Nav, null)
       )
     );
   }

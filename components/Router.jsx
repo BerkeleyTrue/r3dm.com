@@ -18,9 +18,9 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Nav />
         <RouteHandler />
         <Footer />
+        <Nav />
       </div>
     );
   }
