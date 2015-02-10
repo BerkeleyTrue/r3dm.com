@@ -1,7 +1,7 @@
 var React = require('react/addons'),
 
     // # mixins
-    StateStreamMixin = require('../util/StateStreamMixin'),
+    StateStreamMixin = require('../util/stateStreamMixin'),
     ScrollMixin = require('../util/scrollMixin'),
     PureRender = React.addons.PureRenderMixin,
 
