@@ -1,9 +1,13 @@
 var invariant = require('react/lib/invariant'),
     ViewportMetrics = require('react/lib/ViewportMetrics'),
     EventListener = require('react/lib/EventListener'),
-    debug = require('debug')('r3dm:comp:util:scroll'),
     win;
 
+
+// Scroll Mixin
+// Flux Actions
+// * setScroll
+// * setIsScrolling
 var ScrollListenerMixin = {
 
   getDefaultProps: function() {
@@ -13,16 +17,20 @@ var ScrollListenerMixin = {
   },
 
   getInitialState: function() {
-    return {
-      scrollTop: 0,
-      isScrolling: false
-    };
+    this.__scrollActions = typeof this.setScroll === 'function' &&
+      typeof this.setIsScrolling === 'function';
+    var state = {};
+    if (!this.__scrollActions) {
+      state = {
+        scrollTop: 0,
+        isScrolling: false
+      };
+    }
+    return state;
   },
 
   componentDidMount: function () {
-    debug('mounting');
-    this.__scrollActions = typeof this.setScroll === 'function' &&
-      typeof this.setIsScrolling === 'function';
+
     win = typeof window !== 'undefined' ? window : false;
 
     invariant(
@@ -31,7 +39,6 @@ var ScrollListenerMixin = {
       typeof win
     );
 
-    debug('attaching liseners');
     this.__removeListener =
       EventListener.listen(win, 'scroll', this._onPageScroll);
   },
