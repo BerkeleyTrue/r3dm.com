@@ -208,6 +208,9 @@ html {
   text-align: center;
   cursor: pointer;
   user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   font-family: inherit;
   font-size: 100%;
@@ -681,7 +684,7 @@ nav.nav li li {
 }
 .logo svg {
   position: absolute;
-  top: 250px;
+  top: 40vh;
   left: 35vw;
   height: 30vh;
   width: 30vw;
