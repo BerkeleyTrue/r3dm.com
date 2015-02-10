@@ -208,9 +208,6 @@ html {
   text-align: center;
   cursor: pointer;
   user-drag: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   font-family: inherit;
   font-size: 100%;
@@ -618,13 +615,18 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#app,
-.main-app {
-  height: 100%;
+#app {
+  min-height: 100vh;
   width: 100%;
+  position: absolute;
 }
 .con {
   height: 100vh;
+}
+.main-app {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 60px;
 }
 nav.nav {
   background-color: #125074;
@@ -1295,6 +1297,9 @@ input[type = 'email'].connect_input {
   }
 }
 #footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   padding: 1em 0;
   text-align: center;
 }
@@ -1302,6 +1307,7 @@ input[type = 'email'].connect_input {
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
+  padding-bottom: 60px;
 }
 .blog_layout {
   display: block;
