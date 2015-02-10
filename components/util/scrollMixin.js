@@ -44,7 +44,7 @@ var ScrollListenerMixin = {
   },
 
   componentWillUnmount: function () {
-    this.__removeListener();
+    this.__removeListener.remove();
   },
 
   _onPageScrollEnd: function () {

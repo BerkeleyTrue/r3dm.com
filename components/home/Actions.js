@@ -2,7 +2,8 @@ var createActions = require('../util/createActions');
 
 var HomeActions = createActions([
   'setScroll',
-  'setIsScrolling'
+  'setIsScrolling',
+  'setWindowHeight'
 ]);
 
 module.exports = HomeActions;

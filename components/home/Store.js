@@ -8,7 +8,8 @@ var HomeStore = Store.create({
   getInitialValue: function() {
     return {
       scrollTop: 0,
-      isScrolling: false
+      isScrolling: false,
+      windowHeight: 100
     };
   },
 
@@ -24,6 +25,12 @@ var HomeStore = Store.create({
         .setIsScrolling
         .map(function(isScrolling) {
           return { isScrolling: isScrolling };
+        })
+        .map(createTransform),
+      HomeActions
+        .setWindowHeight
+        .map(function(height) {
+          return { windowHeight: height };
         })
         .map(createTransform)
     );

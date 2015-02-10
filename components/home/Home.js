@@ -25,6 +25,11 @@ var Home = React.createClass({displayName: "Home",
     return HomeStore;
   },
 
+  componentDidMount: function() {
+    var win = typeof window !== 'undefined' ? window : false;
+    HomeActions.setWindowHeight(win.innerHeight);
+  },
+
   setScroll: HomeActions.setScroll,
   setIsScrolling: HomeActions.setIsScrolling,
 
