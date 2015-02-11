@@ -45,10 +45,10 @@ var Work = React.createClass({displayName: "Work",
               React.createElement("p", null, 
                 "We teamed up with the Society Of Hispanic Professional" + ' ' +
                 "Engineers - San Francisco Bay Area chapter to bring their" + ' ' +
-                "public face to the wold up-to-date with Node.js and MongoDb" + ' ' +
-                "and moving away from the tired world that is PHP." + ' ' +
-                "In the process, we where able to save this non-profit money in" + ' ' +
-                "the long-run by utilizing hosting plans availble for small" + ' ' +
+                "public face up-to-date with Node.js and MongoDb." + ' ' +
+                "Moving away from the tired world of PHP." + ' ' +
+                "In the process, we were able to save this non-profit money in" + ' ' +
+                "the long-run by utilizing hosting plans available for small" + ' ' +
                 "companies using Node.js."
               )
             ), 
