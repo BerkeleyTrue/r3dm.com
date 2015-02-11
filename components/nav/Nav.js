@@ -19,14 +19,6 @@ var Nav = React.createClass({displayName: "Nav",
     return NavStore;
   },
 
-  handleHashLink: function(e) {
-    debug('Handle link', e.target.id);
-    var hash = e.target.name;
-    e.preventDefault();
-    window.location.hash = '';
-    window.location.hash = hash;
-  },
-
   render: function() {
     var state = this.state;
     var scrollTop = state.scrollTop;
