@@ -208,9 +208,6 @@ html {
   text-align: center;
   cursor: pointer;
   user-drag: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   font-family: inherit;
   font-size: 100%;
@@ -791,6 +788,23 @@ nav.nav li li {
   margin: 0 auto;
   height: 20em;
   max-width: 100%;
+}
+@media all and (min-width: 970px) {
+  .work_content article .work_copy {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 32.5%;
+    margin: 0 0.4166666666667%;
+    margin-left: 17.0833333333333%;
+  }
+  .work_content article .work_img {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 24.1666666666667%;
+    margin: 0 0.4166666666667%;
+  }
 }
 .notFound {
   width: 100%;
