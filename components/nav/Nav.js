@@ -1,6 +1,6 @@
 var React = require('react/addons'),
 
-    // tweenState = require('react-tween-state'),
+    tweenState = require('react-tween-state'),
     Router = require('react-router'),
     Link = Router.Link,
 
@@ -11,7 +11,7 @@ var React = require('react/addons'),
 
 var Nav = React.createClass({displayName: "Nav",
   mixins: [
-    // tweenState.Mixin,
+    tweenState.Mixin,
     StateStreamMixin
   ],
 
@@ -20,15 +20,12 @@ var Nav = React.createClass({displayName: "Nav",
   },
 
   render: function() {
-    var state = this.state;
-    var scrollTop = state.scrollTop;
-    var top = state.windowHeight - scrollTop * 1.6;
-    var opacity = scrollTop / state.windowHeight;
-    var navStyle = {
-      opacity: opacity > 1 ? 1 : opacity,
-      top: top < 0 ? 0 : top
-    };
-    var links = this.state.links;
+    var state = this.state,
+        links = state.links,
+        navStyle = {
+          opacity: 1,
+          top: 0
+        };
 
     var val = links.map(function(link) {
 

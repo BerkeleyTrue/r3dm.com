@@ -1,41 +1,37 @@
 var _ = require('lodash'),
     Rx = require('rx'),
-
     Store = require('rx-flux').Store,
-    HomeActions = require('./Actions');
 
-var HomeStore = Store.create({
+    AppActions = require('./Actions');
+
+var AppStore = Store.create({
   getInitialValue: function() {
     return {
       scrollTop: 0,
-      isScrolling: false,
-      windowHeight: 100
+      isScrolling: false
     };
   },
 
   getOperations: function() {
     return Rx.Observable.merge(
-      HomeActions
+      AppActions
         .setScroll
         .map(function(scrollTop) {
           return { scrollTop: scrollTop };
         })
         .map(createTransform),
-      HomeActions
+
+      AppActions
         .setIsScrolling
         .map(function(isScrolling) {
           return { isScrolling: isScrolling };
-        })
-        .map(createTransform),
-      HomeActions
-        .setWindowHeight
-        .map(function(height) {
-          return { windowHeight: height };
         })
         .map(createTransform)
     );
   }
 });
+
+module.exports = AppStore;
 
 function createTransform(newState) {
   return {
@@ -44,5 +40,3 @@ function createTransform(newState) {
     }
   };
 }
-
-module.exports = HomeStore;

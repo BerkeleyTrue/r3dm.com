@@ -1,37 +1,13 @@
 var React = require('react/addons'),
-
-    // # mixins
-    StateStreamMixin = require('../util/stateStreamMixin'),
-    ScrollMixin = require('../util/scrollMixin'),
-    PureRender = React.addons.PureRenderMixin,
+    // debug = require('debug')('r3dm:comp:home'),
 
     // # Components
     Banner = require('../banner'),
     Logo = require('../logo'),
     Work = require('../work'),
-    Connect = require('../connect'),
-
-    HomeActions = require('./Actions'),
-    HomeStore = require('./Store');
+    Connect = require('../connect');
 
 var Home = React.createClass({displayName: "Home",
-  mixins: [
-    PureRender,
-    ScrollMixin,
-    StateStreamMixin
-  ],
-
-  getStateStream: function() {
-    return HomeStore;
-  },
-
-  componentDidMount: function() {
-    var win = typeof window !== 'undefined' ? window : false;
-    HomeActions.setWindowHeight(win.innerHeight);
-  },
-
-  setScroll: HomeActions.setScroll,
-  setIsScrolling: HomeActions.setIsScrolling,
 
   render: function() {
 

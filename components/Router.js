@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: 0 */
 var React = require('react'),
 
     // react router
@@ -5,26 +6,12 @@ var React = require('react'),
     Route = Router.Route,
     NotFound = Router.NotFoundRoute,
     DefaultRoute = Router.DefaultRoute,
-    RouteHandler = Router.RouteHandler,
 
     // # Components
+    App = require('./app'),
     Blog = require('./blog'),
     Home = require('./home'),
-    FourOhFour = require('./errors/404'),
-    Nav = require('./nav'),
-    Footer = require('./footer');
-
-var App = React.createClass({displayName: "App",
-  render: function() {
-    return (
-      React.createElement("div", null, 
-        React.createElement(RouteHandler, null), 
-        React.createElement(Footer, null), 
-        React.createElement(Nav, null)
-      )
-    );
-  }
-});
+    FourOhFour = require('./errors/404');
 
 var routes = (
   React.createElement(Route, {
