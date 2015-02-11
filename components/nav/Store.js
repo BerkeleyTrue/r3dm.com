@@ -4,15 +4,14 @@ var _ = require('lodash'),
     debug = require('debug')('r3dm:components:nav:store'),
 
     NavActions = require('./Actions'),
-    HomeActions = require('../home/Actions');
+    AppStore = require('../app/Store');
 
 var NavStore = Store.create({
 
   getInitialValue: function() {
     debug('setting initial value');
     return {
-      scrollTop: 0,
-      windowHeight: 0,
+      isScrollingDown: false,
       links: [
         { name: 'Connect', path: '#connect' },
         { name: 'Blog', path: '/blog' }
@@ -42,17 +41,12 @@ var NavStore = Store.create({
         })
         .map(createTransform),
 
-      HomeActions
-        .setScroll
-        .map(function(scrollTop) {
-          return { scrollTop: scrollTop };
-        })
-        .map(createTransform),
-
-      HomeActions
-        .setWindowHeight
-        .map(function(height) {
-          return { windowHeight: height };
+      AppStore
+        .map(function(AppState) {
+          return {
+            isScrollingDown: AppState.isScrollingDown,
+            scrollTop: AppState.scrollTop
+          };
         })
         .map(createTransform)
     );

@@ -8,7 +8,8 @@ var AppStore = Store.create({
   getInitialValue: function() {
     return {
       scrollTop: 0,
-      isScrolling: false
+      isScrolling: false,
+      isScrollingDown: true
     };
   },
 
@@ -17,9 +18,19 @@ var AppStore = Store.create({
       AppActions
         .setScroll
         .map(function(scrollTop) {
-          return { scrollTop: scrollTop };
-        })
-        .map(createTransform),
+          return {
+            transform: function(oldState) {
+              var newState = { scrollTop: scrollTop };
+              // is scrolling down
+              if (oldState.scrollTop < scrollTop) {
+                newState.isScrollingDown = true;
+              } else {
+                newState.isScrollingDown = false;
+              }
+              return _.assign({}, oldState, newState);
+            }
+          };
+        }),
 
       AppActions
         .setIsScrolling

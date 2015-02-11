@@ -6,8 +6,7 @@ var React = require('react/addons'),
 
     StateStreamMixin = require('../util/stateStreamMixin'),
 
-    NavStore = require('./Store.js'),
-    debug = require('debug')('r3dm:nav');
+    NavStore = require('./Store.js');
 
 var Nav = React.createClass({
   mixins: [
@@ -19,13 +18,38 @@ var Nav = React.createClass({
     return NavStore;
   },
 
+  componentWillMount: function() {
+    this.setState({
+      top: 0,
+      showNav: true
+    });
+  },
+
+  componentDidUpdate: function() {
+    var atTop = false;
+    // Always show at the top
+    if (this.state.scrollTop < 50) {
+      atTop = true;
+      if (!this.state.showNav) { this.setState({ showNav: true }); }
+      return;
+    }
+    // if not at the top and isScrollingDown XNOR showNav, activate tween
+    if (!atTop &&
+      (this.state.isScrollingDown ? this.state.showNav : !this.state.showNav)) {
+      this.setState({ showNav: !this.state.showNav });
+      this.tweenState('top', {
+        easing: tweenState.easingTypes.easeInOutQuad,
+        stackBehavior: tweenState.stackBehavior.ADDITIVE,
+        duration: 500,
+        endValue: this.state.top === 0 ? -150 : 0
+      });
+    }
+  },
+
   render: function() {
     var state = this.state,
         links = state.links,
-        navStyle = {
-          opacity: 1,
-          top: 0
-        };
+        navStyle = { top: this.getTweeningValue('top') };
 
     var val = links.map(function(link) {
 
