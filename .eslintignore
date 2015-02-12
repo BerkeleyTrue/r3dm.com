@@ -19,7 +19,7 @@ components/services/ServicesBlock.js
 components/team/Team.js
 components/team/TeamBlock.js
 components/work/Work.js
-components/work/WorkBlock.js
+components/work/WorkCopy.js
 
 components/Router.js
 

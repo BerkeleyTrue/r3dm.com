@@ -4,8 +4,9 @@ var React = require('react/addons'),
     PureRender = React.addons.PureRenderMixin,
 
     // # components
+    ImgLoader = require('react-imageloader'),
     Spinner = require('../common/Spinner'),
-    ImgLoader = require('react-imageloader');
+    WorkCopy = require('./WorkCopy');
 
 var Work = React.createClass({
   mixins: [PureRender],
@@ -25,26 +26,28 @@ var Work = React.createClass({
         </header>
         <div className = "work_content" >
           <article>
-            <div className='work_copy'>
-              <header>
-                <h3>SHPE</h3>
-                <p>San Francisco Bay Area</p>
-              </header>
-              <p>
-                We teamed up with the Society Of Hispanic Professional
-                Engineers - San Francisco Bay Area chapter to bring their
-                public face up-to-date with Node.js and MongoDb.
-                In the process, we were able to save this non-profit money in
-                the long-run by utilizing hosting plans available for small
-                companies using Node.js.
-              </p>
-            </div>
-            <div className='work_img'>
-              <ImgLoader
-                src='images/mocks/ipad_iphone_portrait.png'
-                wrapper={ React.DOM.div }
-                preloader={ spinner }/>
-            </div>
+            <WorkCopy imgFirst={ true }>
+              <div className='work_copy'>
+                <header>
+                  <h3>SHPE</h3>
+                  <p>San Francisco Bay Area</p>
+                </header>
+                <p>
+                  We teamed up with the Society Of Hispanic Professional
+                  Engineers - San Francisco Bay Area chapter to bring their
+                  public face up-to-date with Node.js and MongoDb.
+                  In the process, we were able to save this non-profit money in
+                  the long-run by utilizing hosting plans available for small
+                  companies using Node.js.
+                </p>
+              </div>
+              <div className='work_img'>
+                <ImgLoader
+                  src='images/mocks/ipad_iphone_portrait.png'
+                  wrapper={ React.DOM.div }
+                  preloader={ spinner }/>
+              </div>
+            </WorkCopy>
           </article>
         </div>
       </section>
