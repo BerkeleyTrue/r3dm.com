@@ -701,6 +701,53 @@ nav.nav li li {
     display: none;
   }
 }
+.SideNav {
+  height: 100vh;
+  position: fixed;
+  width: 30vw;
+  background-color: #fff;
+  z-index: 21;
+  right: 0;
+  top: 0;
+  -webkit-transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.SideNav ul {
+  list-style-type: none;
+  padding: 0;
+}
+.SideNav ul li {
+  padding-right: 2em;
+  padding-left: 2em;
+  height: 3em;
+}
+.SideNav a {
+  color: #000;
+  display: block;
+  text-decoration: none;
+}
+.SideNav-close {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.SideNav_overlay {
+  background-color: rgba(0,0,0,0);
+  height: 100%;
+  right: -100%;
+  position: fixed;
+  top: 0;
+  -webkit-transition: right 0ms cubic-bezier(0.23, 1, 0.32, 1) 400ms, background-color 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  transition: right 0ms cubic-bezier(0.23, 1, 0.32, 1) 400ms, background-color 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  width: 100%;
+  z-index: 20;
+}
+.SideNav_overlay.SideNav_overlay-show {
+  right: 0px;
+  background-color: rgba(0,0,0,0.54);
+  -webkit-transition: right 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, background-color 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  transition: right 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, background-color 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
 .logo svg {
   position: absolute;
   top: 40vh;

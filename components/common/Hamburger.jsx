@@ -8,6 +8,7 @@ var Hamburger = React.createClass({
   render: function() {
     return (
       <svg
+        { ...this.props }
         xmlns="http://www.w3.org/2000/svg"
         width="48"
         height="48"

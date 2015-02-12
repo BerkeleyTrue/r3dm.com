@@ -12,6 +12,7 @@ var NavStore = Store.create({
     debug('setting initial value');
     return {
       isScrollingDown: false,
+      isSideNavOpen: false,
       links: [
         { name: 'Connect', path: '#connect' },
         { name: 'Blog', path: '/blog' }
@@ -38,6 +39,13 @@ var NavStore = Store.create({
               ]
             };
           }
+        })
+        .map(createTransform),
+
+      NavActions
+        .openSideNav
+        .map(function(isOpen) {
+          return { isSideNavOpen: isOpen };
         })
         .map(createTransform),
 

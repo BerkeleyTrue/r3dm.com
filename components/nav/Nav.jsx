@@ -8,7 +8,8 @@ var React = require('react/addons'),
 
     StateStreamMixin = require('../util/stateStreamMixin'),
 
-    NavStore = require('./Store.js');
+    NavStore = require('./Store'),
+    NavActions = require('./Actions');
 
 var Nav = React.createClass({
   mixins: [
@@ -48,6 +49,10 @@ var Nav = React.createClass({
     }
   },
 
+  _onHamburgerClick: function() {
+    NavActions.openSideNav(true);
+  },
+
   render: function() {
     var state = this.state,
         links = state.links,
@@ -80,7 +85,7 @@ var Nav = React.createClass({
           { val }
         </ul>
         <div className='nav_links-hamburger'>
-          <Hamburger />
+          <Hamburger onClick={ this._onHamburgerClick }/>
         </div>
       </nav>
     );

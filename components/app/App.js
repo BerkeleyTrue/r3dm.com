@@ -11,6 +11,7 @@ var React = require('react/addons'),
 
     // # components
     Nav = require('../nav'),
+    SideNav = require('../nav/SideNav'),
     Footer = require('../footer');
 
 var App = React.createClass({displayName: "App",
@@ -32,7 +33,8 @@ var App = React.createClass({displayName: "App",
       React.createElement("div", null, 
         React.createElement(RouteHandler, null), 
         React.createElement(Footer, null), 
-        React.createElement(Nav, null)
+        React.createElement(Nav, null), 
+        React.createElement(SideNav, null)
       )
     );
   }

@@ -11,6 +11,7 @@ var React = require('react/addons'),
 
     // # components
     Nav = require('../nav'),
+    SideNav = require('../nav/SideNav'),
     Footer = require('../footer');
 
 var App = React.createClass({
@@ -33,6 +34,7 @@ var App = React.createClass({
         <RouteHandler />
         <Footer />
         <Nav />
+        <SideNav />
       </div>
     );
   }
