@@ -886,7 +886,7 @@ nav.nav li li {
   height: 20em;
   max-width: 100%;
 }
-@media all and (max-width: 60em) and (min-width: 30em) and (max-width: 60em) {
+@media all and (max-width: 60em) and (min-width: 30.063em) and (max-width: 60em) {
   .work_copy {
     display: inline-block;
     float: left;
