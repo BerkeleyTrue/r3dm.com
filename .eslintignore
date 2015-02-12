@@ -1,3 +1,4 @@
+components/app/App.js
 components/banner/Banner.js
 components/blog/Blog.js
 components/connect/Connect.js
