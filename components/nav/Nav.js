@@ -2,7 +2,9 @@ var React = require('react/addons'),
 
     tweenState = require('react-tween-state'),
     Router = require('react-router'),
+
     Link = Router.Link,
+    Hamburger = require('../common/Hamburger'),
 
     StateStreamMixin = require('../util/stateStreamMixin'),
 
@@ -71,9 +73,14 @@ var Nav = React.createClass({displayName: "Nav",
     });
 
     return (
-      React.createElement("nav", {className: "nav", style: navStyle }, 
-        React.createElement("ul", {className: "nav-pullRight"}, 
+      React.createElement("nav", {
+        className: "nav", 
+        style: navStyle }, 
+        React.createElement("ul", {className: "nav_links nav_links-hide"}, 
           val 
+        ), 
+        React.createElement("div", {className: "nav_links-hamburger"}, 
+          React.createElement(Hamburger, null)
         )
       )
     );

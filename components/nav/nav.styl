@@ -39,5 +39,20 @@ nav.nav
     li
       display block
 
-.nav-pullRight
+.nav_links
   float right
+
+@media (max-width: 30em)
+  .nav_links-hide
+    display none !important
+  .nav_links-hamburger
+    display inline-block
+    float right
+    height 3em
+    svg
+      height 3em
+      fill white
+
+@media (min-width: 30.063em)
+  .nav_links-hamburger
+    display none

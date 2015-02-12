@@ -679,8 +679,27 @@ nav.nav li:hover {
 nav.nav li li {
   display: block;
 }
-.nav-pullRight {
+.nav_links {
   float: right;
+}
+@media (max-width: 30em) {
+  .nav_links-hide {
+    display: none !important;
+  }
+  .nav_links-hamburger {
+    display: inline-block;
+    float: right;
+    height: 3em;
+  }
+  .nav_links-hamburger svg {
+    height: 3em;
+    fill: #fff;
+  }
+}
+@media (min-width: 30.063em) {
+  .nav_links-hamburger {
+    display: none;
+  }
 }
 .logo svg {
   position: absolute;
