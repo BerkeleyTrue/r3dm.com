@@ -1,9 +1,15 @@
 var React = require('react'),
+    // debug = require('debug')('r3dm:components:blog'),
+
+    // # mixins
+    StateStreamMixin = require('../util/stateStreamMixin'),
+
+    // # components
     Link = require('react-router').Link,
     FourOhFour = require('../errors/404'),
-    StateStreamMixin = require('../util/stateStreamMixin'),
-    BlogStore = require('./Store.js'),
-    debug = require('debug')('r3dm:components:blog');
+
+    // # flux
+    BlogStore = require('./Store.js');
 
 var Blog = React.createClass({displayName: "Blog",
   mixins: [StateStreamMixin],
@@ -15,7 +21,6 @@ var Blog = React.createClass({displayName: "Blog",
   render: function() {
     var posts = this.state.posts;
 
-    debug('number of posts: ', posts.length);
     if (posts === false) {
       return React.createElement(FourOhFour, null);
     }
@@ -63,7 +68,7 @@ var Blog = React.createClass({displayName: "Blog",
       return (
         React.createElement("section", {
           className: "post", 
-          key: coverImgSrc }, 
+          key:  post.slug}, 
           React.createElement("header", null, 
             React.createElement(Link, {
               to: "blog", 
