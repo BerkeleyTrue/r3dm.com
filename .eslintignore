@@ -9,9 +9,10 @@ components/footer/Footer.js
 components/home/Home.js
 components/logo/Logo.js
 components/logo/LogoSvg.js
+components/nav/Links.js
 components/nav/Nav.js
-components/nav/SideNav.js
 components/nav/OverLay.js
+components/nav/SideNav.js
 components/services/Services.js
 components/services/ServicesBlock.js
 components/team/Team.js

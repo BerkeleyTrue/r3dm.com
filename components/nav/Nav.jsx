@@ -1,12 +1,12 @@
 var React = require('react/addons'),
-
     tweenState = require('react-tween-state'),
-    Router = require('react-router'),
 
-    Link = Router.Link,
-    Hamburger = require('../common/Hamburger'),
-
+    // # mixins
     StateStreamMixin = require('../util/stateStreamMixin'),
+
+    // # components
+    Links = require('./Links'),
+    Hamburger = require('../common/Hamburger'),
 
     NavStore = require('./Store'),
     NavActions = require('./Actions');
@@ -58,32 +58,13 @@ var Nav = React.createClass({
         links = state.links,
         navStyle = { top: this.getTweeningValue('top') };
 
-    var val = links.map(function(link) {
-
-      if (link.path.indexOf('#') !== -1) {
-        return (
-          <li key={ link.path }>
-            <a href={ link.path } target='_self'>
-                { link.name }
-            </a>
-          </li>
-        );
-      } else {
-        return (
-          <li key={ link.path }>
-            <Link to={ link.path }>{ link.name }</Link>
-          </li>
-        );
-      }
-    });
-
     return (
       <nav
         className='nav'
         style={ navStyle }>
-        <ul className='nav_links nav_links-hide'>
-          { val }
-        </ul>
+        <Links
+          className='nav_links nav_links-hide'
+          links={ this.state.links }/>
         <div className='nav_links-hamburger'>
           <Hamburger onClick={ this._onHamburgerClick }/>
         </div>

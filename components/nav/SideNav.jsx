@@ -7,7 +7,7 @@ var React = require('react/addons'),
 
     // # components
     OverLay = require('./OverLay'),
-    Link = require('react-router').Link,
+    Links = require('./Links'),
 
     // # flux
     NavStore = require('./Store'),
@@ -41,31 +41,10 @@ var SideNav = React.createClass({
       'SideNav-close': !this.state.open
     });
 
-    var val = links.map(function(link) {
-
-      if (link.path.indexOf('#') !== -1) {
-        return (
-          <li key={ link.path }>
-            <a href={ link.path } target='_self'>
-                { link.name }
-            </a>
-          </li>
-        );
-      } else {
-        return (
-          <li key={ link.path }>
-            <Link to={ link.path }>{ link.name }</Link>
-          </li>
-        );
-      }
-    });
-
     return (
       <div>
         <nav className={ sideNavClass }>
-          <ul>
-            { val }
-          </ul>
+          <Links links={ links } />
         </nav>
         <OverLay
           show={ this.state.open }
