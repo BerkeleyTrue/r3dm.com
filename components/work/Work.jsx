@@ -27,7 +27,7 @@ var Work = React.createClass({
     this._updateScreen();
   },
 
-  componentWillUpdate: function() {
+  componentWillUnmount: function() {
     this._mql.removeListener(this._updateScreen);
   },
 
