@@ -58,7 +58,7 @@ var Blog = React.createClass({
       } else {
         authorStr = 'no author';
       }
-      if (post.cover) { coverImgSrc = post.cover.url; }
+      coverImgSrc = post.cover ? post.cover.url : '';
 
       return (
         <section
