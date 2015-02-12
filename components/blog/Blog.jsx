@@ -25,7 +25,7 @@ var Blog = React.createClass({
      * Else, render a list of blog briefs that link to the whole versions.
     */
     var val = posts.map(function(post) {
-      var html, readMore, authorStr, publishedDate;
+      var html, readMore, authorStr, publishedDate, coverImgSrc;
 
       if (posts.length === 1) {
         html = post.content.extended;
@@ -58,16 +58,20 @@ var Blog = React.createClass({
       } else {
         authorStr = 'no author';
       }
+      if (post.cover) { coverImgSrc = post.cover.url; }
 
       return (
         <section
           className='post'
-          key={ post.slug } >
+          key={ coverImgSrc } >
           <header>
             <Link
               to='blog'
               params={{ slug: post.slug }}
               className='post_title'>
+              <div className="post-cover">
+                <img src={ coverImgSrc }></img>
+              </div>
               <h1>{ post.title }</h1>
             </Link>
             <div className='post_subheading'>

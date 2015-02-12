@@ -25,7 +25,7 @@ var Blog = React.createClass({displayName: "Blog",
      * Else, render a list of blog briefs that link to the whole versions.
     */
     var val = posts.map(function(post) {
-      var html, readMore, authorStr, publishedDate;
+      var html, readMore, authorStr, publishedDate, coverImgSrc;
 
       if (posts.length === 1) {
         html = post.content.extended;
@@ -58,16 +58,20 @@ var Blog = React.createClass({displayName: "Blog",
       } else {
         authorStr = 'no author';
       }
+      if (post.cover) { coverImgSrc = post.cover.url; }
 
       return (
         React.createElement("section", {
           className: "post", 
-          key:  post.slug}, 
+          key: coverImgSrc }, 
           React.createElement("header", null, 
             React.createElement(Link, {
               to: "blog", 
               params: { slug: post.slug}, 
               className: "post_title"}, 
+              React.createElement("div", {className: "post-cover"}, 
+                React.createElement("img", {src: coverImgSrc })
+              ), 
               React.createElement("h1", null,  post.title)
             ), 
             React.createElement("div", {className: "post_subheading"}, 

@@ -12,6 +12,5 @@ module.exports = function(done) {
     password: 'admin',
     isAdmin: true
   })
-    .save(done);
-
+  .save(done);
 };

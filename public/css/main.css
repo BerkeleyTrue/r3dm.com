@@ -1419,3 +1419,9 @@ a.post_title:active {
 .post_readmore a:hover {
   color: #f00;
 }
+.post-cover {
+  text-align: center;
+}
+.post-cover img {
+  max-height: 30vh;
+}

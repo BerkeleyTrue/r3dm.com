@@ -17,6 +17,9 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add({
+  cover: {
+    type: Types.S3File
+  },
   title: {
     type: String,
     required: true
@@ -52,11 +55,6 @@ Post.add({
       height: 400
     }
   }
-  // categories: {
-  //   type: Types.Relationship,
-  //   ref: 'PostCategory',
-  //   many: true
-  // }
 });
 
 Post.schema.virtual('content.full').get(function() {
