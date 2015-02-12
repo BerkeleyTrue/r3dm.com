@@ -753,7 +753,7 @@ nav.nav li li {
   padding-top: 25vh;
 }
 .work {
-  background-color: #d1d2d4;
+  background-color: $section-bg-color;
   color: #fff;
 }
 .work_heading {
