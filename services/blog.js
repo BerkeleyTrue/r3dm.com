@@ -20,14 +20,12 @@ module.exports = {
       userId = req.session.userId;
     } else if (params && params.userId) {
       userId = params.userId;
-    } else {
-      userId = false;
     }
 
     debug('slug', params.slug);
     debug('userId', userId);
 
-    if (userId) {
+    if (userId && userId !== 'undefined') {
       User.model.findById(userId, function (err, user) {
         if (err) { return err; }
 
