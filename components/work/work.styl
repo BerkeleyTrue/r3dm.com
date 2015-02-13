@@ -1,34 +1,55 @@
 @require 'util'
-$section-bg-color = #233C6F
 
 .work
-  background-color $section-bg-color
+  background-color darkBlue
   color white
-  //retina-image '../images/subtle_carbon.png'
+  retina-image '../images/subtle_carbon.png'
 
 .work_heading
   text-align center
   overflow auto // bug fix
 
++media-query(all, max-width 60em)
+  .work_content
+    gs('fluid')
+    article
+      row()
+      +media-query(all, min-width 30.063em, max-width 60em)
+        .work_copy
+          col(6)
+        .work_img
+          col(6)
+
++media-query(all, min-width 60.063em)
+  .work_content
+    gs('fixed')
+    article
+      row()
+      .work_copy
+        col(5)
+        offset(1)
+      .work_img
+        col(5)
+
 .work_content
-  gs('fluid')
   height 75%
 
   article
-    row()
     display inline-block
     padding-bottom 3em
 
     .work_copy
-      col(6)
       text-align left
+      display inline-block
       header
         text-align center
       >p
         padding 40px
         padding-top 5px
+
     .work_img
-      col(6)
+      position relative
+      height 20em
       div.pending
         text-align center
         height 20em
@@ -43,11 +64,3 @@ $section-bg-color = #233C6F
         height 20em
         max-width 100%
 
-+media-query(all, min-width 970px)
-  .work_content
-    article
-      .work_copy
-        col(4)
-        offset(2)
-      .work_img
-        col(3)
