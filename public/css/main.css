@@ -1515,3 +1515,6 @@ a.post_title:active {
     max-width: 50vw;
   }
 }
+.post p {
+  font-size: large;
+}
