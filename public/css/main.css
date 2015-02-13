@@ -862,6 +862,7 @@ nav.nav li li {
 }
 .work_content article .work_copy {
   text-align: left;
+  display: inline-block;
 }
 .work_content article .work_copy header {
   text-align: center;
@@ -869,6 +870,10 @@ nav.nav li li {
 .work_content article .work_copy >p {
   padding: 40px;
   padding-top: 5px;
+}
+.work_content article .work_img {
+  position: relative;
+  height: 20em;
 }
 .work_content article .work_img div.pending {
   text-align: center;
