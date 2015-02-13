@@ -223,7 +223,6 @@ html {
   border: 1px solid #999;
   border: none rgba(0,0,0,0);
   background-color: #e6e6e6;
-  text-decoration: none;
   border-radius: 2px;
 }
 .pure-button::-moz-focus-inner {
@@ -626,6 +625,14 @@ body {
 .con {
   height: 100vh;
 }
+a {
+  text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
 .main-app {
   height: 100%;
   width: 100%;
@@ -666,7 +673,6 @@ nav.nav li a {
   color: #fff;
   display: block;
   padding: 20px 20px;
-  text-decoration: none;
   white-space: nowrap;
 }
 nav.nav li a.active {
@@ -724,7 +730,6 @@ nav.nav li li {
 .SideNav a {
   color: #000;
   display: block;
-  text-decoration: none;
 }
 .SideNav-close {
   -webkit-transform: translateX(100%);
@@ -1468,12 +1473,6 @@ input[type = 'email'].connect_input {
 }
 a.post_title {
   color: #000;
-  text-decoration: none;
-}
-a.post_title:hover,
-a.post_title:focus,
-a.post_title:active {
-  text-decoration: none;
 }
 .post_subheading {
   font-size: 0.8em;
@@ -1489,11 +1488,6 @@ a.post_title:active {
   line-height: 50px;
   -webkit-transition: all 0.5s ease-in-out 0s;
   transition: all 0.5s ease-in-out 0s;
-  text-decoration: none;
-}
-.post_readmore a:focus,
-.post_readmore a:active {
-  text-decoration: none;
 }
 .post_readmore a:hover {
   color: #f00;
