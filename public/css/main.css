@@ -1467,8 +1467,19 @@ a.post_title:active {
   color: #f00;
 }
 .post-cover {
+  padding-top: 10px;
   text-align: center;
 }
 .post-cover img {
-  max-height: 30vh;
+  max-width: 80vw;
+}
+@media all and (min-width: 768px) {
+  .post-cover img {
+    max-width: 70vw;
+  }
+}
+@media all and (min-width: 992px) {
+  .post-cover img {
+    max-width: 50vw;
+  }
 }

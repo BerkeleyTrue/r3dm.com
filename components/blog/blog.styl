@@ -56,7 +56,14 @@ a.post_title
       color red
 
 .post-cover
+  padding-top 10px
   text-align center
 
   img
-    max-height 30vh
+    max-width 80vw
+
+    +media-query( all, min-width 768px )
+      max-width 70vw
+
+    +media-query( all, min-width 992px )
+      max-width 50vw
