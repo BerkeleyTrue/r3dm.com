@@ -5,9 +5,7 @@ var Banner = React.createClass({displayName: "Banner",
   render: function() {
     return (
       React.createElement("section", {className: "banner"}, 
-        React.createElement("header", null, 
-          React.createElement("h1", null, "We Are The R3DM.")
-        )
+        React.createElement("img", {src: "images/banner.jpg"})
       )
     );
   }
