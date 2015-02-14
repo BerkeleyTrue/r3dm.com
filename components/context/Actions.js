@@ -11,8 +11,6 @@ var actions = createActions([
   'renderToUser'
 ]);
 
-initStores(BlogStore, NavStore);
-
 actions
   .setContext
   .filter(function(ctx) {
@@ -75,14 +73,6 @@ actions
   });
 
 module.exports = actions;
-
-// init stores on start
-function initStores(stores) {
-  stores = [].slice.call(arguments);
-  stores.map(function(store) {
-    store.first().subscribe(function() { });
-  });
-}
 
 // take an array of observables
 // convert them to hot observables
