@@ -22,31 +22,36 @@ var Nav = React.createClass({displayName: "Nav",
   },
 
   componentWillMount: function() {
-    this.setState({
-      top: 0,
-      showNav: true
-    });
+    this.setState({ top: this.state.showNavAtTop ? 0 : -150 });
   },
 
   componentDidUpdate: function() {
-    var atTop = false;
-    // Always show at the top
-    if (this.state.scrollTop < 50) {
-      atTop = true;
-      if (!this.state.showNav) { this.setState({ showNav: true }); }
+    var atTop = this.state.scrollTop < 50;
+    if (atTop) {
+      if (this.state.showNav !== this.state.showNavAtTop) {
+
+        NavActions.setShowNav(this.state.showNavAtTop);
+        if (this.state.top !== (this.state.showNavAtTop ? 0 : -150)) {
+          this._activateNavTween();
+        }
+      }
       return;
     }
     // if not at the top and isScrollingDown XNOR showNav, activate tween
-    if (!atTop &&
-      (this.state.isScrollingDown ? this.state.showNav : !this.state.showNav)) {
-      this.setState({ showNav: !this.state.showNav });
-      this.tweenState('top', {
-        easing: tweenState.easingTypes.easeInOutQuad,
-        stackBehavior: tweenState.stackBehavior.ADDITIVE,
-        duration: 500,
-        endValue: this.state.top === 0 ? -150 : 0
-      });
+    if (this.state.isScrollingDown ? this.state.showNav : !this.state.showNav) {
+
+      NavActions.setShowNav(!this.state.showNav);
+      this._activateNavTween();
     }
+  },
+
+  _activateNavTween: function() {
+    this.tweenState('top', {
+      easing: tweenState.easingTypes.easeInOutQuad,
+      stackBehavior: tweenState.stackBehavior.ADDITIVE,
+      duration: 500,
+      endValue: this.state.top === 0 ? -150 : 0
+    });
   },
 
   _onHamburgerClick: function() {

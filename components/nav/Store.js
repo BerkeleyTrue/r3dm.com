@@ -13,6 +13,8 @@ var NavStore = Store.create({
     return {
       isScrollingDown: false,
       isSideNavOpen: false,
+      showNav: true,
+      showNavAtTop: false,
       links: [
         { name: 'Connect', path: '#connect' },
         { name: 'Blog', path: '/blog' }
@@ -49,11 +51,26 @@ var NavStore = Store.create({
         })
         .map(createTransform),
 
+      NavActions
+        .setShowNav
+        .map(function(showNav) {
+          return { showNav: showNav };
+        })
+        .map(createTransform),
+
+      NavActions
+        .setShowNavAtTop
+        .map(function(showNavAtTop) {
+          return { showNavAtTop: showNavAtTop };
+        })
+        .map(createTransform),
+
       AppStore
         .map(function(AppState) {
           return {
             isScrollingDown: AppState.isScrollingDown,
-            scrollTop: AppState.scrollTop
+            scrollTop: AppState.scrollTop,
+            showNavAtTop: AppState.showNavAtTop
           };
         })
         .map(createTransform)
