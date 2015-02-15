@@ -19,19 +19,22 @@ actions
   .subscribe(function(ctx) {
     debug('set ctx');
 
-    waitFor(BlogStore.first(firstFilter), NavStore)
+    waitFor(BlogStore.first(firstFilter))
       .subscribe(function() {
         debug('render blog to user', '\n');
         actions.renderToUser(ctx);
       });
+
+    debug('set links', '\n');
+    NavActions.setLinks(ctx.state.path);
+    debug('set show nav at top', '\n');
+    NavActions.setShowNavAtTop(true);
 
     debug('set slug', '\n');
     BlogActions.setSlug({
       slug: ctx.state.params.slug,
       userId: ctx.userId
     });
-    debug('set links', '\n');
-    NavActions.setLinks(ctx.state.path);
 
     function firstFilter(state) {
       var pass;
@@ -62,7 +65,9 @@ actions
     return ctx.state.path.indexOf('/blog') === -1;
   })
   .subscribe(function(ctx) {
-     waitFor(NavStore)
+
+    NavActions.setShowNavAtTop(false);
+    waitFor(NavStore)
       .subscribe(function() {
         debug('rendering front');
         actions.renderToUser(ctx);

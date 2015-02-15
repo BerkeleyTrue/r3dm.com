@@ -69,8 +69,7 @@ var NavStore = Store.create({
         .map(function(AppState) {
           return {
             isScrollingDown: AppState.isScrollingDown,
-            scrollTop: AppState.scrollTop,
-            showNavAtTop: AppState.showNavAtTop
+            scrollTop: AppState.scrollTop
           };
         })
         .map(createTransform)
