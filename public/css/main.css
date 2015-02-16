@@ -639,7 +639,7 @@ a:active {
   padding-bottom: 60px;
 }
 nav.nav {
-  background-color: #125074;
+  background-color: #333;
   display: inline-block;
   position: fixed;
   top: 0;
