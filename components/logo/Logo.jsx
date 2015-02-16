@@ -7,11 +7,15 @@ var React = require('react'),
 
 var Logo = React.createClass({
   propTypes: {
-    type: React.PropTypes.string
+    type: React.PropTypes.string,
+    logoClass: React.PropTypes.string
   },
 
   getDefaultProps: function() {
-    return { type: '' };
+    return {
+      type: '',
+      logoClass: ''
+    };
   },
 
   render: function() {
@@ -32,7 +36,7 @@ var Logo = React.createClass({
 
     return (
       <Isvg
-        className='logo'
+        className={ this.props.logoClass }
         wrapper={ React.DOM.div }
         preloader={ React.createFactory(LogoComp) }
         src= { imageSrc + '.svg'} >

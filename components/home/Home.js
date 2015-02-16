@@ -16,7 +16,7 @@ var Home = React.createClass({displayName: "Home",
         React.createElement("div", {className: "logo-container"}, 
           React.createElement("div", {className: "v-center"}, 
             React.createElement("div", null, 
-              React.createElement(Logo, null)
+              React.createElement(Logo, {logoClass: "logo"})
             )
           )
         ), 
