@@ -714,6 +714,22 @@ nav.nav li li {
 .nav_links {
   float: right;
 }
+.nav_logo {
+  float: left;
+  padding-left: 2em;
+}
+.nav_logo div {
+  display: inline-block;
+}
+.nav_logo .nav_logo-type svg {
+  height: 3em;
+  width: 8em;
+  fill: #fff;
+}
+.nav_logo .nav_logo-mark svg {
+  height: 3em;
+  width: 3em;
+}
 @media (max-width: 30em) {
   .nav_links-hide {
     display: none !important;

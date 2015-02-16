@@ -6,8 +6,10 @@ var React = require('react/addons'),
 
     // # components
     Links = require('./Links'),
+    Logo = require('../logo'),
     Hamburger = require('../common/Hamburger'),
 
+    // # flux
     NavStore = require('./Store'),
     NavActions = require('./Actions');
 
@@ -67,6 +69,10 @@ var Nav = React.createClass({
       <nav
         className='nav'
         style={ navStyle }>
+        <div className='nav_logo'>
+          <Logo type='mark' logoClass='nav_logo-mark'/>
+          <Logo type='type' logoClass='nav_logo-type'/>
+        </div>
         <Links
           className='nav_links nav_links-hide'
           links={ this.state.links }/>
