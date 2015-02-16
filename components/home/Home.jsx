@@ -14,7 +14,11 @@ var Home = React.createClass({
     return (
       <main className="main-app">
         <div className="logo-container">
-          <Logo />
+          <div className='v-center'>
+            <div>
+              <Logo />
+            </div>
+          </div>
         </div>
         <section className="first-con">
           <Banner />
