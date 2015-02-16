@@ -10,6 +10,8 @@ components/footer/Footer.js
 components/home/Home.js
 components/logo/Logo.js
 components/logo/LogoSvg.js
+components/logo/LogoType.js
+components/logo/LogoMark.js
 components/nav/Links.js
 components/nav/Nav.js
 components/nav/OverLay.js
