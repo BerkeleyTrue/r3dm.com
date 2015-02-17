@@ -4,13 +4,13 @@ var keystone = require('keystone'),
 module.exports = {
   name: 'blogService',
 
-  /* reads blog posts from the database
-   * if the admin is logged in he sees published and unpublished posts
-   * else the user only sees published posts
-   * also
-   * if a slug is provided in the url, a single post is returned
-   * else, a list of 5 blog posts are returned
-   */
+  // reads blog posts from the database
+  // if the admin is logged in he sees published and unpublished posts
+  // else the user only sees published posts
+  // also
+  // if a slug is provided in the url, a single post is returned
+  // else, a list of 5 blog posts are returned
+  //
   read: function(req, resource, params, config, cb) {
     var where, limit, skip, userId,
         User = keystone.list('User');
@@ -57,7 +57,7 @@ module.exports = {
 };
 
 /*
- * performs a mongoDB query on the Post model
+ * performs a query on the Post model
  * accepts a `where`, limit size, and skip size
  */
 function performPostsQuery(where, limit, skip, cb) {

@@ -1,15 +1,15 @@
 var Rx = require('rx'),
-
     React = require('react'),
-    CSSTransitionGroup = React.addons.CSSTransitionGroup,
-    PureRenderMixin = React.addons.PureRenderMixin,
-
-    StateStreamMixin = require('../util/stateStreamMixin'),
     tweenState = require('react-tween-state'),
-
-    globular = require('../globular'),
+    CSSTransitionGroup = React.addons.CSSTransitionGroup,
     debug = require('debug')('r3dm:components:connect'),
+    globular = require('../globular'),
 
+    // # mixins
+    PureRenderMixin = React.addons.PureRenderMixin,
+    StateStreamMixin = require('../util/stateStreamMixin'),
+
+    // # flux
     ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
 
@@ -53,6 +53,7 @@ var Connect = React.createClass({displayName: "Connect",
       }
     );
   },
+
   componentWillMount: function() {
     this.setState({ scale: 0 });
   },

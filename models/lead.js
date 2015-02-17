@@ -1,10 +1,6 @@
 var keystone = require('keystone'),
     Types = keystone.Field.Types;
 
-/**
- * Lead Model
- * ==========
- */
 var Lead = new keystone.List('Lead');
 
 Lead.add({

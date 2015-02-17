@@ -14,6 +14,7 @@ var React = require('react/addons'),
 
 var screenTrigger = '(max-width: 30em)';
 var triggerImageAnimate = 450;
+
 var Work = React.createClass({
   mixins: [
     tweenState.Mixin,
@@ -31,7 +32,10 @@ var Work = React.createClass({
   },
 
   componentWillMount: function() {
-    this.setState({ shpeArticleRight: -1000 });
+    this.setState({
+      shpeArticleRight: -1000,
+      shpeArticleTweened: false
+    });
   },
 
   componentDidMount: function() {
@@ -49,9 +53,16 @@ var Work = React.createClass({
     this._mql.removeListener(this._updateScreen);
   },
 
+  shouldComponentUpdate: function() {
+    return this.getTweeningValue('shpeArticleRight') !== 0;
+  },
+
   componentDidUpdate: function() {
-    if (!this.state.shpeArticleTweened &&
-        this.state.isScrollingDown &&
+    if (this.state.shpeArticleTweened) {
+      return;
+    }
+
+    if (this.state.isScrollingDown &&
         this.state.scrollTop >
         (this.state.shpeArticleHeight - triggerImageAnimate)) {
 

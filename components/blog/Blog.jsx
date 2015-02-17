@@ -1,7 +1,8 @@
-var React = require('react'),
+var React = require('react/addons'),
     // debug = require('debug')('r3dm:components:blog'),
 
     // # mixins
+    PureRenderMixin = React.addons.PureRenderMixin,
     StateStreamMixin = require('../util/stateStreamMixin'),
 
     // # components
@@ -12,7 +13,10 @@ var React = require('react'),
     BlogStore = require('./Store.js');
 
 var Blog = React.createClass({
-  mixins: [StateStreamMixin],
+  mixins: [
+    PureRenderMixin,
+    StateStreamMixin
+  ],
 
   getStateStream: function() {
     return BlogStore;
@@ -25,10 +29,10 @@ var Blog = React.createClass({
       return <FourOhFour />;
     }
 
-    /* Iterates over the posts returned from Mongodb.
-     * If there is only one render the single-blog-post-view.
-     * Else, render a list of blog briefs that link to the whole versions.
-    */
+    // Iterates over the posts
+    // If there is only one render the single-blog-post-view.
+    // Else, render a list of blog briefs that link to the whole versions.
+    //
     var val = posts.map(function(post) {
       var html, readMore, authorStr, publishedDate, coverImg;
 

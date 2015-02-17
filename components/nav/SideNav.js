@@ -1,8 +1,7 @@
-var React = require('react/addons'),
+var React = require('react'),
     cx = React.addons.classSet,
 
     // # mixins
-    PureRenderMixin = React.addons.PureRenderMixin,
     StateStreamMixin = require('../util/stateStreamMixin'),
 
     // # components
@@ -14,10 +13,7 @@ var React = require('react/addons'),
     NavActions = require('./Actions');
 
 var SideNav = React.createClass({displayName: "SideNav",
-  mixins: [
-    PureRenderMixin,
-    StateStreamMixin
-  ],
+  mixins: [StateStreamMixin],
 
   getStateStream: function() {
     return NavStore

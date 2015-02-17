@@ -2,6 +2,11 @@
 var React = require('react');
 
 var LogoSvg = React.createClass({
+
+  shouldComponentUpdate: function() {
+    return false;
+  },
+
   render: function() {
     return (
       <svg width="561.604" height="706.878" viewBox="0 0 561.604 706.878">

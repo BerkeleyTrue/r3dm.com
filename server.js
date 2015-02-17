@@ -156,7 +156,7 @@ app.use(function(req, res) {
 });
 
 /* eslint-disable */
-app.use(function(err, req, res, next) { //jshint ignore:line
+app.use(function(err, req, res, next) {
 /* eslint-enable */
   debug('Err: ', err);
   res
@@ -164,7 +164,6 @@ app.use(function(err, req, res, next) { //jshint ignore:line
     .send('Something went wrong');
 });
 
-// keystone.start();
 app.listen(app.get('port'), function() {
   debug('The R3DM is go at: ' + app.get('port'));
   debug(new Date());

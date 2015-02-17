@@ -1,6 +1,14 @@
-var React = require('react');
+var React = require('react/addons'),
+    PureRenderMixin = React.addons.PureRenderMixin;
 
 var Spinner = React.createClass({
+  mixins: [PureRenderMixin],
+
+  propTypes: {
+    svgClass: React.PropTypes.string,
+    circleClass: React.PropTypes.string
+  },
+
   render: function() {
     return (
       <svg

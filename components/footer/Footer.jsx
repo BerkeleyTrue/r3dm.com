@@ -1,8 +1,5 @@
 var React = require('react');
 
-/*
- * Footer
- */
 var Footer = React.createClass({
 
   shouldComponentUpdate: function() {
@@ -10,10 +7,10 @@ var Footer = React.createClass({
   },
 
   render: function() {
-    return  (
-        <footer id="footer">
-            Copyright &copy; 2015 R3DM LLC
-        </footer>
+    return (
+      <footer id="footer">
+        Copyright &copy; 2015 R3DM LLC
+      </footer>
     );
   }
 });

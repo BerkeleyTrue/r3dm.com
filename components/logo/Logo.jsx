@@ -1,4 +1,6 @@
-var React = require('react'),
+var React = require('react/addons'),
+
+    PureRenderMixin = React.addons.PureRenderMixin,
 
     Isvg = require('react-inlinesvg'),
     LogoSvg = require('./LogoSvg'),
@@ -6,6 +8,8 @@ var React = require('react'),
     LogoType = require('./LogoType');
 
 var Logo = React.createClass({
+  mixins: [PureRenderMixin],
+
   propTypes: {
     type: React.PropTypes.string,
     logoClass: React.PropTypes.string

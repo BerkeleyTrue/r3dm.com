@@ -1,12 +1,11 @@
 'use strict';
 var React = require('react/addons'),
     Router = require('./components/Router'),
-
+    debug = require('debug')('r3dm:client'),
     HistoryLocation = require('react-router').HistoryLocation,
 
     ContextStore = require('./components/context/Store'),
-    ContextActions = require('./components/context/Actions'),
-    debug = require('debug')('r3dm:client');
+    ContextActions = require('./components/context/Actions');
 
 var mountNode = document.getElementById('app');
 

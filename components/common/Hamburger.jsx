@@ -2,7 +2,6 @@ var React = require('react/addons'),
     PureRenderMixin = React.addons.PureRenderMixin;
 
 var Hamburger = React.createClass({
-
   mixins: [PureRenderMixin],
 
   render: function() {
