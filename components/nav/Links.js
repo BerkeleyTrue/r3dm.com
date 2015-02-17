@@ -3,6 +3,15 @@ var React = require('react'),
 
 var Links = React.createClass({displayName: "Links",
 
+  propTypes: {
+    links: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        name: React.PropTypes.string,
+        path: React.PropTypes.string
+      })
+    )
+  },
+
   render: function() {
 
     var val = this.props.links.map(function(link) {
