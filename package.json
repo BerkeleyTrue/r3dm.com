@@ -30,7 +30,7 @@
   ],
   "license": "None",
   "devDependencies": {
-    "browser-sync": "^1.7.2",
+    "browser-sync": "^2.1.1",
     "eslint": "^0.13.0",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.1",

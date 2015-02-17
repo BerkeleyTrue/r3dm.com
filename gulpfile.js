@@ -99,6 +99,9 @@ gulp.task('bundle', function(cb) {
 
 gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
   sync.init(null, {
+    ui: {
+      port: 9001
+    },
     proxy: 'http://localhost:9000',
     logLeval: 'debug',
     files: [
