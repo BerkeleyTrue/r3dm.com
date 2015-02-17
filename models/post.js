@@ -55,6 +55,9 @@ Post.add({
   translation: {
     type: Types.Relationship,
     ref: 'Post'
+  },
+  language: {
+    type: String
   }
 });
 
