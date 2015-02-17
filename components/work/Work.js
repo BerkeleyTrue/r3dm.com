@@ -33,7 +33,7 @@ var Work = React.createClass({displayName: "Work",
 
   componentWillMount: function() {
     this.setState({
-      shpeArticleRight: -1000,
+      shpeArticleRight: 1000,
       shpeArticleTweened: false
     });
   },
@@ -85,13 +85,17 @@ var Work = React.createClass({displayName: "Work",
   },
 
   render: function() {
+    var translate = this.getTweeningValue('shpeArticleRight');
     // create factory with props
     var spinner = React.createElement.bind(null, Spinner, {
       svgClass: 'connect_sending-spinner',
       circleClass: 'connect_sending-path'
     });
 
-    var shpeArticleStyle = { right: this.getTweeningValue('shpeArticleRight') };
+    var shpeArticleStyle = {
+      '-webkit-transform': 'translateX(' + translate + 'px)',
+      transform: 'translateX(' + translate + 'px)'
+    };
 
     return (
       React.createElement("section", {className: "work"}, 
