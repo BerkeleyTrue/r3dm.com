@@ -86,6 +86,7 @@ var Work = React.createClass({displayName: "Work",
 
   render: function() {
     var translate = this.getTweeningValue('shpeArticleRight');
+
     // create factory with props
     var spinner = React.createElement.bind(null, Spinner, {
       svgClass: 'connect_sending-spinner',
@@ -93,7 +94,7 @@ var Work = React.createClass({displayName: "Work",
     });
 
     var shpeArticleStyle = {
-      '-webkit-transform': 'translateX(' + translate + 'px)',
+      webkitTransform: 'translateX(' + translate + 'px)',
       transform: 'translateX(' + translate + 'px)'
     };
 
@@ -120,10 +121,12 @@ var Work = React.createClass({displayName: "Work",
                 )
               ), 
               React.createElement("div", {className: "work_img", style: shpeArticleStyle }, 
-                React.createElement(ImgLoader, {
-                  src: "images/mocks/ipad_iphone_portrait.png", 
-                  wrapper:  React.DOM.div, 
-                  preloader: spinner })
+                React.createElement("a", {href: "http://shpesfba.org"}, 
+                  React.createElement(ImgLoader, {
+                    src: "images/mocks/ipad_iphone_portrait.png", 
+                    wrapper:  React.DOM.div, 
+                    preloader: spinner })
+                )
               )
             )
           )
