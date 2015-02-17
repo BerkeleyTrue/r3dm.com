@@ -1,0 +1,15 @@
+doctype xml
+urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+  //- Home page
+  url
+    loc= siteUrl
+    lastmod= now
+    changefreq weekly
+    priority = 1
+
+  each post in posts
+    url
+      loc #{siteUrl}/blog/#{post.slug}
+      lastmod= now
+      changefreq weekly
+      priority = 0.8

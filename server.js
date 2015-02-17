@@ -7,6 +7,7 @@ var express = require('express'),
     app = express(),
     keystone = require('keystone'),
     mongoose = require('mongoose'),
+    sitemap = require('./server/sitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
@@ -87,6 +88,8 @@ keystone.routes(app);
 keystone.mongoose = mongoose;
 
 app.use(serve('./public'));
+
+sitemap(app);
 
 app.get('/500', function(req, res) {
   res.render('500');
