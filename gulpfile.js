@@ -13,20 +13,17 @@ var gulp = require('gulp'),
     envify = require('envify/custom'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
-    // brfs = require('brfs'),
 
     // ## utils
     plumber = require('gulp-plumber'),
     util = require('gulp-util'),
     noopPipe = util.noop,
-    // logPipe = util.log,
     watch = require('gulp-watch'),
     yargs = require('yargs').argv,
     debug = require('debug')('r3dm:gulp'),
 
     // ## min
     imagemin = require('gulp-imagemin'),
-    // pngcrush = require('imagemin-pngcrush'),
 
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
