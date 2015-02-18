@@ -34,7 +34,7 @@ var Blog = React.createClass({displayName: "Blog",
     // Else, render a list of blog briefs that link to the whole versions.
     //
     var val = posts.map(function(post) {
-      var html, readMore, authorStr, publishedDate, coverImg;
+      var html, readMore, authorStr, publishedDate, coverImg, translationLink;
 
       if (posts.length === 1) {
         html = post.content.extended;
@@ -76,6 +76,29 @@ var Blog = React.createClass({displayName: "Blog",
         );
       }
 
+      if (post.translation && posts.length === 1) {
+        if (post.language === 'English') {
+          translationLink = (
+            React.createElement(Link, {
+              to: "blog", 
+              params: { slug: post.translation.slug}, 
+              className: "translation-link"}, 
+              "Lea Esto en Español"
+            )
+          );
+        }
+        if (post.language === 'Español') {
+          translationLink = (
+            React.createElement(Link, {
+              to: "blog", 
+              params: { slug: post.translation.slug}, 
+              className: "translation-link"}, 
+              "Read this in English"
+            )
+          );
+        }
+      }
+
       return (
         React.createElement("section", {
           className: "post", 
@@ -94,6 +117,7 @@ var Blog = React.createClass({displayName: "Blog",
           ), 
           React.createElement("span", {dangerouslySetInnerHTML: { __html: html}}), 
           React.createElement("footer", null, 
+            translationLink, 
             readMore 
           )
         )

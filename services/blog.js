@@ -69,7 +69,7 @@ function performPostsQuery(where, limit, skip, cb) {
     .find(where)
     // filter posts with no content
     .where('content').ne(null)
-    .populate('author')
+    .populate('author translation')
     .sort('-publishedDate')
     .skip(skip)
     .limit(limit)

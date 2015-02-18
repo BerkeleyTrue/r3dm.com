@@ -34,7 +34,7 @@ var Blog = React.createClass({
     // Else, render a list of blog briefs that link to the whole versions.
     //
     var val = posts.map(function(post) {
-      var html, readMore, authorStr, publishedDate, coverImg;
+      var html, readMore, authorStr, publishedDate, coverImg, translationLink;
 
       if (posts.length === 1) {
         html = post.content.extended;
@@ -76,6 +76,29 @@ var Blog = React.createClass({
         );
       }
 
+      if (post.translation && posts.length === 1) {
+        if (post.language === 'English') {
+          translationLink = (
+            <Link
+              to='blog'
+              params={{ slug: post.translation.slug }}
+              className="translation-link">
+              Lea Esto en Español
+            </Link>
+          );
+        }
+        if (post.language === 'Español') {
+          translationLink = (
+            <Link
+              to='blog'
+              params={{ slug: post.translation.slug }}
+              className="translation-link">
+              Read this in English
+            </Link>
+          );
+        }
+      }
+
       return (
         <section
           className='post'
@@ -94,6 +117,7 @@ var Blog = React.createClass({
           </header>
           <span dangerouslySetInnerHTML={{ __html: html }} />
           <footer>
+            { translationLink }
             { readMore }
           </footer>
         </section>
