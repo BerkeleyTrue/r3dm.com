@@ -57,7 +57,8 @@ Post.add({
     ref: 'Post'
   },
   language: {
-    type: String
+    type: Types.Select,
+    options: 'English, Español, Portugués'
   }
 });
 
