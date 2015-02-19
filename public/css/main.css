@@ -730,6 +730,9 @@ nav.nav li li {
   height: 3em;
   width: 3em;
 }
+.nav_links-hamburger {
+  display: none;
+}
 @media (max-width: 30em) {
   .nav_links-hide {
     display: none !important;
@@ -742,11 +745,6 @@ nav.nav li li {
   .nav_links-hamburger svg {
     height: 3em;
     fill: #fff;
-  }
-}
-@media (min-width: 30.063em) {
-  .nav_links-hamburger {
-    display: none;
   }
 }
 .SideNav {
