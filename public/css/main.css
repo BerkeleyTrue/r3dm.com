@@ -996,8 +996,11 @@ nav.nav li li {
   padding-top: 5px;
 }
 .work_content article .work_img {
-  position: relative;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
   height: 20em;
+  position: relative;
 }
 .work_content article .work_img div.pending {
   text-align: center;
@@ -1010,6 +1013,7 @@ nav.nav li li {
   vertical-align: middle;
 }
 .work_content article .work_img img {
+  border: 1px #000 solid;
   display: block;
   margin: 0 auto;
   height: 20em;

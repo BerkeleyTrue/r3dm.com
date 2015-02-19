@@ -49,8 +49,9 @@
         padding-top 5px
 
     .work_img
-      position relative
+      backface-visibility hidden
       height 20em
+      position relative
       div.pending
         text-align center
         height 20em
@@ -60,6 +61,7 @@
           height 100%
           vertical-align middle
       img
+        border 1px black solid //ff hack image clipping.
         display block
         margin 0 auto
         height 20em
