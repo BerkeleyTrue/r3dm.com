@@ -12,7 +12,7 @@ var Rx = require('rx'),
     // # Components
     Sent = require('./ConnectSent'),
     ConnectError = require('./ConnectError'),
-    Spinner = require('../common/Spinner'),
+    Sending = require('./ConnectSending'),
 
     // # flux
     ConnectActions = require('./Actions'),
@@ -135,15 +135,7 @@ var Connect = React.createClass({
     };
 
     var sendingView = (
-      <article
-        ref='sending'
-        style={ style }
-        className='connect connect_sending'
-        key='sending'>
-        <Spinner
-          svgClass='connect_sending-spinner'
-          circleClass='connect_sending-path' />
-      </article>
+      <Sending style={ style }/>
     );
     var sentView = (
       <Sent
