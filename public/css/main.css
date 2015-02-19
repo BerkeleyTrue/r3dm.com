@@ -978,6 +978,7 @@ nav.nav li li {
 }
 .work_content {
   height: 75%;
+  overflow: visible;
 }
 .work_content article {
   display: inline-block;
