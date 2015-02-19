@@ -4,6 +4,7 @@ var React = require('react/addons'),
     // # Components
     Banner = require('../banner'),
     Logo = require('../logo'),
+    Services = require('../services'),
     Work = require('../work'),
     Connect = require('../connect');
 
@@ -31,6 +32,7 @@ var Home = React.createClass({displayName: "Home",
             )
           )
         ), 
+        React.createElement(Services, null), 
         React.createElement(Work, null), 
         React.createElement(Connect, null)
       )

@@ -1,21 +1,48 @@
 @require 'util'
 
 .services
-  background-color darkBlue
+  background-color $r3d
   color white
-  text-align center
 
-.services svg
-  fill white
+.services_heading
+  text-align center
+  overflow auto // bug fix
+  h2
+    padding-top 2em
 
 .services_content
+  display flex
+  flex-wrap wrap
+  flex-direction row
+  justify-content space-between
+  align-items baseline
+  align-content center
+  max-width 960px
+  padding-left 1em
+  padding-right 1em
   padding-bottom 2em
+  article
+    padding 0 1em
+    order 1
+    width 260px
 
-.services_block-padding p
-  padding-left 2em
-  padding-right 2em
++media-query(all, min-width 30.063em, max-width 40em)
+  .services_content
+    margin 0 2em
+    article
+      width 240px
 
-.services_heading h2
-  padding-top 2em
-  span.threes
-    color black
++media-query(all, min-width 40em, max-width 50em)
+  .services_content
+    margin 0 4em
+
++media-query(all, min-width 50em)
+  .services_content
+    margin 0 auto
+
++media-query(all, max-width 30.063em)
+  .services_content
+    flex-direction column
+    align-items center
+    article
+      width 70vw
