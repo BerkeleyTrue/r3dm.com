@@ -67,7 +67,8 @@ Post.schema.virtual('content.full').get(function() {
 });
 
 Post.defaultSort = '-publishedDate';
-Post.defaultColumns = 'title, author|10%, state|10%, language|15%, publishedDate|20%';
+Post.defaultColumns =
+  'title, author|10%, state|10%, language|15%, publishedDate|20%';
 
 Post.schema.pre('save', function(next) {
   var myPost = this,
