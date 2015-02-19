@@ -94,7 +94,7 @@ var Work = React.createClass({
     });
 
     var shpeArticleStyle = {
-      webkitTransform: 'translateX(' + translate + 'px)',
+      WebkitTransform: 'translateX(' + translate + 'px)',
       transform: 'translateX(' + translate + 'px)'
     };
 
