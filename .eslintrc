@@ -1,5 +1,9 @@
 {
   "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "superInFunctions": true,
+    "templateStrings": true,
     "jsx": true
   },
   "env": {
