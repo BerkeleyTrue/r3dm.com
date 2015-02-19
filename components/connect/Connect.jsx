@@ -11,6 +11,7 @@ var Rx = require('rx'),
 
     // # Components
     Sent = require('./ConnectSent'),
+    ConnectError = require('./ConnectError'),
 
     // # flux
     ConnectActions = require('./Actions'),
@@ -121,15 +122,13 @@ var Connect = React.createClass({
     };
 
     var expandStyle = {
-      background: '#0E5F8E',
-      borderRadius: '50%',
       height: width ? width * 2 : 0,
       left: state.clickPosition.left,
       marginLeft: -width,
       marginTop: -width,
-      position: 'absolute',
       top: state.clickPosition.top,
       WebkitTransform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
+      webkitTransform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
       transform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
       width: width ? width * 2 : 0
     };
@@ -165,13 +164,10 @@ var Connect = React.createClass({
         style={ style }/>
     );
     var errorView = (
-      <article
-        style={ style }
-        className='connect connect_error'
-        key='error'>
-        <h1>Opps</h1>
-        <p>Something went wrong...</p>
-      </article>
+      <ConnectError
+        ref='error'
+        className='connect'
+        style={ style } />
     );
     var formView = (
       <article
@@ -215,7 +211,9 @@ var Connect = React.createClass({
             </div>
           </form>
         </div>
-        <div style={ expandStyle }></div>
+        <div
+          className='connect_form-button-expand'
+          style={ expandStyle }></div>
       </article>
     );
 
