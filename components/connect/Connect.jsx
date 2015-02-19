@@ -105,7 +105,7 @@ var Connect = React.createClass({
     this.tweenState('scale', {
       easing: tweenState.easingTypes.easeInOutQuad,
       stackBehavior: tweenState.stackBehavior.DESTRUCTIVE,
-      duration: 500,
+      duration: 750,
       beginValue: 0,
       endValue: this.state.scale === 0 ? 1 : 0,
       onEnd: function() {
@@ -146,6 +146,7 @@ var Connect = React.createClass({
       marginTop: -width,
       position: 'absolute',
       top: state.clickPosition.top,
+      WebkitTransform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
       transform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
       width: width ? width * 2 : 0
     };
