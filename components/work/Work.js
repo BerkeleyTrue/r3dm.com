@@ -13,7 +13,6 @@ var React = require('react/addons'),
     AppStore = require('../app/Store');
 
 var screenTrigger = '(max-width: 30em)';
-var triggerImageAnimate = 450;
 
 var Work = React.createClass({displayName: "Work",
   mixins: [
@@ -39,14 +38,18 @@ var Work = React.createClass({displayName: "Work",
   },
 
   componentDidMount: function() {
-    var matchMedia = typeof window !== 'undefined' ? window.matchMedia : null;
+    var win = typeof window !== 'undefined' ? window : null;
+    var matchMedia = win.matchMedia;
     var shpeNode = this.refs.shpe.getDOMNode();
 
     this._mql = matchMedia(screenTrigger);
     this._mql.addListener(this._updateScreen);
     this._updateScreen();
 
-    this.setState({ shpeArticleHeight: shpeNode.offsetTop });
+    this.setState({
+      viewPortHeight: win.innerHeight,
+      shpeArticleHeight: shpeNode.offsetTop
+    });
   },
 
   componentWillUnmount: function() {
@@ -58,13 +61,18 @@ var Work = React.createClass({displayName: "Work",
   },
 
   componentDidUpdate: function() {
-    if (this.state.shpeArticleTweened) {
+    var state = this.state,
+        scrollTop = state.scrollTop,
+        isScrollingDown = state.isScrollingDown,
+        viewPortHeight = state.viewPortHeight,
+        shpeArticleHeight = state.shpeArticleHeight;
+
+    if (state.shpeArticleTweened) {
       return;
     }
 
-    if (this.state.isScrollingDown &&
-        this.state.scrollTop >
-        (this.state.shpeArticleHeight - triggerImageAnimate)) {
+    if (isScrollingDown &&
+        scrollTop + viewPortHeight - 200 > shpeArticleHeight) {
 
       this.setState({ shpeArticleTweened: true });
       this.tweenState('shpeArticleRight', {
