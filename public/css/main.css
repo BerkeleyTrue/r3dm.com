@@ -1142,6 +1142,8 @@ nav.nav li li {
 }
 .connect_form .connect_email div:last-child span {
   border-left: none;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
   cursor: pointer;
   display: block;
   font-size: 1rem;
