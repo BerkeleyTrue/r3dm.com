@@ -112,7 +112,7 @@ var Work = React.createClass({
                   <p>San Francisco Bay Area</p>
                 </header>
                 <p>
-                  We teamed up with the Society Of Hispanic Professional
+                  We teamed up with the Society of Hispanic Professional
                   Engineers - San Francisco Bay Area chapter to bring their
                   public face up-to-date with Node.js and MongoDb.
                   In the process, we were able to save this non-profit money in
