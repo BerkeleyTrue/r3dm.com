@@ -6,32 +6,15 @@ var Rx = require('rx'),
     globular = require('../globular'),
 
     // # mixins
-    PureRenderMixin = React.addons.PureRenderMixin,
+    // PureRenderMixin = React.addons.PureRenderMixin,
     StateStreamMixin = require('../util/stateStreamMixin'),
+
+    // # Components
+    Sent = require('./ConnectSent'),
 
     // # flux
     ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
-
-// TODO: needs refactoring
-var Sent = React.createClass({displayName: "Sent",
-
-  mixins: [PureRenderMixin],
-
-  render: function() {
-    return (
-      React.createElement("article", {
-        style:  this.props.style, 
-        className:  this.props.className, 
-        key: "sent"}, 
-        React.createElement("header", {className: "connect_heading"}, 
-          React.createElement("h1", null, "Thanks!"), 
-          React.createElement("p", null, "You should see an email from us soon.")
-        )
-      )
-    );
-  }
-});
 
 var Connect = React.createClass({displayName: "Connect",
 
