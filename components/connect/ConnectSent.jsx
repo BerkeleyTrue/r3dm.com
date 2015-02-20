@@ -4,16 +4,13 @@ var React = require('react/addons'),
 var Sent = React.createClass({
   mixins: [PureRenderMixin],
 
-  propTypes: {
-    style: React.PropTypes.object,
-    sendClass: React.PropTypes.string
-  },
+  propTypes: { height: React.PropTypes.number },
 
   render: function() {
     return (
       <article
-        style={ this.props.style }
-        className={ this.props.className }
+        style={{ height: this.props.height }}
+        className='connect connect_sent'
         key='sent'>
         <header className='connect_heading'>
           <h1>Thanks!</h1>

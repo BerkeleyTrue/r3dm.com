@@ -7,14 +7,14 @@ var Sending = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
-    style: React.PropTypes.object
+    height: React.PropTypes.number
   },
 
   render: function() {
     return (
       <article
         ref='sending'
-        style={ this.props.style }
+        style={ this.props.height }
         className='connect connect_sending'
         key='sending'>
         <Spinner

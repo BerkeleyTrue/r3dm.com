@@ -1060,7 +1060,6 @@ nav.nav li li {
   overflow: hidden;
   background-color: #0e5f8e;
   color: #fff;
-  position: absolute;
 }
 .connect_heading,
 .connect_error {
@@ -1076,12 +1075,12 @@ nav.nav li li {
   color: #c1272d;
 }
 .connect_container {
+  height: 30vh;
   position: relative;
   pointer-events: none;
 }
 .connect_container >div {
   bottom: 0;
-  height: 100%;
   position: absolute;
   top: 0;
   width: 100%;

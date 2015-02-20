@@ -1,9 +1,7 @@
-var Rx = require('rx'),
-    React = require('react'),
+var React = require('react'),
     tweenState = require('react-tween-state'),
     CSSTransitionGroup = React.addons.CSSTransitionGroup,
     debug = require('debug')('r3dm:components:connect'),
-    globular = require('../globular'),
 
     // # mixins
     // PureRenderMixin = React.addons.PureRenderMixin,
@@ -13,9 +11,9 @@ var Rx = require('rx'),
     Sent = require('./ConnectSent'),
     ConnectError = require('./ConnectError'),
     Sending = require('./ConnectSending'),
+    Form = require('./ConnectForm'),
 
     // # flux
-    ConnectActions = require('./Actions'),
     ConnectStore = require('./Store');
 
 var Connect = React.createClass({displayName: "Connect",
@@ -27,180 +25,56 @@ var Connect = React.createClass({displayName: "Connect",
 
   getStateStream: function() {
     debug('setting up state stream');
-    return Rx.Observable.combineLatest(
-      ConnectStore,
-      this._initSize,
-      this._clickPosition,
-      function(state, initSize, clickPosition) {
-        state.initSize = initSize;
-        state.clickPosition = clickPosition;
-        return state;
-      }
-    );
-  },
-
-  componentWillMount: function() {
-    this.setState({ scale: 0 });
+    return ConnectStore
+      .map(function(state) {
+        return {
+          sending: state.sending,
+          sent: state.sent,
+          error: state.error
+        };
+      });
   },
 
   componentDidMount: function() {
-    var connectForm = this.refs.form.getDOMNode(),
-        rect = connectForm.getBoundingClientRect();
-
-    // get users timezone
-    ConnectActions.setUtc(new Date().getTimezoneOffset());
-
-    this._initSize.onNext({
-      height: connectForm.clientHeight,
-      width: connectForm.clientWidth,
-      left: rect.left,
-      top: rect.top
+    var connect = this.refs.connect.getDOMNode();
+    var form = this.refs.form.getDOMNode();
+    this.setState({
+      height: form.clientHeight,
+      width: connect.clientWidth
     });
-  },
-
-  _onEmailChange: ConnectActions.onEmailChange,
-  _onNameChange: ConnectActions.onNameChange,
-  _initSize: new Rx.BehaviorSubject(false),
-  _clickPosition: new Rx.BehaviorSubject({
-    left: 0,
-    top: 0
-  }),
-
-  _handleConnect: function(e) {
-    var state = this.state,
-        email = state.email,
-        name = state.name,
-        utc = state.utc,
-        rectX = state.initSize.left,
-        rectY = state.initSize.top,
-        clientX = e.clientX,
-        clientY = e.pageY;
-
-    e.preventDefault();
-
-    if (!email || !name) {
-      return;
-    }
-
-    this._clickPosition.onNext({
-      left: clientX - rectX,
-      top: clientY - rectY
-    });
-
-    this.tweenState('scale', {
-      easing: tweenState.easingTypes.easeInOutQuad,
-      stackBehavior: tweenState.stackBehavior.DESTRUCTIVE,
-      duration: 750,
-      beginValue: 0,
-      endValue: this.state.scale === 0 ? 1 : 0,
-      onEnd: function() {
-        debug('send connect action');
-        ConnectActions.send({
-          email: email,
-          name: name,
-          utc: utc
-        });
-      }
-    });
-
-    // submit event to Google Analytics to measure conversion goals
-    globular.ga('send', 'event', 'button', 'click', 'Connect');
   },
 
   render: function() {
     var state = this.state,
-        email = state.email,
-        name = state.name,
         sending = state.sending,
         sent = state.sent,
         error = state.error,
-        height = state.initSize.height,
-        scale = this.getTweeningValue('scale'),
-        width = state.initSize.width;
-
-    var style = {
-      height: height + 'px'
-    };
-
-    var expandStyle = {
-      height: width ? width * 2 : 0,
-      left: state.clickPosition.left,
-      marginLeft: -width,
-      marginTop: -width,
-      top: state.clickPosition.top,
-      WebkitTransform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
-      webkitTransform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
-      transform: 'scaleX(' + scale + ') scaleY(' + scale + ')',
-      width: width ? width * 2 : 0
-    };
+        height = state.height;
 
     var sendingView = (
-      React.createElement(Sending, {style: style })
+      React.createElement(Sending, {height: height })
     );
     var sentView = (
       React.createElement(Sent, {
         ref: "sent", 
         className: "connect", 
-        style: style })
+        height: height })
     );
     var errorView = (
       React.createElement(ConnectError, {
         ref: "error", 
         className: "connect", 
-        style: style })
+        height: height })
     );
     var formView = (
-      React.createElement("article", {
-        className: "connect", 
-        key: "init", 
-        ref: "form"}, 
-        React.createElement("header", {className: "connect_heading"}, 
-          React.createElement("h2", null, "Work With Us.")
-        ), 
-        React.createElement("div", {className: "connect_form"}, 
-          React.createElement("form", {
-            action: "", 
-            className: "pure-form", 
-            onSubmit:  this.handleConnect}, 
-            React.createElement("div", {className: "connect_name"}, 
-                React.createElement("input", {
-                  type: "text", 
-                  name: "name", 
-                  className: "connect_input", 
-                  value: name, 
-                  onChange:  this._onNameChange, 
-                  placeholder: "your name"})
-            ), 
-            React.createElement("div", {className: "connect_email"}, 
-              React.createElement("div", null, 
-                React.createElement("input", {
-                  type: "email", 
-                  name: "email", 
-                  className: "connect_input", 
-                  value: email, 
-                  onChange:  this._onEmailChange, 
-                  placeholder: "email"})
-              ), 
-              React.createElement("div", {
-                className: "button", 
-                onClick:  this._handleConnect}, 
-                React.createElement("span", null, 
-                  "Connect"
-                )
-              )
-            )
-          )
-        ), 
-        React.createElement("div", {
-          className: "connect_form-button-expand", 
-          style: expandStyle })
-      )
+      React.createElement(Form, {ref: "form"})
     );
 
     return (
       React.createElement("section", {
         id: "connect", 
-        style: style, 
+        ref: "connect", 
+        style: { height: height}, 
         className: "connect_container"}, 
 
         React.createElement(CSSTransitionGroup, {

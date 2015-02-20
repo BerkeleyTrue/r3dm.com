@@ -4,12 +4,12 @@ var React = require('react/addons'),
 var ConnectError = React.createClass({
   mixins: [PureRenderMixin],
 
-  propTypes: { style: React.PropTypes.object },
+  propTypes: { height: React.PropTypes.number },
 
   render: function() {
     return (
       <article
-        style={ this.props.style }
+        style={{ height: this.props.height }}
         className='connect connect_error'
         key='error'>
         <h1>Opps</h1>
