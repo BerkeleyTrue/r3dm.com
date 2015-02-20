@@ -2,6 +2,10 @@ components/app/App.js
 components/banner/Banner.js
 components/blog/Blog.js
 components/connect/Connect.js
+components/connect/ConnectError.js
+components/connect/ConnectForm.js
+components/connect/ConnectSending.js
+components/connect/ConnectSent.js
 components/common/Hamburger.js
 components/common/Spinner.js
 components/errors/404.js
