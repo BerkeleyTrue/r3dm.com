@@ -37,13 +37,12 @@ buttonHeight = 2.1rem
     color black
   .connect_name
     row()
-    &:first-child
+    input
       col(6)
       margin-bottom 1em
       offset(3)
-      input
-        height buttonHeight
-        width 100%
+      height buttonHeight
+
   .connect_email
     row()
     div:first-child
@@ -84,6 +83,56 @@ buttonHeight = 2.1rem
   span
     background-color $r3d
     border-left none
+
++media-query(all, min-width 40em, max-width 50em)
+  .connect_form
+    .connect_name
+      input
+        col(4)
+        margin-bottom 1em
+        offset(4)
+
+    .connect_email
+      div:first-child
+        col(3)
+        offset(4)
+        margin-bottom 1em
+        margin-right 0
+        input
+          width 100%
+      div:last-child
+        col(1.1) //HACK to compensate for margin removal on input and button
+        margin-bottom 1em
+        margin-left 0
+
++media-query(all, min-width 50em)
+  .connect
+    gs('fixed')
+
+  .connect_heading
+    row()
+
+  .connect_form
+    .connect_name
+      row()
+      input
+        col(4)
+        margin-bottom 1em
+        offset(4)
+
+    .connect_email
+      row()
+      div:first-child
+        col(3)
+        offset(4)
+        margin-bottom 1em
+        margin-right 0
+        input
+          width 100%
+      div:last-child
+        col(1.25) //HACK to compensate for margin removal on input and button
+        margin-bottom 1em
+        margin-left 0
 
 .connect_form-button-expand
   background #0E5F8E

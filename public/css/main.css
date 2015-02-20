@@ -1111,7 +1111,7 @@ nav.nav li li {
   width: 100.83333333333331%;
   margin: 0 -0.4166666666667%;
 }
-.connect_form .connect_name:first-child {
+.connect_form .connect_name input {
   display: inline-block;
   float: left;
   overflow: hidden;
@@ -1119,10 +1119,7 @@ nav.nav li li {
   margin: 0 0.4166666666667%;
   margin-bottom: 1em;
   margin-left: 25.4166666666667%;
-}
-.connect_form .connect_name:first-child input {
   height: 2.1rem;
-  width: 100%;
 }
 .connect_form .connect_email {
   display: block;
@@ -1181,6 +1178,92 @@ nav.nav li li {
 .connect_form span {
   background-color: #c1272d;
   border-left: none;
+}
+@media all and (min-width: 40em) and (max-width: 50em) {
+  .connect_form .connect_name input {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 32.5%;
+    margin: 0 0.4166666666667%;
+    margin-bottom: 1em;
+    margin-left: 33.75%;
+  }
+  .connect_form .connect_email div:first-child {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 24.1666666666667%;
+    margin: 0 0.4166666666667%;
+    margin-left: 33.75%;
+    margin-bottom: 1em;
+    margin-right: 0;
+  }
+  .connect_form .connect_email div:first-child input {
+    width: 100%;
+  }
+  .connect_form .connect_email div:last-child {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 8.3333333333333%;
+    margin: 0 0.4166666666667%;
+    margin-bottom: 1em;
+    margin-left: 0;
+  }
+}
+@media all and (min-width: 50em) {
+  .connect {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .connect_heading {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+  }
+  .connect_form .connect_name {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+  }
+  .connect_form .connect_name input {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 300px;
+    margin: 0 10px;
+    margin-bottom: 1em;
+    margin-left: 330px;
+  }
+  .connect_form .connect_email {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+  }
+  .connect_form .connect_email div:first-child {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 220px;
+    margin: 0 10px;
+    margin-left: 330px;
+    margin-bottom: 1em;
+    margin-right: 0;
+  }
+  .connect_form .connect_email div:first-child input {
+    width: 100%;
+  }
+  .connect_form .connect_email div:last-child {
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 80px;
+    margin: 0 10px;
+    margin-bottom: 1em;
+    margin-left: 0;
+  }
 }
 .connect_form-button-expand {
   background: #0e5f8e;
