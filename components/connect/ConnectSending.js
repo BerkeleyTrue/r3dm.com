@@ -14,7 +14,7 @@ var Sending = React.createClass({displayName: "Sending",
     return (
       React.createElement("article", {
         ref: "sending", 
-        style:  this.props.height, 
+        style: { height: this.props.height}, 
         className: "connect connect_sending", 
         key: "sending"}, 
         React.createElement(Spinner, {
