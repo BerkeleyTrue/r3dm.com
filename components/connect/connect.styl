@@ -135,7 +135,7 @@ buttonHeight = 2.1rem
         margin-left 0
 
 .connect_form-button-expand
-  background #0E5F8E
+  background-color $black
   border-radius: 50%
   position absolute
 
@@ -191,10 +191,11 @@ input[type = 'email'].connect_input
     transform translateX(100%)
 
 .connect_sending-path
-  stroke-dasharray: 187;
-  stroke-dashoffset: 0;
+  stroke-dasharray 187
+  stroke-dashoffset 0
+  stroke white
   transform-origin: center;
-  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  animation: dash 1.4s ease-in-out infinite
 
 .connect_sending-spinner
   animation rotator 1.4s linear infinite
@@ -219,18 +220,6 @@ input[type = 'email'].connect_input
     transform rotate(0deg)
   100%
     transform rotate(270deg)
-
-@keyframes colors
-  0%
-    stroke #4285F4
-  25%
-    stroke #DE3E35
-  50%
-    stroke #F7C223
-  75%
-    stroke #1B9A59
-  100%
-    stroke #4285F4
 
 @keyframes dash
   0%
