@@ -1,51 +1,95 @@
 'use strict';
 require('dotenv').load();
-require('newrelic');
+if (process.env.NODE_ENV !== 'development') {
+  require('newrelic');
+}
 var express = require('express'),
     app = express(),
+    keystone = require('keystone'),
+    mongoose = require('mongoose'),
+    sitemap = require('./server/sitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
+    path = require('path'),
 
     // ## React
     React = require('react'),
-    Router = require('react-router'),
-    routes = require('./components/routes'),
+    Router = require('./components/Router'),
     state = require('express-state'),
 
     // ## Flux
     Fetcher = require('fetchr'),
-    mandrillServ = require('./services/mandrill'),
+    connectService = require('./services/connect'),
+    blogService = require('./services/blog'),
+    ContextStore = require('./components/context/Store'),
+    ContextActions = require('./components/context/Actions'),
 
     // ## Express/Serve
     morgan = require('morgan'),
     serve = require('serve-static'),
     favicon = require('serve-favicon'),
     body = require('body-parser'),
+    multer = require('multer'),
     compress = require('compression'),
-    cookieParse = require('cookie-parser'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
+    flash = require('connect-flash'),
     helmet = require('helmet');
-    //coookieSess = require('cookie-session')
 
+mongoose.connect(process.env.MONGO_URI);
 // ## State becomes a variable available to all rendered views
 state.extend(app);
+app.set('state namespace', 'R3DM');
 
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'jade');
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(cookieParse());
-app.use(body.urlencoded({ extended: true }));
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
+app.use(cookieParser('12345'));
+app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
+app.use(multer());
 app.use(compress());
+app.use(flash());
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 // ## Fetcher middleware
-Fetcher.registerFetcher(mandrillServ);
+Fetcher.registerFetcher(connectService);
+Fetcher.registerFetcher(blogService);
 app.use('/api', Fetcher.middleware());
 
+keystone.app = app;
+keystone.mongoose = mongoose;
+keystone.init({
+  'cookie secret': '12345',
+  'auth': true,
+  'user model': 'User',
+  'mongo': process.env.MONGO_URI,
+  'session': true,
+
+  'brand': 'The R3DM',
+  'emails': 'views/email',
+  'mandrill api key': process.env.MANDRILL_KEY,
+  'mandrill username': process.env.MANDRILL_USERNAME
+});
+
+keystone.import('models');
+keystone.static(app);
+keystone.routes(app);
+keystone.mongoose = mongoose;
+
 app.use(serve('./public'));
+
+sitemap(app);
 
 app.get('/500', function(req, res) {
   res.render('500');
@@ -69,24 +113,54 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  Router.run(routes, req.path, function(Handler, state) {
-    debug('Route found, %s rendering..', state.path);
-    Handler = React.createFactory(Handler);
-    var html = React.renderToString(Handler());
-    res.render('layout', { html: html }, function(err, markup) {
-      if (err) { return next(err); }
-      debug('Sending %s', state.path);
-      res.send(markup);
+  debug('path req', decodeURI(req.path));
+  Router(decodeURI(req.path))
+    .run(function(Handler, state) {
+      Handler = React.createFactory(Handler);
+
+      debug('Route found, %s ', state.path);
+      var ctx = {
+        req: req,
+        res: res,
+        next: next,
+        Handler: Handler,
+        state: state,
+        userId: req.session ? req.session.userId : null
+      };
+
+      debug('context action');
+      ContextActions.setContext(ctx);
+    });
+});
+
+// Run on next sequence
+ContextStore
+  .filter(function(ctx) {
+    return !!ctx.Handler;
+  })
+  .subscribe(function(ctx) {
+
+    debug('rendering %s to string', ctx.state.path);
+    var html = React.renderToString(ctx.Handler());
+
+    debug('rendering jade');
+    ctx.res.render('layout', { html: html }, function(err, markup) {
+      if (err) { return ctx.next(err); }
+      debug('jade template rendered');
+
+      debug('Sending %s to user', ctx.state.path);
+      return ctx.res.send(markup);
     });
   });
-});
 
 app.use(function(req, res) {
   res.status(404);
   res.render(404);
 });
 
-app.use(function(err, req, res, next) { //jshint ignore:line
+/* eslint-disable */
+app.use(function(err, req, res, next) {
+/* eslint-enable */
   debug('Err: ', err);
   res
     .status(500)

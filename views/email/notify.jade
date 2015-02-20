@@ -1,0 +1,18 @@
+extends /layouts/default
+
+block body-contents
+  h1 Hi *|first_name|*,
+    p.text-larger An lead was just submitted to #{brand}:
+    if lead.name.full || lead.email
+      p.text-larger From
+        if lead.name.full
+          | <strong> #{lead.name.full}</strong>
+        if lead.name.full && lead.email
+          |  (
+        if lead.email
+          | <a href="mailto:#{lead.email}">#{lead.email}</a>
+        if lead.name.full && lead.email
+          | )
+    p.text-muted Sent #{lead._.createdAt.format()}
+    p &nbsp;
+    +button({ url: '/keystone/lead/' + lead.id, label: 'Open The R3DM' })

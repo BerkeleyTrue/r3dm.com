@@ -8,17 +8,19 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['R3DM Consulting'],
+  'app_name': ['R3DM Consulting'],
   /**
    * Your New Relic license key.
    */
-  license_key : '6afbfa444c4aac9a8b5a675d5ddf69dd0d2a0d2c',
-  logging : {
+  'license_key': process.env.NEW_RELIC_LICENSE_KEY,
+  logging: {
     /**
-     * Level at which to log. 'trace' is most useful to New Relic when diagnosing
-     * issues with the agent, 'info' and higher will impose the least overhead on
+     * Level at which to log. 'trace' is most useful to
+     * New Relic when diagnosing
+     * issues with the agent, 'info' and
+     * higher will impose the least overhead on
      * production applications.
      */
-    level : 'info'
+    level: 'info'
   }
 };

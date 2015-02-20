@@ -1,15 +1,26 @@
 var React = require('react');
 
 var FourOhFour = React.createClass({
+
+  shouldComponentUpdate: function() {
+    return false;
+  },
+
   render: function() {
     return (
-      <div className = 'middle-box text-center animated fadeInDown'>
-        <h1>404</h1>
-        <h3 className = 'font-bold'>Page Not Found</h3>
-        <div className = 'error-desc'>
-          Sorry, this is not the page you are looking for.
+      <section className='notFound'>
+        <div className='notFound_layout'>
+          <div className='notFound_main'>
+            <header>
+              <h1>404</h1>
+              <p>Page Not Found</p>
+            </header>
+            <div className='notFound_desc'>
+              Sorry, this is not the page you are looking for.
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 });

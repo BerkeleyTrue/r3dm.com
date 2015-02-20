@@ -1,0 +1,73 @@
+@require 'util'
+nav.nav
+  background-color $black
+  display inline-block
+  position fixed
+  top 0
+  width 100vw
+  z-index 20
+  ul
+    list-style none
+    position absolute
+    visible hidden
+    z-index 2
+  >ul
+    display inline-block
+    left 0
+    top 0
+    padding 0
+    position relative
+    margin 0
+    &:focus
+      outline 0
+  li
+    display inline-block
+    position relative
+    vertical-align middle
+    zoom 1
+    a
+      color white
+      display block
+      padding 20px 20px
+      white-space nowrap
+
+    a.active
+      background $gray
+      color darkBlue
+    &:hover
+      background $gray
+    li
+      display block
+
+.nav_links
+  float right
+.nav_logo
+  float left
+  padding-left 2em
+  div
+    display inline-block
+  .nav_logo-type
+    svg
+      height 3em
+      width 8em
+      fill white
+  .nav_logo-mark
+    svg
+      height 3em
+      width 3em
+
+.nav_links-hamburger
+  display none
+
+@media (max-width: 30em)
+  .nav_links-hide
+    display none !important
+  .nav_links-hamburger
+    display inline-block
+    float right
+    height 3em
+    svg
+      height 3em
+      fill white
+
+@import 'sideNav'

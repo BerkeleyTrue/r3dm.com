@@ -1,10 +1,11 @@
 @import 'kouto-swiss'
 normalize()
-@import 'pure/grids.css'
-@import 'pure/grids-responsive.css'
-@import 'pure/buttons.css'
-@import 'pure/forms.css'
+box-sizing-reset()
+@import 'util/buttons'
+@import 'util/forms'
 @import 'util/util'
+
+ks-vendors-prefixes = recommended
 
 font-face('pt-sans-regular', 'fonts/ptsans_regular/PTS55F-webfont')
 font-face('pt-sans-narrow', 'fonts/ptsansnarrow/PTN57F-webfont')
@@ -28,19 +29,31 @@ h6
 body
   height 100vh
   width 100vw
+  box-sizing border-box
 
 #app
-.main-app
-  height 100%
+  min-height 100vh
   width 100%
+  position absolute
 
 .con
   height 100vh
 
+a
+  text-decoration none
+  &:hover
+  &:focus
+  &:active
+    text-decoration none
+
+@import 'home/home'
+@import 'nav/nav'
 @import 'logo/logo'
 @import 'banner/banner'
 @import 'services/services'
 @import 'work/work'
 //@import 'team/team'
+@import 'errors/404'
 @import 'connect/connect'
 @import 'footer/footer'
+@import 'blog/blog'

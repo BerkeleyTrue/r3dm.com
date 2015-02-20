@@ -1,0 +1,66 @@
+@require 'util'
+
+r3dm-grey = #9B9B9B
+border-grey = #DAD7D6
+
+.blog
+  gs('fluid')
+  padding-bottom 60px
+
+.blog_layout
+  row()
+  padding-top 65px
+
+.posts_wrapper
+  col(10)
+  offset(1)
+
++media-query( all, min-width 768px )
+  .posts_wrapper
+    col(8)
+    offset(2)
+
++media-query( all, min-width 992px )
+  .posts_wrapper
+    col(6)
+    offset(3)
+
+.post
+  text-align justify
+
+  strong
+    font-size 1.5em
+
+a.post_title
+  color black
+
+.post_subheading
+  font-size 0.8em
+  color r3dm-grey
+
+.post_readmore
+  text-align center
+  border-bottom 1px solid border-grey
+  border-top 1px solid border-grey
+  a
+    color r3dm-grey
+    line-height 50px
+    transition all 0.5s ease-in-out 0s
+    &:hover
+      color red
+
+.post-cover
+  padding-top 10px
+  text-align center
+
+  img
+    max-width 80vw
+
+    +media-query( all, min-width 768px )
+      max-width 70vw
+
+    +media-query( all, min-width 992px )
+      max-width 50vw
+
+.post p
+  font-size large

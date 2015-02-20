@@ -3,27 +3,46 @@ buttonHeight = 2.1rem
 
 .connect
   gs('fluid')
-  background-color lightBlue
-  button
+  background-color $black
+  retina-image '../images/subtle_carbon.png'
+  color white
 
 .connect_heading
   row()
   color white
-  text-align center
   overflow auto
+  text-align center
   span.threes
     color $r3d
 
+.connect_error
+  @extends .connect_heading
+
+.connect_container
+  background-color $black
+  retina-image '../images/subtle_carbon.png'
+  height 30vh
+  position relative
+  pointer-events none
+  >div
+    bottom 0
+    position absolute
+    top 0
+    width 100%
+    >.connect
+      pointer-events all
+
 .connect_form
+  input
+    color black
   .connect_name
     row()
-    &:first-child
+    input
       col(6)
       margin-bottom 1em
       offset(3)
-      input
-        height buttonHeight
-        width 100%
+      height buttonHeight
+
   .connect_email
     row()
     div:first-child
@@ -35,13 +54,15 @@ buttonHeight = 2.1rem
         height buttonHeight
         width 100%
     div:last-child
-      col(2)
+      col(2.1) //HACK to compensate for margin removal on input and button
       border-bottom-right-radius 3px
       border-top-right-radius 3px
       margin-bottom 1em
       margin-left 0
       span
         border-left none
+        border-bottom-right-radius 3px // hack:chrome must be present here to render
+        border-top-right-radius 3px
         cursor pointer
         display block
         font-size 1rem
@@ -63,6 +84,149 @@ buttonHeight = 2.1rem
     background-color $r3d
     border-left none
 
++media-query(all, min-width 40em, max-width 50em)
+  .connect_form
+    .connect_name
+      input
+        col(4)
+        margin-bottom 1em
+        offset(4)
+
+    .connect_email
+      div:first-child
+        col(3)
+        offset(4)
+        margin-bottom 1em
+        margin-right 0
+        input
+          width 100%
+      div:last-child
+        col(1.1) //HACK to compensate for margin removal on input and button
+        margin-bottom 1em
+        margin-left 0
+
++media-query(all, min-width 50em)
+  .connect
+    gs('fixed')
+
+  .connect_heading
+    row()
+
+  .connect_form
+    .connect_name
+      row()
+      input
+        col(4)
+        margin-bottom 1em
+        offset(4)
+
+    .connect_email
+      row()
+      div:first-child
+        col(3)
+        offset(4)
+        margin-bottom 1em
+        margin-right 0
+        input
+          width 100%
+      div:last-child
+        col(1.25) //HACK to compensate for margin removal on input and button
+        margin-bottom 1em
+        margin-left 0
+
+.connect_form-button-expand
+  background-color $black
+  border-radius: 50%
+  position absolute
+
 input[type = 'email'].connect_input
   margin-right 0
   border-radius 4px 0 0 4px
+
+.connect_sending
+  text-align center
+  &:before
+    content ''
+    display inline-block
+    height 100%
+    vertical-align middle
+
+.connect_init-enter
+  opacity 0.01
+  transition opacity 0.5s ease-in
+
+  &.connect_init-enter-active
+    opacity 1
+
+.connect_init-leave
+  opacity 1
+  transition opacity 2s ease-in
+
+  &.connect_init-leave-active
+    opacity 0.01
+
+.connect_sent-enter
+  animation moveLeft 0.5s
+  &.connect_sent-enter-active
+    transform translateX(0)
+
+.connect_sent-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
+
+.connect_sending-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
+
+.connect_error-enter
+  animation moveLeft 0.5s
+  &.connect_sent-enter-active
+    transform translateX(0)
+
+.connect_error-leave
+  animation moveRight 0.5s
+  &.connect_sent-leave-active
+    transform translateX(100%)
+
+.connect_sending-path
+  stroke-dasharray 187
+  stroke-dashoffset 0
+  stroke white
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite
+
+.connect_sending-spinner
+  animation rotator 1.4s linear infinite
+  display inline-block
+  margin auto
+  vertical-align middle
+
+@keyframes moveLeft
+  0%
+    transform translateX(100%)
+  100%
+    transform translateX(0)
+
+@keyframes moveRight
+  0%
+    transform translateX(0)
+  100%
+    transform translateX(100%)
+
+@keyframes rotator
+  0%
+    transform rotate(0deg)
+  100%
+    transform rotate(270deg)
+
+@keyframes dash
+  0%
+    stroke-dashoffset 187
+  50%
+    stroke-dashoffset 46.75
+    transform rotate(135deg)
+  100%
+    stroke-dashoffset 187
+    transform rotate(450deg)

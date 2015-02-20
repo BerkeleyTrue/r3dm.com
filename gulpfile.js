@@ -1,5 +1,4 @@
-'use strict';
-process.env.DEBUG = process.env.DEBUG || 'r3dm';
+process.env.DEBUG = process.env.DEBUG || 'r3dm:*';
 var gulp = require('gulp'),
 
     // ## Style
@@ -11,22 +10,20 @@ var gulp = require('gulp'),
     // ## Bundle
     browserify = require('browserify'),
     watchify = require('watchify'),
-    envify = require('envify/custom')({ NODE_ENV: 'development' }),
+    envify = require('envify/custom'),
     uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
-    //brfs = require('brfs'),
 
     // ## utils
     plumber = require('gulp-plumber'),
     util = require('gulp-util'),
     noopPipe = util.noop,
-    //logPipe = util.log,
+    watch = require('gulp-watch'),
     yargs = require('yargs').argv,
     debug = require('debug')('r3dm:gulp'),
 
     // ## min
     imagemin = require('gulp-imagemin'),
-    //pngcrush = require('imagemin-pngcrush'),
 
     // ## Serve/Proxy/Reload
     nodemon = require('gulp-nodemon'),
@@ -38,7 +35,6 @@ var gulp = require('gulp'),
 
     // ## production?
     production = yargs.p;
-
 
 var paths = {
   main: './client.js',
@@ -81,16 +77,31 @@ gulp.task('stylus', function() {
 
 gulp.task('jsx', function() {
   return gulp.src('./components/**/*.jsx')
-    .pipe(react())
+    .pipe(plumber())
+    .pipe(react({
+      harmony: true
+    }))
     .pipe(gulp.dest('./components'));
 });
 
-gulp.task('bundle', ['jsx'], function(cb) {
+gulp.task('jsx-watch', function() {
+  return gulp.src(paths.jsx)
+    .pipe(watch(paths.jsx))
+    .pipe(react({
+      harmony: true
+    }))
+    .pipe(gulp.dest('./components'));
+});
+
+gulp.task('bundle', function(cb) {
   browserifyCommon(cb);
 });
 
 gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
   sync.init(null, {
+    ui: {
+      port: 9001
+    },
     proxy: 'http://localhost:9000',
     logLeval: 'debug',
     files: [
@@ -115,6 +126,7 @@ gulp.task('server', function(cb) {
     }
   })
     .on('start', function() {
+      debug('Starting browsers');
       if (!called) {
         called = true;
         setTimeout(function() {
@@ -124,7 +136,7 @@ gulp.task('server', function(cb) {
     })
     .on('restart', function(files) {
       if (files) {
-        debug('Files that changes: ', files);
+        debug('Files that changed: ', files);
       }
       setTimeout(function() {
         debug('Restarting browsers');
@@ -135,7 +147,6 @@ gulp.task('server', function(cb) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.stylusAll, ['stylus']);
-  gulp.watch(paths.jsx, ['jsx']);
 });
 
 gulp.task('setWatch', function() {
@@ -153,7 +164,7 @@ gulp.task('image', function() {
 
 gulp.task('default', [
   'setWatch',
-  'jsx',
+  'jsx-watch',
   'bundle',
   'stylus',
   'server',
@@ -179,8 +190,10 @@ function browserifyCommon(cb) {
   }
 
   var b = browserify(config);
-  b.transform(envify);
-  //b.transform(brfs);
+  b.transform(envify({
+    NODE_ENV: 'development'
+  }));
+  // b.transform(brfs);
 
   if (!production) {
     debug('Watching');

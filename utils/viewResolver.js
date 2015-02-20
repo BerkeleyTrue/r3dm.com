@@ -1,8 +1,5 @@
 var jade = require('jade');
 
-/*
- *
- */
 module.exports = function(fileName) {
   var _fileName = fileName,
       _dir = '../views/email/',

@@ -1,4 +1,3 @@
-'use strict';
 var keystone = require('keystone'),
     Types = keystone.Field.Types;
 
@@ -34,16 +33,5 @@ User.schema.virtual('canAccessKeystone').get(function() {
   return this.isAdmin;
 });
 
-/**
- * Relationships
- */
-User.relationship({
-  ref: 'Post',
-  path: 'author'
-});
-
-/**
- * Registration
- */
 User.defaultColumns = 'name, email, isAdmin';
 User.register();

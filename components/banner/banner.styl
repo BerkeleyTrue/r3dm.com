@@ -9,16 +9,35 @@ xl = 75em   //1200px
   z-index -1
 
 .banner
-  background white
+  retina-image '../images/subtle_carbon.png'
   height 50%
   overflow hidden
   position relative
   text-align center
   width 100vw
-  h1
-    padding-top 10vh
+  img
+    position relative
+    left 0
+  header
+    position absolute
+    top 0
+    width 100vw
+    h1
+      padding-top 10vh
 
 .first-con_bot
-  h2
-    padding-top 25vh
   text-align center
+  p
+    font-size 1.3em
+    padding-top 25vh
+
++media-query(all, orientation portrait)
+  .banner
+    img
+      left -30vw
+      height 70vh
+
++media-query(all, orientation landscape)
+  .banner
+    img
+      width 100vw
