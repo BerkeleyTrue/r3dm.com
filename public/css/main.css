@@ -1013,7 +1013,7 @@ nav.nav li li {
   vertical-align: middle;
 }
 .work_content article .work_img img {
-  border: 1px #000 solid;
+  border: 1px transparent solid;
   display: block;
   margin: 0 auto;
   height: 20em;
