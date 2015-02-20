@@ -7,7 +7,8 @@ var React = require('react/addons'),
 
     // # components
     Link = require('react-router').Link,
-    FourOhFour = require('../errors/404'),
+    // FourOhFour = require('../errors/404'),
+    ComingSoon = require('../errors/ComingSoon'),
 
     // # flux
     BlogStore = require('./Store.js');
@@ -26,7 +27,7 @@ var Blog = React.createClass({displayName: "Blog",
     var posts = this.state.posts;
 
     if (posts === false) {
-      return React.createElement(FourOhFour, null);
+      return React.createElement(ComingSoon, null);
     }
 
     // Iterates over the posts
