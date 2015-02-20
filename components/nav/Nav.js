@@ -63,15 +63,24 @@ var Nav = React.createClass({displayName: "Nav",
   render: function() {
     var state = this.state,
         links = state.links,
-        navStyle = { top: this.getTweeningValue('top') };
+        top = this.getTweeningValue('top');
+
+    var navStyle = {
+      WebkitTransform: 'translateY(' + top + 'px)',
+      transform: 'translateY(' + top + 'px)'
+    };
 
     return (
       React.createElement("nav", {
         className: "nav", 
         style: navStyle }, 
         React.createElement("div", {className: "nav_logo"}, 
-          React.createElement(Logo, {type: "mark", logoClass: "nav_logo-mark"}), 
-          React.createElement(Logo, {type: "type", logoClass: "nav_logo-type"})
+          React.createElement(Logo, {
+            type: "mark", 
+            logoClass: "nav_logo-mark"}), 
+          React.createElement(Logo, {
+            type: "type", 
+            logoClass: "nav_logo-type"})
         ), 
         React.createElement(Links, {
           className: "nav_links nav_links-hide", 
