@@ -55,6 +55,7 @@ var paths = {
 
 var watching = false;
 var reloadDelay = 6500;
+var reloadTimer;
 
 if (production) {
   // ## Set with `-p`
@@ -129,7 +130,7 @@ gulp.task('server', function(cb) {
       debug('Starting browsers');
       if (!called) {
         called = true;
-        setTimeout(function() {
+        reloadTimer = setTimeout(function() {
           cb();
         }, reloadDelay);
       }
@@ -138,7 +139,10 @@ gulp.task('server', function(cb) {
       if (files) {
         debug('Files that changed: ', files);
       }
-      setTimeout(function() {
+      if (reloadTimer) {
+        clearTimeout(reloadTimer);
+      }
+      reloadTimer = setTimeout(function() {
         debug('Restarting browsers');
         reload();
       }, reloadDelay);
