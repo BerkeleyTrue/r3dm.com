@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     bundleName = require('vinyl-source-stream'),
 
     // ## utils
+    _ = require('lodash'),
     plumber = require('gulp-plumber'),
     util = require('gulp-util'),
     noopPipe = util.noop,
@@ -42,20 +43,24 @@ var paths = {
   stylusMain: './components/app.styl',
   stylusAll: './components/**/*.styl',
   css: './public/css/',
+  publicJs: './public/js',
+  syncWatch: [
+    'public/**/*.*',
+    '!public/js/bundle.js'
+  ],
   server: './server.js',
   serverIgnore: [
     'gulpfile.js',
     'public/',
     'components/**/*.styl',
+    'components/**/*',
     'bower_components/',
     'node_modules/'
-  ],
-  publicJs: './public/js'
+  ]
 };
 
 var watching = false;
-var reloadDelay = 6500;
-var reloadTimer;
+var reloadDelay = 6000;
 
 if (production) {
   // ## Set with `-p`
@@ -77,7 +82,7 @@ gulp.task('stylus', function() {
 });
 
 gulp.task('jsx', function() {
-  return gulp.src('./components/**/*.jsx')
+  return gulp.src(paths.jsx)
     .pipe(plumber())
     .pipe(react({
       harmony: true
@@ -106,17 +111,13 @@ gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
     },
     proxy: 'http://localhost:9000',
     logLeval: 'debug',
-    files: [
-      'public/**/*.*',
-      '!public/js/bundle.js'
-    ],
+    files: paths.syncWatch,
     port: 9002,
-    open: true,
-    reloadDelay: reloadDelay
+    open: false
   });
 });
 
-gulp.task('server', function(cb) {
+gulp.task('server', ['bundle'], function(cb) {
   var called = false;
   nodemon({
     script: paths.server,
@@ -137,15 +138,8 @@ gulp.task('server', function(cb) {
     })
     .on('restart', function(files) {
       if (files) {
-        debug('files changed: ', files);
+        debug('changed files: ', files);
       }
-      if (reloadTimer) {
-        clearTimeout(reloadTimer);
-      }
-      debug('setting reload on %s timeout', reloadDelay);
-      reloadTimer = setTimeout(function() {
-        reload();
-      }, reloadDelay);
     });
 });
 
@@ -179,7 +173,8 @@ gulp.task('default', [
 function browserifyCommon(cb) {
   cb = cb || noop;
   var config;
-
+  var called = false;
+  var _reload = _.debounce(reload, reloadDelay);
   if (watching) {
     config = {
       basedir: __dirname,
@@ -211,13 +206,21 @@ function browserifyCommon(cb) {
     b.transform({ global: true }, uglifyify);
   }
 
+  b.on('time', function(time) {
+    if (!called) {
+      called = true;
+      cb();
+    }
+    debug('bundle completed in %s ms', time);
+    _reload();
+  });
+
   b.on('error', function(e) {
     debug('bundler error', e);
   });
 
   b.add(paths.main);
   bundleItUp(b);
-  cb();
 }
 
 function bundleItUp(b) {
