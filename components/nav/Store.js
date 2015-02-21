@@ -6,6 +6,18 @@ var _ = require('lodash'),
     NavActions = require('./Actions'),
     AppStore = require('../app/Store');
 
+
+var homeLinks = [
+  { name: 'Services', path: '#services' },
+  { name: 'Work', path: '#work' },
+  { name: 'Connect', path: '#connect' },
+  { name: 'Blog', path: '/blog' }
+];
+
+var blogLinks = [
+  { name: 'Home', path: '/' }
+];
+
 var NavStore = Store.create({
 
   getInitialValue: function() {
@@ -15,10 +27,7 @@ var NavStore = Store.create({
       isSideNavOpen: false,
       showNav: true,
       showNavAtTop: false,
-      links: [
-        { name: 'Connect', path: '#connect' },
-        { name: 'Blog', path: '/blog' }
-      ]
+      links: homeLinks.slice()
     };
   },
 
@@ -28,18 +37,9 @@ var NavStore = Store.create({
         .map(function(path) {
           debug('path', path);
           if (path.indexOf('/blog') !== -1) {
-            return {
-              links: [
-                { name: 'Home', path: '/' }
-              ]
-            };
+            return { links: blogLinks.slice() };
           } else {
-            return {
-              links: [
-                { name: 'Connect', path: '#connect' },
-                { name: 'Blog', path: '/blog' }
-              ]
-            };
+            return { links: homeLinks.slice() };
           }
         })
         .map(createTransform),

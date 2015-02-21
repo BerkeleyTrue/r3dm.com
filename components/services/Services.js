@@ -53,7 +53,9 @@ var Services = React.createClass({displayName: "Services",
     }];
 
     return (
-      React.createElement("section", {className: "services"}, 
+      React.createElement("section", {
+        id: "services", 
+        className: "services"}, 
         React.createElement("header", {className: "services_subject-center services_heading"}, 
           React.createElement("h2", null, "SERVICES")
         ), 

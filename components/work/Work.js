@@ -107,7 +107,9 @@ var Work = React.createClass({displayName: "Work",
     };
 
     return (
-      React.createElement("section", {className: "work"}, 
+      React.createElement("section", {
+        id: "work", 
+        className: "work"}, 
         React.createElement("header", {className: "work_heading"}, 
           React.createElement("h2", null, "Our Work")
         ), 

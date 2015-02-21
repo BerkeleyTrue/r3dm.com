@@ -53,11 +53,13 @@ var Services = React.createClass({
     }];
 
     return (
-      <section className="services">
-        <header className="services_subject-center services_heading">
+      <section
+        id='services'
+        className='services'>
+        <header className='services_subject-center services_heading'>
           <h2>SERVICES</h2>
         </header>
-        <div className="services_content">
+        <div className='services_content'>
             { this._renderCopy(copyData) }
         </div>
       </section>
