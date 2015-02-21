@@ -88,6 +88,7 @@ gulp.task('jsx', function() {
 gulp.task('jsx-watch', function() {
   return gulp.src(paths.jsx)
     .pipe(watch(paths.jsx))
+    .pipe(plumber())
     .pipe(react({
       harmony: true
     }))
@@ -127,23 +128,22 @@ gulp.task('server', function(cb) {
     }
   })
     .on('start', function() {
-      debug('Starting browsers');
       if (!called) {
         called = true;
-        reloadTimer = setTimeout(function() {
+        setTimeout(function() {
           cb();
         }, reloadDelay);
       }
     })
     .on('restart', function(files) {
       if (files) {
-        debug('Files that changed: ', files);
+        debug('files changed: ', files);
       }
       if (reloadTimer) {
         clearTimeout(reloadTimer);
       }
+      debug('setting reload on %s timeout', reloadDelay);
       reloadTimer = setTimeout(function() {
-        debug('Restarting browsers');
         reload();
       }, reloadDelay);
     });
@@ -197,7 +197,6 @@ function browserifyCommon(cb) {
   b.transform(envify({
     NODE_ENV: 'development'
   }));
-  // b.transform(brfs);
 
   if (!production) {
     debug('Watching');
@@ -212,6 +211,10 @@ function browserifyCommon(cb) {
     b.transform({ global: true }, uglifyify);
   }
 
+  b.on('error', function(e) {
+    debug('bundler error', e);
+  });
+
   b.add(paths.main);
   bundleItUp(b);
   cb();
@@ -220,7 +223,6 @@ function browserifyCommon(cb) {
 function bundleItUp(b) {
   debug('Bundling');
   return b.bundle()
-    .pipe(plumber())
     .pipe(bundleName('bundle.js'))
     .pipe(gulp.dest(paths.publicJs));
 }
