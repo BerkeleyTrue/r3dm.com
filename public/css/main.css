@@ -1632,9 +1632,6 @@ input[type = 'email'].connect_input {
 .post {
   text-align: justify;
 }
-.post strong {
-  font-size: 1.5em;
-}
 a.post_title {
   color: #000;
 }
