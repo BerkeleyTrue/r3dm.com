@@ -38,9 +38,9 @@ var Blog = React.createClass({displayName: "Blog",
       var html, readMore, authorStr, publishedDate, coverImg, translationLink;
 
       if (posts.length === 1) {
-        html = post.content.extended;
+        html = post.content.extended.html;
       } else {
-        html = post.content.brief;
+        html = post.content.brief.html;
         readMore = (
           React.createElement("div", {className: "post_readmore"}, 
             React.createElement(Link, {

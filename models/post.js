@@ -42,14 +42,11 @@ Post.add({
   },
   content: {
     brief: {
-      type: Types.Html,
-      wysiwyg: true,
-      height: 150
+      type: Types.Markdown
     },
     extended: {
-      type: Types.Html,
-      wysiwyg: true,
-      height: 400
+      type: Types.Markdown,
+      height: 500
     }
   },
   translation: {
@@ -63,7 +60,7 @@ Post.add({
 });
 
 Post.schema.virtual('content.full').get(function() {
-  return this.content.extended || this.content.brief;
+  return this.content.extended.html || this.content.brief.html;
 });
 
 Post.defaultSort = '-publishedDate';
