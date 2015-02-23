@@ -10,6 +10,7 @@ components/common/Hamburger.js
 components/common/Spinner.js
 components/errors/404.js
 components/errors/505.js
+components/errors/ComingSoon.js
 components/footer/Footer.js
 components/home/Home.js
 components/logo/Logo.js

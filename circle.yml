@@ -1,0 +1,9 @@
+deployment:
+  production:
+    branch: master
+    heroku:
+        appname: r3dmdev
+  staging:
+    branch: qa
+    heroku:
+        appname: r3dmqa

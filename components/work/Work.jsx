@@ -107,11 +107,13 @@ var Work = React.createClass({
     };
 
     return (
-      <section className="work">
-        <header className = "work_heading">
+      <section
+        id='work'
+        className='work'>
+        <header className='work_heading'>
           <h2>Our Work</h2>
         </header>
-        <div className = "work_content" >
+        <div className='work_content' >
           <article ref='shpe'>
             <WorkCopy imgFirst={ this.state.smallScreen }>
               <div className='work_copy'>
