@@ -1673,6 +1673,7 @@ a.post_title {
     max-width: 50vw;
   }
 }
-.post p {
+.post p,
+li {
   font-size: large;
 }
