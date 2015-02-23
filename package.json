@@ -1,12 +1,12 @@
 {
-  "name": "frontface",
+  "name": "r3dm.com",
   "version": "1.0.0",
   "description": "The R3DM, an isomorphic page",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint .",
-    "test": "none",
+    "test": "npm run lint",
     "prepublish": "browserify -g envify -t uglifyify client.js -o public/js/bundle.js"
   },
   "engines": {
