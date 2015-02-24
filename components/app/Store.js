@@ -1,6 +1,7 @@
 var _ = require('lodash'),
     Rx = require('rx'),
     Store = require('rx-flux').Store,
+    assignState = require('../util').assignState,
 
     AppActions = require('./Actions');
 
@@ -37,17 +38,9 @@ var AppStore = Store.create({
         .map(function(isScrolling) {
           return { isScrolling: isScrolling };
         })
-        .map(createTransform)
+        .map(assignState)
     );
   }
 });
 
 module.exports = AppStore;
-
-function createTransform(newState) {
-  return {
-    transform: function(state) {
-      return _.assign({}, state, newState);
-    }
-  };
-}

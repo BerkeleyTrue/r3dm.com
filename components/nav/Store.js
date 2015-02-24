@@ -1,6 +1,6 @@
-var _ = require('lodash'),
-    Rx = require('rx'),
+var Rx = require('rx'),
     Store = require('rx-flux').Store,
+    assignState = require('../util/assignState'),
     debug = require('debug')('r3dm:components:nav:store'),
 
     NavActions = require('./Actions'),
@@ -43,28 +43,28 @@ var NavStore = Store.create({
             return { links: homeLinks.slice() };
           }
         })
-        .map(createTransform),
+        .map(assignState),
 
       NavActions
         .openSideNav
         .map(function(isOpen) {
           return { isSideNavOpen: isOpen };
         })
-        .map(createTransform),
+        .map(assignState),
 
       NavActions
         .setShowNav
         .map(function(showNav) {
           return { showNav: showNav };
         })
-        .map(createTransform),
+        .map(assignState),
 
       NavActions
         .setShowNavAtTop
         .map(function(showNavAtTop) {
           return { showNavAtTop: showNavAtTop };
         })
-        .map(createTransform),
+        .map(assignState),
 
       AppStore
         .map(function(AppState) {
@@ -73,16 +73,8 @@ var NavStore = Store.create({
             scrollTop: AppState.scrollTop
           };
         })
-        .map(createTransform)
+        .map(assignState)
     );
-
-    function createTransform(newState) {
-      return {
-        transform: function(state) {
-          return _.assign({}, state, newState);
-        }
-      };
-    }
   }
 });
 

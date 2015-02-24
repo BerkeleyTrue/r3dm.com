@@ -1,8 +1,9 @@
-var _ = require('lodash'),
-    Rx = require('rx'),
+var Rx = require('rx'),
     Store = require('rx-flux').Store,
-    ConnectActions = require('./Actions'),
-    debug = require('debug')('r3dm:component:connect:store');
+    assignState = require('../util').assignState,
+    debug = require('debug')('r3dm:component:connect:store'),
+
+    ConnectActions = require('./Actions');
 
 // operations are the action observable that updates the store
 // Perhaps this should just be named 'action'
@@ -35,7 +36,7 @@ var ConnectStore = Store.create({
             error: false
           };
         })
-        .map(createTransform),
+        .map(assignState),
 
       ConnectActions.sent
         .map(function(sent) {
@@ -45,7 +46,7 @@ var ConnectStore = Store.create({
             error: false
           };
         })
-        .map(createTransform),
+        .map(assignState),
 
       ConnectActions.error
         .map(function(err) {
@@ -56,39 +57,31 @@ var ConnectStore = Store.create({
             error: true
           };
         })
-        .map(createTransform),
+        .map(assignState),
 
       ConnectActions.onEmailChange
         .map(mapEventValue)
         .map(function(email) {
           return { email: email };
         })
-        .map(createTransform),
+        .map(assignState),
 
       ConnectActions.onNameChange
         .map(mapEventValue)
         .map(function(name) {
           return { name: name };
         })
-        .map(createTransform),
+        .map(assignState),
 
       ConnectActions.setUtc
         .map(function(utc) {
           return { utc: utc };
         })
-        .map(createTransform)
+        .map(assignState)
     );
 
     function mapEventValue(e) {
       return e.target ? e.target.value : '';
-    }
-
-    function createTransform(newState) {
-      return {
-        transform: function(state) {
-          return _.assign({}, state, newState);
-        }
-      };
     }
   }
 });
