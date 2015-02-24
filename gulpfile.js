@@ -53,7 +53,6 @@ var paths = {
     'gulpfile.js',
     'public/',
     'components/**/*.styl',
-    'components/**/*',
     'bower_components/',
     'node_modules/'
   ]
