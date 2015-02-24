@@ -1055,6 +1055,66 @@ nav.nav li li {
   margin-left: 33.75%;
   padding-top: 20vh;
 }
+.about {
+  color: #fff;
+  background-color: #c1272d;
+  overflow: auto;
+}
+.about .about_content header {
+  text-align: center;
+}
+@media all and (min-width: 30em) and (max-width: 60em) {
+  .about {
+    padding-bottom: 3em;
+  }
+  .about .about_content {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .about .about_content header {
+    display: block;
+    width: 100.83333333333331%;
+    margin: 0 -0.4166666666667%;
+  }
+  .about .about_content p {
+    display: block;
+    width: 100.83333333333331%;
+    margin: 0 -0.4166666666667%;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 49.1666666666667%;
+    margin: 0 0.4166666666667%;
+    margin-left: 25.4166666666667%;
+  }
+}
+@media all and (min-width: 60em) {
+  .about {
+    padding-bottom: 3em;
+  }
+  .about .about_content {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .about .about_content header {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+  }
+  .about .about_content p {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 460px;
+    margin: 0 10px;
+    margin-left: 250px;
+  }
+}
 .connect {
   width: 100%;
   margin: 0 auto;
