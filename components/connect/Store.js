@@ -5,11 +5,6 @@ var Rx = require('rx'),
 
     ConnectActions = require('./Actions');
 
-// operations are the action observable that updates the store
-// Perhaps this should just be named 'action'
-// or have connect action file export an observable a second observable;
-var operation = new Rx.Subject();
-
 var ConnectStore = Store.create({
 
   getInitialValue: function() {
@@ -85,7 +80,5 @@ var ConnectStore = Store.create({
     }
   }
 });
-
-ConnectStore.operation = operation;
 
 module.exports = ConnectStore;
