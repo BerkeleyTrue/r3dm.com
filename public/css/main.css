@@ -696,18 +696,22 @@ nav.nav li {
   vertical-align: middle;
   zoom: 1;
 }
+nav.nav li div.nav_underline.active {
+  height: 1px;
+  border: 1px #c1272d solid;
+  bottom: 1em;
+  margin: 0 auto;
+  position: relative;
+  width: 75%;
+}
 nav.nav li a {
   color: #fff;
   display: block;
   padding: 20px 20px;
   white-space: nowrap;
 }
-nav.nav li a.active {
-  background: #d1d2d4;
-  color: #125074;
-}
 nav.nav li:hover {
-  background: #d1d2d4;
+  background-color: #5c5c5c;
 }
 nav.nav li li {
   display: block;

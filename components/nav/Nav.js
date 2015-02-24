@@ -13,6 +13,7 @@ var React = require('react/addons'),
     NavStore = require('./Store'),
     NavActions = require('./Actions');
 
+var win;
 var Nav = React.createClass({displayName: "Nav",
   mixins: [
     tweenState.Mixin,
@@ -25,6 +26,10 @@ var Nav = React.createClass({displayName: "Nav",
 
   componentWillMount: function() {
     this.setState({ top: this.state.showNavAtTop ? 0 : -150 });
+  },
+
+  componentDidMount: function() {
+    win = typeof window !== 'undefined' ? window : null;
   },
 
   componentDidUpdate: function() {
@@ -63,6 +68,7 @@ var Nav = React.createClass({displayName: "Nav",
   render: function() {
     var state = this.state,
         links = state.links,
+        hash = win ? win.location.hash : '',
         top = this.getTweeningValue('top');
 
     var navStyle = {
@@ -83,6 +89,7 @@ var Nav = React.createClass({displayName: "Nav",
             logoClass: "nav_logo-type"})
         ), 
         React.createElement(Links, {
+          hash: hash, 
           className: "nav_links nav_links-hide", 
           links:  this.state.links}), 
         React.createElement("div", {className: "nav_links-hamburger"}, 
