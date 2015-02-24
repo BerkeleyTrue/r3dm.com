@@ -31,7 +31,7 @@ var Links = React.createClass({
       if (link.path.indexOf('#') !== -1) {
         var underLineClass = cx({
           'nav_underline': true,
-          'active': link.path.indexOf(hash) !== -1
+          'active': hash && link.path.indexOf(hash) !== -1
         });
         return (
           <li key={ link.path }>
