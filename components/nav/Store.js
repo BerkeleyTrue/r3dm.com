@@ -10,6 +10,7 @@ var _ = require('lodash'),
 var homeLinks = [
   { name: 'Services', path: '#services' },
   { name: 'Work', path: '#work' },
+  { name: 'About', path: '#about' },
   { name: 'Connect', path: '#connect' },
   { name: 'Blog', path: '/blog' }
 ];
