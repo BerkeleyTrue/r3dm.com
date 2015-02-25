@@ -7,12 +7,12 @@ var express = require('express'),
     app = express(),
     connectMongo = require('./server/connectMongo'),
     connectKeystone = require('./server/connectKeystone'),
+    initMiddleware = require('./server/initMiddleware'),
     sitemap = require('./server/sitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
-    path = require('path'),
 
     // ## React
     React = require('react'),
@@ -24,20 +24,7 @@ var express = require('express'),
     connectService = require('./services/connect'),
     blogService = require('./services/blog'),
     ContextStore = require('./components/context/Store'),
-    ContextActions = require('./components/context/Actions'),
-
-    // ## Express/Serve
-    morgan = require('morgan'),
-    serve = require('serve-static'),
-    favicon = require('serve-favicon'),
-    body = require('body-parser'),
-    multer = require('multer'),
-    compress = require('compression'),
-    cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
-    flash = require('connect-flash'),
-    helmet = require('helmet');
+    ContextActions = require('./components/context/Actions');
 
 var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
@@ -45,21 +32,6 @@ state.extend(app);
 app.set('state namespace', 'R3DM');
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'jade');
-app.use(helmet());
-app.use(morgan('dev'));
-app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
-app.use(cookieParser('12345'));
-app.use(body.urlencoded({ extended: false }));
-app.use(body.json());
-app.use(multer());
-app.use(compress());
-app.use(flash());
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
 
 // ## Fetcher middleware
 Fetcher.registerFetcher(connectService);
@@ -67,9 +39,7 @@ Fetcher.registerFetcher(blogService);
 app.use('/api', Fetcher.middleware());
 
 connectKeystone(app, mongoose);
-
-app.use(serve('./public'));
-
+initMiddleware(app, mongoose);
 sitemap(app);
 
 app.get('/500', function(req, res) {
