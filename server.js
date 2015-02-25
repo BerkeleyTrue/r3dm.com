@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'development') {
 var express = require('express'),
     app = express(),
     keystone = require('keystone'),
-    mongoose = require('mongoose'),
+    connectMongo = require('./server/connectMongo'),
     sitemap = require('./server/sitemap'),
 
     // ## Util
@@ -39,7 +39,7 @@ var express = require('express'),
     flash = require('connect-flash'),
     helmet = require('helmet');
 
-mongoose.connect(process.env.MONGO_URI);
+var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 app.set('state namespace', 'R3DM');
