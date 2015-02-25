@@ -5,8 +5,8 @@ if (process.env.NODE_ENV !== 'development') {
 }
 var express = require('express'),
     app = express(),
-    keystone = require('keystone'),
     connectMongo = require('./server/connectMongo'),
+    connectKeystone = require('./server/connectKeystone'),
     sitemap = require('./server/sitemap'),
 
     // ## Util
@@ -43,7 +43,6 @@ var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 app.set('state namespace', 'R3DM');
-
 app.set('port', process.env.PORT || 9000);
 app.set('view engine', 'jade');
 app.use(helmet());
@@ -67,25 +66,7 @@ Fetcher.registerFetcher(connectService);
 Fetcher.registerFetcher(blogService);
 app.use('/api', Fetcher.middleware());
 
-keystone.app = app;
-keystone.mongoose = mongoose;
-keystone.init({
-  'cookie secret': '12345',
-  'auth': true,
-  'user model': 'User',
-  'mongo': process.env.MONGO_URI,
-  'session': true,
-
-  'brand': 'The R3DM',
-  'emails': 'views/email',
-  'mandrill api key': process.env.MANDRILL_KEY,
-  'mandrill username': process.env.MANDRILL_USERNAME
-});
-
-keystone.import('models');
-keystone.static(app);
-keystone.routes(app);
-keystone.mongoose = mongoose;
+connectKeystone(app, mongoose);
 
 app.use(serve('./public'));
 
