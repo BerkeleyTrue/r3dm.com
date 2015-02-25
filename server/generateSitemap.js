@@ -1,7 +1,7 @@
 var keystone = require('keystone'),
     moment = require('moment');
 
-module.exports = function(app) {
+module.exports = function generateSitemap(app) {
   var Post = keystone.list('Post');
 
   app.get('/sitemap.xml', function(req, res, next) {

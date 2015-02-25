@@ -8,7 +8,7 @@ var express = require('express'),
     connectMongo = require('./server/connectMongo'),
     connectKeystone = require('./server/connectKeystone'),
     initMiddleware = require('./server/initMiddleware'),
-    sitemap = require('./server/sitemap'),
+    generateSitemap = require('./server/generateSitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
@@ -40,7 +40,7 @@ app.use('/api', Fetcher.middleware());
 
 connectKeystone(app, mongoose);
 initMiddleware(app, mongoose);
-sitemap(app);
+generateSitemap(app);
 
 app.get('/500', function(req, res) {
   res.render('500');
