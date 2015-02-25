@@ -48,7 +48,7 @@ var paths = {
     'public/**/*.*',
     '!public/js/bundle.js'
   ],
-  server: './server.js',
+  server: './server/server.js',
   serverIgnore: [
     'gulpfile.js',
     'public/',

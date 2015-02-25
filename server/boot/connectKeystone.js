@@ -16,7 +16,7 @@ module.exports = function connectKeystone(app, mongoose) {
     'mandrill username': process.env.MANDRILL_USERNAME
   });
 
-  keystone.import('../models');
+  keystone.import('../../models');
   keystone.static(app);
   keystone.routes(app);
   keystone.mongoose = mongoose;

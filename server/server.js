@@ -4,11 +4,11 @@ if (process.env.NODE_ENV !== 'development') {
   require('newrelic');
 }
 var express = require('express'),
-    app = express(),
-    connectMongo = require('./server/connectMongo'),
-    connectKeystone = require('./server/connectKeystone'),
-    initMiddleware = require('./server/initMiddleware'),
-    generateSitemap = require('./server/generateSitemap'),
+    path = require('path'),
+    connectMongo = require('./boot/connectMongo'),
+    connectKeystone = require('./boot/connectKeystone'),
+    initMiddleware = require('./boot/initMiddleware'),
+    generateSitemap = require('./boot/generateSitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
@@ -16,21 +16,23 @@ var express = require('express'),
 
     // ## React
     React = require('react'),
-    Router = require('./components/Router'),
+    Router = require('../components/Router'),
     state = require('express-state'),
 
     // ## Flux
     Fetcher = require('fetchr'),
     connectService = require('./services/connect'),
     blogService = require('./services/blog'),
-    ContextStore = require('./components/context/Store'),
-    ContextActions = require('./components/context/Actions');
+    ContextStore = require('../components/context/Store'),
+    ContextActions = require('../components/context/Actions');
 
+var app = express();
 var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 app.set('state namespace', 'R3DM');
 app.set('port', process.env.PORT || 9000);
+app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
 
 // ## Fetcher middleware

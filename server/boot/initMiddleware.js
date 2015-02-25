@@ -14,7 +14,7 @@ var path = require('path'),
 module.exports = function initMiddleware(app, mongoose) {
   app.use(helmet());
   app.use(morgan('dev'));
-  app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
+  app.use(favicon(path.join(__dirname, '../../public/images/favicon.ico')));
   app.use(cookieParser('12345'));
   app.use(body.urlencoded({ extended: false }));
   app.use(body.json());
@@ -27,5 +27,5 @@ module.exports = function initMiddleware(app, mongoose) {
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   }));
-  app.use(serve(path.join(__dirname, '../public')));
+  app.use(serve(path.join(__dirname, '../../public')));
 };
