@@ -2,7 +2,8 @@
   "name": "r3dm.com",
   "version": "1.0.0",
   "description": "The R3DM, an isomorphic page",
-  "main": "server.js",
+  "main": "server/server.js",
+  "browser": "client.js",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint .",

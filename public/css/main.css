@@ -696,18 +696,22 @@ nav.nav li {
   vertical-align: middle;
   zoom: 1;
 }
+nav.nav li div.nav_underline.active {
+  height: 1px;
+  border: 1px #c1272d solid;
+  bottom: 1em;
+  margin: 0 auto;
+  position: relative;
+  width: 75%;
+}
 nav.nav li a {
   color: #fff;
   display: block;
   padding: 20px 20px;
   white-space: nowrap;
 }
-nav.nav li a.active {
-  background: #d1d2d4;
-  color: #125074;
-}
 nav.nav li:hover {
-  background: #d1d2d4;
+  background-color: #5c5c5c;
 }
 nav.nav li li {
   display: block;
@@ -734,7 +738,7 @@ nav.nav li li {
 .nav_links-hamburger {
   display: none;
 }
-@media (max-width: 30em) {
+@media (max-width: 37em) {
   .nav_links-hide {
     display: none !important;
   }
@@ -1054,6 +1058,66 @@ nav.nav li li {
   margin: 0 0.4166666666667%;
   margin-left: 33.75%;
   padding-top: 20vh;
+}
+.about {
+  color: #fff;
+  background-color: #c1272d;
+  overflow: auto;
+}
+.about .about_content header {
+  text-align: center;
+}
+@media all and (min-width: 30em) and (max-width: 60em) {
+  .about {
+    padding-bottom: 3em;
+  }
+  .about .about_content {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .about .about_content header {
+    display: block;
+    width: 100.83333333333331%;
+    margin: 0 -0.4166666666667%;
+  }
+  .about .about_content p {
+    display: block;
+    width: 100.83333333333331%;
+    margin: 0 -0.4166666666667%;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 49.1666666666667%;
+    margin: 0 0.4166666666667%;
+    margin-left: 25.4166666666667%;
+  }
+}
+@media all and (min-width: 60em) {
+  .about {
+    padding-bottom: 3em;
+  }
+  .about .about_content {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .about .about_content header {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+  }
+  .about .about_content p {
+    display: block;
+    width: 980px;
+    margin: 0 -10px;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    width: 460px;
+    margin: 0 10px;
+    margin-left: 250px;
+  }
 }
 .connect {
   width: 100%;

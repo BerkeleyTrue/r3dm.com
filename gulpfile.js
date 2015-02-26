@@ -48,12 +48,11 @@ var paths = {
     'public/**/*.*',
     '!public/js/bundle.js'
   ],
-  server: './server.js',
+  server: './server/server.js',
   serverIgnore: [
     'gulpfile.js',
     'public/',
     'components/**/*.styl',
-    'components/**/*',
     'bower_components/',
     'node_modules/'
   ]

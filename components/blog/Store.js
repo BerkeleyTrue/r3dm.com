@@ -1,5 +1,5 @@
-var _ = require('lodash'),
-    Rx = require('rx'),
+var Rx = require('rx'),
+    assignState = require('../util').assignState,
     Store = require('rx-flux').Store,
     debug = require('debug')('r3dm:components:blog:store'),
 
@@ -26,7 +26,7 @@ var BlogStore = Store.create({
             posts: posts && posts.length === 0 ? false : posts
           };
         })
-        .map(createTransform),
+        .map(assignState),
 
       BlogActions.loading
         .map(function(loading) {
@@ -36,7 +36,7 @@ var BlogStore = Store.create({
             posts: []
           };
         })
-        .map(createTransform),
+        .map(assignState),
 
       BlogActions.onError
         .map(function(err) {
@@ -46,16 +46,8 @@ var BlogStore = Store.create({
             posts: []
           };
         })
-        .map(createTransform)
+        .map(assignState)
     );
-
-    function createTransform(newState) {
-      return {
-        transform: function(state) {
-          return _.assign({}, state, newState);
-        }
-      };
-    }
   }
 });
 

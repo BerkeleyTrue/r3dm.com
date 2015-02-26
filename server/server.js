@@ -4,92 +4,45 @@ if (process.env.NODE_ENV !== 'development') {
   require('newrelic');
 }
 var express = require('express'),
-    app = express(),
-    keystone = require('keystone'),
-    mongoose = require('mongoose'),
-    sitemap = require('./server/sitemap'),
+    path = require('path'),
+    connectMongo = require('./boot/connectMongo'),
+    connectKeystone = require('./boot/connectKeystone'),
+    initMiddleware = require('./boot/initMiddleware'),
+    generateSitemap = require('./boot/generateSitemap'),
 
     // ## Util
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
-    path = require('path'),
 
     // ## React
     React = require('react'),
-    Router = require('./components/Router'),
+    Router = require('../components/Router'),
     state = require('express-state'),
 
     // ## Flux
     Fetcher = require('fetchr'),
     connectService = require('./services/connect'),
     blogService = require('./services/blog'),
-    ContextStore = require('./components/context/Store'),
-    ContextActions = require('./components/context/Actions'),
+    ContextStore = require('../components/context/Store'),
+    ContextActions = require('../components/context/Actions');
 
-    // ## Express/Serve
-    morgan = require('morgan'),
-    serve = require('serve-static'),
-    favicon = require('serve-favicon'),
-    body = require('body-parser'),
-    multer = require('multer'),
-    compress = require('compression'),
-    cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
-    flash = require('connect-flash'),
-    helmet = require('helmet');
-
-mongoose.connect(process.env.MONGO_URI);
+var app = express();
+var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
 state.extend(app);
 app.set('state namespace', 'R3DM');
-
 app.set('port', process.env.PORT || 9000);
+app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
-app.use(helmet());
-app.use(morgan('dev'));
-app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
-app.use(cookieParser('12345'));
-app.use(body.urlencoded({ extended: false }));
-app.use(body.json());
-app.use(multer());
-app.use(compress());
-app.use(flash());
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
 
 // ## Fetcher middleware
 Fetcher.registerFetcher(connectService);
 Fetcher.registerFetcher(blogService);
 app.use('/api', Fetcher.middleware());
 
-keystone.app = app;
-keystone.mongoose = mongoose;
-keystone.init({
-  'cookie secret': '12345',
-  'auth': true,
-  'user model': 'User',
-  'mongo': process.env.MONGO_URI,
-  'session': true,
-
-  'brand': 'The R3DM',
-  'emails': 'views/email',
-  'mandrill api key': process.env.MANDRILL_KEY,
-  'mandrill username': process.env.MANDRILL_USERNAME
-});
-
-keystone.import('models');
-keystone.static(app);
-keystone.routes(app);
-keystone.mongoose = mongoose;
-
-app.use(serve('./public'));
-
-sitemap(app);
+connectKeystone(app, mongoose);
+initMiddleware(app, mongoose);
+generateSitemap(app);
 
 app.get('/500', function(req, res) {
   res.render('500');

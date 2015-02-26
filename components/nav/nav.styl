@@ -25,17 +25,20 @@ nav.nav
     position relative
     vertical-align middle
     zoom 1
+    div.nav_underline.active
+      height 1px
+      border 1px $r3d solid
+      bottom 1em
+      margin 0 auto
+      position relative
+      width 75%
     a
       color white
       display block
       padding 20px 20px
       white-space nowrap
-
-    a.active
-      background $gray
-      color darkBlue
     &:hover
-      background $gray
+      background-color lighten($black, 20%)
     li
       display block
 
@@ -59,7 +62,7 @@ nav.nav
 .nav_links-hamburger
   display none
 
-@media (max-width: 30em)
+@media (max-width: 37em)
   .nav_links-hide
     display none !important
   .nav_links-hamburger

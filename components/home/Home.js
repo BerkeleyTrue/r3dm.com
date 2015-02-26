@@ -2,6 +2,7 @@ var React = require('react/addons'),
     // debug = require('debug')('r3dm:comp:home'),
 
     // # Components
+    About = require('../about'),
     Banner = require('../banner'),
     Logo = require('../logo'),
     Services = require('../services'),
@@ -34,6 +35,7 @@ var Home = React.createClass({displayName: "Home",
         ), 
         React.createElement(Services, null), 
         React.createElement(Work, null), 
+        React.createElement(About, null), 
         React.createElement(Connect, null)
       )
     );

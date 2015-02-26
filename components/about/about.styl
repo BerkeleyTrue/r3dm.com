@@ -1,0 +1,31 @@
+.about
+  color white
+  background-color $r3d
+  overflow auto
+  .about_content
+    header
+      text-align center
+
++media-query(all, min-width 30em, max-width 60em)
+  .about
+    padding-bottom 3em
+    .about_content
+      gs('fluid')
+      header
+        row()
+      p
+        row()
+        col(6)
+        offset(3)
+
++media-query(all, min-width 60em)
+  .about
+    padding-bottom 3em
+    .about_content
+      gs('fixed')
+      header
+        row()
+      p
+        row()
+        col(6)
+        offset(3)
