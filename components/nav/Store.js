@@ -66,7 +66,9 @@ var NavStore = Store.create({
         })
         .map(assignState),
 
+      // debounce here smooths the appearance of the nav bar
       AppStore
+        .debounce(20)
         .map(function(AppState) {
           return {
             isScrollingDown: AppState.isScrollingDown,
