@@ -845,6 +845,7 @@ nav.nav li li {
 }
 .first-con_bot div {
   font-size: 1.3em;
+  padding: 0 10px;
   padding-top: 25vh;
 }
 @media all and (orientation: portrait) {
