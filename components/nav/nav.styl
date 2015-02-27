@@ -1,17 +1,19 @@
 @require 'util'
 nav.nav
   background-color $black
+  height 3em
   display inline-block
   position fixed
   top 0
   width 100vw
   z-index 20
   ul
+    height 100%
     list-style none
     position absolute
     visible hidden
     z-index 2
-  >ul
+  > ul
     display inline-block
     left 0
     top 0
@@ -21,6 +23,8 @@ nav.nav
     &:focus
       outline 0
   li
+    font-size 1em
+    height 100%
     display inline-block
     position relative
     vertical-align middle
@@ -46,18 +50,21 @@ nav.nav
   float right
 .nav_logo
   float left
-  padding-left 2em
+  padding-left 1em
   div
     display inline-block
+  svg
+    display block
   .nav_logo-type
     svg
       height 3em
-      width 8em
+      width 6em
       fill white
   .nav_logo-mark
     svg
-      height 3em
-      width 3em
+      height 2em
+      width 2em
+      margin 0.5em 0
 
 .nav_links-hamburger
   display none

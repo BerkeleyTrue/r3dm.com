@@ -670,6 +670,7 @@ a:active {
 }
 nav.nav {
   background-color: #333;
+  height: 3em;
   display: inline-block;
   position: fixed;
   top: 0;
@@ -677,12 +678,13 @@ nav.nav {
   z-index: 20;
 }
 nav.nav ul {
+  height: 100%;
   list-style: none;
   position: absolute;
   visible: hidden;
   z-index: 2;
 }
-nav.nav >ul {
+nav.nav > ul {
   display: inline-block;
   left: 0;
   top: 0;
@@ -690,10 +692,12 @@ nav.nav >ul {
   position: relative;
   margin: 0;
 }
-nav.nav >ul:focus {
+nav.nav > ul:focus {
   outline: 0;
 }
 nav.nav li {
+  font-size: 1em;
+  height: 100%;
   display: inline-block;
   position: relative;
   vertical-align: middle;
@@ -724,19 +728,23 @@ nav.nav li li {
 }
 .nav_logo {
   float: left;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 .nav_logo div {
   display: inline-block;
 }
+.nav_logo svg {
+  display: block;
+}
 .nav_logo .nav_logo-type svg {
   height: 3em;
-  width: 8em;
+  width: 6em;
   fill: #fff;
 }
 .nav_logo .nav_logo-mark svg {
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
+  margin: 0.5em 0;
 }
 .nav_links-hamburger {
   display: none;
