@@ -119,7 +119,7 @@ var Work = React.createClass({displayName: "Work",
               React.createElement("div", {className: "work_copy"}, 
                 React.createElement("header", null, 
                   React.createElement("h3", null, "SHPE"), 
-                  React.createElement("p", null, "San Francisco Bay Area")
+                  React.createElement("span", null, "San Francisco Bay Area")
                 ), 
                 React.createElement("p", null, 
                   "We teamed up with the Society of Hispanic Professional" + ' ' +

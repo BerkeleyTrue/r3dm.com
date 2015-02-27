@@ -660,6 +660,9 @@ a:active {
   top: 40vh;
   width: 30vw;
 }
+.main-app p {
+  text-align: justify;
+}
 .v-center {
   display: inline-block;
   width: 100%;
@@ -832,7 +835,7 @@ nav.nav li li {
 .first-con_bot {
   text-align: center;
 }
-.first-con_bot p {
+.first-con_bot div {
   font-size: 1.3em;
   padding-top: 25vh;
 }
@@ -996,7 +999,7 @@ nav.nav li li {
 .work_content article .work_copy header {
   text-align: center;
 }
-.work_content article .work_copy >p {
+.work_content article .work_copy > p {
   padding: 40px;
   padding-top: 5px;
 }
