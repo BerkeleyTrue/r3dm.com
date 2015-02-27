@@ -1070,6 +1070,10 @@ nav.nav li li {
 .about .about_content header {
   text-align: center;
 }
+.about .about_content > p {
+  padding: 40px;
+  padding-top: 5px;
+}
 @media all and (min-width: 30em) and (max-width: 60em) {
   .about {
     padding-bottom: 3em;
@@ -1085,6 +1089,7 @@ nav.nav li li {
     margin: 0 -0.4166666666667%;
   }
   .about .about_content p {
+    padding: 0;
     display: block;
     width: 100.83333333333331%;
     margin: 0 -0.4166666666667%;
@@ -1111,6 +1116,7 @@ nav.nav li li {
     margin: 0 -10px;
   }
   .about .about_content p {
+    padding: 0;
     display: block;
     width: 980px;
     margin: 0 -10px;
