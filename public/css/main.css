@@ -902,6 +902,9 @@ nav.nav li li {
   order: 1;
   width: 260px;
 }
+.services_content article p {
+  text-align: justify;
+}
 @media all and (min-width: 30.063em) and (max-width: 40em) {
   .services_content {
     margin: 0 2em;
@@ -1006,6 +1009,7 @@ nav.nav li li {
   text-align: center;
 }
 .work_content article .work_copy > p {
+  text-align: justify;
   padding: 40px;
   padding-top: 5px;
 }
@@ -1077,6 +1081,7 @@ nav.nav li li {
   text-align: center;
 }
 .about .about_content > p {
+  text-align: justify;
   padding: 40px;
   padding-top: 5px;
 }
