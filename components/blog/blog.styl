@@ -28,13 +28,18 @@ border-grey = #DAD7D6
 .post
   text-align justify
 
-  // strong - tinymce bold wraps the text in strong tags
-
   .center
     text-align center
 
   .caption
     font-style italic
+
+  img
+    max-width 80vw
+    +media-query( all, min-width 768px )
+      max-width 70vw
+    +media-query( all, min-width 992px )
+      max-width 50vw
 
 a.post_title
   color black
@@ -60,10 +65,8 @@ a.post_title
 
   img
     max-width 80vw
-
     +media-query( all, min-width 768px )
       max-width 70vw
-
     +media-query( all, min-width 992px )
       max-width 50vw
 

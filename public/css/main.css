@@ -1722,6 +1722,19 @@ input[type = 'email'].connect_input {
 .post .caption {
   font-style: italic;
 }
+.post img {
+  max-width: 80vw;
+}
+@media all and (min-width: 768px) {
+  .post img {
+    max-width: 70vw;
+  }
+}
+@media all and (min-width: 992px) {
+  .post img {
+    max-width: 50vw;
+  }
+}
 a.post_title {
   color: #000;
 }
