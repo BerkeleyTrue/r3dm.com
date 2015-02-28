@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "browser": "client.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "lint": "eslint .",
     "test": "npm run lint",
     "prepublish": "browserify -g envify -t uglifyify client.js -o public/js/bundle.js"
