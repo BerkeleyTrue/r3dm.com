@@ -38,10 +38,10 @@ app.set('view engine', 'jade');
 // ## Fetcher middleware
 Fetcher.registerFetcher(connectService);
 Fetcher.registerFetcher(blogService);
-app.use('/api', Fetcher.middleware());
 
-connectKeystone(app, mongoose);
 initMiddleware(app, mongoose);
+app.use('/api', Fetcher.middleware());
+connectKeystone(app, mongoose);
 generateSitemap(app);
 
 app.get('/500', function(req, res) {
