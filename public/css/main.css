@@ -660,9 +660,6 @@ a:active {
   top: 40vh;
   width: 30vw;
 }
-.main-app p {
-  text-align: justify;
-}
 .v-center {
   display: inline-block;
   width: 100%;
@@ -843,7 +840,7 @@ nav.nav li li {
 .first-con_bot {
   text-align: center;
 }
-.first-con_bot div {
+.first-con_bot p {
   font-size: 1.3em;
   padding: 0 10px;
   padding-top: 25vh;

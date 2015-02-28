@@ -119,7 +119,7 @@ var Work = React.createClass({
               <div className='work_copy'>
                 <header>
                   <h3>SHPE</h3>
-                  <span>San Francisco Bay Area</span>
+                  <p>San Francisco Bay Area</p>
                 </header>
                 <p>
                   We teamed up with the Society of Hispanic Professional

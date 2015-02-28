@@ -26,10 +26,10 @@ var Home = React.createClass({
           <Banner />
           <div className="first-con_bot">
             <header>
-              <div>
+              <p>
                 We build fast, data-rich, offline capable websites that bring
                 the future to your users.
-              </div>
+              </p>
             </header>
           </div>
         </section>
