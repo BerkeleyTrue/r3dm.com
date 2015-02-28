@@ -19,6 +19,11 @@ var blogLinks = [
   { name: 'Home', path: '/' }
 ];
 
+var postLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Blog', path: '/blog' }
+];
+
 var NavStore = Store.create({
 
   getInitialValue: function() {
@@ -38,7 +43,11 @@ var NavStore = Store.create({
         .map(function(path) {
           debug('path', path);
           if (path.indexOf('/blog') !== -1) {
-            return { links: blogLinks.slice() };
+            if (/blog\/.+/.test(path)) {
+              return { links: postLinks.slice() };
+            } else {
+              return { links: blogLinks.slice() };
+            }
           } else {
             return { links: homeLinks.slice() };
           }

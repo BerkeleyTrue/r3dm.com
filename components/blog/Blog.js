@@ -33,7 +33,6 @@ var Blog = React.createClass({displayName: "Blog",
     // Iterates over the posts
     // If there is only one render the single-blog-post-view.
     // Else, render a list of blog briefs that link to the whole versions.
-    //
     var val = posts.map(function(post) {
       var html, readMore, authorStr, publishedDate, coverImg, translationLink;
 
