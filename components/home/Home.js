@@ -27,8 +27,8 @@ var Home = React.createClass({displayName: "Home",
           React.createElement("div", {className: "first-con_bot"}, 
             React.createElement("header", null, 
               React.createElement("p", null, 
-                "We build fast, data-rich, offline capable websites that bring" + ' ' +
-                "the future to your users."
+                "We specialize in delivering fast, data-rich, mobile and web apps" + ' ' +
+                "built using the latest in web technologies."
               )
             )
           )
