@@ -27,8 +27,8 @@ var Home = React.createClass({
           <div className="first-con_bot">
             <header>
               <p>
-                We build fast, data-rich, offline capable websites that bring
-                the future to your users.
+                We specialize in delivering fast, data-rich, mobile and web apps
+                built using the latest in web technologies.
               </p>
             </header>
           </div>

@@ -667,6 +667,7 @@ a:active {
 }
 nav.nav {
   background-color: #333;
+  height: 3em;
   display: inline-block;
   position: fixed;
   top: 0;
@@ -674,12 +675,13 @@ nav.nav {
   z-index: 20;
 }
 nav.nav ul {
+  height: 100%;
   list-style: none;
   position: absolute;
   visible: hidden;
   z-index: 2;
 }
-nav.nav >ul {
+nav.nav > ul {
   display: inline-block;
   left: 0;
   top: 0;
@@ -687,10 +689,12 @@ nav.nav >ul {
   position: relative;
   margin: 0;
 }
-nav.nav >ul:focus {
+nav.nav > ul:focus {
   outline: 0;
 }
 nav.nav li {
+  font-size: 1em;
+  height: 100%;
   display: inline-block;
   position: relative;
   vertical-align: middle;
@@ -721,19 +725,23 @@ nav.nav li li {
 }
 .nav_logo {
   float: left;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 .nav_logo div {
   display: inline-block;
 }
+.nav_logo svg {
+  display: block;
+}
 .nav_logo .nav_logo-type svg {
   height: 3em;
-  width: 8em;
+  width: 6em;
   fill: #fff;
 }
 .nav_logo .nav_logo-mark svg {
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
+  margin: 0.5em 0;
 }
 .nav_links-hamburger {
   display: none;
@@ -834,6 +842,7 @@ nav.nav li li {
 }
 .first-con_bot p {
   font-size: 1.3em;
+  padding: 0 10px;
   padding-top: 25vh;
 }
 @media all and (orientation: portrait) {
@@ -892,6 +901,9 @@ nav.nav li li {
   -ms-order: 1;
   order: 1;
   width: 260px;
+}
+.services_content article p {
+  text-align: justify;
 }
 @media all and (min-width: 30.063em) and (max-width: 40em) {
   .services_content {
@@ -996,7 +1008,8 @@ nav.nav li li {
 .work_content article .work_copy header {
   text-align: center;
 }
-.work_content article .work_copy >p {
+.work_content article .work_copy > p {
+  text-align: justify;
   padding: 40px;
   padding-top: 5px;
 }
@@ -1067,6 +1080,11 @@ nav.nav li li {
 .about .about_content header {
   text-align: center;
 }
+.about .about_content > p {
+  text-align: justify;
+  padding: 40px;
+  padding-top: 5px;
+}
 @media all and (min-width: 30em) and (max-width: 60em) {
   .about {
     padding-bottom: 3em;
@@ -1082,6 +1100,7 @@ nav.nav li li {
     margin: 0 -0.4166666666667%;
   }
   .about .about_content p {
+    padding: 0;
     display: block;
     width: 100.83333333333331%;
     margin: 0 -0.4166666666667%;
@@ -1108,6 +1127,7 @@ nav.nav li li {
     margin: 0 -10px;
   }
   .about .about_content p {
+    padding: 0;
     display: block;
     width: 980px;
     margin: 0 -10px;
@@ -1701,6 +1721,19 @@ input[type = 'email'].connect_input {
 }
 .post .caption {
   font-style: italic;
+}
+.post img {
+  max-width: 80vw;
+}
+@media all and (min-width: 768px) {
+  .post img {
+    max-width: 70vw;
+  }
+}
+@media all and (min-width: 992px) {
+  .post img {
+    max-width: 50vw;
+  }
 }
 a.post_title {
   color: #000;
