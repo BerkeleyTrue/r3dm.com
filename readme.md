@@ -17,7 +17,7 @@ Will open a chrome tab at localhost:9002 where changes will be synced
 ### Dev pre-req's
 * NODE
 * NPM
-* GUlP
+* GULP
 
 
 A template for .env file.
