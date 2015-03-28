@@ -11,7 +11,7 @@
     "prepublish": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js"
   },
   "engines": {
-    "node": "0.10.x"
+    "iojs": "1.6.x"
   },
   "repository": {
     "type": "git",

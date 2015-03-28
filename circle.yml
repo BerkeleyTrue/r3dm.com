@@ -7,3 +7,7 @@ deployment:
     branch: qa
     heroku:
         appname: r3dmqa
+
+machine:
+  node:
+    version: iojs-v1.3.0
