@@ -18,6 +18,9 @@
     "templateStrings": true,
     "jsx": true
   },
+  "plugins": [
+    "react"
+  ],
   "env": {
     "browser": true,
     "mocha": true,
