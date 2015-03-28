@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').load();
+require('babel/register');
 if (process.env.NODE_ENV !== 'development') {
   require('newrelic');
 }

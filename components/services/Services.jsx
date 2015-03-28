@@ -1,7 +1,7 @@
 var React = require('react/addons'),
     PureRenderMixin = React.addons.PureRenderMixin,
 
-    Copy = require('./ServicesCopy');
+    Copy = require('./ServicesCopy.jsx');
 
 var Services = React.createClass({
   mixins: [PureRenderMixin],

@@ -9,17 +9,17 @@ var gulp = require('gulp'),
 
     // ## Bundle
     browserify = require('browserify'),
+    babelify = require('babelify'),
     watchify = require('watchify'),
     envify = require('envify/custom'),
-    uglifyify = require('uglifyify'),
     bundleName = require('vinyl-source-stream'),
 
     // ## utils
     _ = require('lodash'),
     plumber = require('gulp-plumber'),
     util = require('gulp-util'),
+    notify = require('gulp-notify'),
     noopPipe = util.noop,
-    watch = require('gulp-watch'),
     yargs = require('yargs').argv,
     debug = require('debug')('r3dm:gulp'),
 
@@ -30,9 +30,6 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     sync = require('browser-sync'),
     reload = sync.reload,
-
-    // ## React
-    react = require('gulp-react'),
 
     // ## production?
     production = yargs.p;
@@ -58,17 +55,16 @@ var paths = {
   ]
 };
 
-var watching = false;
 var reloadDelay = 6000;
-
-if (production) {
-  // ## Set with `-p`
-  console.log('\n', 'Production mode set', '\n');
-}
 
 gulp.task('stylus', function() {
   return gulp.src(paths.stylusMain)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: notify.onError({
+        title: 'stylus error',
+        message: '<%= error %>'
+      })
+    }))
     .pipe(stylus({
       use: [
         swiss()
@@ -78,25 +74,6 @@ gulp.task('stylus', function() {
     .pipe(concat('main.css'))
     .pipe(production ? mincss() : noopPipe())
     .pipe(gulp.dest(paths.css));
-});
-
-gulp.task('jsx', function() {
-  return gulp.src(paths.jsx)
-    .pipe(plumber())
-    .pipe(react({
-      harmony: true
-    }))
-    .pipe(gulp.dest('./components'));
-});
-
-gulp.task('jsx-watch', function() {
-  return gulp.src(paths.jsx)
-    .pipe(watch(paths.jsx))
-    .pipe(plumber())
-    .pipe(react({
-      harmony: true
-    }))
-    .pipe(gulp.dest('./components'));
 });
 
 gulp.task('bundle', function(cb) {
@@ -146,10 +123,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.stylusAll, ['stylus']);
 });
 
-gulp.task('setWatch', function() {
-  watching = true;
-});
-
 gulp.task('image', function() {
   gulp.src('images/**/*')
     .pipe(imagemin({
@@ -160,8 +133,6 @@ gulp.task('image', function() {
 });
 
 gulp.task('default', [
-  'setWatch',
-  'jsx-watch',
   'bundle',
   'stylus',
   'server',
@@ -171,51 +142,42 @@ gulp.task('default', [
 
 function browserifyCommon(cb) {
   cb = cb || noop;
-  var config;
   var called = false;
   var _reload = _.debounce(reload, reloadDelay);
-  if (watching) {
-    config = {
-      basedir: __dirname,
-      debug: true,
-      cache: {},
-      packageCache: {}
-    };
-  } else {
-    config = {
-      basedir: __dirname
-    };
-  }
+
+  var config = {
+    basedir: __dirname,
+    debug: true,
+    cache: {},
+    packageCache: {},
+    fullPaths: false
+  };
 
   var b = browserify(config);
+
+  // transform es6/jsx into js
+  b.transform(babelify.configure({
+    sourceMapRelative: __dirname
+  }));
+
   b.transform(envify({
     NODE_ENV: 'development'
   }));
 
-  if (!production) {
-    debug('Watching');
-    b = watchify(b);
-    b.on('update', function() {
-      bundleItUp(b);
-    });
-  }
-
-  if (production) {
-    debug('Uglifying bundle');
-    b.transform({ global: true }, uglifyify);
-  }
+  b = watchify(b);
 
   b.on('time', function(time) {
     if (!called) {
       called = true;
       cb();
     }
-    debug('bundle completed in %s ms', time);
+    notify('bundle completed in %s ms', time);
     _reload();
   });
 
-  b.on('error', function(e) {
-    debug('bundler error', e);
+  b.on('update', function(ids) {
+    debug('update found', ids);
+    bundleItUp(b);
   });
 
   b.add(paths.main);
@@ -225,6 +187,17 @@ function browserifyCommon(cb) {
 function bundleItUp(b) {
   debug('Bundling');
   return b.bundle()
+    .on('error', function() {
+      var args = [].slice.call(arguments);
+
+      notify.onError({
+        title: 'Compile Error',
+        message: '<%= error %>'
+      })
+        .apply(this, args);
+
+      this.emit('end');
+    })
     .pipe(bundleName('bundle.js'))
     .pipe(gulp.dest(paths.publicJs));
 }

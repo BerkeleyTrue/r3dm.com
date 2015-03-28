@@ -8,10 +8,10 @@ var React = require('react'),
     StateStreamMixin = require('../util/stateStreamMixin'),
 
     // # Components
-    Sent = require('./ConnectSent'),
-    ConnectError = require('./ConnectError'),
-    Sending = require('./ConnectSending'),
-    Form = require('./ConnectForm'),
+    Sent = require('./ConnectSent.jsx'),
+    ConnectError = require('./ConnectError.jsx'),
+    Sending = require('./ConnectSending.jsx'),
+    Form = require('./ConnectForm.jsx'),
 
     // # flux
     ConnectStore = require('./Store');

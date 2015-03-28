@@ -1,7 +1,7 @@
 var React = require('react/addons'),
     PureRenderMixin = React.addons.PureRenderMixin,
 
-    Spinner = require('../common/Spinner');
+    Spinner = require('../common/Spinner.jsx');
 
 var Sending = React.createClass({
   mixins: [PureRenderMixin],

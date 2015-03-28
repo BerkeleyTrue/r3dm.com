@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react/addons'),
-    Router = require('./components/Router'),
+    Router = require('./components/Router.jsx'),
     debug = require('debug')('r3dm:client'),
     HistoryLocation = require('react-router').HistoryLocation,
 

@@ -1,1 +1,1 @@
-module.exports = require('./Home');
+module.exports = require('./Home.jsx');

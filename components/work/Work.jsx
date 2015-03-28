@@ -6,8 +6,8 @@ var React = require('react/addons'),
 
     // # components
     ImgLoader = require('react-imageloader'),
-    Spinner = require('../common/Spinner'),
-    WorkCopy = require('./WorkCopy'),
+    Spinner = require('../common/Spinner.jsx'),
+    WorkCopy = require('./WorkCopy.jsx'),
 
     // # flux
     AppStore = require('../app/Store');

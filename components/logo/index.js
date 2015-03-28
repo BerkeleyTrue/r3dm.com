@@ -1,1 +1,1 @@
-module.exports = require('./Logo');
+module.exports = require('./Logo.jsx');

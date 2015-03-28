@@ -1,1 +1,1 @@
-module.exports = require('./Team');
+module.exports = require('./Team.jsx');
