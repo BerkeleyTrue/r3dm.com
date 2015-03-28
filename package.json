@@ -8,7 +8,7 @@
     "start": "node server/server.js",
     "lint": "eslint .",
     "test": "npm run lint",
-    "prepublish": "browserify -g envify -t uglifyify client.js -o public/js/bundle.js"
+    "prepublish": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js"
   },
   "engines": {
     "node": "0.10.x"

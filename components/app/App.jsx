@@ -11,7 +11,7 @@ var React = require('react/addons'),
 
     // # components
     Nav = require('../nav'),
-    SideNav = require('../nav/SideNav'),
+    SideNav = require('../nav/SideNav.jsx'),
     Footer = require('../footer');
 
 var App = React.createClass({
