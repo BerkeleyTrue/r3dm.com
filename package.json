@@ -8,7 +8,7 @@
     "start": "node server/server.js",
     "lint": "eslint .",
     "test": "npm run lint",
-    "prepublish": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js"
+    "postinstall": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js"
   },
   "engines": {
     "iojs": "1.6.x"

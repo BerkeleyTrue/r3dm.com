@@ -6,13 +6,15 @@ var Copy = React.createClass({
 
   propTypes: {
     title: React.PropTypes.string,
-    content: React.PropTypes.string
+    content: React.PropTypes.string,
+    imgSrc: React.PropTypes.string
   },
 
   getDefaultProps: function() {
     return {
       title: 'empty title',
-      content: 'empty content'
+      content: 'empty content',
+      imgSrc: ''
     };
   },
 
@@ -20,6 +22,7 @@ var Copy = React.createClass({
     return (
       <article>
         <header>
+          <img src={ this.props.imgSrc } />
           <h3>{ this.props.title }</h3>
         </header>
         <p>
