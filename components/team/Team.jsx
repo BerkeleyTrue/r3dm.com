@@ -1,6 +1,6 @@
 var React = require('react'),
     data = require('./team_data').data,
-    Block = require('./teamBlock.jsx');
+    Block = require('./TeamBlock.jsx');
 
 var Team = React.createClass({
   getDefaultProps: function() {
