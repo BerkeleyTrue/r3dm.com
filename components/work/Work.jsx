@@ -118,13 +118,12 @@ var Work = React.createClass({
             <WorkCopy imgFirst={ this.state.smallScreen }>
               <div className='work_copy'>
                 <header>
-                  <h3>SHPE</h3>
-                  <p>San Francisco Bay Area</p>
+                  <h3>SHPE Website</h3>
                 </header>
                 <p>
                   We teamed up with the Society of Hispanic Professional
                   Engineers - San Francisco Bay Area chapter to bring their
-                  public face up-to-date with Node.js and MongoDb.
+                  public face up-to-date with Node.js and MongoDB.
                   In the process, we were able to save this non-profit money in
                   the long-run by utilizing hosting plans available for small
                   companies using Node.js.

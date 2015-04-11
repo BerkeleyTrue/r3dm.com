@@ -905,7 +905,7 @@ nav.nav li li {
 }
 .services_content article p {
   text-align: justify;
-  font-size: 1.2em;
+  font-size: 1.15em;
 }
 .services_content article header {
   text-align: center;
@@ -1020,6 +1020,7 @@ nav.nav li li {
   text-align: center;
 }
 .work_content article .work_copy > p {
+  font-size: 1.15em;
   text-align: justify;
   padding: 40px;
   padding-top: 5px;
@@ -1092,6 +1093,7 @@ nav.nav li li {
   text-align: center;
 }
 .about .about_content > p {
+  font-size: 1.15em;
   text-align: justify;
   padding: 40px;
   padding-top: 5px;
