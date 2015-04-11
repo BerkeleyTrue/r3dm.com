@@ -111,7 +111,7 @@ var Work = React.createClass({
         id='work'
         className='work'>
         <header className='work_heading'>
-          <h2>Our Work</h2>
+          <h2>OUR WORK</h2>
         </header>
         <div className='work_content' >
           <article ref='shpe'>

@@ -2,7 +2,7 @@ var React = require('react/addons'),
     // debug = require('debug')('r3dm:comp:home'),
 
     // # Components
-    About = require('../about'),
+    Team = require('../team'),
     Banner = require('../banner'),
     Logo = require('../logo'),
     Services = require('../services'),
@@ -35,7 +35,7 @@ var Home = React.createClass({
         </section>
         <Services />
         <Work />
-        <About />
+        <Team />
         <Connect />
       </main>
     );

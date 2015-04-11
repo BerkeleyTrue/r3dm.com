@@ -820,18 +820,12 @@ nav.nav li li {
   z-index: -1;
 }
 .banner {
-  background-image: url("../images/subtle_carbon.png");
+  background-image: url("../images/background.png");
   height: 50%;
   overflow: hidden;
   position: relative;
   text-align: center;
   width: 100vw;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .banner {
-    background-image: url("../images/subtle_carbon@2x.png");
-    background-size: 18px 15px;
-  }
 }
 .banner img {
   position: relative;
@@ -858,6 +852,7 @@ nav.nav li li {
 }
 .services {
   background-image: url("/images/bg-services.jpg");
+  background-color: #c1272d;
   background-size: cover;
   color: #fff;
 }
@@ -1789,4 +1784,59 @@ a.post_title {
 .post p,
 li {
   font-size: large;
+}
+.team {
+  background-color: #c1272d;
+  background-image: url("../images/bg-team.jpg");
+  background-size: cover;
+}
+.team_heading {
+  text-align: center;
+  overflow: auto;
+  color: #fff;
+}
+.blocks-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.team_block {
+  width: 300px;
+  text-align: center;
+  color: #fff;
+}
+.team_block p {
+  text-align: justify;
+}
+.team_block a {
+  color: #fff;
+}
+.team_block .fa-github-alt {
+  color: #000;
+  padding: 2px 0 0 0;
+}
+.team_block .fa-desktop {
+  color: #000;
+  padding: 2px 0 0 0;
+}
+.team_block-padding {
+  padding: 0 1em 1em 1em;
+}
+@media all and (max-width: 60em) {
+  .blocks-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
