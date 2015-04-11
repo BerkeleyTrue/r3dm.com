@@ -665,6 +665,14 @@ a:active {
   width: 100%;
   vertical-align: middle;
 }
+.first-con_bot {
+  text-align: center;
+}
+.first-con_bot p {
+  font-size: 25px;
+  padding: 0 10px;
+  padding-top: 25vh;
+}
 nav.nav {
   background-color: #333;
   height: 3em;
@@ -836,14 +844,6 @@ nav.nav li li {
 }
 .banner header h1 {
   padding-top: 10vh;
-}
-.first-con_bot {
-  text-align: center;
-}
-.first-con_bot p {
-  font-size: 1.3em;
-  padding: 0 10px;
-  padding-top: 25vh;
 }
 @media all and (orientation: portrait) {
   .banner img {
