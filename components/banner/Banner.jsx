@@ -5,7 +5,7 @@ var Banner = React.createClass({
   render: function() {
     return (
       <section className = 'banner'>
-        <img src='images/banner.jpg' />
+        <img src='images/banner.png' />
       </section>
     );
   }
