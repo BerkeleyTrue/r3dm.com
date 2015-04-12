@@ -4,20 +4,21 @@ module.exports = globular();
 
 function globular() {
 
+  var win;
   if (typeof window !== 'undefined') {
-    window = window || {};
+    win = window || {};
   } else {
-    window = {
+    win = {
       document: {},
       ga: function() {
         debug('Google Analytics called');
       }
     };
   }
-  var ga = window.ga || function() { };
-  var document = window.document || {};
+  var ga = win.ga || function() { };
+  var document = win.document || {};
   return {
-    window: window,
+    window: win,
     document: document,
     ga: ga
   };

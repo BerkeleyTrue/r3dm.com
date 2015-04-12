@@ -33,3 +33,8 @@ A template for .env file.
 > NEW_RELIC_LOG=stdout
 
 You will need to create a .env file in the root directory and copy the structure above replacing the phrases with approve values. 
+
+### adding images
+If you add or remove images to the project be sure to run
+
+    % gulp image

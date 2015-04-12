@@ -1,1 +1,1 @@
-module.exports = require('./Work');
+module.exports = require('./Work.jsx');

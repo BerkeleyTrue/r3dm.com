@@ -70,7 +70,9 @@ var StateStreamMixin = {
         'Objects or null given : %s',
         displayName, val
       );
+      /* eslint-disable react/no-did-mount-set-state */
       this.setState(val);
+      /* eslint-enable react/no-did-mount-set-state */
     }.bind(this));
 
     stateSubscriptions.push(this.__stateSubscription);

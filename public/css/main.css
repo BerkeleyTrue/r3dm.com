@@ -665,9 +665,17 @@ a:active {
   width: 100%;
   vertical-align: middle;
 }
+.first-con_bot {
+  text-align: center;
+}
+.first-con_bot p {
+  font-size: 25px;
+  padding: 0 10px;
+  padding-top: 25vh;
+}
 nav.nav {
   background-color: #333;
-  height: 3em;
+  height: 4em;
   display: inline-block;
   position: fixed;
   top: 0;
@@ -812,18 +820,12 @@ nav.nav li li {
   z-index: -1;
 }
 .banner {
-  background-image: url("../images/subtle_carbon.png");
+  background-image: url("../images/background.png");
   height: 50%;
   overflow: hidden;
   position: relative;
   text-align: center;
   width: 100vw;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .banner {
-    background-image: url("../images/subtle_carbon@2x.png");
-    background-size: 18px 15px;
-  }
 }
 .banner img {
   position: relative;
@@ -837,14 +839,6 @@ nav.nav li li {
 .banner header h1 {
   padding-top: 10vh;
 }
-.first-con_bot {
-  text-align: center;
-}
-.first-con_bot p {
-  font-size: 1.3em;
-  padding: 0 10px;
-  padding-top: 25vh;
-}
 @media all and (orientation: portrait) {
   .banner img {
     left: -30vw;
@@ -857,7 +851,9 @@ nav.nav li li {
   }
 }
 .services {
+  background-image: url("/images/bg-services.jpg");
   background-color: #c1272d;
+  background-size: cover;
   color: #fff;
 }
 .services_heading {
@@ -880,13 +876,13 @@ nav.nav li li {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-justify-content: space-between;
-  -ms-justify-content: space-between;
-  justify-content: space-between;
-  -webkit-box-align: baseline;
-  -webkit-align-items: baseline;
-  -ms-align-items: baseline;
-  align-items: baseline;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
   -webkit-align-content: center;
   -ms-align-content: center;
   align-content: center;
@@ -896,7 +892,7 @@ nav.nav li li {
   padding-bottom: 2em;
 }
 .services_content article {
-  padding: 0 1em;
+  padding: 0 1.5em;
   -webkit-order: 1;
   -ms-order: 1;
   order: 1;
@@ -904,23 +900,33 @@ nav.nav li li {
 }
 .services_content article p {
   text-align: justify;
+  font-size: 1.15em;
+}
+.services_content article header {
+  text-align: center;
 }
 @media all and (min-width: 30.063em) and (max-width: 40em) {
   .services_content {
     margin: 0 2em;
   }
   .services_content article {
-    width: 240px;
+    width: 290px;
   }
 }
 @media all and (min-width: 40em) and (max-width: 50em) {
   .services_content {
     margin: 0 4em;
   }
+  .services_content article {
+    width: 290px;
+  }
 }
 @media all and (min-width: 50em) {
   .services_content {
     margin: 0 auto;
+  }
+  .services_content article {
+    width: 290px;
   }
 }
 @media all and (max-width: 30.063em) {
@@ -936,7 +942,7 @@ nav.nav li li {
     align-items: center;
   }
   .services_content article {
-    width: 70vw;
+    width: 290px;
   }
 }
 .work {
@@ -1009,6 +1015,7 @@ nav.nav li li {
   text-align: center;
 }
 .work_content article .work_copy > p {
+  font-size: 1.15em;
   text-align: justify;
   padding: 40px;
   padding-top: 5px;
@@ -1081,6 +1088,7 @@ nav.nav li li {
   text-align: center;
 }
 .about .about_content > p {
+  font-size: 1.15em;
   text-align: justify;
   padding: 40px;
   padding-top: 5px;
@@ -1776,4 +1784,81 @@ a.post_title {
 .post p,
 li {
   font-size: large;
+}
+.team {
+  background-color: #c1272d;
+  background-image: url("../images/bg-team.jpg");
+  background-size: cover;
+}
+.team_heading {
+  padding: 80px 0 50px 0;
+  text-align: center;
+  overflow: auto;
+  color: #fff;
+}
+.blocks-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.team_block {
+  width: 300px;
+  text-align: center;
+  color: #fff;
+}
+.team_block p {
+  text-align: justify;
+}
+.team_block a {
+  color: #fff;
+}
+.team_block a .fa-github-alt {
+  color: #000;
+  padding: 2px 0 0 0;
+}
+.team_block a .fa-desktop {
+  color: #000;
+  padding: 4px 0 0 0;
+}
+.team_block a .fa-linkedin {
+  color: #000;
+}
+.team_block a:hover {
+  color: #000;
+}
+.team_block a:hover .fa-github-alt {
+  color: #fff;
+  padding: 2px 0 0 0;
+}
+.team_block a:hover .fa-desktop {
+  color: #fff;
+  padding: 4px 0 0 0;
+}
+.team_block a:hover .fa-linkedin {
+  color: #fff;
+}
+.team_block-padding {
+  padding: 0 1em 5em 1em;
+}
+@media all and (max-width: 50em) {
+  .blocks-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
 }

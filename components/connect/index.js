@@ -1,1 +1,1 @@
-module.exports = require('./Connect');
+module.exports = require('./Connect.jsx');

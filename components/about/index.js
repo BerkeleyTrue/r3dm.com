@@ -1,1 +1,1 @@
-module.exports = require('./About');
+module.exports = require('./About.jsx');

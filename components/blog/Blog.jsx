@@ -7,8 +7,8 @@ var React = require('react/addons'),
 
     // # components
     Link = require('react-router').Link,
-    // FourOhFour = require('../errors/404'),
-    ComingSoon = require('../errors/ComingSoon'),
+    // FourOhFour = require('../errors/404.jsx'),
+    ComingSoon = require('../errors/ComingSoon.jsx'),
 
     // # flux
     BlogStore = require('./Store.js');

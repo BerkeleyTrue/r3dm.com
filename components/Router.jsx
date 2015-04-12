@@ -11,7 +11,7 @@ var React = require('react'),
     App = require('./app'),
     Blog = require('./blog'),
     Home = require('./home'),
-    FourOhFour = require('./errors/404');
+    FourOhFour = require('./errors/404.jsx');
 
 var routes = (
   <Route

@@ -1,1 +1,1 @@
-module.exports = require('./Blog');
+module.exports = require('./Blog.jsx');

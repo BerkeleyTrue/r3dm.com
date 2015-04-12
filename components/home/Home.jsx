@@ -2,7 +2,7 @@ var React = require('react/addons'),
     // debug = require('debug')('r3dm:comp:home'),
 
     // # Components
-    About = require('../about'),
+    Team = require('../team'),
     Banner = require('../banner'),
     Logo = require('../logo'),
     Services = require('../services'),
@@ -27,15 +27,15 @@ var Home = React.createClass({
           <div className="first-con_bot">
             <header>
               <p>
-                We specialize in delivering fast, data-rich, mobile and web apps
-                built using the latest in web technologies.
+                We specialize in delivering professional Web and Mobile
+                experiences to our customers
               </p>
             </header>
           </div>
         </section>
         <Services />
         <Work />
-        <About />
+        <Team />
         <Connect />
       </main>
     );

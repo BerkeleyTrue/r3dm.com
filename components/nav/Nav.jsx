@@ -5,9 +5,9 @@ var React = require('react/addons'),
     StateStreamMixin = require('../util/stateStreamMixin'),
 
     // # components
-    Links = require('./Links'),
+    Links = require('./Links.jsx'),
     Logo = require('../logo'),
-    Hamburger = require('../common/Hamburger'),
+    Hamburger = require('../common/Hamburger.jsx'),
 
     // # flux
     NavStore = require('./Store'),

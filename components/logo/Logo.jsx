@@ -3,9 +3,9 @@ var React = require('react/addons'),
     PureRenderMixin = React.addons.PureRenderMixin,
 
     Isvg = require('react-inlinesvg'),
-    LogoSvg = require('./LogoSvg'),
-    LogoMark = require('./LogoMark'),
-    LogoType = require('./LogoType');
+    LogoSvg = require('./LogoSvg.jsx'),
+    LogoMark = require('./LogoMark.jsx'),
+    LogoType = require('./LogoType.jsx');
 
 var Logo = React.createClass({
   mixins: [PureRenderMixin],

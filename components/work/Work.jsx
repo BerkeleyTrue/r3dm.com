@@ -6,8 +6,8 @@ var React = require('react/addons'),
 
     // # components
     ImgLoader = require('react-imageloader'),
-    Spinner = require('../common/Spinner'),
-    WorkCopy = require('./WorkCopy'),
+    Spinner = require('../common/Spinner.jsx'),
+    WorkCopy = require('./WorkCopy.jsx'),
 
     // # flux
     AppStore = require('../app/Store');
@@ -111,20 +111,19 @@ var Work = React.createClass({
         id='work'
         className='work'>
         <header className='work_heading'>
-          <h2>Our Work</h2>
+          <h2>OUR WORK</h2>
         </header>
         <div className='work_content' >
           <article ref='shpe'>
             <WorkCopy imgFirst={ this.state.smallScreen }>
               <div className='work_copy'>
                 <header>
-                  <h3>SHPE</h3>
-                  <p>San Francisco Bay Area</p>
+                  <h3>SHPE Website</h3>
                 </header>
                 <p>
                   We teamed up with the Society of Hispanic Professional
                   Engineers - San Francisco Bay Area chapter to bring their
-                  public face up-to-date with Node.js and MongoDb.
+                  public face up-to-date with Node.js and MongoDB.
                   In the process, we were able to save this non-profit money in
                   the long-run by utilizing hosting plans available for small
                   companies using Node.js.

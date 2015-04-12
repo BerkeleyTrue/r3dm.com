@@ -1,6 +1,6 @@
 var React = require('react'),
     data = require('./team_data').data,
-    Block = require('./team_block');
+    Block = require('./TeamBlock.jsx');
 
 var Team = React.createClass({
   getDefaultProps: function() {
@@ -9,8 +9,6 @@ var Team = React.createClass({
 
   render: function() {
     var blockClass = [
-      'pure-u-1',
-      'pure-u-md-1-3',
       'team_block',
       'team_block-padding'
     ].join(' ');
@@ -18,7 +16,7 @@ var Team = React.createClass({
     var Blocks = this.props.data.map(function(datum) {
       return (
         <Block
-          key = { datum.title }
+          key = { datum.name }
           data = { datum }
           className = { blockClass }></Block>
       );
@@ -27,9 +25,9 @@ var Team = React.createClass({
     return (
       <div className='team'>
         <div className = 'team_heading'>
-          <h2>THE T<span className = 'threes'>3</span>AM</h2>
+          <h2>The Team</h2>
         </div>
-        <div>
+        <div className='blocks-container'>
           { Blocks }
         </div>
       </div>

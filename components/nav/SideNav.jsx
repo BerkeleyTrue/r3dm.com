@@ -5,8 +5,8 @@ var React = require('react'),
     StateStreamMixin = require('../util/stateStreamMixin'),
 
     // # components
-    OverLay = require('./OverLay'),
-    Links = require('./Links'),
+    OverLay = require('./OverLay.jsx'),
+    Links = require('./Links.jsx'),
 
     // # flux
     NavStore = require('./Store'),

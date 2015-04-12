@@ -1,7 +1,7 @@
 var React = require('react/addons'),
     PureRenderMixin = React.addons.PureRenderMixin,
 
-    Copy = require('./ServicesCopy');
+    Copy = require('./ServicesCopy.jsx');
 
 var Services = React.createClass({
   mixins: [PureRenderMixin],
@@ -12,44 +12,40 @@ var Services = React.createClass({
         <Copy
           key={ _copy.title }
           title={ _copy.title }
-          content={ _copy.content} />
+          content={ _copy.content }
+          imgSrc={ _copy.imgSrc } />
       );
     });
   },
 
   render: function() {
     var copyData = [{
-      title: 'Node.js',
-      content: `We build fast and scalable applications using Node.js.
-        Why Node.js? Node.js allows you to serve simultaneous requests
-        increasing the performance without the need to use caching
-        services. This means you can serve more of your users with less
-        infrastructure`
+      title: 'STRATEGY',
+      content: `We are digital problem solvers. We investigate your problem
+      beyond just what appears on a screen. To identify what are the true
+      painpoints our customers are feeling. Your company may have been
+      successful before the tech era. We can make sure it continues to excel
+      into the future. By teaching you how to leverage social media, online ads
+      and orient your business in the digital age.
+        `,
+      imgSrc: '/images/icon-strategy.png'
     }, {
-      title: 'React.js',
-      content: `Using isomorphic Javascript with React.js means users without
-        Javascript can still load a basic version of your site, while those
-        with will be delivered a beautifully fast and rich experience
-      `
+      title: 'DESIGN',
+      content: `Our apps communicate trust. We defer to User Interface
+      and User Experience Desginers to build the experiences that customers
+      expect from us. Bring your own design or have us work with you to
+      develop the experience that best matches your business objectives.
+      `,
+      imgSrc: '/images/icon-design.png'
     }, {
-      title: 'API Development',
-      content: `We deliver fast and secure API servers that can be used to feed
-        your mobile users all the data they crave. We build our api's to be
-        easily updated and extended
-      `
-    }, {
-      title: 'MVP Creation',
-      content: `From idea to MVP, we take your early stage startup and deliver
-        an impressive minimal viable product that can easily scale to fit your
-        user base
-      `
-    }, {
-      title: 'Mobile Developement',
-      content: `We build our apps to respond to any environment, whether that
-        is Android or iOS, Windows or OSX. We build our mobile experience to
-        contain realistic motion to give your users an intutive experience they
-        can feel as well as see.
-      `
+      title: 'DEVELOPMENT',
+      content: `Behind the scenes we are the best in technology. Our engineers
+      folow and establish the best practices in the field - Testing, API Design,
+      Isomorphic Apps. When we deliver your product you have a copy of all the
+      software. Increasing the trust you can place in us. Your software can go
+      anywhere.
+      `,
+      imgSrc: '/images/icon-develop.png'
     }];
 
     return (

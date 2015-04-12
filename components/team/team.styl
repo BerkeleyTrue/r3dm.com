@@ -1,16 +1,52 @@
 .team
-  background-color #C1272D
+  background-color $r3d
+  background-image url('../images/bg-team.jpg')
+  background-size cover
 
 .team_heading
+  padding 80px 0 50px 0
   text-align center
   overflow auto
-  span.threes
-    color white
+  color white
+
+.blocks-container
+  display flex
+  flex-direction row
+  justify-content center
 
 .team_block
+  width: 300px
   text-align center
   color white
 
-.team_block-padding p
-  padding-left 2em
-  padding-right 2em
+  p
+    text-align justify
+  a
+    color white
+    .fa-github-alt
+      color black
+      padding 2px 0 0 0
+    .fa-desktop
+      color black
+      padding 4px 0 0 0
+    .fa-linkedin
+      color black
+
+    &:hover
+      color black
+      .fa-github-alt
+        color white
+        padding 2px 0 0 0
+      .fa-desktop
+        color white
+        padding 4px 0 0 0
+      .fa-linkedin
+        color white
+
+.team_block-padding
+  padding 0 1.0em 5em 1.0em
+
++media-query(all, max-width 50em)
+  .blocks-container
+    flex-direction column
+    align-items center
