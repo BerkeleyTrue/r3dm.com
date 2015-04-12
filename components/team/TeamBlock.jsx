@@ -3,25 +3,36 @@ var React = require('react');
 var Block = React.createClass({
   render: function() {
     var links = this.props.data.links.map(function(linkObj) {
+      var result = [];
       if (linkObj.type === 'github') {
-        return (
+        result.push((
           <a href={ linkObj.url }>
             <span className="fa-stack fa-lg">
               <i className="fa fa-circle fa-stack-2x"></i>
               <i className="fa fa-github-alt fa-stack-1x"></i>
             </span>
           </a>
-        )
+        ));
       } else if (linkObj.type === 'portfolio') {
-        return (
+        result.push((
           <a href={ linkObj.url }>
             <span className="fa-stack fa-lg">
               <i className="fa fa-circle fa-stack-2x"></i>
               <i className="fa fa-desktop fa-stack-1x"></i>
             </span>
           </a>
-        )
+        ));
+      } else if (linkObj.type === 'linkedin') {
+        result.push((
+          <a href={ linkObj.url }>
+            <span className="fa-stack fa-lg">
+              <i className="fa fa-circle fa-stack-2x"></i>
+              <i className="fa fa-linkedin fa-stack-1x"></i>
+            </span>
+          </a>
+        ));
       }
+      return result;
     });
 
     return (

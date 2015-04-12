@@ -1821,13 +1821,30 @@ li {
 .team_block a {
   color: #fff;
 }
-.team_block .fa-github-alt {
+.team_block a .fa-github-alt {
   color: #000;
   padding: 2px 0 0 0;
 }
-.team_block .fa-desktop {
+.team_block a .fa-desktop {
   color: #000;
   padding: 4px 0 0 0;
+}
+.team_block a .fa-linkedin {
+  color: #000;
+}
+.team_block a:hover {
+  color: #000;
+}
+.team_block a:hover .fa-github-alt {
+  color: #fff;
+  padding: 2px 0 0 0;
+}
+.team_block a:hover .fa-desktop {
+  color: #fff;
+  padding: 4px 0 0 0;
+}
+.team_block a:hover .fa-linkedin {
+  color: #fff;
 }
 .team_block-padding {
   padding: 0 1em 5em 1em;

@@ -39,6 +39,10 @@ module.exports = {
       {
         type: 'github',
         url: 'http://github.com/berkeleytrue'
+      },
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/pub/berkeley-martinez/33/158/3a9'
       }
     ],
     imgUrl: '../images/berks.jpg'
@@ -50,6 +54,10 @@ module.exports = {
       {
         type: 'portfolio',
         url: 'http://www.lenoremessler.com/'
+      },
+      {
+        type: 'linkedin',
+        url: 'https://www.linkedin.com/in/lenoremessler'
       }
     ],
     imgUrl: '../images/lenore.jpg'
@@ -61,6 +69,10 @@ module.exports = {
       {
         type: 'github',
         url: 'http://github.com/morenoh149'
+      },
+      {
+        type: 'linkedin',
+        url: 'http://www.linkedin.com/in/harrymoreno'
       }
     ],
     imgUrl: '../images/harry.jpg'
