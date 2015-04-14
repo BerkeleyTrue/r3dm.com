@@ -101,7 +101,7 @@ var Form = React.createClass({
         className='connect'
         style={{ height: height }}>
         <header className='connect_heading'>
-          <h2>Work With Us.</h2>
+          <h2>CONNECT</h2>
         </header>
         <div className='connect_form'>
           <form

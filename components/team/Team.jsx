@@ -23,9 +23,9 @@ var Team = React.createClass({
     });
 
     return (
-      <div className='team'>
+      <div id='team' className='team'>
         <div className = 'team_heading'>
-          <h2>The Team</h2>
+          <h2>THE TEAM</h2>
         </div>
         <div className='blocks-container'>
           { Blocks }
