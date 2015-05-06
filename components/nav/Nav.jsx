@@ -33,21 +33,7 @@ var Nav = React.createClass({
   },
 
   componentDidUpdate: function() {
-    var atTop = this.state.scrollTop < 50;
-    if (atTop) {
-      if (this.state.showNav !== this.state.showNavAtTop) {
-
-        NavActions.setShowNav(this.state.showNavAtTop);
-        if (this.state.top !== (this.state.showNavAtTop ? 0 : -150)) {
-          this._activateNavTween();
-        }
-      }
-      return;
-    }
-    // if not at the top and isScrollingDown XNOR showNav, activate tween
-    if (this.state.isScrollingDown ? this.state.showNav : !this.state.showNav) {
-
-      NavActions.setShowNav(!this.state.showNav);
+    if (this.state.top === -150) {
       this._activateNavTween();
     }
   },
@@ -56,7 +42,7 @@ var Nav = React.createClass({
     this.tweenState('top', {
       easing: tweenState.easingTypes.easeInOutQuad,
       stackBehavior: tweenState.stackBehavior.ADDITIVE,
-      duration: 500,
+      duration: 1500,
       endValue: this.state.top === 0 ? -150 : 0
     });
   },
@@ -81,12 +67,14 @@ var Nav = React.createClass({
         className='nav'
         style={ navStyle }>
         <div className='nav_logo'>
-          <Logo
-            type='mark'
-            logoClass='nav_logo-mark'/>
-          <Logo
-            type='type'
-            logoClass='nav_logo-type'/>
+          <a href="#" target="_self">
+            <Logo
+              type='mark'
+              logoClass='nav_logo-mark'/>
+            <Logo
+              type='type'
+              logoClass='nav_logo-type'/>
+          </a>
         </div>
         <Links
           hash={ hash }

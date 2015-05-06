@@ -734,6 +734,7 @@ nav.nav li li {
 .nav_logo {
   float: left;
   padding-left: 1em;
+  padding-top: 0.5em;
 }
 .nav_logo div {
   display: inline-block;
@@ -752,6 +753,7 @@ nav.nav li li {
   margin: 0.5em 0;
 }
 .nav_links-hamburger {
+  padding-top: 0.5em;
   display: none;
 }
 @media (max-width: 37em) {
@@ -784,8 +786,8 @@ nav.nav li li {
   padding: 0;
 }
 .SideNav ul li {
-  padding-right: 2em;
-  padding-left: 2em;
+  padding-right: 1em;
+  padding-left: 1em;
   height: 3em;
 }
 .SideNav a {
