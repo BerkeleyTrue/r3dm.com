@@ -33,6 +33,7 @@ var Nav = React.createClass({
   },
 
   componentDidUpdate: function() {
+    // this is if is a hack, without this if-statement the function gets called too much
     if (this.state.top === -150) {
       this._activateNavTween();
     }
