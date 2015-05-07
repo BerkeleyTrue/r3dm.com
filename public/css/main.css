@@ -670,6 +670,7 @@ a:active {
 }
 .first-con_bot p {
   font-size: 25px;
+  font-weight: 600;
   padding: 0 10px;
   padding-top: 25vh;
 }

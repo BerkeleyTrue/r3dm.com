@@ -27,8 +27,8 @@ var Home = React.createClass({
           <div className="first-con_bot">
             <header>
               <p>
-                We specialize in delivering professional Web and Mobile
-                experiences to our customers
+                We deliver Web and Mobile
+                experiences to our Customers.
               </p>
             </header>
           </div>
