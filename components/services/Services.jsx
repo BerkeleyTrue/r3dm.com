@@ -21,29 +21,23 @@ var Services = React.createClass({
   render: function() {
     var copyData = [{
       title: 'STRATEGY',
-      content: `We are digital problem solvers. We investigate your problem
-      beyond just what appears on a screen. To identify what are the true
-      painpoints our customers are feeling. Your company may have been
-      successful before the tech era. We can make sure it continues to excel
-      into the future. By teaching you how to leverage social media, online ads
-      and orient your business in the digital age.
+      content: `We know technology and what it can do for businesses. We help
+      companies leverage websites, mobile,
+      SEO, online ads and content marketing to help you succeed.
         `,
       imgSrc: '/images/icon-strategy.png'
     }, {
       title: 'DESIGN',
-      content: `Our apps communicate trust. We defer to User Interface
-      and User Experience Desginers to build the experiences that customers
-      expect from us. Bring your own design or have us work with you to
-      develop the experience that best matches your business objectives.
+      content: `Our apps communicate trust. We are experts in User Interface
+      and User Experience design. Whether it's giving a website makeover or
+      coming up with totally unique solutions.
       `,
       imgSrc: '/images/icon-design.png'
     }, {
       title: 'DEVELOPMENT',
-      content: `Behind the scenes we are the best in technology. Our engineers
-      folow and establish the best practices in the field - Testing, API Design,
-      Isomorphic Apps. When we deliver your product you have a copy of all the
-      software. Increasing the trust you can place in us. Your software can go
-      anywhere.
+      content: `At our core we are tech - Testing, API Design,
+      Isomorphic Apps. We deliver your product along with a copy of the
+      source. Your software goes where you go.
       `,
       imgSrc: '/images/icon-develop.png'
     }];

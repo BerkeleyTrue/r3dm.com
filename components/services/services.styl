@@ -11,6 +11,9 @@
   overflow auto // bug fix
   h2
     padding-top 2em
+    padding-bottom 1.5em
+    font-size 2em
+    color black
 
 .services_content
   display flex
@@ -19,41 +22,44 @@
   justify-content center
   align-items flex-start
   align-content center
-  max-width 960px
   padding-left 1em
   padding-right 1em
   padding-bottom 2em
   article
-    padding 0 1.5em
+    padding 0 1.5em 2em 1.5em
     order 1
     width 260px
     p
       text-align justify
-      font-size 1.15em
+      font-size 1.4em
     header
       text-align center
+
+      h3
+        font-size 1.6em
+        padding 1em 0 0.7em 0
 
 +media-query(all, min-width 30.063em, max-width 40em)
   .services_content
     margin 0 2em
     article
-      width 290px
+      width 320px
 
 +media-query(all, min-width 40em, max-width 50em)
   .services_content
     margin 0 4em
     article
-      width 290px
+      width 320px
 
 +media-query(all, min-width 50em)
   .services_content
     margin 0 auto
     article
-      width 290px
+      width 340px
 
 +media-query(all, max-width 30.063em)
   .services_content
     flex-direction column
     align-items center
     article
-      width 290px
+      width 320px

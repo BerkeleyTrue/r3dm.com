@@ -864,6 +864,9 @@ nav.nav li li {
 }
 .services_heading h2 {
   padding-top: 2em;
+  padding-bottom: 1.5em;
+  font-size: 2em;
+  color: #000;
 }
 .services_content {
   display: -webkit-box;
@@ -888,13 +891,12 @@ nav.nav li li {
   -webkit-align-content: center;
   -ms-align-content: center;
   align-content: center;
-  max-width: 960px;
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 2em;
 }
 .services_content article {
-  padding: 0 1.5em;
+  padding: 0 1.5em 2em 1.5em;
   -webkit-order: 1;
   -ms-order: 1;
   order: 1;
@@ -902,17 +904,21 @@ nav.nav li li {
 }
 .services_content article p {
   text-align: justify;
-  font-size: 1.15em;
+  font-size: 1.4em;
 }
 .services_content article header {
   text-align: center;
+}
+.services_content article header h3 {
+  font-size: 1.6em;
+  padding: 1em 0 0.7em 0;
 }
 @media all and (min-width: 30.063em) and (max-width: 40em) {
   .services_content {
     margin: 0 2em;
   }
   .services_content article {
-    width: 290px;
+    width: 320px;
   }
 }
 @media all and (min-width: 40em) and (max-width: 50em) {
@@ -920,7 +926,7 @@ nav.nav li li {
     margin: 0 4em;
   }
   .services_content article {
-    width: 290px;
+    width: 320px;
   }
 }
 @media all and (min-width: 50em) {
@@ -928,7 +934,7 @@ nav.nav li li {
     margin: 0 auto;
   }
   .services_content article {
-    width: 290px;
+    width: 340px;
   }
 }
 @media all and (max-width: 30.063em) {
@@ -944,7 +950,7 @@ nav.nav li li {
     align-items: center;
   }
   .services_content article {
-    width: 290px;
+    width: 320px;
   }
 }
 .work {
