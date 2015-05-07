@@ -4,10 +4,16 @@
   background-color $black
   color white
   retina-image("../images/subtle_carbon.png")
+  padding-bottom 2em
 
 .work_heading
+  padding-top 4em
+  padding-bottom 2em
   text-align center
   overflow auto // bug fix
+
+  h2
+    font-size 2em
 
 +media-query(all, max-width 60em)
   .work_content
@@ -44,11 +50,19 @@
       display inline-block
       header
         text-align center
+        font-size 1.3em
       > p
         font-size: 1.15em
         text-align justify
-        padding 40px
-        padding-top 5px
+        padding 5px 40px 0 40px
+      a
+        float right
+        padding 0 40px 0 40px
+        color white
+        font-style italic
+      i
+        color white
+        padding 0 0 0 5px
 
     .work_img
       backface-visibility hidden

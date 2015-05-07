@@ -111,7 +111,7 @@ var Work = React.createClass({
         id='work'
         className='work'>
         <header className='work_heading'>
-          <h2>OUR WORK</h2>
+          <h2>RECENT WORK</h2>
         </header>
         <div className='work_content' >
           <article ref='shpe'>
@@ -122,12 +122,16 @@ var Work = React.createClass({
                 </header>
                 <p>
                   We teamed up with the Society of Hispanic Professional
-                  Engineers - San Francisco Bay Area chapter to bring their
-                  public face up-to-date with Node.js and MongoDB.
-                  In the process, we were able to save this non-profit money in
-                  the long-run by utilizing hosting plans available for small
-                  companies using Node.js.
+                  Engineers of San Francisco to makover their public face.
+                  We made the site mobile so visitors
+                  could learn more about SHPE right from a smartphone.
+                  In the process, we were able to save the non-profit money
+                  by utilizing hosting plans available for small
+                  businesses.
                 </p>
+                <a href="http://www.shpesfba.org/">Visit the site
+                  <i className="fa fa-sign-out"></i>
+                </a>
               </div>
               <div className='work_img' style={ shpeArticleStyle }>
                 <a href='http://shpesfba.org'>
