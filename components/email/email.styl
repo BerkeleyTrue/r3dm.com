@@ -1,14 +1,15 @@
 .email
   color $r3d
   background-color $black
-  retina-image("../images/subtle_carbon.png")
   overflow auto
   .email_content
     header
       text-align center
 
+  h2
+    margin-top 0
   a
-    color $r3d
+    color lighten($r3d, 5)
 
 +media-query(all, min-width 30em, max-width 60em)
   .email

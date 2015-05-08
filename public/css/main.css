@@ -1180,14 +1180,7 @@ nav.nav li li {
   margin: 0 auto;
   overflow: hidden;
   background-color: #333;
-  background-image: url("../images/subtle_carbon.png");
   color: #fff;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .connect {
-    background-image: url("../images/subtle_carbon@2x.png");
-    background-size: 18px 15px;
-  }
 }
 .connect_heading,
 .connect_error {
@@ -1204,16 +1197,9 @@ nav.nav li li {
 }
 .connect_container {
   background-color: #333;
-  background-image: url("../images/subtle_carbon.png");
   height: 30vh;
   position: relative;
   pointer-events: none;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .connect_container {
-    background-image: url("../images/subtle_carbon@2x.png");
-    background-size: 18px 15px;
-  }
 }
 .connect_container >div {
   bottom: 0;
@@ -1893,20 +1879,16 @@ li {
 .email {
   color: #c1272d;
   background-color: #333;
-  background-image: url("../images/subtle_carbon.png");
   overflow: auto;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 1.3/1), only screen and (min-device-pixel-ratio: 1.3), only screen and (min-resolution: 125dpi), only screen and (min-resolution: 1.3dppx) {
-  .email {
-    background-image: url("../images/subtle_carbon@2x.png");
-    background-size: 18px 15px;
-  }
 }
 .email .email_content header {
   text-align: center;
 }
+.email h2 {
+  margin-top: 0;
+}
 .email a {
-  color: #c1272d;
+  color: #d52d33;
 }
 @media all and (min-width: 30em) and (max-width: 60em) {
   .email .email_content {
