@@ -129,7 +129,14 @@ var Work = React.createClass({
                   by utilizing hosting plans available for small
                   businesses.
                 </p>
-                <a href="http://www.shpesfba.org/">Visit the site
+                <a href="http://the.r3dm.com/blog/shpe-san-francisco-site-makeover"
+                   className="case-study">
+                  Read Case Study
+                  <i className="fa fa-book"></i>
+                </a>
+                <a href="http://www.shpesfba.org/"
+                   className="visit-work">
+                  Visit the site
                   <i className="fa fa-sign-out"></i>
                 </a>
               </div>

@@ -1039,13 +1039,17 @@ nav.nav li li {
   padding: 5px 40px 0 40px;
 }
 .work_content article .work_copy a {
-  float: right;
-  padding: 0 40px 0 40px;
   color: #fff;
   font-style: italic;
 }
+.work_content article .work_copy a.case-study {
+  padding: 0 20px 0 50px;
+}
+.work_content article .work_copy a.visit-work {
+  padding: 0 0 0 0;
+}
 .work_content article .work_copy i {
-  color: #fff;
+  color: #c1272d;
   padding: 0 0 0 5px;
 }
 .work_content article .work_img {
