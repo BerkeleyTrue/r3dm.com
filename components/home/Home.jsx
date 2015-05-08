@@ -7,7 +7,8 @@ var React = require('react/addons'),
     Logo = require('../logo'),
     Services = require('../services'),
     Work = require('../work'),
-    Connect = require('../connect');
+    Connect = require('../connect'),
+    Email = require('../email');
 
 var Home = React.createClass({
 
@@ -37,6 +38,7 @@ var Home = React.createClass({
         <Work />
         <Team />
         <Connect />
+        <Email />
       </main>
     );
   }

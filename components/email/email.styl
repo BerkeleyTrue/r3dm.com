@@ -1,0 +1,25 @@
+.email
+  color $r3d
+  background-color $black
+  retina-image("../images/subtle_carbon.png")
+  overflow auto
+  .email_content
+    header
+      text-align center
+
+  a
+    color $r3d
+
++media-query(all, min-width 30em, max-width 60em)
+  .email
+    .email_content
+      gs('fluid')
+      header
+        row()
+
++media-query(all, min-width 60em)
+  .email
+    .email_content
+      gs('fixed')
+      header
+        row()
