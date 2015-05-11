@@ -1,0 +1,35 @@
+#work_weather_article
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  justify-content center
+  padding 2em 0
+  max-width 800px
+  min-height 400px
+  margin 0 auto
+
+  #work_weather_img-wrapper
+    max-width 400px
+    flex-grow 1
+    flex-shrink 1
+    text-align center
+
+    #work-weather-img
+      padding 1em 1em 1em 2em
+
+  +media-query(all, max-width 50em)
+    #work-weather-img
+      width 350px
+
+  #work_weather_copy
+    max-width 400px
+    flex-grow 1
+    flex-shrink 1
+
+    h3
+      text-align center
+      font-size 25px
+    p
+      text-align justify
+      padding 0 1em 0 1em
+      font-size 18px

@@ -4,7 +4,7 @@ var Copy = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="work-shpe-copy">
         { this.props.children[this.props.imgFirst ? 1 : 0] }
         { this.props.children[this.props.imgFirst ? 0 : 1] }
       </div>

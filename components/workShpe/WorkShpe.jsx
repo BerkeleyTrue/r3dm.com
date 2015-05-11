@@ -107,51 +107,42 @@ var Work = React.createClass({
     };
 
     return (
-      <section
-        id='work'
-        className='work'>
-        <header className='work_heading'>
-          <h2>RECENT WORK</h2>
-        </header>
-        <div className='work_content' >
-          <article ref='shpe'>
-            <WorkCopy imgFirst={ this.state.smallScreen }>
-              <div className='work_copy'>
-                <header>
-                  <h3>SHPE Website</h3>
-                </header>
-                <p>
-                  We teamed up with the Society of Hispanic Professional
-                  Engineers of San Francisco to makover their public face.
-                  We made the site mobile so visitors
-                  could learn more about SHPE right from a smartphone.
-                  In the process, we were able to save the non-profit money
-                  by utilizing hosting plans available for small
-                  businesses.
-                </p>
-                <a href="http://the.r3dm.com/blog/shpe-san-francisco-site-makeover"
-                   className="case-study">
-                  Read Case Study
-                  <i className="fa fa-book"></i>
-                </a>
-                <a href="http://www.shpesfba.org/"
-                   className="visit-work">
-                  Visit the site
-                  <i className="fa fa-sign-out"></i>
-                </a>
-              </div>
-              <div className='work_img' style={ shpeArticleStyle }>
-                <a href='http://shpesfba.org'>
-                  <ImgLoader
-                    src='images/mocks/ipad_iphone_portrait.png'
-                    wrapper={ React.DOM.div }
-                    preloader={ spinner }/>
-                </a>
-              </div>
-            </WorkCopy>
-          </article>
-        </div>
-      </section>
+      <article ref='shpe' id='work_shpe_article'>
+        <WorkCopy imgFirst={ this.state.smallScreen }>
+          <div className='work_copy'>
+            <header>
+              <h3>SHPE Website</h3>
+            </header>
+            <p>
+              We teamed up with the Society of Hispanic Professional
+              Engineers of San Francisco to makover their public face.
+              We made the site mobile so visitors
+              could learn more about SHPE right from a smartphone.
+              In the process, we were able to save them money
+              by utilizing hosting plans available for small
+              businesses.
+            </p>
+            <a href="http://the.r3dm.com/blog/shpe-san-francisco-site-makeover"
+               className="case-study">
+              Read Case Study
+              <i className="fa fa-book"></i>
+            </a>
+            <a href="http://www.shpesfba.org/"
+               className="visit-work">
+              Visit the site
+              <i className="fa fa-sign-out"></i>
+            </a>
+          </div>
+          <div className='work_img' style={ shpeArticleStyle }>
+            <a href='http://shpesfba.org'>
+              <ImgLoader
+                src='images/mocks/ipad_iphone_portrait.png'
+                wrapper={ React.DOM.div }
+                preloader={ spinner }/>
+            </a>
+          </div>
+        </WorkCopy>
+      </article>
     );
   }
 });
