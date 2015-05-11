@@ -1,0 +1,86 @@
+@require 'util'
+
+.work
+  background-color $black
+  color white
+  retina-image("../images/subtle_carbon.png")
+  padding-bottom 2em
+
+.work_heading
+  padding-top 4em
+  padding-bottom 2em
+  text-align center
+  overflow auto // bug fix
+
+  h2
+    font-size 2em
+
++media-query(all, max-width 60em)
+  .work_content
+    gs('fluid')
+    article
+      row()
+      +media-query(all, min-width 30.063em, max-width 60em)
+        .work_copy
+          col(6)
+        .work_img
+          col(6)
+
++media-query(all, min-width 60.063em)
+  .work_content
+    gs('fixed')
+    article
+      row()
+      .work_copy
+        col(5)
+        offset(1)
+      .work_img
+        col(5)
+
+.work_content
+  height 75%
+  overflow visible
+
+  article
+    display inline-block
+    padding-bottom 3em
+
+    .work_copy
+      text-align left
+      display inline-block
+      header
+        text-align center
+        font-size 1.3em
+      > p
+        font-size: 1.15em
+        text-align justify
+        padding 5px 40px 0 40px
+      a
+        color white
+        font-style italic
+      a.case-study
+        padding 0 20px 0 50px
+      a.visit-work
+        padding 0 0 0 0
+      i
+        color $r3d
+        padding 0 0 0 5px
+
+    .work_img
+      backface-visibility hidden
+      height 20em
+      position relative
+      div.pending
+        text-align center
+        height 20em
+        &:before //vertical center
+          content ''
+          display inline-block
+          height 100%
+          vertical-align middle
+      img
+        border 1px transparent solid //ff hack image clipping.
+        display block
+        margin 0 auto
+        height 20em
+        max-width 100%
