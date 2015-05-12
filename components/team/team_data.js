@@ -1,40 +1,22 @@
-// var fs = require('fs'),
-//     path = require('path');
-
-// var harry = fs.readFileSync(path.join(__dirname, '/team_harry.md'), {
-//   encoding: 'utf-8'
-// });
-
-// var berkeley = fs.readFileSync(path.join(__dirname, '/team_berkeley.md'), {
-//   encoding: 'utf-8'
-// });
-
-// var lenore = fs.readFileSync(path.join(__dirname, '/team_lenore.md'), {
-//   encoding: 'utf-8'
-// });
-
-var berkeley = `A Mechanical engineer by training. He moved over to software
-  development as there was more demand for it. Software Engineering
+var berkeley = `A Mechanical engineer by training. He fell in love with
+  Javascript. Software Engineering
   requires an analytical mind and Berkeley has this. Experienced in all
-  things Node.js, REST apis and Functional Reactive Programming. He
+  things Node.js, REST APIs and Functional Reactive Programming. He
   believes in creating things, the do-it-yourself spirit and is a big fan
-  of Sci-Fi. Holds a Bachelor's degree in Mechanical Engineering from San
-  Francisco State University.`;
+  of Sci-Fi.`;
 
 var harry = `A software engineer. Has built many sites using web technologies
-  html5, css,
-  javascript. Is most excited about building mobile apps. Other interests
-  include 3D printing, Artificial Intellegence, Machine Learning, GPU
-  programming, Internet of Things, startups, bitcoin and bicycling.
-  Holds a Bachelors degree in Computer Science from WPI.`;
+  HTML5, CSS,
+  Javascript. Is most excited about building Mobile Apps. Other interests
+  include 3D Printing, Artificial Intelligence, Machine Learning, GPU
+  Programming, Internet of Things, Startups, Bitcoin and Bicycling.`;
 
 var lenore = `Has a great passion for art and design that has grown since
   childhood. Her work shows a love for the graphic arts, demonstrating her
   meticulous eye for design concepts while sharing her optimistic outlook.
   She believes in change through design and accomplishing this through pro
   bono work with non-profits. Focus areas are in branding and identity
-  development, print design, and illustration. Holds an M.S. in Integrated
-  Marketing Communications at The Florida State University.`;
+  development, print design, and illustration.`;
 
 module.exports = {
   data: [{
