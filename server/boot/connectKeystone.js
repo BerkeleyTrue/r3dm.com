@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var adminAppRouter = require('keystone/admin/app/static');
 
 module.exports = function connectKeystone(app, mongoose) {
   keystone.app = app;
@@ -17,7 +18,7 @@ module.exports = function connectKeystone(app, mongoose) {
   });
 
   keystone.import('../../models');
-  keystone.static(app);
+  app.use('/keystone', adminAppRouter);
   keystone.routes(app);
   keystone.mongoose = mongoose;
 };
