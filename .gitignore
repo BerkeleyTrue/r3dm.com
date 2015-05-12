@@ -10,3 +10,4 @@ npm-debug.log
 
 # ignore bundle, make sure to compile it in production
 public/js/bundle.js
+public/css/main.css

@@ -8,7 +8,9 @@
     "start": "node server/server.js",
     "lint": "eslint .",
     "test": "npm run lint",
-    "postinstall": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js"
+    "postinstall": "npm run build-bundle && npm run build-css",
+    "build-bundle": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js",
+    "build-css": "stylus --use kouto-swiss --include-css -p ./components/app.styl | cleancss -o public/css/main.css"
   },
   "engines": {
     "iojs": "1.6.x"
@@ -58,6 +60,7 @@
     "babelify": "^5.0.4",
     "body-parser": "^1.6.5",
     "browserify": "^8.1.3",
+    "clean-css": "^3.2.9",
     "compression": "^1.0.11",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^0.7.0",
