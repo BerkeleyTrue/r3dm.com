@@ -1,5 +1,8 @@
 var keystone = require('keystone');
 var adminAppRouter = require('keystone/admin/app/static');
+var debugFactory = require('debug');
+
+var debug = debugFactory('r3dm:keystone');
 
 module.exports = function connectKeystone(app, mongoose) {
   keystone.app = app;
@@ -13,6 +16,7 @@ module.exports = function connectKeystone(app, mongoose) {
 
     'brand': 'The R3DM',
     'emails': 'views/email',
+    'updates': '../updates',
     'mandrill api key': process.env.MANDRILL_KEY,
     'mandrill username': process.env.MANDRILL_USERNAME
   });
@@ -21,4 +25,10 @@ module.exports = function connectKeystone(app, mongoose) {
   app.use('/keystone', adminAppRouter);
   keystone.routes(app);
   keystone.mongoose = mongoose;
+  mongoose.connection.on('open', function() {
+    debug('auto updating');
+    keystone.applyUpdates(function(err) {
+      debug('auto update complete with ' + (err && err.message || 'no error'));
+    });
+  });
 };
