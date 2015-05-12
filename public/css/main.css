@@ -1846,6 +1846,10 @@ li {
 }
 .team_block a {
   color: #fff;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  padding: 0 15px;
 }
 .team_block a .fa-github-alt {
   color: #000;
@@ -1859,18 +1863,19 @@ li {
   color: #000;
 }
 .team_block a:hover {
-  color: #000;
+  color: #fff;
+  -ms-filter: none;
+  filter: none;
+  opacity: 1;
 }
 .team_block a:hover .fa-github-alt {
-  color: #fff;
-  padding: 2px 0 0 0;
+  color: #000;
 }
 .team_block a:hover .fa-desktop {
-  color: #fff;
-  padding: 4px 0 0 0;
+  color: #000;
 }
 .team_block a:hover .fa-linkedin {
-  color: #fff;
+  color: #000;
 }
 .team_block-padding {
   padding: 0 1em 5em 1em;
