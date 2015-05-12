@@ -245,6 +245,7 @@ html {
 }
 .pure-button-active,
 .pure-button:active {
+  -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 6px rgba(0,0,0,0.2) inset;
   box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset, 0 0 6px rgba(0,0,0,0.2) inset;
 }
 .pure-button[disabled],
@@ -260,6 +261,7 @@ html {
   filter: alpha(opacity=40);
   opacity: 0.4;
   cursor: not-allowed;
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 .pure-button-hidden {
@@ -297,6 +299,7 @@ a.pure-button-selected {
   padding: 0.5em 0.6em;
   display: inline-block;
   border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 3px #ddd;
   box-shadow: inset 0 1px 3px #ddd;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
@@ -307,6 +310,7 @@ a.pure-button-selected {
   padding: 0.5em 0.6em;
   display: inline-block;
   border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 3px #ddd;
   box-shadow: inset 0 1px 3px #ddd;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
@@ -1103,16 +1107,16 @@ nav.nav li li {
 }
 .notFound_layout {
   display: block;
-  width: 100.83333333333331%;
-  margin: 0 -0.4166666666667%;
+  width: 100.83333333333333%;
+  margin: 0 -0.416666666666666%;
 }
 .notFound_main {
   display: inline-block;
   float: left;
   overflow: hidden;
   width: 32.5%;
-  margin: 0 0.4166666666667%;
-  margin-left: 33.75%;
+  margin: 0 0.416666666666666%;
+  margin-left: 33.74999999999999%;
   padding-top: 20vh;
 }
 .about {
@@ -1140,20 +1144,20 @@ nav.nav li li {
   }
   .about .about_content header {
     display: block;
-    width: 100.83333333333331%;
-    margin: 0 -0.4166666666667%;
+    width: 100.83333333333333%;
+    margin: 0 -0.416666666666666%;
   }
   .about .about_content p {
     padding: 0;
     display: block;
-    width: 100.83333333333331%;
-    margin: 0 -0.4166666666667%;
+    width: 100.83333333333333%;
+    margin: 0 -0.416666666666666%;
     display: inline-block;
     float: left;
     overflow: hidden;
-    width: 49.1666666666667%;
-    margin: 0 0.4166666666667%;
-    margin-left: 25.4166666666667%;
+    width: 49.16666666666666%;
+    margin: 0 0.416666666666666%;
+    margin-left: 25.416666666666664%;
   }
 }
 @media all and (min-width: 60em) {
@@ -1193,8 +1197,8 @@ nav.nav li li {
 .connect_heading,
 .connect_error {
   display: block;
-  width: 100.83333333333331%;
-  margin: 0 -0.4166666666667%;
+  width: 100.83333333333333%;
+  margin: 0 -0.416666666666666%;
   color: #fff;
   overflow: auto;
   text-align: center;
@@ -1223,33 +1227,33 @@ nav.nav li li {
 }
 .connect_form .connect_name {
   display: block;
-  width: 100.83333333333331%;
-  margin: 0 -0.4166666666667%;
+  width: 100.83333333333333%;
+  margin: 0 -0.416666666666666%;
 }
 .connect_form .connect_name input {
   display: inline-block;
   float: left;
   overflow: hidden;
-  width: 49.1666666666667%;
-  margin: 0 0.4166666666667%;
+  width: 49.16666666666666%;
+  margin: 0 0.416666666666666%;
   margin-bottom: 1em;
-  margin-left: 25.4166666666667%;
+  margin-left: 25.416666666666664%;
   height: 2.1rem;
 }
 .connect_form .connect_email {
   display: block;
-  width: 100.83333333333331%;
-  margin: 0 -0.4166666666667%;
+  width: 100.83333333333333%;
+  margin: 0 -0.416666666666666%;
 }
 .connect_form .connect_email div:first-child {
   display: inline-block;
   float: left;
   overflow: hidden;
   width: 32.5%;
-  margin: 0 0.4166666666667%;
+  margin: 0 0.416666666666666%;
   margin-bottom: 1em;
   margin-right: 0;
-  margin-left: 25.4166666666667%;
+  margin-left: 25.416666666666664%;
 }
 .connect_form .connect_email div:first-child input {
   height: 2.1rem;
@@ -1259,8 +1263,8 @@ nav.nav li li {
   display: inline-block;
   float: left;
   overflow: hidden;
-  width: 16.6666666666667%;
-  margin: 0 0.4166666666667%;
+  width: 16.666666666666668%;
+  margin: 0 0.416666666666666%;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
   margin-bottom: 1em;
@@ -1300,17 +1304,17 @@ nav.nav li li {
     float: left;
     overflow: hidden;
     width: 32.5%;
-    margin: 0 0.4166666666667%;
+    margin: 0 0.416666666666666%;
     margin-bottom: 1em;
-    margin-left: 33.75%;
+    margin-left: 33.74999999999999%;
   }
   .connect_form .connect_email div:first-child {
     display: inline-block;
     float: left;
     overflow: hidden;
-    width: 24.1666666666667%;
-    margin: 0 0.4166666666667%;
-    margin-left: 33.75%;
+    width: 24.166666666666664%;
+    margin: 0 0.416666666666666%;
+    margin-left: 33.74999999999999%;
     margin-bottom: 1em;
     margin-right: 0;
   }
@@ -1321,8 +1325,8 @@ nav.nav li li {
     display: inline-block;
     float: left;
     overflow: hidden;
-    width: 8.3333333333333%;
-    margin: 0 0.4166666666667%;
+    width: 8.333333333333334%;
+    margin: 0 0.416666666666666%;
     margin-bottom: 1em;
     margin-left: 0;
   }
@@ -1711,26 +1715,26 @@ input[type = 'email'].connect_input {
 }
 .blog_layout {
   display: block;
-  width: 100.83333333333331%;
-  margin: 0 -0.4166666666667%;
+  width: 100.83333333333333%;
+  margin: 0 -0.416666666666666%;
   padding-top: 65px;
 }
 .posts_wrapper {
   display: inline-block;
   float: left;
   overflow: hidden;
-  width: 82.5%;
-  margin: 0 0.4166666666667%;
-  margin-left: 8.75%;
+  width: 82.49999999999999%;
+  margin: 0 0.416666666666666%;
+  margin-left: 8.749999999999998%;
 }
 @media all and (min-width: 768px) {
   .posts_wrapper {
     display: inline-block;
     float: left;
     overflow: hidden;
-    width: 65.8333333333333%;
-    margin: 0 0.4166666666667%;
-    margin-left: 17.0833333333333%;
+    width: 65.83333333333333%;
+    margin: 0 0.416666666666666%;
+    margin-left: 17.08333333333333%;
   }
 }
 @media all and (min-width: 992px) {
@@ -1738,9 +1742,9 @@ input[type = 'email'].connect_input {
     display: inline-block;
     float: left;
     overflow: hidden;
-    width: 49.1666666666667%;
-    margin: 0 0.4166666666667%;
-    margin-left: 25.4166666666667%;
+    width: 49.16666666666666%;
+    margin: 0 0.416666666666666%;
+    margin-left: 25.416666666666664%;
   }
 }
 .post {
@@ -1906,8 +1910,8 @@ li {
   }
   .email .email_content header {
     display: block;
-    width: 100.83333333333331%;
-    margin: 0 -0.4166666666667%;
+    width: 100.83333333333333%;
+    margin: 0 -0.416666666666666%;
   }
 }
 @media all and (min-width: 60em) {
