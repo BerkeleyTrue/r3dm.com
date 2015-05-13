@@ -15,9 +15,11 @@ var WorkWeather = React.createClass({
         <div id="work_weather_copy">
           <h3>R3DM Weather</h3>
           <p>
-            A proof-of-concept phone application. Built
-            using Javascript, once, and works on all platforms - iOS, Android,
-            and websites. The design is sleek and attractive.
+            A proof-of-concept phone application. After evaluating consumer
+            needs, this app was designed as an informative and attractive way to
+            check the weather. The minimal design allows the user to easily find
+            data on current and future weather forecasts, sunrise and sunset,
+            moon phases, and more.
           </p>
         </div>
       </article>
