@@ -1,31 +1,33 @@
-var React = require('react'),
-    tweenState = require('react-tween-state'),
-    debug = require('debug')('r3dm:comp:connect:form'),
-    globular = require('../globular'),
+import React, { PropTypes } from 'react';
+import tweenState from 'react-tween-state';
+import debugFactory from 'debug';
+import globular from '../globular';
 
-    StateStreamMixin = require('../util/stateStreamMixin'),
+const debug = debugFactory('r3dm:comp:connect:form');
 
-    // # flux
-    ConnectActions = require('./Actions'),
-    ConnectStore = require('./Store');
+export default React.createClass({
+  mixins: [tweenState.Mixin],
+  displayName: 'ConnectForm',
 
-var Form = React.createClass({
+  propTypes: {
+    connectActions: PropTypes.object,
+    email: PropTypes.string,
+    name: PropTypes.string
+  },
 
-  mixins: [
-    tweenState.Mixin,
-    StateStreamMixin
-  ],
-
-  getStateStream: function() {
-    return ConnectStore;
+  getThundercats: function() {
+    return {
+      store: 'ConnectStore',
+      map: ({ name, email }) => ({ email, name }),
+      actions: ['connectActions']
+    };
   },
 
   componentDidMount: function() {
-    var form = this.refs.form.getDOMNode(),
+    const form = this.refs.form.getDOMNode(),
         rect = form.getBoundingClientRect();
 
-
-    this.setState({
+    this.setState({ // eslint-disable-line
       width: form.clientWidth,
       height: form.clientHeight,
       rectX: rect.left,
@@ -33,14 +35,18 @@ var Form = React.createClass({
     });
   },
 
-  _handleConnect: function(e) {
-    var state = this.state,
-        email = state.email,
-        name = state.name,
-        rectX = state.rectX,
-        rectY = state.rectY,
-        clientX = e.clientX,
-        clientY = e.pageY;
+  handleConnect: function(e) {
+    const clientX = e.clientX;
+    const clientY = e.pageY;
+    const {
+      rectX,
+      rectY
+    } = this.state;
+
+    const {
+      email,
+      name
+    } = this.props;
 
     e.preventDefault();
 
@@ -59,9 +65,9 @@ var Form = React.createClass({
       duration: 750,
       beginValue: 0,
       endValue: 1,
-      onEnd: function() {
+      onEnd: () => {
         debug('send connect action');
-        ConnectActions.send({
+        this.props.connectActions.send({
           email: email,
           name: name,
           utc: new Date().getTimezoneOffset()
@@ -74,14 +80,19 @@ var Form = React.createClass({
   },
 
   render: function() {
-    var state = this.state,
-        email = state.email,
-        name = state.name,
-        height = state.height,
-        width = state.width,
-        leftClickPos = state.leftClickPos,
-        topClickPos = state.topClickPos,
-        scale = this.getTweeningValue('scale') || 0;
+    const {
+      connectActions,
+      name,
+      email
+    } = this.props;
+    const {
+      height,
+      width,
+      leftClickPos,
+      topClickPos,
+    } = this.state;
+
+    const scale = this.getTweeningValue('scale') || 0;
 
     var expandStyle = {
       height: width ? width * 2 : 0,
@@ -96,9 +107,9 @@ var Form = React.createClass({
 
     return (
       <article
+        className='connect'
         key='form'
         ref='form'
-        className='connect'
         style={{ height: height }}>
         <header className='connect_heading'>
           <h2>CONNECT</h2>
@@ -109,27 +120,27 @@ var Form = React.createClass({
             className='pure-form'
             onSubmit={ this.handleConnect }>
             <div className='connect_name'>
-                <input
-                  type='text'
-                  name='name'
-                  className='connect_input'
-                  value={ name }
-                  onChange={ ConnectActions.onNameChange }
-                  placeholder='your name' />
+              <input
+                className='connect_input'
+                name='name'
+                onChange={ connectActions.onNameChange }
+                placeholder='your name'
+                type='text'
+                value={ name } />
             </div>
             <div className='connect_email'>
               <div>
                 <input
-                  type='email'
-                  name='email'
                   className='connect_input'
-                  value={ email }
-                  onChange={ ConnectActions.onEmailChange }
-                  placeholder='email'/>
+                  name='email'
+                  onChange={ connectActions.onEmailChange }
+                  placeholder='email'
+                  type='email'
+                  value={ email } />
               </div>
               <div
                 className='button'
-                onClick={ this._handleConnect }>
+                onClick={ this.handleConnect }>
                 <span>
                   Connect
                 </span>
@@ -144,5 +155,3 @@ var Form = React.createClass({
     );
   }
 });
-
-module.exports = Form;

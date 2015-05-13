@@ -1,9 +1,11 @@
-var createActions = require('../util/createActions');
+import { Actions } from 'thundercats';
 
-var AppActions = createActions([
-  'setScroll',
-  'setIsScrolling',
-  'setWindowHeight'
-]);
-
-module.exports = AppActions;
+export default class extends Actions {
+  constructor() {
+    super([
+      'setScroll',
+      'setIsScrolling',
+      'setWindowHeight'
+    ]);
+  }
+}

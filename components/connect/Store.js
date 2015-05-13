@@ -1,84 +1,44 @@
-var Rx = require('rx'),
-    Store = require('rx-flux').Store,
-    assignState = require('../util').assignState,
-    debug = require('debug')('r3dm:component:connect:store'),
+import { Store } from 'thundercats';
+import { createSetObject } from '../util';
+import debugFactory from 'debug';
 
-    ConnectActions = require('./Actions');
+const debug = debugFactory('r3dm:component:connect:store');
 
-var ConnectStore = Store.create({
-
-  getInitialValue: function() {
-    debug('init');
-    return {
+export default class ConnectStore extends Store {
+  constructor(r3d) {
+    super();
+    this.value = {
       email: '',
+      error: false,
       name: '',
-      utc: '',
       sending: false,
       sent: false,
-      error: false
+      utc: ''
     };
-  },
 
-  getOperations: function() {
-    debug('setting up operations');
-    return Rx.Observable.merge(
+    const {
+      error,
+      onEmailChange,
+      onNameChange,
+      sending,
+      sent,
+      setUtc
+    } = r3d.getActions('connectActions');
 
-      ConnectActions.sending
-        .map(function(sending) {
-          return {
-            sending: sending,
-            sent: false,
-            error: false
-          };
-        })
-        .map(assignState),
-
-      ConnectActions.sent
-        .map(function(sent) {
-          return {
-            sending: false,
-            sent: sent,
-            error: false
-          };
-        })
-        .map(assignState),
-
-      ConnectActions.error
-        .map(function(err) {
-          debug('An error occured durring mandrill service', err);
-          return {
-            sending: false,
-            sent: false,
-            error: true
-          };
-        })
-        .map(assignState),
-
-      ConnectActions.onEmailChange
-        .map(mapEventValue)
-        .map(function(email) {
-          return { email: email };
-        })
-        .map(assignState),
-
-      ConnectActions.onNameChange
-        .map(mapEventValue)
-        .map(function(name) {
-          return { name: name };
-        })
-        .map(assignState),
-
-      ConnectActions.setUtc
-        .map(function(utc) {
-          return { utc: utc };
-        })
-        .map(assignState)
+    this.register(
+      error
+        .tap(({ error }) => debug(
+          'An error occured durring mandrill service',
+          error
+        ))
+        .map(createSetObject)
     );
-
-    function mapEventValue(e) {
-      return e.target ? e.target.value : '';
-    }
+    this.register(onEmailChange.map(createSetObject));
+    this.register(onNameChange.map(createSetObject));
+    this.register(sending.map(createSetObject));
+    this.register(sent.map(createSetObject));
+    this.register(setUtc.map(createSetObject));
   }
-});
 
-module.exports = ConnectStore;
+  static displayName = 'ConnectStore';
+}

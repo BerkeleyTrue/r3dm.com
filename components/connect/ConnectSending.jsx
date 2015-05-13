@@ -1,28 +1,28 @@
-var React = require('react/addons'),
-    PureRenderMixin = React.addons.PureRenderMixin,
+import React from 'react/addons';
+import Spinner from '../common/Spinner.jsx';
 
-    Spinner = require('../common/Spinner.jsx');
-
-var Sending = React.createClass({
-  mixins: [PureRenderMixin],
+export default React.createClass({
+  displayName: 'displayName',
 
   propTypes: {
     height: React.PropTypes.number
   },
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.height !== nextProps.height;
+  },
+
   render: function() {
     return (
       <article
-        ref='sending'
-        style={{ height: this.props.height }}
         className='connect connect_sending'
-        key='sending'>
+        key='sending'
+        ref='sending'
+        style={{ height: this.props.height }}>
         <Spinner
-          svgClass='connect_sending-spinner'
-          circleClass='connect_sending-path' />
+          circleClass='connect_sending-path'
+          svgClass='connect_sending-spinner'/>
       </article>
     );
   }
 });
-
-module.exports = Sending;

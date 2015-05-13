@@ -1,29 +1,59 @@
-var createActions = require('../util/createActions'),
-    Fetcher = require('fetchr'),
-    debug = require('debug')('r3dm:components:blog:action');
+import { Actions } from '../util/createActions';
+import Fetcher from 'fetchr';
+import debugFactory from 'debug';
 
-var fetcher = new Fetcher({
+const debug = debugFactory('r3dm:components:blog:action');
+
+const fetcher = new Fetcher({
   xhrPath: '/api'
 });
 
-var actions = createActions([
-  'setSlug',
-  'setPosts',
-  'loading',
-  'onError'
-]);
+export default class BlogActions extends Actions {
+  constructor() {
+    super([
+      'setSlug',
+      'setPosts',
+      'loading',
+      'onError'
+    ]);
 
-actions.setSlug.subscribe(function(payload) {
-  debug('blog action payload: ', payload);
-  actions.loading(true);
-  fetcher.read('blogService', payload, {}, function(err, posts) {
-    if (err) {
-      debug('blog err', err);
-      return actions.onError(true);
-    }
-    debug('calling set posts with %s posts', posts.length);
-    actions.setPosts(posts);
-  });
-});
+    this.setSlug.subscribe(payload => {
+      debug(this.displayName + ' payload: ', payload);
+      this.loading(true);
+      fetcher.read('blogService', payload, {}, (err, posts) => {
+        if (err) {
+          debug('blog err', err);
+          return this.onError(true);
+        }
+        debug('calling set posts with %s posts', posts.length);
+        this.setPosts(posts);
+      });
+    });
+  }
 
-module.exports = actions;
+  static displayName = 'BlogActions'
+
+  loading(loading) {
+    return {
+      loading: loading,
+      error: false,
+      posts: []
+    };
+  }
+
+  onError(err) {
+    return {
+      loading: false,
+      error: err,
+      posts: []
+    };
+  }
+
+  setPosts(posts) {
+    return {
+      loading: false,
+      error: false,
+      posts: posts && posts.length === 0 ? false : posts
+    };
+  }
+}

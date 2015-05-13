@@ -1,14 +1,14 @@
-var invariant = require('react/lib/invariant'),
-    ViewportMetrics = require('react/lib/ViewportMetrics'),
-    EventListener = require('react/lib/EventListener'),
-    win;
+import invariant from 'react/lib/invariant';
+import ViewportMetrics from 'react/lib/ViewportMetrics';
+import EventListener from 'react/lib/EventListener';
 
+let win;
 
 // Scroll Mixin
 // Flux Actions
-// * setScroll
-// * setIsScrolling
-var ScrollListenerMixin = {
+// * setScroll(bool)
+// * setIsScrolling(Number)
+export default {
 
   getDefaultProps: function() {
     return {
@@ -19,7 +19,7 @@ var ScrollListenerMixin = {
   getInitialState: function() {
     this.__scrollActions = typeof this.setScroll === 'function' &&
       typeof this.setIsScrolling === 'function';
-    var state = {};
+    let state = {};
     if (!this.__scrollActions) {
       state = {
         scrollTop: 0,
@@ -30,7 +30,6 @@ var ScrollListenerMixin = {
   },
 
   componentDidMount: function () {
-
     win = typeof window !== 'undefined' ? window : false;
 
     invariant(
@@ -48,7 +47,7 @@ var ScrollListenerMixin = {
   },
 
   _onPageScrollEnd: function () {
-    var scrollTop = ViewportMetrics.currentScrollTop;
+    const scrollTop = ViewportMetrics.currentScrollTop;
     if (scrollTop === this.state.scrollTop) {
       win.clearTimeout(this._pageScrollTimeout);
       if (this.__scrollActions) {
@@ -60,7 +59,7 @@ var ScrollListenerMixin = {
   },
 
   _onPageScroll: function () {
-    var scrollTop = ViewportMetrics.currentScrollTop;
+    const scrollTop = ViewportMetrics.currentScrollTop;
 
     win.clearTimeout(this._pageScrollTimeout);
     this._pageScrollTimeout =
@@ -75,8 +74,5 @@ var ScrollListenerMixin = {
         isScrolling: true
       });
     }
-
   }
 };
-
-module.exports = ScrollListenerMixin;

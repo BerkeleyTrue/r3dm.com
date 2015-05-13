@@ -1,38 +1,32 @@
-/* eslint no-unused-vars: 0 */
-var React = require('react'),
+import React from 'react';
+import Router, { Route, NotFoundRoute, DefaultRoute } from 'react-router';
 
-    // react router
-    Router = require('react-router'),
-    Route = Router.Route,
-    NotFound = Router.NotFoundRoute,
-    DefaultRoute = Router.DefaultRoute,
-
-    // # Components
-    App = require('./app'),
-    Blog = require('./blog'),
-    Home = require('./home'),
-    FourOhFour = require('./errors/404.jsx');
+import App from './app';
+import Blog from './blog';
+import Home from './home';
+import FourOhFour from './errors/404.jsx';
 
 var routes = (
   <Route
+    handler={ App }
     name='app'
-    path='/'
-    handler={ App }>
+    path='/'>
 
     <DefaultRoute
-      name='home'
-      handler={ Home } />
+      handler={ Home }
+      name='home'/>
     <Route
+      handler={ Blog }
       name='blog'
-      path='/blog/?:slug?'
-      handler={ Blog } />
-    <NotFound handler={ FourOhFour } />
+      path='/blog/?:slug?'/>
+
+    <NotFoundRoute handler={ FourOhFour } />
   </Route>
 );
 
-module.exports = function(Location) {
+export default function createRouter(Location) {
   return Router.create({
-    routes: routes,
-    location: Location
+    location,
+    routes
   });
-};
+}

@@ -1,32 +1,32 @@
-var React = require('react/addons'),
-    RouteHandler = require('react-router').RouteHandler,
+import React, { PropTypes } from 'react/addons';
+import { RouteHandler } from 'react-router';
+import ScrollMixin from '../util/scrollMixin';
+import Nav from '../nav';
+import SideNav from '../nav/SideNav.jsx';
+import Footer from '../footer';
 
-    // # mixins
-    StateStreamMixin = require('../util/stateStreamMixin'),
-    ScrollMixin = require('../util/scrollMixin'),
+export default React.createClass({
+  mixins: [ScrollMixin],
+  displayName: 'App',
 
-    // # flux
-    AppActions = require('./Actions'),
-    AppStore = require('./Store'),
-
-    // # components
-    Nav = require('../nav'),
-    SideNav = require('../nav/SideNav.jsx'),
-    Footer = require('../footer');
-
-var App = React.createClass({
-
-  mixins: [
-    ScrollMixin,
-    StateStreamMixin
-  ],
-
-  getStateStream: function() {
-    return AppStore;
+  propTypes: {
+    scrollTop: PropTypes.number,
+    isScrolling: PropTypes.bool
   },
 
-  setScroll: AppActions.setScroll,
-  setIsScrolling: AppActions.setIsScrolling,
+  getInitialState() {
+    this.appActions = this.context.cat.getActions('appActions');
+    return {};
+  },
+
+  getThundercats: function() {
+    return {
+      store: 'AppStore'
+    };
+  },
+
+  setScroll: this.AppActions.setScroll,
+  setIsScrolling: this.AppActions.setIsScrolling,
 
   render: function() {
     return (
@@ -39,5 +39,3 @@ var App = React.createClass({
     );
   }
 });
-
-module.exports = App;

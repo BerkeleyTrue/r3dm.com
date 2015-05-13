@@ -1,17 +1,19 @@
-var React = require('react/addons'),
-    PureRenderMixin = React.addons.PureRenderMixin;
+import React from 'react';
 
-var Sent = React.createClass({
-  mixins: [PureRenderMixin],
-
+export default React.createClass({
+  displayName: 'Sent',
   propTypes: { height: React.PropTypes.number },
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.height !== nextProps.height;
+  },
 
   render: function() {
     return (
       <article
-        style={{ height: this.props.height }}
         className='connect connect_sent'
-        key='sent'>
+        key='sent'
+        style={{ height: this.props.height }}>
         <header className='connect_heading'>
           <h1>Thanks!</h1>
           <p>You should see an email from us soon.</p>
@@ -20,5 +22,3 @@ var Sent = React.createClass({
     );
   }
 });
-
-module.exports = Sent;

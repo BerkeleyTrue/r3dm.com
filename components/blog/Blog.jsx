@@ -1,40 +1,30 @@
-var React = require('react/addons'),
-    // debug = require('debug')('r3dm:components:blog'),
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import ComingSoon from '../errors/ComingSoon.jsx';
 
-    // # mixins
-    PureRenderMixin = React.addons.PureRenderMixin,
-    StateStreamMixin = require('../util/stateStreamMixin'),
+export default class Blog extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    // # components
-    Link = require('react-router').Link,
-    // FourOhFour = require('../errors/404.jsx'),
-    ComingSoon = require('../errors/ComingSoon.jsx'),
+  static displayName = 'Blog'
+  static propTypes = {
+    posts: PropTypes.array
+  }
 
-    // # flux
-    BlogStore = require('./Store.js');
+  getThundercats() {
+    return {
+      store: 'blogStore',
+      map: ({ posts }) => posts
+    };
+  }
 
-var Blog = React.createClass({
-  mixins: [
-    PureRenderMixin,
-    StateStreamMixin
-  ],
-
-  getStateStream: function() {
-    return BlogStore;
-  },
-
-  render: function() {
-    var posts = this.state.posts;
-
-    if (posts === false) {
-      return <ComingSoon />;
-    }
-
+  renderPosts(posts) {
     // Iterates over the posts
     // If there is only one render the single-blog-post-view.
     // Else, render a list of blog briefs that link to the whole versions.
-    var val = posts.map(function(post) {
-      var html, readMore, authorStr, publishedDate, coverImg, translationLink;
+    return posts.map(post => {
+      let html, readMore, authorStr, publishedDate, coverImg, translationLink;
 
       if (posts.length === 1) {
         html = post.content.extended.html;
@@ -43,8 +33,8 @@ var Blog = React.createClass({
         readMore = (
           <div className='post_readmore'>
             <Link
-              to='blog'
-              params={{ slug: post.slug }}>
+              params={{ slug: post.slug }}
+              to='blog'>
               READ THE FULL POST
             </Link>
           </div>
@@ -53,11 +43,11 @@ var Blog = React.createClass({
 
       if (post.publishedDate) {
         publishedDate = new Date(post.publishedDate)
-          .toLocaleString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-          });
+        .toLocaleString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
       } else {
         publishedDate = 'not published';
       }
@@ -70,7 +60,7 @@ var Blog = React.createClass({
 
       if (post.cover) {
         coverImg = (
-          <div className="post-cover">
+          <div className='post-cover'>
             <img src={ post.cover.url }></img>
           </div>
         );
@@ -80,9 +70,9 @@ var Blog = React.createClass({
         if (post.language === 'English') {
           translationLink = (
             <Link
-              to='blog'
+              className='translation-link'
               params={{ slug: post.translation.slug }}
-              className="translation-link">
+              to='blog'>
               Lea Esto en Español
             </Link>
           );
@@ -90,9 +80,9 @@ var Blog = React.createClass({
         if (post.language === 'Español') {
           translationLink = (
             <Link
-              to='blog'
+              className='translation-link'
               params={{ slug: post.translation.slug }}
-              className="translation-link">
+              to='blog'>
               Read this in English
             </Link>
           );
@@ -105,9 +95,9 @@ var Blog = React.createClass({
           key={ post.slug } >
           <header>
             <Link
-              to='blog'
+              className='post_title'
               params={{ slug: post.slug }}
-              className='post_title'>
+              to='blog'>
               { coverImg }
               <h1>{ post.title }</h1>
             </Link>
@@ -123,17 +113,23 @@ var Blog = React.createClass({
         </section>
       );
     });
+  }
+
+  render() {
+    const { posts } = this.props;
+
+    if (posts === false) {
+      return <ComingSoon />;
+    }
 
     return (
-      <main className="blog">
+      <main className='blog'>
         <div className='blog_layout'>
           <article className='posts_wrapper'>
-            { val }
+            { this.renderPosts(posts) }
           </article>
         </div>
       </main>
     );
   }
-});
-
-module.exports = Blog;
+}

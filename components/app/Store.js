@@ -1,46 +1,39 @@
-var _ = require('lodash'),
-    Rx = require('rx'),
-    Store = require('rx-flux').Store,
-    assignState = require('../util').assignState,
+import _ from 'lodash';
+import { Store } from 'thundercats';
 
-    AppActions = require('./Actions');
+export default class AppStore extends Store {
+  constructor(r3d) {
+    super();
 
-var AppStore = Store.create({
-  getInitialValue: function() {
-    return {
+    this.value = {
       scrollTop: 0,
       isScrolling: false,
       isScrollingDown: true
     };
-  },
 
-  getOperations: function() {
-    return Rx.Observable.merge(
-      AppActions
-        .setScroll
-        .map(function(scrollTop) {
-          return {
-            transform: function(oldState) {
-              var newState = { scrollTop: scrollTop };
-              // is scrolling down
-              if (oldState.scrollTop < scrollTop) {
-                newState.isScrollingDown = true;
-              } else {
-                newState.isScrollingDown = false;
-              }
-              return _.assign({}, oldState, newState);
-            }
-          };
-        }),
+    const {
+      setIsScrolling,
+      setScroll
+    } = r3d.getActions('appActions');
 
-      AppActions
-        .setIsScrolling
-        .map(function(isScrolling) {
-          return { isScrolling: isScrolling };
-        })
-        .map(assignState)
+    this.register(
+      setIsScrolling.map(isScrolling => ({ set: { isScrolling } }))
     );
+
+    this.register(setScroll.map(scrollTop => ({
+      transform(oldState) {
+        const newState = _.assign({}, oldState, { scrollTop });
+
+        if (oldState.scrollTop < scrollTop) {
+          newState.isScrollingDown = true;
+        } else {
+          newState.isScrollingDown = false;
+        }
+
+        return newState;
+      }
+    })));
   }
-});
+}
 
 module.exports = AppStore;

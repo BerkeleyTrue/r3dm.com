@@ -1,36 +1,85 @@
-var createActions = require('../util/createActions'),
-    Fetcher = require('fetchr'),
-    debug = require('debug')('r3dm:connect:createConnect');
+import { Actions } from 'thundercats';
+import Fetcher from 'fetchr';
+import debugFactory from 'debug';
 
-var fetcher = new Fetcher({
+const debug = debugFactory('r3dm:connect:createConnect');
+
+const fetcher = new Fetcher({
   xhrPath: '/api'
 });
 
-var actions = createActions([
-  'send',
-  'sending',
-  'sent',
-  'error',
-  'onEmailChange',
-  'onNameChange',
-  'setUtc'
-]);
+function mapEventValue(e) {
+  return e.target ? e.target.value : '';
+}
 
-actions.send.subscribe(function(payload) {
-  debug('Creating email for: ', payload);
-  actions.sending(true);
-  if (process.env.NODE_ENV === 'development') {
-    debug('debug mode');
-    return setTimeout(function() {
-      actions.sent(true);
-    }, 500);
+export default class ConnectActions extends Actions {
+  constructor() {
+    super([
+      'send',
+      'sent',
+      'error',
+      'onEmailChange',
+      'onNameChange',
+      'setUtc'
+    ]);
+
+    this.send.subscribe(payload => {
+      debug('Creating email for: ', payload);
+      this.sending(true);
+      if (process.env.NODE_ENV === 'development') {
+        debug('debug mode');
+        return setTimeout(() => {
+          this.sent(true);
+        }, 500);
+      }
+      fetcher.create('connect', payload, {}, {}, (err, data) => {
+        if (err) { return this.error(err); }
+
+        debug('connect service returned without error', data);
+        this.sent(true);
+      });
+    });
   }
-  fetcher.create('connect', payload, {}, {}, function(err, data) {
-    if (err) { return actions.error(err); }
 
-    debug('connect service returned without error', data);
-    actions.sent(true);
-  });
-});
+  static displayName = 'ConnectActions'
 
-module.exports = actions;
+  sending(sending) {
+    return {
+      sending: sending,
+      sent: false,
+      error: false
+    };
+  }
+
+  sent(sent) {
+    return {
+      sending: false,
+      sent: sent,
+      error: false
+    };
+  }
+
+  error(err) {
+    return {
+      sending: false,
+      sent: false,
+      error: err
+    };
+  }
+
+  onEmailChange(e) {
+    return {
+      email: mapEventValue(e)
+    };
+  }
+
+  onNameChange(e) {
+    return {
+      name: mapEventValue(e)
+    };
+  }
+
+  setUtc(utc) {
+    return { utc };
+  }
+}

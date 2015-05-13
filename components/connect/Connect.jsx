@@ -1,81 +1,78 @@
-var React = require('react'),
-    tweenState = require('react-tween-state'),
-    CSSTransitionGroup = React.addons.CSSTransitionGroup,
-    debug = require('debug')('r3dm:components:connect'),
+import React, { PropTypes } from 'react';
+import { Container } from 'thundercats';
+import tweenState from 'react-tween-state';
+import CSSTransitionGroup from 'React/lib/CSSTransitionGroup';
 
-    // # mixins
-    // PureRenderMixin = React.addons.PureRenderMixin,
-    StateStreamMixin = require('../util/stateStreamMixin'),
+import Sent from './ConnectSent.jsx';
+import ConnectError from './ConnectError.jsx';
+import Sending from './ConnectSending.jsx';
+import Form from './ConnectForm.jsx';
 
-    // # Components
-    Sent = require('./ConnectSent.jsx'),
-    ConnectError = require('./ConnectError.jsx'),
-    Sending = require('./ConnectSending.jsx'),
-    Form = require('./ConnectForm.jsx'),
+export default React.createClass({
+  mixins: [tweenState.Mixin],
+  displayName: 'Connect',
 
-    // # flux
-    ConnectStore = require('./Store');
+  propTypes: {
+    sending: PropTypes.bool,
+    sent: PropTypes.bool,
+    error: PropTypes.bool
+  },
 
-var Connect = React.createClass({
-
-  mixins: [
-    tweenState.Mixin,
-    StateStreamMixin
-  ],
-
-  getStateStream: function() {
-    debug('setting up state stream');
-    return ConnectStore
-      .map(function(state) {
-        return {
-          sending: state.sending,
-          sent: state.sent,
-          error: state.error
-        };
-      });
+  getThundercats: function() {
+    return {
+      store: 'connectStore',
+      map: ({ sending, sent, error }) => ({
+        sending,
+        sent,
+        error
+      })
+    };
   },
 
   componentDidMount: function() {
-    var connect = this.refs.connect.getDOMNode();
-    var form = this.refs.form.getDOMNode();
-    this.setState({
+    const connect = this.refs.connect.getDOMNode();
+    const form = this.refs.form.getDOMNode();
+    this.setState({ // eslint-disable-line
       height: form.clientHeight,
       width: connect.clientWidth
     });
   },
 
   render: function() {
-    var state = this.state,
-        sending = state.sending,
-        sent = state.sent,
-        error = state.error,
-        height = state.height;
+    const { height } = this.state;
+    const {
+      sending,
+      sent,
+      error
+    } = this.props;
 
-    var sendingView = (
+    const sendingView = (
       <Sending height={ height }/>
     );
-    var sentView = (
+    const sentView = (
       <Sent
-        ref='sent'
         className='connect'
-        height={ height }/>
+        height={ height }
+        ref='sent'/>
     );
-    var errorView = (
+    const errorView = (
       <ConnectError
-        ref='error'
         className='connect'
-        height={ height } />
+        height={ height }
+        ref='error'/>
     );
-    var formView = (
-      <Form ref='form' />
+    const formView = (
+      <Container>
+        <Form ref='form' />
+      </Container>
     );
 
     return (
       <section
+        className='connect_container'
         id='connect'
         ref='connect'
-        style={{ height: height }}
-        className='connect_container'>
+        style={{ height: height }}>
 
         <CSSTransitionGroup
           component='div'
@@ -107,5 +104,3 @@ var Connect = React.createClass({
     );
   }
 });
-
-module.exports = Connect;

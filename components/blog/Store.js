@@ -1,54 +1,24 @@
-var Rx = require('rx'),
-    assignState = require('../util').assignState,
-    Store = require('rx-flux').Store,
-    debug = require('debug')('r3dm:components:blog:store'),
+import { Store } from 'thundercats';
 
-    BlogActions = require('./Actions');
+const createSetObject = newState => ({ set: newState });
 
-var BlogStore = Store.create({
-
-  getInitialValue: function() {
-    debug('setting initial value');
-    return {
+export default class BlogStore extends Store {
+  constructor(r3d) {
+    super();
+    this.value = {
       loading: false,
       error: false,
       posts: []
     };
-  },
 
-  getOperations: function() {
-    return Rx.Observable.merge(
-      BlogActions.setPosts
-        .map(function(posts) {
-          return {
-            loading: false,
-            error: false,
-            posts: posts && posts.length === 0 ? false : posts
-          };
-        })
-        .map(assignState),
+    const {
+      loading,
+      onError,
+      setPosts
+    } = r3d.getActions('blogActions');
 
-      BlogActions.loading
-        .map(function(loading) {
-          return {
-            loading: loading,
-            error: false,
-            posts: []
-          };
-        })
-        .map(assignState),
-
-      BlogActions.onError
-        .map(function(err) {
-          return {
-            loading: false,
-            error: err,
-            posts: []
-          };
-        })
-        .map(assignState)
-    );
+    this.register(loading.map(createSetObject));
+    this.register(onError.map(createSetObject));
+    this.register(setPosts.map(createSetObject));
   }
-});
-
-module.exports = BlogStore;
+}
