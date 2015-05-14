@@ -25,6 +25,10 @@ module.exports = {
     copy: berkeley,
     links: [
       {
+        type: 'email',
+        url: 'mailto:berkeley@r3dm.com'
+      },
+      {
         type: 'github',
         url: 'http://github.com/berkeleytrue'
       },
@@ -40,6 +44,10 @@ module.exports = {
     copy: lenore,
     links: [
       {
+        type: 'email',
+        url: 'mailto:lenore@r3dm.com'
+      },
+      {
         type: 'portfolio',
         url: 'http://www.lenoremessler.com/'
       },
@@ -54,6 +62,10 @@ module.exports = {
     name: 'Harry Moreno',
     copy: harry,
     links: [
+      {
+        type: 'email',
+        url: 'mailto:harry@r3dm.com'
+      },
       {
         type: 'github',
         url: 'http://github.com/morenoh149'

@@ -31,6 +31,15 @@ var Block = React.createClass({
             </span>
           </a>
         ));
+      } else if (linkObj.type === 'email') {
+        result.push((
+          <a href={ linkObj.url }>
+            <span className="fa-stack fa-lg">
+              <i className="fa fa-circle fa-stack-2x"></i>
+              <i className="fa fa-envelope fa-stack-1x"></i>
+            </span>
+          </a>
+        ));
       }
       return result;
     });
