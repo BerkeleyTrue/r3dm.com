@@ -44,7 +44,8 @@ var SideNav = React.createClass({
         </nav>
         <OverLay
           show={ this.state.open }
-          onClick={ this._overlayClick }/>
+          onClick={ this._overlayClick }
+        />
       </div>
     );
   }
