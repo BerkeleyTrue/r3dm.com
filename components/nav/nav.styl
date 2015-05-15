@@ -1,8 +1,10 @@
 @require 'util'
+
 nav.nav
   background-color $black
   height 4em
-  display inline-block
+  display flex
+  justify-content space-around
   position fixed
   top 0
   width 100vw
@@ -14,7 +16,11 @@ nav.nav
     visible hidden
     z-index 2
   > ul
-    display inline-block
+    display flex
+    flex-grow 2
+    flex-wrap nowrap
+    flex-direction row
+    justify-content flex-end
     left 0
     top 0
     padding 0
@@ -23,7 +29,7 @@ nav.nav
     &:focus
       outline 0
   li
-    font-size 1em
+    font-size 1.2em
     height 100%
     display inline-block
     position relative
@@ -32,39 +38,43 @@ nav.nav
     div.nav_underline.active
       height 1px
       border 1px $r3d solid
-      bottom 1em
+      bottom 2em
       margin 0 auto
       position relative
       width 75%
     a
       color white
       display block
-      padding 20px 20px
+      line-height 65px
+      min-width 90px
       white-space nowrap
-    &:hover
-      background-color lighten($black, 20%)
+
+      &:hover
+        background-color lighten($black, 20%)
     li
       display block
 
 .nav_links
-  float right
+
 .nav_logo
-  float left
-  padding-left 1em
-  padding-top 0.5em
+  flex-grow 1
+  flex-basis 0%
+  min-width 130px
+  text-align center
+
   div
     display inline-block
-  svg
-    display block
+
   .nav_logo-type
     svg
-      height 3em
+      height 4em
       width 6em
       fill white
   .nav_logo-mark
+    vertical-align top
     svg
-      height 2em
-      width 2em
+      height 3.0em
+      width 3.5em
       margin 0.5em 0
 
 .nav_links-hamburger

@@ -8,11 +8,11 @@ var Rx = require('rx'),
 
 
 var homeLinks = [
-  { name: 'Services', path: '#services' },
-  { name: 'Work', path: '#work' },
-  { name: 'Team', path: '#team' },
-  { name: 'Connect', path: '#connect' },
-  { name: 'Blog', path: '/blog' }
+  { name: 'SERVICES', path: '#services' },
+  { name: 'WORK', path: '#work' },
+  { name: 'THE TEAM', path: '#team' },
+  { name: 'CONNECT', path: '#connect' },
+  { name: 'BLOG', path: '/blog' }
 ];
 
 var blogLinks = [
