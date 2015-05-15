@@ -1,3 +1,4 @@
+import Rx from 'rx';
 import React from 'react';
 import Router, { Route, NotFoundRoute, DefaultRoute } from 'react-router';
 
@@ -24,9 +25,10 @@ var routes = (
   </Route>
 );
 
-export default function createRouter(Location) {
-  return Router.create({
-    location,
-    routes
+export default function createRouter(location) {
+  return Rx.Observable.create(observer => {
+    Router.run({ location, routes }, (Handler, state) => {
+      observer.onNext({ Handler, state });
+    });
   });
 }

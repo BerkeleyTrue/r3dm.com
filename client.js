@@ -1,35 +1,19 @@
 'use strict';
-var React = require('react/addons'),
-    Router = require('./components/Router.jsx'),
-    debug = require('debug')('r3dm:client'),
-    HistoryLocation = require('react-router').HistoryLocation,
+import React from 'react';
+import Router from './components/Router.jsx';
+import debugFactory from 'debug';
+import { HistoryLocation } from 'react-router';
+import R3d from './components/context/';
 
-    ContextStore = require('./components/context/Store'),
-    ContextActions = require('./components/context/Actions');
-
-var mountNode = document.getElementById('app');
-
-debug('Matching Route');
-
-ContextStore
-  .filter(function(ctx) {
-    return !!ctx.Handler;
-  })
-  .subscribe(function(ctx) {
-    debug('rendering %s...', ctx.state.path);
-    React.render(ctx.Handler(), mountNode, function() {
-      debug('React rendered!');
-    });
-  });
+const debug = debugFactory('r3dm:client');
+const mountNode = document.getElementById('app');
+const r3d = new R3d();
 
 Router(HistoryLocation)
-  .run(function(Handler, state) {
-
-    debug('Route found, %s rendering..', state.path);
-    Handler = React.createFactory(Handler);
-    var ctx = {
-      Handler: Handler,
-      state: state
-    };
-    ContextActions.setContext(ctx);
+  .flatMap(({ Handler, state }) => {
+    debug('rendering %s...', state.path);
+    return r3d.render(React.createElement(Handler), mountNode);
+  })
+  .subscribe(() => {
+    debug('React rendered!');
   });

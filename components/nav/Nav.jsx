@@ -13,13 +13,14 @@ export default createContainer(React.createClass({
   mixins: [tweenState.Mixin],
 
   getInitialState: function() {
-    this.navActions = this.context.cat.getActions('navActions');
     return {};
   },
 
-  getThundercats: function() {
+  getThundercats: function(props, context) {
     return {
-      store: 'NavStore'
+      store: 'NavStore',
+      fetchActions: 'navActions.setLinks',
+      fetchPayload: context.router.getCurrentPath()
     };
   },
 

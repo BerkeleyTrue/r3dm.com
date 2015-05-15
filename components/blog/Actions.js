@@ -13,14 +13,12 @@ export default class BlogActions extends Actions {
     super([
       'setSlug',
       'setPosts',
-      'loading',
       'onError'
     ]);
 
-    this.setSlug.subscribe(payload => {
-      debug(this.displayName + ' payload: ', payload);
-      this.loading(true);
-      fetcher.read('blogService', payload, {}, (err, posts) => {
+    this.setSlug.subscribe(slug => {
+      debug(this.displayName + ' slug: ', slug);
+      fetcher.read('blogService', slug, {}, (err, posts) => {
         if (err) {
           debug('blog err', err);
           return this.onError(true);
@@ -33,17 +31,8 @@ export default class BlogActions extends Actions {
 
   static displayName = 'BlogActions'
 
-  loading(loading) {
-    return {
-      loading: loading,
-      error: false,
-      posts: []
-    };
-  }
-
   onError(err) {
     return {
-      loading: false,
       error: err,
       posts: []
     };
@@ -51,7 +40,6 @@ export default class BlogActions extends Actions {
 
   setPosts(posts) {
     return {
-      loading: false,
       error: false,
       posts: posts && posts.length === 0 ? false : posts
     };

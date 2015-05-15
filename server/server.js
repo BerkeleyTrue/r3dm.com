@@ -19,19 +19,18 @@ var express = require('express'),
     React = require('react'),
     Router = require('../components/Router'),
     state = require('express-state'),
+    R3d = require('../components/context'),
 
-    // ## Flux
+    // ## services
     Fetcher = require('fetchr'),
     connectService = require('./services/connect'),
-    blogService = require('./services/blog'),
-    ContextStore = require('../components/context/Store'),
-    ContextActions = require('../components/context/Actions');
+    blogService = require('./services/blog');
 
 var app = express();
 var mongoose = connectMongo();
 // ## State becomes a variable available to all rendered views
 state.extend(app);
-app.set('state namespace', 'R3DM');
+app.set('state namespace', '__R3DM__');
 app.set('port', process.env.PORT || 9000);
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'jade');
@@ -44,6 +43,8 @@ initMiddleware(app, mongoose);
 app.use('/api', Fetcher.middleware());
 connectKeystone(app, mongoose);
 generateSitemap(app);
+
+const r3d = new R3d();
 
 app.get('/500', function(req, res) {
   res.render('500');
@@ -67,45 +68,30 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  debug('path req', decodeURI(req.path));
-  Router(decodeURI(req.path))
-    .run(function(Handler, state) {
-      Handler = React.createFactory(Handler);
+  const decodedURI = decodedURI(req.path);
+  debug('path req', decodedURI);
+  Router(decodedURI)
+    .flatMap(({ Handler, state }) => {
+      debug('rendering %s to string', state.path);
+      return r3d.renderToString(React.createElement(Handler));
+    })
+    .first()
+    .subscribeOnError(next)
+    .subscribe(({ markup, data }) => {
+      debug('markup generated');
 
-      debug('Route found, %s ', state.path);
-      var ctx = {
-        req: req,
-        res: res,
-        next: next,
-        Handler: Handler,
-        state: state,
-        userId: req.session ? req.session.userId : null
-      };
+      // expose data on window.__R3DM__.data
+      res.expose(data, 'data');
+      debug('rendering jade');
+      res.render('layout', { html: markup }, function(err, markup) {
+        if (err) { return next(err); }
+        debug('jade template rendered');
 
-      debug('context action');
-      ContextActions.setContext(ctx);
+        debug('Sending %s to user', decodedURI);
+        return res.send(markup);
+      });
     });
 });
-
-// Run on next sequence
-ContextStore
-  .filter(function(ctx) {
-    return !!ctx.Handler;
-  })
-  .subscribe(function(ctx) {
-
-    debug('rendering %s to string', ctx.state.path);
-    var html = React.renderToString(ctx.Handler());
-
-    debug('rendering jade');
-    ctx.res.render('layout', { html: html }, function(err, markup) {
-      if (err) { return ctx.next(err); }
-      debug('jade template rendered');
-
-      debug('Sending %s to user', ctx.state.path);
-      return ctx.res.send(markup);
-    });
-  });
 
 app.use(function(req, res) {
   res.status(404);
