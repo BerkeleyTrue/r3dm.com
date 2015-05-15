@@ -1,40 +1,49 @@
-var React = require('react'),
-    cx = React.addons.classSet,
+import React, { PropTypes } from 'react';
+import { createContainer } from 'thundercats'; // eslint-disable-line
+import classNames from 'classnames';
+import OverLay from './OverLay.jsx';
+import Links from './Links.jsx';
 
-    // # mixins
-    StateStreamMixin = require('../util/stateStreamMixin'),
+@createContainer
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-    // # components
-    OverLay = require('./OverLay.jsx'),
-    Links = require('./Links.jsx'),
+  static displayName = 'SideNav'
+  static propTypes = {
+    links: PropTypes.array,
+    navActions: PropTypes.object,
+    open: PropTypes.bool
+  }
 
-    // # flux
-    NavStore = require('./Store'),
-    NavActions = require('./Actions');
+  shouldComponentUpdate(nextProps) {
+    const { props } = this;
+    return nextProps.links !== props.links ||
+      nextProps.open !== props.open;
+  }
 
-var SideNav = React.createClass({
-  mixins: [StateStreamMixin],
+  getThundercats() {
+    return {
+      store: 'navStore',
+      map: ({ isSideNavOpen, links }) => ({
+        links,
+        open: isSideNavOpen
+      }),
+      actions: 'navActions'
+    };
+  }
 
-  getStateStream: function() {
-    return NavStore
-      .map(function(navState) {
-        return {
-          open: navState.isSideNavOpen,
-          links: navState.links
-        };
-      });
-  },
+  handleOverlayClick() {
+    this.props.navActions.openSideNav(false);
+  }
 
-  _overlayClick: function() {
-    NavActions.openSideNav(false);
-  },
+  render() {
+    const { links, open } = this.props;
 
-  render: function() {
-    var links = this.state.links;
-
-    var sideNavClass = cx({
+    const sideNavClass = classNames({
       'SideNav': true,
-      'SideNav-close': !this.state.open
+      'SideNav-close': !open
     });
 
     return (
@@ -43,12 +52,9 @@ var SideNav = React.createClass({
           <Links links={ links } />
         </nav>
         <OverLay
-          show={ this.state.open }
-          onClick={ this._overlayClick }
-        />
+          onClick={ this.handleOverlayClick.bind(this) }
+          show={ open } />
       </div>
     );
   }
-});
-
-module.exports = SideNav;
+}

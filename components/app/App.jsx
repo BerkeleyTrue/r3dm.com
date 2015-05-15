@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react/addons';
 import { RouteHandler } from 'react-router';
+import { createContainer } from 'thundercats';
 import ScrollMixin from '../util/scrollMixin';
 import Nav from '../nav';
 import SideNav from '../nav/SideNav.jsx';
 import Footer from '../footer';
 
-export default React.createClass({
+export default createContainer(React.createClass({
   mixins: [ScrollMixin],
   displayName: 'App',
 
@@ -38,4 +39,4 @@ export default React.createClass({
       </div>
     );
   }
-});
+}));

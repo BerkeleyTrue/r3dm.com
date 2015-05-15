@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import { createContainer } from 'thundercats';
 import tweenState from 'react-tween-state';
 import debugFactory from 'debug';
 import globular from '../globular';
 
 const debug = debugFactory('r3dm:comp:connect:form');
 
-export default React.createClass({
+export default createContainer(React.createClass({
   mixins: [tweenState.Mixin],
   displayName: 'ConnectForm',
 
@@ -154,4 +155,4 @@ export default React.createClass({
       </article>
     );
   }
-});
+}));

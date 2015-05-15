@@ -1,6 +1,5 @@
 import { Store } from 'thundercats';
 import { homeLinks } from './constants';
-import { createSetObject } from '../util';
 
 export default class extends Store {
   constructor(r3d) {
@@ -21,19 +20,22 @@ export default class extends Store {
     } = r3d.getActions('navActions');
 
     const appStore = r3d.getActions('appStore');
+    const register = Store.createRegistrar(this);
+    function registerSetter(observable) {
+      return register(Store.setter(observable));
+    }
 
-    this.register(openSideNav.map(createSetObject));
-    this.register(setLinks.map(createSetObject));
-    this.register(setShowNav.map(createSetObject));
-    this.register(setShowNavAtTop.map(createSetObject));
-    this.register(
+    registerSetter(openSideNav);
+    registerSetter(setLinks);
+    registerSetter(setShowNav);
+    registerSetter(setShowNavAtTop);
+    registerSetter(
       appStore
         .debounce(20)
         .map(({ isScrollingDown, scrollTop }) => ({
           isScrollingDown,
           scrollTop
         }))
-        .map(createSetObject)
     );
   }
 }

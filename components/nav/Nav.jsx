@@ -1,27 +1,26 @@
-var React = require('react/addons'),
-    tweenState = require('react-tween-state'),
+import React from 'react';
+import tweenState from 'react-tween-state';
+import { createContainer } from 'thundercats';
 
-    // # mixins
-    StateStreamMixin = require('../util/stateStreamMixin'),
+import Links from './Links.jsx';
+import Logo from '../logo';
+import Hamburger from '../common/Hamburger.jsx';
 
-    // # components
-    Links = require('./Links.jsx'),
-    Logo = require('../logo'),
-    Hamburger = require('../common/Hamburger.jsx'),
+let win;
 
-    // # flux
-    NavStore = require('./Store'),
-    NavActions = require('./Actions');
+export default createContainer(React.createClass({
+  displayName: 'Nav',
+  mixins: [tweenState.Mixin],
 
-var win;
-var Nav = React.createClass({
-  mixins: [
-    tweenState.Mixin,
-    StateStreamMixin
-  ],
+  getInitialState: function() {
+    this.navActions = this.context.cat.getActions('navActions');
+    return {};
+  },
 
-  getStateStream: function() {
-    return NavStore;
+  getThundercats: function() {
+    return {
+      store: 'NavStore'
+    };
   },
 
   componentWillMount: function() {
@@ -33,13 +32,12 @@ var Nav = React.createClass({
   },
 
   componentDidUpdate: function() {
-    // this is if is a hack, without this if-statement the function gets called too much
     if (this.state.top === -150) {
       this._activateNavTween();
     }
   },
 
-  _activateNavTween: function() {
+  activateNavTween: function() {
     this.tweenState('top', {
       easing: tweenState.easingTypes.easeInOutQuad,
       stackBehavior: tweenState.stackBehavior.ADDITIVE,
@@ -48,17 +46,16 @@ var Nav = React.createClass({
     });
   },
 
-  _onHamburgerClick: function() {
-    NavActions.openSideNav(true);
+  onHamburgerClick: function() {
+    this.navActions.openSideNav(true);
   },
 
   render: function() {
-    var state = this.state,
-        links = state.links,
-        hash = win ? win.location.hash : '',
-        top = this.getTweeningValue('top');
+    const { links } = this.state;
+    const hash = win ? win.location.hash : '';
+    const top = this.getTweeningValue('top');
 
-    var navStyle = {
+    const navStyle = {
       WebkitTransform: 'translateY(' + top + 'px)',
       transform: 'translateY(' + top + 'px)'
     };
@@ -68,25 +65,23 @@ var Nav = React.createClass({
         className='nav'
         style={ navStyle }>
         <div className='nav_logo'>
-          <a href="#" target="_self">
+          <a href='#' target='_self'>
             <Logo
-              type='mark'
-              logoClass='nav_logo-mark'/>
+              logoClass='nav_logo-mark'
+              type='mark' />
             <Logo
-              type='type'
-              logoClass='nav_logo-type'/>
+              logoClass='nav_logo-type'
+              type='type' />
           </a>
         </div>
         <Links
-          hash={ hash }
           className='nav_links nav_links-hide'
-          links={ this.state.links }/>
+          hash={ hash }
+          links={ this.state.links } />
         <div className='nav_links-hamburger'>
           <Hamburger onClick={ this._onHamburgerClick }/>
         </div>
       </nav>
     );
   }
-});
-
-module.exports = Nav;
+}));

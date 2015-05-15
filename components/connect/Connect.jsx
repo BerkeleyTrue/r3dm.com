@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Container } from 'thundercats';
+import { createContainer } from 'thundercats';
 import tweenState from 'react-tween-state';
 import CSSTransitionGroup from 'React/lib/CSSTransitionGroup';
 
@@ -8,7 +8,7 @@ import ConnectError from './ConnectError.jsx';
 import Sending from './ConnectSending.jsx';
 import Form from './ConnectForm.jsx';
 
-export default React.createClass({
+export default createContainer(React.createClass({
   mixins: [tweenState.Mixin],
   displayName: 'Connect',
 
@@ -62,9 +62,7 @@ export default React.createClass({
         ref='error'/>
     );
     const formView = (
-      <Container>
-        <Form ref='form' />
-      </Container>
+      <Form ref='form' />
     );
 
     return (
@@ -103,4 +101,4 @@ export default React.createClass({
       </section>
     );
   }
-});
+}));

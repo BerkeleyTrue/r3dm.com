@@ -1,12 +1,22 @@
-var React = require('react/addons'),
-    cx = React.addons.classSet,
-    PureRenderMixin = React.addons.PureRenderMixin;
+import React from 'react';
+import classNames from 'classname';
 
-var OverLay = React.createClass({
-  mixins: [PureRenderMixin],
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  render: function() {
-    var OverLayClass = cx({
+  static displayName = 'OverLay'
+  static propTypes = {
+    show: PropTypes.bool
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.show !== this.props.show;
+  }
+
+  render() {
+    const OverLayClass = classNames({
       'SideNav_overlay': true,
       'SideNav_overlay-show': this.props.show
     });
@@ -15,6 +25,4 @@ var OverLay = React.createClass({
       <div className={ OverLayClass } {...this.props }/>
     );
   }
-});
-
-module.exports = OverLay;
+}

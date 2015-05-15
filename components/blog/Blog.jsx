@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { createContainer } from 'thundercats'; // eslint-disable-line
 import ComingSoon from '../errors/ComingSoon.jsx';
 
+// decorators currently don't count as use in babel-eslint
+// see: https://github.com/babel/babel-eslint/issues/72
+
+@createContainer
 export default class Blog extends React.Component {
   constructor(props) {
     super(props);
