@@ -1,1 +1,1 @@
-module.exports = require('./r3dm.js');
+module.exports = require('./r3d.js');
