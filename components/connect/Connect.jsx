@@ -30,8 +30,8 @@ export default createContainer(React.createClass({
   },
 
   componentDidMount: function() {
-    const connect = this.refs.connect.getDOMNode();
-    const form = this.refs.form.getDOMNode();
+    const connect = React.findDOMNode(this.refs.connect);
+    const form = React.findDOMNode(this.refs.form);
     this.setState({ // eslint-disable-line
       height: form.clientHeight,
       width: connect.clientWidth
