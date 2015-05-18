@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import assign from 'object.assign';
 import { Store } from 'thundercats';
 
 export default class AppStore extends Store {
@@ -22,7 +22,7 @@ export default class AppStore extends Store {
 
     this.register(setScroll.map(scrollTop => ({
       transform(oldState) {
-        const newState = _.assign({}, oldState, { scrollTop });
+        const newState = assign({}, oldState, { scrollTop });
 
         if (oldState.scrollTop < scrollTop) {
           newState.isScrollingDown = true;
