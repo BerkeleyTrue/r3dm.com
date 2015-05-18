@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classname';
+import classNames from 'classnames';
 
 export default class extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class extends React.Component {
 
   static displayName = 'OverLay'
   static propTypes = {
-    show: PropTypes.bool
+    show: React.PropTypes.bool
   }
 
   shouldComponentUpdate(nextProps) {

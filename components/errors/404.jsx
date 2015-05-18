@@ -1,6 +1,7 @@
 var React = require('react');
 
 var FourOhFour = React.createClass({
+  displayName: 'FourOhFour',
 
   shouldComponentUpdate: function() {
     return false;

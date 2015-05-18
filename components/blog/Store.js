@@ -16,4 +16,5 @@ export default class BlogStore extends Store {
     this.register(Store.setter(onError));
     this.register(Store.setter(setPosts));
   }
+  static displayName = 'BlogStore'
 }

@@ -1,6 +1,7 @@
 var React = require('react');
 
 var ComingSoon = React.createClass({
+  displayName: 'ComingSoon',
 
   shouldComponentUpdate: function() {
     return false;

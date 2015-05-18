@@ -1,15 +1,13 @@
-var React = require('react/addons'),
+var React = require('react'),
     Router = require('react-router'),
-    cx = React.addons.classSet,
-
-    PureRenderMixin = React.addons.PureRenderMixin,
-
+    classNames = require('classnames'),
     Link = Router.Link;
 
 var Links = React.createClass({
-  mixins: [PureRenderMixin],
+  displayName: 'Links',
 
   propTypes: {
+    className: React.PropTypes.string,
     hash: React.PropTypes.string,
     links: React.PropTypes.arrayOf(
       React.PropTypes.shape({
@@ -29,7 +27,7 @@ var Links = React.createClass({
     var hash = this.props.hash;
     var val = this.props.links.map(function(link) {
       if (link.path.indexOf('#') !== -1) {
-        var underLineClass = cx({
+        var underLineClass = classNames({
           'nav_underline': true,
           'active': hash && link.path.indexOf(hash) !== -1
         });

@@ -1,4 +1,4 @@
-import { Actions } from '../util/createActions';
+import { Actions } from 'thundercats';
 import Fetcher from 'fetchr';
 import debugFactory from 'debug';
 

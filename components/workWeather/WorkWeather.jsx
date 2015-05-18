@@ -1,18 +1,19 @@
-var React = require('react/addons');
+var React = require('react');
 
 var WorkWeather = React.createClass({
+  displayName: 'WorkWeather',
 
   render: function() {
 
     return (
-      <article id="work_weather_article">
-        <div id="work_weather_img-wrapper">
+      <article id='work_weather_article'>
+        <div id='work_weather_img-wrapper'>
           <img
             id='work-weather-img'
             src={'images/work_weather_app.jpg'}
           />
         </div>
-        <div id="work_weather_copy">
+        <div id='work_weather_copy'>
           <h3>R3DM Weather</h3>
           <p>
             A proof-of-concept phone application. After evaluating consumer

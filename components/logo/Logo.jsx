@@ -1,6 +1,5 @@
-var React = require('react/addons'),
-
-    PureRenderMixin = React.addons.PureRenderMixin,
+var React = require('react'),
+    shallowEqual = require('react/lib/shallowEqual'),
 
     Isvg = require('react-inlinesvg'),
     LogoSvg = require('./LogoSvg.jsx'),
@@ -8,7 +7,7 @@ var React = require('react/addons'),
     LogoType = require('./LogoType.jsx');
 
 var Logo = React.createClass({
-  mixins: [PureRenderMixin],
+  displayName: 'Logo',
 
   propTypes: {
     type: React.PropTypes.string,
@@ -20,6 +19,11 @@ var Logo = React.createClass({
       type: '',
       logoClass: ''
     };
+  },
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.type !== nextState.type ||
+      shallowEqual(this.props.logoClass, nextState.logoClass);
   },
 
   render: function() {
@@ -41,9 +45,9 @@ var Logo = React.createClass({
     return (
       <Isvg
         className={ this.props.logoClass }
-        wrapper={ React.DOM.div }
         preloader={ React.createFactory(LogoComp) }
-        src= { imageSrc + '.svg'} >
+        src= { imageSrc + '.svg'}
+        wrapper={ React.DOM.div }>
         <img src={ imageSrc + '.png' }/>
       </Isvg>
     );

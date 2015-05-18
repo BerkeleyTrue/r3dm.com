@@ -1,15 +1,15 @@
-var React = require('react/addons'),
+var React = require('react'),
     WorkShpe = require('../workShpe/WorkShpe.jsx'),
     WorkWeather = require('../workWeather/WorkWeather.jsx');
 
 var Work = React.createClass({
+  displayName: 'Work',
 
   render: function() {
     return (
       <section
-        id='work'
         className='work'
-        >
+        id='work' >
         <header className='work_heading'>
           <h2>RECENT WORK</h2>
         </header>

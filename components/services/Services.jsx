@@ -1,19 +1,17 @@
-var React = require('react/addons'),
-    PureRenderMixin = React.addons.PureRenderMixin,
-
+var React = require('react'),
     Copy = require('./ServicesCopy.jsx');
 
 var Services = React.createClass({
-  mixins: [PureRenderMixin],
+  displayName: 'Services',
 
   _renderCopy: function(copy) {
     return copy.map(function(_copy) {
       return (
         <Copy
-          key={ _copy.title }
-          title={ _copy.title }
           content={ _copy.content }
-          imgSrc={ _copy.imgSrc } />
+          imgSrc={ _copy.imgSrc }
+          key={ _copy.title }
+          title={ _copy.title }/>
       );
     });
   },
@@ -44,8 +42,8 @@ var Services = React.createClass({
 
     return (
       <section
-        id='services'
-        className='services'>
+        className='services'
+        id='services'>
         <header className='services_subject-center services_heading'>
           <h2>SERVICES</h2>
         </header>

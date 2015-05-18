@@ -8,4 +8,5 @@ export default class extends Actions {
       'setWindowHeight'
     ]);
   }
+  static displayName = 'AppActions'
 }

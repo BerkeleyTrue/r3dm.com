@@ -1,8 +1,9 @@
 'use strict';
 require('dotenv').load();
-require('babel/register');
 if (process.env.NODE_ENV !== 'development') {
   require('newrelic');
+} else {
+  require('rx').config.longStackSupport = true;
 }
 var express = require('express'),
     path = require('path'),
@@ -68,7 +69,7 @@ app.get('/emails/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res, next) {
-  const decodedURI = decodedURI(req.path);
+  const decodedURI = decodeURI(req.path);
   debug('path req', decodedURI);
   Router(decodedURI)
     .flatMap(({ Handler, state }) => {
@@ -76,21 +77,24 @@ app.get('/*', function(req, res, next) {
       return r3d.renderToString(React.createElement(Handler));
     })
     .first()
-    .subscribeOnError(next)
-    .subscribe(({ markup, data }) => {
-      debug('markup generated');
+    .subscribe(
+      ({ markup, data }) => {
+        debug('markup generated');
 
-      // expose data on window.__R3DM__.data
-      res.expose(data, 'data');
-      debug('rendering jade');
-      res.render('layout', { html: markup }, function(err, markup) {
-        if (err) { return next(err); }
-        debug('jade template rendered');
+        // expose data on window.__R3DM__.data
+        res.expose(data, 'data');
+        debug('rendering jade');
+        res.render('layout', { html: markup }, function(err, markup) {
+          if (err) { return next(err); }
+          debug('jade template rendered');
 
-        debug('Sending %s to user', decodedURI);
-        return res.send(markup);
-      });
-    });
+          debug('Sending %s to user', decodedURI);
+          return res.send(markup);
+        });
+      },
+      next,
+      () => debug('rendering concluded')
+    );
 });
 
 app.use(function(req, res) {
@@ -101,7 +105,7 @@ app.use(function(req, res) {
 /* eslint-disable */
 app.use(function(err, req, res, next) {
 /* eslint-enable */
-  debug('Err: ', err);
+  debug('Err: ', err.stack);
   res
     .status(500)
     .send('Something went wrong');

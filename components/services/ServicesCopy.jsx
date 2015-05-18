@@ -1,8 +1,7 @@
-var React = require('react/addons'),
-    PureRenderMixin = React.addons.PureRenderMixin;
+var React = require('react');
 
 var Copy = React.createClass({
-  mixins: [PureRenderMixin],
+  displayName: 'Copy',
 
   propTypes: {
     title: React.PropTypes.string,

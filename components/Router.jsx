@@ -27,7 +27,7 @@ var routes = (
 
 export default function createRouter(location) {
   return Rx.Observable.create(observer => {
-    Router.run({ location, routes }, (Handler, state) => {
+    Router.run(routes, location, (Handler, state) => {
       observer.onNext({ Handler, state });
     });
   });

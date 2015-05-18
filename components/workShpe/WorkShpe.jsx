@@ -1,33 +1,27 @@
-var React = require('react/addons'),
-    tweenState = require('react-tween-state'),
+import React from 'react';
+import tweenState from 'react-tween-state';
 
-    // # mixins
-    StateStreamMixin = require('../util/stateStreamMixin'),
-
-    // # components
-    ImgLoader = require('react-imageloader'),
-    Spinner = require('../common/Spinner.jsx'),
-    WorkCopy = require('./WorkShpeCopy.jsx'),
-
-    // # flux
-    AppStore = require('../app/Store');
+import { createContainer } from 'thundercats';
+import ImgLoader from 'react-imageloader';
+import Spinner from '../common/Spinner.jsx';
+import WorkCopy from './WorkShpeCopy.jsx';
 
 var screenTrigger = '(max-width: 30em)';
 
-var Work = React.createClass({
-  mixins: [
-    tweenState.Mixin,
-    StateStreamMixin
-  ],
+export default createContainer(React.createClass({
+  displayName: 'WorkShpe',
+  mixins: [ tweenState.Mixin ],
 
-  getStateStream: function() {
-    return AppStore
-      .map(function(appState) {
+  getThundercats: function() {
+    return {
+      store: 'appStore',
+      map: ({ scrollTop, isScrollingDown }) => {
         return {
-          scrollTop: appState.scrollTop,
-          isScrollingDown: appState.isScrollingDown
+          isScrollingDown,
+          scrollTop
         };
-      });
+      }
+    };
   },
 
   componentWillMount: function() {
@@ -46,7 +40,7 @@ var Work = React.createClass({
     this._mql.addListener(this._updateScreen);
     this._updateScreen();
 
-    this.setState({
+    this.setState({ // eslint-disable-line
       viewPortHeight: win.innerHeight,
       shpeArticleHeight: shpeNode.offsetTop
     });
@@ -74,7 +68,7 @@ var Work = React.createClass({
     if (isScrollingDown &&
         scrollTop + viewPortHeight - 200 > shpeArticleHeight) {
 
-      this.setState({ shpeArticleTweened: true });
+      this.setState({ shpeArticleTweened: true }); // eslint-disable-line
       this.tweenState('shpeArticleRight', {
         easing: tweenState.easingTypes.easeInOutQuad,
         duration: 1000,
@@ -107,7 +101,9 @@ var Work = React.createClass({
     };
 
     return (
-      <article ref='shpe' id='work_shpe_article'>
+      <article
+        id='work_shpe_article'
+        ref='shpe'>
         <WorkCopy imgFirst={ this.state.smallScreen }>
           <div className='work_copy'>
             <header>
@@ -122,29 +118,29 @@ var Work = React.createClass({
               by utilizing hosting plans available for small
               businesses.
             </p>
-            <a href="http://the.r3dm.com/blog/shpe-san-francisco-site-makeover"
-               className="case-study">
+            <a
+              className='case-study'
+              href='http://the.r3dm.com/blog/shpe-san-francisco-site-makeover'>
               Read Case Study
-              <i className="fa fa-book"></i>
+              <i className='fa fa-book'></i>
             </a>
-            <a href="http://www.shpesfba.org/"
-               className="visit-work">
+            <a
+              className='visit-work'
+              href='http://www.shpesfba.org/'>
               Visit the site
-              <i className="fa fa-sign-out"></i>
+              <i className='fa fa-sign-out'></i>
             </a>
           </div>
           <div className='work_img' style={ shpeArticleStyle }>
             <a href='http://shpesfba.org'>
               <ImgLoader
+                preloader={ spinner }
                 src='images/mocks/ipad_iphone_portrait.png'
-                wrapper={ React.DOM.div }
-                preloader={ spinner }/>
+                wrapper={ React.DOM.div }/>
             </a>
           </div>
         </WorkCopy>
       </article>
     );
   }
-});
-
-module.exports = Work;
+}));

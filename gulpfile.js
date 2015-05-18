@@ -96,13 +96,14 @@ gulp.task('sync', ['bundle', 'stylus', 'server'], function() {
 gulp.task('server', ['bundle'], function(cb) {
   var called = false;
   nodemon({
-    script: paths.server,
-    ext: '.js',
-    ignore: paths.serverIgnore,
     env: {
       'NODE_ENV': 'development',
       'DEBUG': 'r3dm:*'
-    }
+    },
+    exec: './node_modules/.bin/babel-node',
+    ext: '.js',
+    ignore: paths.serverIgnore,
+    script: paths.server
   })
     .on('start', function() {
       if (!called) {

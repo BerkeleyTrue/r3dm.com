@@ -19,7 +19,7 @@ export default class extends Store {
       setShowNavAtTop
     } = r3d.getActions('navActions');
 
-    const appStore = r3d.getActions('appStore');
+    const appStore = r3d.getStore('appStore');
     const register = Store.createRegistrar(this);
     function registerSetter(observable) {
       return register(Store.setter(observable));
@@ -38,4 +38,5 @@ export default class extends Store {
         }))
     );
   }
+  static displayName = 'NavStore'
 }

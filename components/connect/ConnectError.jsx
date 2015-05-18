@@ -1,17 +1,20 @@
-var React = require('react/addons'),
-    PureRenderMixin = React.addons.PureRenderMixin;
+var React = require('react');
 
 var ConnectError = React.createClass({
-  mixins: [PureRenderMixin],
+  displayName: 'ConnectError',
 
   propTypes: { height: React.PropTypes.number },
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.height !== this.props.height;
+  },
 
   render: function() {
     return (
       <article
-        style={{ height: this.props.height }}
         className='connect connect_error'
-        key='error'>
+        key='error'
+        style={{ height: this.props.height }}>
         <h1>Opps</h1>
         <p>Something went wrong...</p>
       </article>

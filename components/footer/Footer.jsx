@@ -1,6 +1,7 @@
 var React = require('react');
 
 var Footer = React.createClass({
+  displayName: 'Footer',
 
   shouldComponentUpdate: function() {
     return false;
@@ -8,8 +9,8 @@ var Footer = React.createClass({
 
   render: function() {
     return (
-      <footer id="footer">
-        Copyright <span className="r3d">&copy;</span> 2015 R3D M
+      <footer id='footer'>
+        Copyright <span className='r3d'>&copy;</span> 2015 R3D M
       </footer>
     );
   }

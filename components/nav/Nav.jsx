@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import tweenState from 'react-tween-state';
 import { createContainer } from 'thundercats';
 
@@ -16,14 +16,6 @@ export default createContainer(React.createClass({
     return {};
   },
 
-  getThundercats: function(props, context) {
-    return {
-      store: 'NavStore',
-      fetchActions: 'navActions.setLinks',
-      fetchPayload: context.router.getCurrentPath()
-    };
-  },
-
   componentWillMount: function() {
     this.setState({ top: this.state.showNavAtTop ? 0 : -150 });
   },
@@ -38,6 +30,15 @@ export default createContainer(React.createClass({
     }
   },
 
+  contextTypes: {
+    router: PropTypes.func
+  },
+
+  propTypes: {
+    links: PropTypes.array,
+    showNavAtTop: PropTypes.bool
+  },
+
   activateNavTween: function() {
     this.tweenState('top', {
       easing: tweenState.easingTypes.easeInOutQuad,
@@ -47,12 +48,20 @@ export default createContainer(React.createClass({
     });
   },
 
-  onHamburgerClick: function() {
+  getThundercats: function(props, context) {
+    return {
+      store: 'NavStore',
+      fetchActions: 'navActions.setLinks',
+      fetchPayload: context.router.getCurrentPath()
+    };
+  },
+
+  handleHamburgerClick: function() {
     this.navActions.openSideNav(true);
   },
 
   render: function() {
-    const { links } = this.state;
+    const { links } = this.props;
     const hash = win ? win.location.hash : '';
     const top = this.getTweeningValue('top');
 
@@ -78,9 +87,9 @@ export default createContainer(React.createClass({
         <Links
           className='nav_links nav_links-hide'
           hash={ hash }
-          links={ this.state.links } />
+          links={ links } />
         <div className='nav_links-hamburger'>
-          <Hamburger onClick={ this._onHamburgerClick }/>
+          <Hamburger onClick={ this.handleHamburgerClick }/>
         </div>
       </nav>
     );

@@ -1,4 +1,4 @@
-var React = require('react/addons'),
+var React = require('react'),
     // debug = require('debug')('r3dm:comp:home'),
 
     // # Components
@@ -11,21 +11,22 @@ var React = require('react/addons'),
     Email = require('../email');
 
 var Home = React.createClass({
+  displayName: 'Home',
 
   render: function() {
 
     return (
-      <main className="main-app">
-        <div className="logo-container">
+      <main className='main-app'>
+        <div className='logo-container'>
           <div className='v-center'>
             <div>
               <Logo logoClass='logo'/>
             </div>
           </div>
         </div>
-        <section className="first-con">
+        <section className='first-con'>
           <Banner />
-          <div className="first-con_bot">
+          <div className='first-con_bot'>
             <header>
               <p>
                 We deliver Web and Mobile

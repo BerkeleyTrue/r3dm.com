@@ -5,10 +5,10 @@
   "main": "server/server.js",
   "browser": "client.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "babel-node server/server.js",
     "lint": "eslint --ext=.js,.jsx .",
     "test": "npm run lint",
-    "postinstall": "npm run build-bundle && npm run build-css",
+    "prestart": "npm run build-bundle && npm run build-css",
     "build-bundle": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js",
     "build-css": "stylus --use kouto-swiss --include-css -p ./components/app.styl | cleancss -o public/css/main.css"
   },
@@ -58,6 +58,7 @@
     "babelify": "^6.1.0",
     "body-parser": "^1.6.5",
     "browserify": "^8.1.3",
+    "classnames": "^2.1.1",
     "clean-css": "^3.2.9",
     "compression": "^1.0.11",
     "connect-flash": "^0.1.1",
@@ -72,6 +73,7 @@
     "express-session": "^1.10.0",
     "express-state": "^1.2.0",
     "fetchr": "^0.4.0",
+    "gulp-nodemon": "^2.0.3",
     "helmet": "^0.5.0",
     "jade": "^1.7.0",
     "keystone": "^0.3.8",
@@ -91,10 +93,10 @@
     "react-router": "^0.13.3",
     "react-tween-state": "0.0.4",
     "rx": "^2.3.14",
-    "thundercats": "2.0.0-alpha.1",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3",
     "stylus": "^0.51.1",
+    "thundercats": "^2.0.0-alpha.5",
     "uglifyify": "^3.0.1"
   }
 }

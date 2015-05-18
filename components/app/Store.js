@@ -34,6 +34,5 @@ export default class AppStore extends Store {
       }
     })));
   }
+  static displayName = 'AppStore';
 }
-
-module.exports = AppStore;

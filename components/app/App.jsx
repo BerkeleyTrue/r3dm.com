@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import { RouteHandler } from 'react-router';
 import { createContainer } from 'thundercats';
 import ScrollMixin from '../util/scrollMixin';
@@ -11,23 +11,29 @@ export default createContainer(React.createClass({
   displayName: 'App',
 
   propTypes: {
-    scrollTop: PropTypes.number,
-    isScrolling: PropTypes.bool
+    appActions: PropTypes.object,
+    isScrolling: PropTypes.bool,
+    scrollTop: PropTypes.number
   },
 
   getInitialState() {
-    this.appActions = this.context.cat.getActions('appActions');
     return {};
   },
 
   getThundercats: function() {
     return {
-      store: 'AppStore'
+      store: 'AppStore',
+      actions: 'appActions'
     };
   },
 
-  setScroll: this.AppActions.setScroll,
-  setIsScrolling: this.AppActions.setIsScrolling,
+  setScroll: function() {
+    this.props.appActions.setScroll(...arguments);
+  },
+
+  setIsScrolling: function() {
+    this.props.appActions.setIsScrolling(...arguments);
+  },
 
   render: function() {
     return (
