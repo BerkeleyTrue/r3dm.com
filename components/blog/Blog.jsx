@@ -13,7 +13,7 @@ export default class Blog extends React.Component {
   }
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.func
   }
   static displayName = 'Blog'
   static propTypes = {
@@ -23,7 +23,7 @@ export default class Blog extends React.Component {
   getThundercats(props, context) {
     return {
       store: 'blogStore',
-      map: ({ posts }) => posts,
+      map: ({ posts }) => ({ posts }),
       fetchAction: 'blogActions.setSlug',
       fetchPayload: {
         slug: context.router.getCurrentParams().slug
@@ -130,7 +130,7 @@ export default class Blog extends React.Component {
   render() {
     const { posts } = this.props;
 
-    if (posts === false) {
+    if (!posts.length) {
       return <ComingSoon />;
     }
 

@@ -26,7 +26,7 @@ export default createContainer(React.createClass({
 
   componentDidUpdate: function() {
     if (this.state.top === -150) {
-      this._activateNavTween();
+      this.activateNavTween();
     }
   },
 

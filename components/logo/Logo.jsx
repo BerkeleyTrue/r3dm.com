@@ -1,5 +1,4 @@
 var React = require('react'),
-    shallowEqual = require('react/lib/shallowEqual'),
 
     Isvg = require('react-inlinesvg'),
     LogoSvg = require('./LogoSvg.jsx'),
@@ -21,9 +20,9 @@ var Logo = React.createClass({
     };
   },
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.type !== nextState.type ||
-      shallowEqual(this.props.logoClass, nextState.logoClass);
+  shouldComponentUpdate(nextProps) {
+    return this.props.type !== nextProps.type ||
+      this.props.logoClass !== nextProps.logoClass;
   },
 
   render: function() {
