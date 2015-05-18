@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { createContainer } from 'thundercats';
 import tweenState from 'react-tween-state';
-import CSSTransitionGroup from 'React/lib/ReactCSSTransitionGroup';
+import CSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
 import Sent from './ConnectSent.jsx';
 import ConnectError from './ConnectError.jsx';
