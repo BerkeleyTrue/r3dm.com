@@ -78,7 +78,7 @@
     "jade": "^1.7.0",
     "keystone": "^0.3.8",
     "kouto-swiss": "^0.11.11",
-    "lodash": "^2.4.1",
+    "lodash": "^3.3.0",
     "mandrill-api": "^1.0.41",
     "moment": "^2.9.0",
     "mongoose": "^4.0.2",
