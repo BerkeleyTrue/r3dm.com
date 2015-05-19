@@ -19,8 +19,8 @@ var Spinner = React.createClass({
         xmlns="http://www.w3.org/2000/svg">
         <circle
           className={ this.props.circleClass }
-          fill="none"
-          strokeWidth="6"
+          fill="black"
+          strokeWidth="12"
           strokeLinecap="round"
           cx="33"
           cy="33"
