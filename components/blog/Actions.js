@@ -10,11 +10,7 @@ const fetcher = new Fetcher({
 
 export default class BlogActions extends Actions {
   constructor() {
-    super([
-      'setSlug',
-      'setPosts',
-      'onError'
-    ]);
+    super(['setSlug']);
 
     this.setSlug.subscribe(slug => {
       debug(this.displayName + ' slug: ', slug);

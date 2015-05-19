@@ -25,7 +25,7 @@ export default class Blog extends React.Component {
       store: 'blogStore',
       map: ({ posts }) => ({ posts }),
       fetchAction: 'blogActions.setSlug',
-      fetchPayload: {
+      payload: {
         slug: context.router.getCurrentParams().slug
       }
     };

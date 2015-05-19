@@ -54,7 +54,7 @@ export default createContainer(React.createClass({
       actions: 'navActions',
       store: 'NavStore',
       fetchActions: 'navActions.setLinks',
-      fetchPayload: context.router.getCurrentPath()
+      Payload: context.router.getCurrentPath()
     };
   },
 
