@@ -87,13 +87,18 @@ nav.nav
   .nav_links-hamburger
     display inline-block
     float right
-    height 3em
+    height 100%
+    width 3.5em
     svg
       height 3em
       fill white
 
+/* extra padding on left & right for large displays */
 @media (min-width: 60em)
-  nav.nav > ul
-    margin-right: 10vw
+  nav.nav
+    .nav_logo
+      margin-left: 5vw
+    >ul
+      margin-right: 10vw
 
 @import 'sideNav'
