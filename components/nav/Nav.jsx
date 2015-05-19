@@ -36,6 +36,7 @@ export default createContainer(React.createClass({
 
   propTypes: {
     links: PropTypes.array,
+    navActions: PropTypes.object,
     showNavAtTop: PropTypes.bool
   },
 
@@ -50,6 +51,7 @@ export default createContainer(React.createClass({
 
   getThundercats: function(props, context) {
     return {
+      actions: 'navActions',
       store: 'NavStore',
       fetchActions: 'navActions.setLinks',
       fetchPayload: context.router.getCurrentPath()
@@ -57,7 +59,7 @@ export default createContainer(React.createClass({
   },
 
   handleHamburgerClick: function() {
-    this.navActions.openSideNav(true);
+    this.props.navActions.openSideNav(true);
   },
 
   render: function() {

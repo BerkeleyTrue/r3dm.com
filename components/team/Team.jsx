@@ -5,7 +5,7 @@ var React = require('react'),
 var Team = React.createClass({
   displayName: 'Team',
   propTypes: {
-    data: React.PropTypes.object
+    data: React.PropTypes.array
   },
   getDefaultProps: function() {
     return { data: data };
