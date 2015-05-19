@@ -6,7 +6,7 @@
   "browser": "client.js",
   "scripts": {
     "start": "node server/server.js",
-    "lint": "eslint .",
+    "lint": "eslint --ext .jsx --ext .js .",
     "test": "npm run lint",
     "postinstall": "npm run build-bundle && npm run build-css",
     "build-bundle": "browserify -t babelify -g envify -t uglifyify client.js -o public/js/bundle.js",
