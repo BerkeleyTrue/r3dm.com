@@ -9,7 +9,7 @@ var Footer = React.createClass({
   render: function() {
     return (
       <footer id="footer">
-        Copyright &copy; 2015 R3DM
+        Copyright <span className="r3d">&copy;</span> 2015 R3D M
       </footer>
     );
   }
