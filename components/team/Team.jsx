@@ -3,6 +3,10 @@ var React = require('react'),
     Block = require('./TeamBlock.jsx');
 
 var Team = React.createClass({
+  displayName: 'Team',
+  propTypes: {
+    data: React.PropTypes.object
+  },
   getDefaultProps: function() {
     return { data: data };
   },
@@ -16,15 +20,17 @@ var Team = React.createClass({
     var Blocks = this.props.data.map(function(datum) {
       return (
         <Block
-          key = { datum.name }
-          data = { datum }
-          className = { blockClass }></Block>
+          className={ blockClass }
+          data={ datum }
+          key={ datum.name } />
       );
     });
 
     return (
-      <div id='team' className='team'>
-        <div className = 'team_heading'>
+      <div
+        className='team'
+        id='team'>
+        <div className='team_heading'>
           <h2>THE TEAM</h2>
         </div>
         <div className='blocks-container'>
@@ -34,4 +40,5 @@ var Team = React.createClass({
     );
   }
 });
+
 module.exports = Team;

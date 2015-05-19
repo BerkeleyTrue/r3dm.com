@@ -1,11 +1,12 @@
 var React = require('react');
 
 var About = React.createClass({
+  displayName: 'About',
   render: function() {
     return (
       <section
-        id='about'
-        className='about'>
+        className='about'
+        id='about'>
         <div className='about_content'>
           <header>
             <h2>About R3DM</h2>

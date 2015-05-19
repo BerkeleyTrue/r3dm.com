@@ -1,7 +1,11 @@
 var React = require('react');
 
 var Copy = React.createClass({
-
+  displayName: 'Copy',
+  propTypes: {
+    children: React.PropTypes.array,
+    imgFirst: React.PropTypes.bool
+  },
   render: function() {
     return (
       <div>
