@@ -12,21 +12,27 @@ export default class Blog extends React.Component {
     super(props);
   }
 
-  static contextTypes = {
-    router: PropTypes.func
-  }
   static displayName = 'Blog'
   static propTypes = {
+    blogActions: PropTypes.object,
+    params: PropTypes.object,
     posts: PropTypes.array
   }
 
-  getThundercats(props, context) {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.slug !== nextProps.params.slug) {
+      this.props.blogActions.setSlug(nextProps.params);
+    }
+  }
+
+  getThundercats(props) {
     return {
+      actions: 'blogActions',
+      fetchAction: 'blogActions.setSlug',
       store: 'blogStore',
       map: ({ posts }) => ({ posts }),
-      fetchAction: 'blogActions.setSlug',
       payload: {
-        slug: context.router.getCurrentParams().slug
+        slug: props.params.slug
       }
     };
   }
