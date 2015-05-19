@@ -46,7 +46,7 @@ nav.nav
       color white
       display block
       line-height 65px
-      min-width 90px
+      min-width 80px
       white-space nowrap
 
       &:hover
@@ -91,5 +91,9 @@ nav.nav
     svg
       height 3em
       fill white
+
+@media (min-width: 60em)
+  nav.nav > ul
+    margin-right: 10vw
 
 @import 'sideNav'
