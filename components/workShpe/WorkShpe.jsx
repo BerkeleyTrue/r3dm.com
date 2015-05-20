@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import tweenState from 'react-tween-state';
 
 import { createContainer } from 'thundercats';
@@ -11,17 +11,9 @@ var screenTrigger = '(max-width: 30em)';
 export default createContainer(React.createClass({
   displayName: 'WorkShpe',
   mixins: [ tweenState.Mixin ],
-
-  getThundercats: function() {
-    return {
-      store: 'appStore',
-      map: ({ scrollTop, isScrollingDown }) => {
-        return {
-          isScrollingDown,
-          scrollTop
-        };
-      }
-    };
+  propTypes: {
+    isScrollingDown: PropTypes.bool,
+    scrollTop: PropTypes.number
   },
 
   componentWillMount: function() {
@@ -56,8 +48,8 @@ export default createContainer(React.createClass({
 
   componentDidUpdate: function() {
     var state = this.state,
-        scrollTop = state.scrollTop,
-        isScrollingDown = state.isScrollingDown,
+        scrollTop = this.props.scrollTop,
+        isScrollingDown = this.props.isScrollingDown,
         viewPortHeight = state.viewPortHeight,
         shpeArticleHeight = state.shpeArticleHeight;
 
@@ -84,6 +76,18 @@ export default createContainer(React.createClass({
     this.setState({
       smallScreen: this._mql.matches
     });
+  },
+
+  getThundercats: function() {
+    return {
+      store: 'appStore',
+      map: ({ scrollTop, isScrollingDown }) => {
+        return {
+          isScrollingDown,
+          scrollTop
+        };
+      }
+    };
   },
 
   render: function() {
