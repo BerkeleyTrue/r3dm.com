@@ -9,8 +9,18 @@ import Hamburger from '../common/Hamburger.jsx';
 let win;
 
 export default createContainer(React.createClass({
+
+  contextTypes: {
+    router: PropTypes.func
+  },
   displayName: 'Nav',
   mixins: [tweenState.Mixin],
+
+  propTypes: {
+    links: PropTypes.array,
+    navActions: PropTypes.object,
+    showNavAtTop: PropTypes.bool
+  },
 
   getInitialState: function() {
     return {};
@@ -30,16 +40,6 @@ export default createContainer(React.createClass({
     }
   },
 
-  contextTypes: {
-    router: PropTypes.func
-  },
-
-  propTypes: {
-    links: PropTypes.array,
-    navActions: PropTypes.object,
-    showNavAtTop: PropTypes.bool
-  },
-
   activateNavTween: function() {
     this.tweenState('top', {
       easing: tweenState.easingTypes.easeInOutQuad,
@@ -53,8 +53,8 @@ export default createContainer(React.createClass({
     return {
       actions: 'navActions',
       store: 'NavStore',
-      fetchActions: 'navActions.setLinks',
-      Payload: context.router.getCurrentPath()
+      fetchAction: 'navActions.setLinks',
+      payload: context.router.getCurrentPath()
     };
   },
 
