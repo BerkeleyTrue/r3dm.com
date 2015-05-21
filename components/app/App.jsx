@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { RouteHandler } from 'react-router';
+import { RouteHandler, State } from 'react-router';
 import { createContainer } from 'thundercats';
 import ScrollMixin from '../util/scrollMixin';
 import Nav from '../nav';
@@ -7,8 +7,11 @@ import SideNav from '../nav/SideNav.jsx';
 import Footer from '../footer';
 
 export default createContainer(React.createClass({
-  mixins: [ScrollMixin],
   displayName: 'App',
+  mixins: [
+    ScrollMixin,
+    State
+  ],
 
   propTypes: {
     appActions: PropTypes.object,
@@ -36,11 +39,13 @@ export default createContainer(React.createClass({
   },
 
   render: function() {
+    const path = this.getPath();
+
     return (
       <div>
         <RouteHandler />
         <Footer />
-        <Nav />
+        <Nav path={ path } />
         <SideNav />
       </div>
     );

@@ -9,16 +9,13 @@ import Hamburger from '../common/Hamburger.jsx';
 let win;
 
 export default createContainer(React.createClass({
-
-  contextTypes: {
-    router: PropTypes.func
-  },
   displayName: 'Nav',
   mixins: [tweenState.Mixin],
 
   propTypes: {
     links: PropTypes.array,
     navActions: PropTypes.object,
+    path: PropTypes.string,
     showNavAtTop: PropTypes.bool
   },
 
@@ -32,6 +29,12 @@ export default createContainer(React.createClass({
 
   componentDidMount: function() {
     win = typeof window !== 'undefined' ? window : null;
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.path !== nextProps.path) {
+      this.props.navActions.setLinks(nextProps.path);
+    }
   },
 
   componentDidUpdate: function() {
@@ -49,12 +52,12 @@ export default createContainer(React.createClass({
     });
   },
 
-  getThundercats: function(props, context) {
+  getThundercats: function(props) {
     return {
       actions: 'navActions',
       store: 'NavStore',
       fetchAction: 'navActions.setLinks',
-      payload: context.router.getCurrentPath()
+      payload: props.path
     };
   },
 
