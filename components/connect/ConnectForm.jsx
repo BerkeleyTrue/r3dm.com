@@ -7,8 +7,8 @@ import globular from '../globular';
 const debug = debugFactory('r3dm:comp:connect:form');
 
 export default createContainer(React.createClass({
-  mixins: [tweenState.Mixin],
   displayName: 'ConnectForm',
+  mixins: [tweenState.Mixin],
 
   propTypes: {
     connectActions: PropTypes.object,
@@ -18,9 +18,9 @@ export default createContainer(React.createClass({
 
   getThundercats: function() {
     return {
-      store: 'ConnectStore',
+      actions: 'connectActions',
       map: ({ name, email }) => ({ email, name }),
-      actions: ['connectActions']
+      store: 'ConnectStore'
     };
   },
 

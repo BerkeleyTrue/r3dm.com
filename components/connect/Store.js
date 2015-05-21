@@ -1,8 +1,8 @@
 import { Store } from 'thundercats';
-import { createSetObject } from '../util';
 import debugFactory from 'debug';
 
 const debug = debugFactory('r3dm:component:connect:store');
+const { createRegistrar, setter } = Store;
 
 export default class ConnectStore extends Store {
   constructor(r3d) {
@@ -25,19 +25,24 @@ export default class ConnectStore extends Store {
       setUtc
     } = r3d.getActions('connectActions');
 
-    this.register(
+    const register = createRegistrar(this);
+
+    function registerSetter(observable) {
+      return register(setter(observable));
+    }
+
+    registerSetter(
       error
         .tap(({ error }) => debug(
           'An error occured durring mandrill service',
           error
         ))
-        .map(createSetObject)
     );
-    this.register(onEmailChange.map(createSetObject));
-    this.register(onNameChange.map(createSetObject));
-    this.register(sending.map(createSetObject));
-    this.register(sent.map(createSetObject));
-    this.register(setUtc.map(createSetObject));
+    registerSetter(onEmailChange);
+    registerSetter(onNameChange);
+    registerSetter(sending);
+    registerSetter(sent);
+    registerSetter(setUtc);
   }
 
   static displayName = 'ConnectStore';
