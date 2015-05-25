@@ -14,7 +14,7 @@ import ComingSoon from '../errors/ComingSoon.jsx';
   shouldContainerFetch(props, nextProps) {
     return props.params.slug !== nextProps.params.slug;
   },
-  getPayload: (props, context) => ({
+  getPayload: (props) => ({
     slug: props.params.slug
   })
 })
