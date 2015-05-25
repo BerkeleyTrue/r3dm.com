@@ -4,7 +4,14 @@ import classNames from 'classnames';
 import OverLay from './OverLay.jsx';
 import Links from './Links.jsx';
 
-@createContainer
+@createContainer({
+  actions: 'navActions',
+  map: ({ isSideNavOpen, links }) => ({
+    links,
+    open: isSideNavOpen
+  }),
+  store: 'navStore'
+})
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -21,17 +28,6 @@ export default class extends React.Component {
     const { props } = this;
     return nextProps.links !== props.links ||
       nextProps.open !== props.open;
-  }
-
-  getThundercats() {
-    return {
-      store: 'navStore',
-      map: ({ isSideNavOpen, links }) => ({
-        links,
-        open: isSideNavOpen
-      }),
-      actions: 'navActions'
-    };
   }
 
   handleOverlayClick() {

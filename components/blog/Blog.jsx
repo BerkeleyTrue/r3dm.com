@@ -6,7 +6,18 @@ import ComingSoon from '../errors/ComingSoon.jsx';
 // decorators currently don't count as use in babel-eslint
 // see: https://github.com/babel/babel-eslint/issues/72
 
-@createContainer
+@createContainer({
+  actions: 'blogActions',
+  fetchAction: 'blogActions.setSlug',
+  store: 'blogStore',
+  map: ({ posts }) => ({ posts }),
+  shouldContainerFetch(props, nextProps) {
+    return props.params.slug !== nextProps.params.slug;
+  },
+  getPayload: (props, context) => ({
+    slug: props.params.slug
+  })
+})
 export default class Blog extends React.Component {
   constructor(props) {
     super(props);
@@ -17,24 +28,6 @@ export default class Blog extends React.Component {
     blogActions: PropTypes.object,
     params: PropTypes.object,
     posts: PropTypes.array
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params.slug !== nextProps.params.slug) {
-      this.props.blogActions.setSlug(nextProps.params);
-    }
-  }
-
-  getThundercats(props) {
-    return {
-      actions: 'blogActions',
-      fetchAction: 'blogActions.setSlug',
-      store: 'blogStore',
-      map: ({ posts }) => ({ posts }),
-      payload: {
-        slug: props.params.slug
-      }
-    };
   }
 
   renderPosts(posts) {

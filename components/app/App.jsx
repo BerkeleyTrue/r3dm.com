@@ -6,48 +6,47 @@ import Nav from '../nav';
 import SideNav from '../nav/SideNav.jsx';
 import Footer from '../footer';
 
-export default createContainer(React.createClass({
-  displayName: 'App',
-  mixins: [
-    ScrollMixin,
-    State
-  ],
-
-  propTypes: {
-    appActions: PropTypes.object,
-    isScrolling: PropTypes.bool,
-    scrollTop: PropTypes.number
+export default createContainer(
+  {
+    store: 'AppStore',
+    actions: 'appActions'
   },
+  React.createClass({
+    displayName: 'App',
+    mixins: [
+      ScrollMixin,
+      State
+    ],
 
-  getInitialState() {
-    return {};
-  },
+    propTypes: {
+      appActions: PropTypes.object,
+      isScrolling: PropTypes.bool,
+      scrollTop: PropTypes.number
+    },
 
-  getThundercats: function() {
-    return {
-      store: 'AppStore',
-      actions: 'appActions'
-    };
-  },
+    getInitialState() {
+      return {};
+    },
 
-  setScroll: function() {
-    this.props.appActions.setScroll(...arguments);
-  },
+    setScroll: function() {
+      this.props.appActions.setScroll(...arguments);
+    },
 
-  setIsScrolling: function() {
-    this.props.appActions.setIsScrolling(...arguments);
-  },
+    setIsScrolling: function() {
+      this.props.appActions.setIsScrolling(...arguments);
+    },
 
-  render: function() {
-    const path = this.getPath();
+    render: function() {
+      const path = this.getPath();
 
-    return (
-      <div>
-        <RouteHandler />
-        <Footer />
-        <Nav path={ path } />
-        <SideNav />
-      </div>
-    );
-  }
-}));
+      return (
+        <div>
+          <RouteHandler />
+          <Footer />
+          <Nav path={ path } />
+          <SideNav />
+        </div>
+      );
+    }
+  })
+);

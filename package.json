@@ -96,7 +96,7 @@
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3",
     "stylus": "^0.51.1",
-    "thundercats": "^2.0.0-alpha.6",
+    "thundercats": "^2.0.0-alpha.7",
     "uglifyify": "^3.0.1"
   }
 }
