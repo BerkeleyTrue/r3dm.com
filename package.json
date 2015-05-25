@@ -34,6 +34,7 @@
   "license": "None",
   "devDependencies": {
     "browser-sync": "^2.1.1",
+    "babel-eslint": "^3.1.8",
     "eslint": "^0.21.0",
     "eslint-plugin-react": "^2.2.0",
     "gulp": "^3.8.10",
@@ -55,7 +56,6 @@
   "dependencies": {
     "agenda": "^0.6.26",
     "babel": "^5.2.17",
-    "babel-eslint": "^3.1.1",
     "babelify": "^6.1.0",
     "body-parser": "^1.6.5",
     "browserify": "^8.1.3",
