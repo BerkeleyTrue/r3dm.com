@@ -3,12 +3,46 @@
 .work_heading
   background-color white
   color black
-  padding-top 4em
   padding-bottom 1em
-  text-align center
+  padding-top 4em
   overflow auto // bug fix
+  text-align center
 
   h2
     font-size 2em
 
-// .work_content
+  .work_article
+    display flex
+    flex-direction row
+    flex-wrap wrap
+    justify-content center
+    padding 2em 0
+    margin 0 auto
+    max-width 800px
+    min-height 400px
+
+    .work_img-wrapper
+      flex-grow 1
+      flex-shrink 1
+      max-width 400px
+      text-align center
+
+      .work_img
+        padding 1em 1em 1em 2em
+
+    +media-query(all, max-width 50em)
+      .work_img
+        width 350px
+
+    .work_copy
+      flex-grow 1
+      flex-shrink 1
+      max-width 400px
+
+      h3
+        font-size 25px
+        text-align center
+      p
+        font-size 18px
+        padding 0 1em 0 1em
+        text-align justify

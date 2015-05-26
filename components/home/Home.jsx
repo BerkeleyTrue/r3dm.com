@@ -6,7 +6,7 @@ var React = require('react'),
     Banner = require('../banner'),
     Logo = require('../logo'),
     Services = require('../services'),
-    Work = require('../work'),
+    Work = require('../work').Work,
     Connect = require('../connect'),
     Email = require('../email');
 
@@ -14,7 +14,6 @@ var Home = React.createClass({
   displayName: 'Home',
 
   render: function() {
-
     return (
       <main className='main-app'>
         <div className='logo-container'>

@@ -32,4 +32,4 @@ var Spinner = React.createClass({
   }
 });
 
-module.exports = Spinner;
+export default Spinner;

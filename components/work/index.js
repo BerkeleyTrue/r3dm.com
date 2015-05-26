@@ -1,1 +1,1 @@
-module.exports = require('./Work.jsx');
+export { default as Work } from './Work.jsx';

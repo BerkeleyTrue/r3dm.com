@@ -20,4 +20,4 @@ var Hamburger = React.createClass({
   }
 });
 
-module.exports = Hamburger;
+export default Hamburger;
