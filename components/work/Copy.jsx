@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import ImgLoader from 'react-imageloader';
 
-import { Spinner } from '../common';
-import { Switcher } from '../util';
+import { Switcher, Spinner } from '../common';
 
 const spinner = React.createElement.bind(null, Spinner, {
   svgClass: 'connect_sending-spinner',
@@ -26,20 +25,28 @@ export default class extends React.Component {
   }
 
   renderLinks(links) {
-    if (!links) {
-      return null;
-    }
     return links.map(link => {
       return (
         <a
           className={ link.className }
           href={ link.href }
-          key={ link.title }>
-          { link.title }
+          key={ link.body }>
+          { link.body }
           <i className={ link.iconClassName } />
         </a>
       );
     });
+  }
+
+  renderLinkBox(links) {
+    if (!links || !links.length) {
+      return null;
+    }
+    return (
+      <div className='work_links'>
+        { this.renderLinks(links) }
+      </div>
+    );
   }
 
   render() {
@@ -57,7 +64,9 @@ export default class extends React.Component {
 
     return (
       <article>
-        <Switcher shouldSwitch={ shouldSwitch }>
+        <Switcher
+          className='work_box'
+          shouldSwitch={ shouldSwitch }>
           <WrapperClass
             { ...wrapperProps }
             className='work_img-wrapper'>
@@ -72,7 +81,7 @@ export default class extends React.Component {
               <h3>{ title }</h3>
             </header>
             <p>{ body }</p>
-            { this.renderLinks(links) }
+            { this.renderLinkBox(links) }
           </div>
         </Switcher>
       </article>

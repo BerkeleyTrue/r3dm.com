@@ -19,30 +19,37 @@ export default class extends React.Component {
       null;
 
     this._mql = matchMedia(TRIGGER);
-    this._mql.addListener(this.updateScreen);
-    this.updateScreen(this._mql.matches, this.state.smallScreen);
+    this._mql.addListener(::this.updateScreen);
+    this.updateScreen(this._mql.matches);
   }
 
   componentWillUnmount() {
     this._mql.removeListener(this._updateScreen);
   }
 
-  updateScreen(matches, smallScreen) {
-    if (matches === smallScreen) {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.smallScreen !== nextState.smallScreen;
+  }
+
+  updateScreen() {
+    if (this._mql.matches === this.state.smallScreen) {
       return;
     }
     this.setState({
-      smallScreen: matches
+      smallScreen: this._mql.matches
     });
   }
 
   renderCopy(copy, smallScreen) {
-    return copy.map((data, index) => (
-      <Copy
-        { ...data }
-        key={ index }
-        shouldSwitch={ index % 2 === 0 ? smallScreen : !smallScreen } />
-    ));
+    return copy.map((data, index) => {
+      const shouldSwitch = smallScreen ? false : index % 2 === 0;
+      return (
+        <Copy
+          { ...data }
+          key={ index }
+          shouldSwitch={ shouldSwitch } />
+      );
+    });
   }
 
   render() {
