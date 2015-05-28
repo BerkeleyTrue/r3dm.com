@@ -97,8 +97,7 @@ gulp.task('server', ['bundle'], function(cb) {
   var called = false;
   nodemon({
     env: {
-      'NODE_ENV': 'development',
-      'DEBUG': 'r3dm:*'
+      'NODE_ENV': 'development'
     },
     exec: './node_modules/.bin/babel-node',
     ext: '.js',
