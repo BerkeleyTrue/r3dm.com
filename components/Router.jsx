@@ -15,11 +15,11 @@ var routes = (
 
     <DefaultRoute
       handler={ Home }
-      name='home'/>
+      name='home' />
     <Route
       handler={ Blog }
       name='blog'
-      path='/blog/?:slug?'/>
+      path='/blog/?:slug?' />
 
     <NotFoundRoute handler={ FourOhFour } />
   </Route>
