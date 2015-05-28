@@ -1,9 +1,10 @@
 'use strict';
+const __DEV__ = process.env.NODE_ENV !== 'production';
 require('dotenv').load();
-if (process.env.NODE_ENV !== 'development') {
-  require('newrelic');
-} else {
+if (__DEV__) {
   require('rx').config.longStackSupport = true;
+} else {
+  require('newrelic');
 }
 var express = require('express'),
     path = require('path'),
@@ -13,6 +14,7 @@ var express = require('express'),
     generateSitemap = require('./boot/generateSitemap'),
 
     // ## Util
+    accepts = require('accepts'),
     debug = require('debug')('r3dm:server'),
     utils = require('./utils/utils'),
 
@@ -72,6 +74,14 @@ app.get('/*', function(req, res, next) {
   const decodedURI = decodeURI(req.path);
   debug('path req', decodedURI);
   Router(decodedURI)
+    .filter(({ state }) => {
+      const notFound = state.routes.some(route => route.isNotFound);
+      if (notFound) {
+        debug('tried to find %s but got 404', state.path);
+        next();
+      }
+      return !notFound;
+    })
     .flatMap(({ Handler, state }) => {
       debug('rendering %s to string', state.path);
       return r3d.renderToString(React.createElement(Handler));
@@ -102,14 +112,45 @@ app.use(function(req, res) {
   res.render(404);
 });
 
-/* eslint-disable */
-app.use(function(err, req, res, next) {
-/* eslint-enable */
-  debug('Err: ', err.stack);
-  res
-    .status(500)
-    .send('Something went wrong');
-});
+
+if (__DEV__) {
+  app.use(function(err, req, res, next) { // eslint-disable-line
+    debug('Err: ', err.stack);
+    res
+      .status(err.status || res.statusCode || 500)
+      .send('Something went wrong');
+  });
+} else {
+  // error handling in production
+  app.use(function(err, req, res, next) { // eslint-disable-line
+
+    // respect err.status
+    res.statusCode = err.status || res.statusCode || 500;
+
+    // default status code to 500
+    if (res.statusCode < 400) {
+      res.statusCode = 500;
+    }
+
+    // parse res type
+    const accept = accepts(req);
+    const type = accept.type('html', 'json', 'text');
+
+    const message = 'opps! Something went wrong. Please try again later';
+    if (type === 'html') {
+      // req.flash('errors', { msg: message });
+      return res.redirect('/');
+      // json
+    } else if (type === 'json') {
+      res.setHeader('Content-Type', 'application/json');
+      return res.send({ message: message });
+      // plain text
+    } else {
+      res.setHeader('Content-Type', 'text/plain');
+      return res.send(message);
+    }
+  });
+}
 
 app.listen(app.get('port'), function() {
   debug('The R3DM is go at: ' + app.get('port'));
