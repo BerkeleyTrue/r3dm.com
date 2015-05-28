@@ -14,7 +14,10 @@ function mapEventValue(e) {
 
 export default class ConnectActions extends Actions {
   constructor() {
-    super(['send']);
+    super([
+      'handleConnect',
+      'send'
+    ]);
 
     this.send.subscribe(payload => {
       debug('Creating email for: ', payload);
