@@ -98,7 +98,7 @@ app.get('/*', function(req, res, next) {
           if (err) { return next(err); }
           debug('jade template rendered');
 
-          debug('Sending %s to user', decodedURI);
+          debug('sending %s to user', decodedURI);
           return res.send(markup);
         });
       },
