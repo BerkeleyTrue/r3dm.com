@@ -54,11 +54,11 @@ export default class Blog extends React.Component {
 
       if (post.publishedDate) {
         publishedDate = new Date(post.publishedDate)
-        .toLocaleString('en-US', {
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        });
+          .toLocaleString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          });
       } else {
         publishedDate = 'not published';
       }
@@ -69,7 +69,7 @@ export default class Blog extends React.Component {
         authorStr = 'no author';
       }
 
-      if (post.cover) {
+      if (post.cover && post.cover.url) {
         coverImg = (
           <div className='post-cover'>
             <img src={ post.cover.url }></img>
