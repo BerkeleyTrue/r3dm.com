@@ -27,9 +27,19 @@ export default class extends React.Component {
     );
   }
 
-  renderReadMore(showBrief, slug) {
+  renderFooter(showBrief, slug) {
     if (!showBrief) {
-      return null;
+      return (
+        <footer>
+          <div className='post_readmore'>
+            <Link
+              params={{ slug: null }}
+              to='blog'>
+              Back
+            </Link>
+          </div>
+        </footer>
+      );
     }
     return (
       <footer>
@@ -87,7 +97,7 @@ export default class extends React.Component {
           </div>
         </header>
         { this.renderContent(showBrief, content) }
-        { this.renderReadMore(showBrief, slug) }
+        { this.renderFooter(showBrief, slug) }
       </section>
     );
   }
