@@ -1,11 +1,15 @@
-var React = require('react'),
-    PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
+import React from 'react';
+import shallowEqual from 'react/lib/shallowEqual';
 
-var Hamburger = React.createClass({
-  displayName: 'Hamburger',
-  mixins: [PureRenderMixin],
+export default class extends React.Component {
+  constructor() { super(); }
+  static displayName = 'Hamburger'
 
-  render: function() {
+  shouldComponentUpdate(nextProps) {
+    return shallowEqual(this.props, nextProps);
+  }
+
+  render() {
     return (
       <svg
         { ...this.props }
@@ -18,6 +22,4 @@ var Hamburger = React.createClass({
       </svg>
     );
   }
-});
-
-export default Hamburger;
+}

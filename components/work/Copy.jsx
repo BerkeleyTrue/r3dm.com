@@ -24,6 +24,10 @@ export default class extends React.Component {
     wrapperProps: PropTypes.object
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.title !== nextProps.title;
+  }
+
   renderLinks(links) {
     return links.map(link => {
       return (

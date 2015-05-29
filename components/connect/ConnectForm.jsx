@@ -25,6 +25,11 @@ export default class extends React.Component {
     name: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.email !== nextProps.email ||
+      this.props.name !== nextProps.name;
+  }
+
   componentDidMount() {
     const form = this.refs.form.getDOMNode();
     const { connectActions } = this.props;

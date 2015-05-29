@@ -1,16 +1,19 @@
-var React = require('react'),
-    PureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
+import React from 'react';
 
-var Spinner = React.createClass({
-  displayName: 'Spinner',
-  mixins: [PureRenderMixin],
-
-  propTypes: {
+export default class extends React.Component {
+  constructor() { super(); }
+  static displayName = 'Spinner'
+  static propTypes = {
     svgClass: React.PropTypes.string,
     circleClass: React.PropTypes.string
-  },
+  }
 
-  render: function() {
+  shouldComponentUpdate(nextProps) {
+    return this.props.svgClass !== nextProps.svgClass ||
+      this.props.circleClass !== nextProps.circleClass;
+  }
+
+  render() {
     return (
       <svg
         className={ this.props.svgClass }
@@ -30,6 +33,4 @@ var Spinner = React.createClass({
       </svg>
     );
   }
-});
-
-export default Spinner;
+}

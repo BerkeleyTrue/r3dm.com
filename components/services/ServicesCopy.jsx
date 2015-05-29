@@ -1,23 +1,23 @@
-var React = require('react');
+import React from 'react';
 
-var Copy = React.createClass({
-  displayName: 'Copy',
-
-  propTypes: {
-    title: React.PropTypes.string,
+export default class extends React.Component {
+  static displayName = 'Copy'
+  static defaultProps = {
+    content: 'empty content',
+    imgSrc: '',
+    title: 'empty title'
+  }
+  static propTypes = {
     content: React.PropTypes.string,
-    imgSrc: React.PropTypes.string
-  },
+    imgSrc: React.PropTypes.string,
+    title: React.PropTypes.string
+  }
 
-  getDefaultProps: function() {
-    return {
-      title: 'empty title',
-      content: 'empty content',
-      imgSrc: ''
-    };
-  },
+  shouldComponentUpdate(nextProps) {
+    return this.props.title !== nextProps.title;
+  }
 
-  render: function() {
+  render() {
     return (
       <article>
         <header>
@@ -30,6 +30,4 @@ var Copy = React.createClass({
       </article>
     );
   }
-});
-
-module.exports = Copy;
+}

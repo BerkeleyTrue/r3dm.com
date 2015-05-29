@@ -1,13 +1,13 @@
-var React = require('react');
+import React from 'react';
 
-var FourOhFour = React.createClass({
-  displayName: 'FourOhFour',
+export default class extends React.Component {
+  static displayName = 'FourOhFour'
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <section className='notFound'>
         <div className='notFound_layout'>
@@ -24,5 +24,4 @@ var FourOhFour = React.createClass({
       </section>
     );
   }
-});
-module.exports = FourOhFour;
+}

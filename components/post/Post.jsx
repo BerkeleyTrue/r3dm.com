@@ -14,6 +14,10 @@ export default class extends React.Component {
     showBrief: PropTypes.bool
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.post.slug !== nextProps.post.slug;
+  }
+
   renderContent(showBrief, content) {
     return (
       <span dangerouslySetInnerHTML={{

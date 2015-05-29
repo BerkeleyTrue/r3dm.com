@@ -1,13 +1,13 @@
-var React = require('react');
+import React from 'react';
 
-var ComingSoon = React.createClass({
-  displayName: 'ComingSoon',
+export default class extends React.Components {
+  static displayName = 'ComingSoon'
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <section className='notFound'>
         <div className='notFound_layout'>
@@ -23,5 +23,4 @@ var ComingSoon = React.createClass({
       </section>
     );
   }
-});
-module.exports = ComingSoon;
+}

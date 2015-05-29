@@ -1,23 +1,28 @@
-var React = require('react'),
-    data = require('./team_data').data,
-    Block = require('./TeamBlock.jsx');
+import React from 'react';
+import { data } from './team_data';
+import Block from './TeamBlock.jsx';
 
-var Team = React.createClass({
-  displayName: 'Team',
-  propTypes: {
-    data: React.PropTypes.array
-  },
-  getDefaultProps: function() {
-    return { data: data };
-  },
+const blockClass = [
+  'team_block',
+  'team_block-padding'
+].join(' ');
 
-  render: function() {
-    var blockClass = [
-      'team_block',
-      'team_block-padding'
-    ].join(' ');
+export default class extends React.Component {
+  constructor() {
+    super();
+  }
 
-    var Blocks = this.props.data.map(function(datum) {
+  static displayName = 'Team'
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  renderBlocks() {
+    if (!data.length) {
+      return null;
+    }
+    return data.map(function(datum) {
       return (
         <Block
           className={ blockClass }
@@ -25,7 +30,9 @@ var Team = React.createClass({
           key={ datum.name } />
       );
     });
+  }
 
+  render() {
     return (
       <div
         className='team'
@@ -34,11 +41,9 @@ var Team = React.createClass({
           <h2>THE TEAM</h2>
         </div>
         <div className='blocks-container'>
-          { Blocks }
+          { this.renderBlocks() }
         </div>
       </div>
     );
   }
-});
-
-module.exports = Team;
+}

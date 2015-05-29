@@ -26,6 +26,11 @@ export default class Blog extends React.Component {
     posts: PropTypes.array
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.params.slug !== nextProps.params.slug ||
+      this.props.posts !== nextProps.posts;
+  }
+
   renderPosts(posts) {
     const showBrief = posts.length !== 1;
     return posts.map(post => {

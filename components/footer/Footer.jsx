@@ -1,19 +1,17 @@
-var React = require('react');
+import React from 'react';
 
-var Footer = React.createClass({
-  displayName: 'Footer',
+export default class extends React.Component {
+  static displayName = 'Footer'
 
-  shouldComponentUpdate: function() {
+  shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <footer id='footer'>
         Copyright <span className='r3d'>&copy;</span> 2015 R3D M
       </footer>
     );
   }
-});
-
-module.exports = Footer;
+}

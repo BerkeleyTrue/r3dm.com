@@ -1,8 +1,16 @@
-var React = require('react');
+import React from 'react';
 
-var About = React.createClass({
-  displayName: 'About',
-  render: function() {
+export default class extends React.Component {
+  constructor() {
+    super();
+  }
+
+  static displayName = 'About'
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
     return (
       <section
         className='about'
@@ -26,6 +34,4 @@ var About = React.createClass({
       </section>
     );
   }
-});
-
-module.exports = About;
+}

@@ -1,18 +1,17 @@
 import React from 'react';
 import Spinner from '../common/Spinner.jsx';
 
-export default React.createClass({
-  displayName: 'displayName',
+export default class extends React.Component {
+  constructor(props) { super(props); }
+  static displayName = 'displayName'
 
-  propTypes: {
-    height: React.PropTypes.number
-  },
+  static propTypes = { height: React.PropTypes.number }
 
   shouldComponentUpdate(nextProps) {
     return this.props.height !== nextProps.height;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <article
         className='connect connect_sending'
@@ -25,4 +24,4 @@ export default React.createClass({
       </article>
     );
   }
-});
+}

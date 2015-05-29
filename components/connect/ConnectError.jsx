@@ -1,15 +1,15 @@
-var React = require('react');
+import React from 'react';
 
-var ConnectError = React.createClass({
-  displayName: 'ConnectError',
+export default class extends React.Component {
+  static displayName = 'ConnectError'
 
-  propTypes: { height: React.PropTypes.number },
+  static propTypes = { height: React.PropTypes.number }
 
   shouldComponentUpdate(nextProps) {
     return nextProps.height !== this.props.height;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <article
         className='connect connect_error'
@@ -20,6 +20,4 @@ var ConnectError = React.createClass({
       </article>
     );
   }
-});
-
-module.exports = ConnectError;
+}

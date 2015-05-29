@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default React.createClass({
-  displayName: 'Sent',
-  propTypes: { height: React.PropTypes.number },
+export default class extends React.Component {
+  static displayName = 'Sent'
+  static propTypes = { height: React.PropTypes.number }
 
   shouldComponentUpdate(nextProps) {
     return this.props.height !== nextProps.height;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <article
         className='connect connect_sent'
@@ -21,4 +21,4 @@ export default React.createClass({
       </article>
     );
   }
-});
+}

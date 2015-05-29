@@ -1,45 +1,56 @@
-var React = require('react');
+import React from 'react';
 
-var Block = React.createClass({
-  displayName: 'Block',
-  propTypes: {
-    data: React.PropTypes.object,
-    className: React.PropTypes.string
-  },
+const iconMap = {
+  github: 'github-alt',
+  portfolio: 'desktop',
+  linkedin: 'linkedin',
+  email: 'envelope'
+};
 
-  render: function() {
-    var links = this.props.data.links.map(function(linkObj) {
-      // mapping of link-types to font-awesome icon names
-      var map = {
-        github: 'github-alt',
-        portfolio: 'desktop',
-        linkedin: 'linkedin',
-        email: 'envelope'
-      };
+export default class extends React.Component {
+  static displayName = 'Block'
+  static propTypes = {
+    className: React.PropTypes.string,
+    data: React.PropTypes.object
+  }
 
-      var result = [];
+  shouldComponentUpdate(nextProps) {
+    return this.props.data.name !== nextProps.data.name;
+  }
 
-      result.push((
-        <a href={ linkObj.url }>
+  renderLinks(links) {
+    if (!links.lenght) {
+      return null;
+    }
+    return links.map(function(link) {
+      return [(
+        <a href={ link.url }>
           <span className='fa-stack fa-lg'>
             <i className='fa fa-circle fa-stack-2x'></i>
-            <i className={ 'fa fa-stack-1x fa-' + map[linkObj.type] } ></i>
+            <i className={ 'fa fa-stack-1x fa-' + iconMap[link.type] } ></i>
           </span>
         </a>
-      ));
-      return result;
+      )];
     });
+  }
+
+  render() {
+    const {
+      copy,
+      imgUrl,
+      links,
+      name
+    } = this.props.data;
 
     return (
       <div className = { this.props.className }>
-        <img src= { this.props.data.imgUrl } />
-        <div><h3>{ this.props.data.name }</h3></div>
-        <div><p>{ this.props.data.copy }</p></div>
+        <img src= { imgUrl } />
+        <header><h3>{ name }</h3></header>
+        <div><p>{ copy }</p></div>
         <div className='links-container'>
-          { links }
+          { this.renderLinks(links) }
         </div>
       </div>
     );
   }
-});
-module.exports = Block;
+}

@@ -1,19 +1,18 @@
-var React = require('react'),
-    // debug = require('debug')('r3dm:comp:home'),
+import React from 'react';
 
-    // # Components
-    Team = require('../team'),
-    Banner = require('../banner'),
-    Logo = require('../logo'),
-    Services = require('../services'),
-    Work = require('../work').Work,
-    Connect = require('../connect'),
-    Email = require('../email');
+import Team from '../team';
+import Banner from '../banner';
+import Logo from '../logo';
+import Services from '../services';
+import { Work } from '../work';
+import Connect from '../connect';
+import Email from '../email';
 
-var Home = React.createClass({
-  displayName: 'Home',
+export default class extends React.Component {
+  constructor() { super(); }
+  static displayName = 'Home'
 
-  render: function() {
+  render() {
     return (
       <main className='main-app'>
         <div className='logo-container'>
@@ -42,6 +41,4 @@ var Home = React.createClass({
       </main>
     );
   }
-});
-
-module.exports = Home;
+}

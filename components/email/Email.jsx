@@ -6,14 +6,14 @@ const emailHref = [
   'a3)+phone+number+(optional)%0d%0a%0d%0a4)+budget'
 ].join('');
 
-const Email = React.createClass({
-  displayName: 'Email',
+export default class extends React.Component {
+  static displayName = 'Email'
 
   shouldComponentUpdate() {
     return false;
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <section
         className='email'
@@ -30,6 +30,4 @@ const Email = React.createClass({
       </section>
     );
   }
-});
-
-module.exports = Email;
+}

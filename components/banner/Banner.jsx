@@ -1,15 +1,14 @@
-var React = require('react');
+import React from 'react';
 
-var Banner = React.createClass({
-  displayName: 'Banner',
+export default class extends React.Component {
+  constructor() { super(); }
+  static displayName = 'Banner'
 
-  render: function() {
+  render() {
     return (
       <section className='banner'>
         <img src='images/banner.png' />
       </section>
     );
   }
-});
-
-module.exports = Banner;
+}
