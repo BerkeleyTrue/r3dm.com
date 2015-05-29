@@ -31,8 +31,7 @@ export default class Blog extends React.Component {
       this.props.posts !== nextProps.posts;
   }
 
-  renderPosts(posts) {
-    const showBrief = posts.length !== 1;
+  renderPosts(showBrief, posts) {
     return posts.map(post => {
       return (
         <Post
@@ -45,12 +44,13 @@ export default class Blog extends React.Component {
 
   render() {
     const { posts } = this.props;
+    const showBrief = !this.props.params.slug;
 
     return (
       <main className='blog'>
         <div className='blog_layout'>
           <article className='posts_wrapper'>
-            { this.renderPosts(posts) }
+            { this.renderPosts(showBrief, posts) }
           </article>
         </div>
       </main>

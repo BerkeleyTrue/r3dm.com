@@ -15,7 +15,8 @@ export default class extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.post.slug !== nextProps.post.slug;
+    return this.props.post.slug !== nextProps.post.slug ||
+      this.props.showBrief !== nextProps.showBrief;
   }
 
   renderContent(showBrief, content) {
