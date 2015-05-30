@@ -1,7 +1,7 @@
-var keystone = require('keystone'),
-    Types = keystone.Field.Types;
+import keystone from 'keystone';
 
-var User = new keystone.List('User');
+const Types = keystone.Field.Types;
+const User = new keystone.List('User');
 
 User.add({
   name: {

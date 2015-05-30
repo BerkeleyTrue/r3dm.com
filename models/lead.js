@@ -1,7 +1,7 @@
-var keystone = require('keystone'),
-    Types = keystone.Field.Types;
+import keystone from 'keystone';
 
-var Lead = new keystone.List('Lead');
+const Types = keystone.Field.Types;
+const Lead = new keystone.List('Lead');
 
 Lead.add({
   name: {
@@ -54,7 +54,7 @@ Lead.schema.methods.sendNotificationEmail = function(next) {
     .model
     .find()
     .where('isAdmin', true)
-    .exec(function(err, admins) {
+    .exec((err, admins) => {
       if (err) { return next(err); }
 
       new keystone.Email('notify').send({

@@ -1,8 +1,10 @@
-var keystone = require('keystone'),
-    Types = keystone.Field.Types,
-    debug = require('debug')('r3dm:models:post');
+import keystone from 'keystone';
+import debugFactory from 'debug';
 
-var Post = new keystone.List('Post', {
+const debug = debugFactory('r3dm:models:post');
+const Types = keystone.Field.Types;
+
+const Post = new keystone.List('Post', {
   map: {
     name: 'title'
   },
@@ -68,32 +70,20 @@ Post.defaultColumns =
   'title, author|10%, state|10%, language|15%, publishedDate|20%';
 
 Post.schema.pre('save', function(next) {
-  var myPost = this,
-      err;
+  let err;
 
-  debug('saving Post:', myPost);
-  if (myPost.state === 'published') {
-    if (!myPost.publishedDate) {
+  debug('saving Post:', this.id);
+  if (this.state === 'published') {
+    if (!this.publishedDate) {
       err = new Error('Cannot publish a post without a publishedDate.');
       next(err);
     }
-    if (!myPost.author) {
+    if (!this.author) {
       err = new Error('Cannot publish a post without an author.');
       next(err);
     }
   }
   next();
-});
-
-Post.schema.post('save', function(post) {
-  debug('saved Post:', post);
-  Post.model.findByIdAndUpdate(post.translation,
-                               { $set: { translation: post.id }},
-                               function(err, translation) {
-    if (err) { throw err; }
-
-    debug('translation updated:', translation);
-  });
 });
 
 Post.register();
