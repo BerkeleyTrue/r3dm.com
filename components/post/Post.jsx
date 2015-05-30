@@ -30,26 +30,26 @@ export default class extends React.Component {
   renderFooter(showBrief, slug) {
     if (!showBrief) {
       return (
-        <footer>
-          <div className='post_readmore'>
-            <Link
-              params={{ slug: null }}
-              to='blog'>
+        <footer className='post_readmore'>
+          <Link
+            params={{ slug: null }}
+            to='blog'>
+            <div >
               Back
-            </Link>
-          </div>
+            </div>
+          </Link>
         </footer>
       );
     }
     return (
-      <footer>
-        <div className='post_readmore'>
-          <Link
-            params={{ slug: slug }}
-            to='blog'>
-            READ THE FULL POST
-          </Link>
-        </div>
+      <footer className='post_readmore'>
+        <Link
+          params={{ slug: slug }}
+          to='blog'>
+          <div >
+              READ THE FULL POST
+          </div>
+        </Link>
       </footer>
     );
   }

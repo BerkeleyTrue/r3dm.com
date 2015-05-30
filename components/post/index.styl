@@ -1,0 +1,48 @@
+.post
+  text-align justify
+
+  .center
+    text-align center
+
+  .caption
+    font-style italic
+
+  img
+    max-width 80vw
+    +media-query( all, min-width 768px )
+      max-width 70vw
+    +media-query( all, min-width 992px )
+      max-width 50vw
+
+a.post_title
+  color black
+
+.post_subheading
+  font-size 0.8em
+  color r3dm-grey
+
+.post_readmore
+  text-align center
+  border-bottom 1px solid border-grey
+  border-top 1px solid border-grey
+  a
+    color r3dm-grey
+    font-size 2em
+    line-height 50px
+    transition all 0.5s ease-in-out 0s
+    &:hover
+      color red
+
+.post-cover
+  padding-top 10px
+  text-align center
+
+  img
+    max-width 80vw
+    +media-query( all, min-width 768px )
+      max-width 70vw
+    +media-query( all, min-width 992px )
+      max-width 50vw
+
+.post p, li
+  font-size large
