@@ -55,7 +55,7 @@ export default class extends React.Component {
           hash={ hash }
           links={ links } />
         <div className='nav_links-hamburger'>
-          <Hamburger onClick={ this.handleHamburgerClick }/>
+          <Hamburger onClick={ ::this.handleHamburgerClick }/>
         </div>
       </nav>
     );
