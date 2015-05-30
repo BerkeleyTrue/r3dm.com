@@ -23,12 +23,4 @@ export default class extends Actions {
       return { links: homeLinks.slice() };
     }
   }
-
-  setShowNav(showNav) {
-    return { showNav };
-  }
-
-  setShowNavAtTop(showNavAtTop) {
-    return { showNavAtTop };
-  }
 }

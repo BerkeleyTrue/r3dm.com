@@ -1,8 +1,5 @@
 import { Cat } from 'thundercats';
 
-import AppActions from '../app/Actions';
-import AppStore from '../app/Store';
-
 import ConnectActions from '../connect/Actions';
 import ConnectStore from '../connect/Store';
 
@@ -15,9 +12,6 @@ import NavStore from '../nav/Store';
 export default class r3d extends Cat {
   constructor() {
     super();
-
-    this.register(AppActions);
-    this.register(AppStore, this);
 
     this.register(ConnectActions);
     this.register(ConnectStore, this);
