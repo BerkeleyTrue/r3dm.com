@@ -41,9 +41,9 @@ export default createContainer(
 
       return (
         <div>
+          <Nav path={ path } />
           <RouteHandler />
           <Footer />
-          <Nav path={ path } />
           <SideNav />
         </div>
       );
