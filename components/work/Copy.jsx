@@ -4,8 +4,8 @@ import ImgLoader from 'react-imageloader';
 import { Switcher, Spinner } from '../common';
 
 const spinner = React.createElement.bind(null, Spinner, {
-  svgClass: 'connect_sending-spinner',
-  circleClass: 'connect_sending-path'
+  svgClass: 'work_loading-spinner',
+  circleClass: 'work_loading-path'
 });
 
 export default class extends React.Component {

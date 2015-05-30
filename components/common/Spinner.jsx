@@ -28,7 +28,7 @@ export default class extends React.Component {
           fill='none'
           r='30'
           strokeLinecap='round'
-          strokeWidth='12'>
+          strokeWidth='6'>
         </circle>
       </svg>
     );
