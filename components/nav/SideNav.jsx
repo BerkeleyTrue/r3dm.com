@@ -30,7 +30,7 @@ export default class extends React.Component {
       nextProps.open !== props.open;
   }
 
-  handleOverlayClick() {
+  handleClick() {
     this.props.navActions.openSideNav(false);
   }
 
@@ -45,10 +45,12 @@ export default class extends React.Component {
     return (
       <div>
         <nav className={ sideNavClass }>
-          <Links links={ links } />
+          <Links
+            handleClick={ ::this.handleClick }
+            links={ links } />
         </nav>
         <OverLay
-          onClick={ this.handleOverlayClick.bind(this) }
+          onClick={ ::this.handleClick }
           show={ open } />
       </div>
     );

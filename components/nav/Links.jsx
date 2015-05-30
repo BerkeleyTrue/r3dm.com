@@ -8,8 +8,12 @@ export default class extends React.Component {
     super(props);
   }
   static displayName = 'Links';
+  static defaultProps = {
+    handleClick: () => {}
+  }
   static propTypes = {
     className: React.PropTypes.string,
+    handleClick: React.PropTypes.func,
     hash: React.PropTypes.string,
     links: React.PropTypes.arrayOf(
       React.PropTypes.shape({
@@ -22,6 +26,7 @@ export default class extends React.Component {
   render() {
     const {
       className,
+      handleClick,
       hash
     } = this.props;
 
@@ -33,7 +38,10 @@ export default class extends React.Component {
         });
         return (
           <li key={ link.path }>
-            <a href={ link.path } target='_self'>
+            <a
+              href={ link.path }
+              onClick= { handleClick }
+              target='_self'>
               <Ink />
               { link.name }
             </a>
@@ -43,7 +51,9 @@ export default class extends React.Component {
       } else {
         return (
           <li key={ link.path }>
-            <Link to={ link.path }>
+            <Link
+              onClick={ handleClick }
+              to={ link.path }>
               { link.name }
             </Link>
           </li>
