@@ -1,6 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/r3dm/r3dm.com.png?label=ready&title=Ready)](https://waffle.io/r3dm/r3dm.com)
 # R3dm landing page
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/BerkeleyTrue/r3dm.com.svg)](https://greenkeeper.io/)
+
 [![Circle CI](https://circleci.com/gh/r3dm/r3dm.com.svg?style=svg)](https://circleci.com/gh/r3dm/r3dm.com)
 
 ## Built using React, Rxjs, Flux, Keystone.js and Node.js
